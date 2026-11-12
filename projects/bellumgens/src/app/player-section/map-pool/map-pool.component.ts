@@ -1,6 +1,6 @@
 import { Component, input, linkedSignal, output } from '@angular/core';
-import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOMapPool } from '../../../../../common/src/public_api';
-import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
+import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOMapPool } from 'bellum-gens-common/models';
+import { ActiveDutyMapsPipe } from 'bellum-gens-common/pipes';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { NgOptimizedImage } from '@angular/common';
@@ -19,7 +19,7 @@ import { NgOptimizedImage } from '@angular/common';
 export class MapPoolComponent {
   public viewAll = input(false);
 
-  public mapPool = input<CSGOMapPool []>();
+  public mapPool = input<CSGOMapPool [] | null>();
 
   public readOnly = input<boolean>();
 

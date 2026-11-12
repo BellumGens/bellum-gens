@@ -23,7 +23,7 @@
         }
         @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl" [initials]="registration.user?.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl ?? ''" [initials]="registration.user?.username ?? ''" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
             @if (registration.user) {
@@ -154,7 +154,7 @@
         @for (group of groups(); track group.id) {
           <igx-grid
             cellSelection="none"
-            [data]="group.participants">
+            [data]="group.participants ?? null">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title><h3>{{group.name}}</h3></igx-grid-toolbar-title>
               <igx-grid-toolbar-actions>

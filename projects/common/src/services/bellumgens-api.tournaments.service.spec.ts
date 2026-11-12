@@ -3,9 +3,16 @@ import { computed, signal } from '@angular/core';
 
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
-import { CommunicationService, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
-import { Game } from '../models/tournament';
+import {
+  TournamentCSGOMatch,
+  TournamentSC2Match,
+  TournamentApplication,
+  TournamentCSGOGroup,
+  TournamentParticipant,
+  TournamentSC2Group,
+  Game
+} from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { Observable, config as rxjsConfig } from 'rxjs';
 
@@ -54,7 +61,7 @@ describe('ApiTournamentsService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament?id=${mockTournament.id}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockTournament);
-    expect(service['_tournamentsById'].get('123')()).toEqual(mockTournament);
+    expect(service['_tournamentsById'].get('123')!()).toEqual(mockTournament);
   });
 
   it('should create a tournament', () => {
@@ -181,8 +188,8 @@ describe('ApiTournamentsService', () => {
         oTLosses: 0,
         roundDifference: 0,
         battleTag: 'test',
-        user: null,
-        team: null
+        user: undefined,
+        team: undefined
       }
     ];
 
@@ -191,7 +198,7 @@ describe('ApiTournamentsService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgoregs?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCsgoRegistrations);
-    expect(service['_csgoRegistrations'].get('1')()).toEqual(mockCsgoRegistrations);
+    expect(service['_csgoRegistrations'].get('1')!()).toEqual(mockCsgoRegistrations);
   });
 
   it('should get StarCraft II registrations', () => {
@@ -210,8 +217,8 @@ describe('ApiTournamentsService', () => {
         oTLosses: 0,
         roundDifference: 0,
         battleTag: 'test',
-        user: null,
-        team: null
+        user: undefined,
+        team: undefined
       }
     ];
 
@@ -220,7 +227,7 @@ describe('ApiTournamentsService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2regs?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockSc2Registrations);
-    expect(service['_sc2Registrations'].get('1')()).toEqual(mockSc2Registrations);
+    expect(service['_sc2Registrations'].get('1')!()).toEqual(mockSc2Registrations);
   });
 
   it('should get Counter-Strike matches', () => {
@@ -234,7 +241,7 @@ describe('ApiTournamentsService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgomatches?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCsgoMatches);
-    expect(service['_csgoMatches'].get('1')()).toEqual(mockCsgoMatches);
+    expect(service['_csgoMatches'].get('1')!()).toEqual(mockCsgoMatches);
   });
 
   it('should get StarCraft II matches', () => {
@@ -249,7 +256,7 @@ describe('ApiTournamentsService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Matches);
-    expect(service['_sc2Matches'].get('1')()).toEqual(mockSc2Matches);
+    expect(service['_sc2Matches'].get('1')!()).toEqual(mockSc2Matches);
   });
 
   it('should get Counter-Strike groups', () => {
@@ -264,7 +271,7 @@ describe('ApiTournamentsService', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(true);
     req.flush(mockCsgoGroups);
-    expect(service['_csgoGroups'].get('1')()).toEqual(mockCsgoGroups);
+    expect(service['_csgoGroups'].get('1')!()).toEqual(mockCsgoGroups);
   });
 
   it('should get StarCraft II groups', () => {
@@ -280,7 +287,7 @@ describe('ApiTournamentsService', () => {
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Groups);
     // Cached in reverse order, without mutating the server data
-    expect(service['_sc2Groups'].get('1')()).toEqual([mockSc2Groups[1], mockSc2Groups[0]]);
+    expect(service['_sc2Groups'].get('1')!()).toEqual([mockSc2Groups[1], mockSc2Groups[0]]);
     expect(mockSc2Groups[0].id).toBe('1');
   });
 
@@ -378,24 +385,24 @@ describe('ApiTournamentsService', () => {
     // The Counter-Strike group doesn't carry its tournament, so the cache is identified explicitly
     service.submitCSGOGroup({ name: 'Group B' }, '1').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush({ id: 'g2', name: 'Group B' });
-    expect(csgoGroups().map(g => g.id)).toEqual(['g1', 'g2']);
+    expect(csgoGroups()?.map(g => g.id)).toEqual(['g1', 'g2']);
 
     // Re-submitting an existing group doesn't duplicate it
     service.submitCSGOGroup({ id: 'g2', name: 'Group B' }, '1').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup?id=g2`).flush({ id: 'g2', name: 'Group B' });
-    expect(csgoGroups().length).toBe(2);
+    expect(csgoGroups()?.length).toBe(2);
 
     service.submitSC2Group({ name: 'Group B', tournamentId: '1' }).subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's2', name: 'Group B', tournamentId: '1' });
-    expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+    expect(sc2Groups()?.map(g => g.id)).toEqual(['s2', 's1']);
 
     service.deleteGroup('g1').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=g1`).flush({});
-    expect(csgoGroups().map(g => g.id)).toEqual(['g2']);
+    expect(csgoGroups()?.map(g => g.id)).toEqual(['g2']);
 
     service.deleteGroup('s1').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=s1`).flush({});
-    expect(sc2Groups().map(g => g.id)).toEqual(['s2']);
+    expect(sc2Groups()?.map(g => g.id)).toEqual(['s2']);
   });
 
   it('should submit a Counter-Strike group', () => {
@@ -440,8 +447,8 @@ describe('ApiTournamentsService', () => {
       oTLosses: 0,
       roundDifference: 0,
       battleTag: 'test',
-      user: null,
-      team: null
+      user: undefined,
+      team: undefined
     };
     const mockGroupId = '1';
 
@@ -1050,8 +1057,8 @@ describe('ApiTournamentsService', () => {
       service.submitSC2Group({ name: 'B' }).subscribe();
       httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's2', name: 'B', tournamentId: '1' });
 
-      expect(csgoGroups().map(g => g.id)).toEqual(['g1', 'g2']);
-      expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+      expect(csgoGroups()?.map(g => g.id)).toEqual(['g1', 'g2']);
+      expect(sc2Groups()?.map(g => g.id)).toEqual(['s2', 's1']);
     });
 
     it('should not touch the group caches when the tournament is unknown or not loaded', () => {
@@ -1082,7 +1089,7 @@ describe('ApiTournamentsService', () => {
       expect(sc2Groups()).toBeNull();
 
       httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([{ id: 's1', name: 'A' }, { id: 's2', name: 'B' }]);
-      expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+      expect(sc2Groups()?.map(g => g.id)).toEqual(['s2', 's1']);
     });
 
     it('should not change the group caches when saving a group fails', () => {

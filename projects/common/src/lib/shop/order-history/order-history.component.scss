@@ -1,0 +1,86 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: calc(100% - 40px);
+}
+
+.shop-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.shop-loading,
+.shop-empty {
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 16px;
+}
+
+.shop-empty .empty-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.3;
+}
+
+.order-list igx-list-item {
+  position: relative;
+}
+
+// Makes the whole row open the order, while the link stays the row's single accessible element.
+.order-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+  }
+}
+
+.order-summary {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.order-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.order-total {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+// The status name is next to it, so the icon colour only reinforces it.
+.status-icon {
+  &.status-1,
+  &.status-2,
+  &.status-3,
+  &.status-6 {
+    color: var(--ig-success-500);
+  }
+
+  &.status-4 {
+    color: var(--ig-error-500);
+  }
+
+  &.status-0,
+  &.status-5 {
+    color: var(--ig-warn-500);
+  }
+}

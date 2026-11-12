@@ -1,5 +1,6 @@
 import { Component, Signal, inject, signal } from '@angular/core';
-import { ApplicationUser, LoginService } from '../../../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 
@@ -27,5 +28,5 @@ export class SearchComponent {
   private authManager = inject(LoginService);
 
   public searchType = signal<SearchType>(SearchType.None);
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
 }

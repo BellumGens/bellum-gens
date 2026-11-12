@@ -8,18 +8,17 @@ import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   ApplicationUser,
-  LoginService,
   Tournament,
   TournamentCSGOGroup,
   TournamentCSGOMatch,
   TournamentParticipant,
-  TournamentApplicationState
-} from '../../../../../common/src/public_api';
-import { CSGOMap } from '../../../../../common/src/models/csgomaps';
-import { CSGOTeam } from '../../../../../common/src/models/csgoteam';
+  TournamentApplicationState,
+  CSGOMap,
+  CSGOTeam
+} from 'bellum-gens-common/models';
 
 const team = (teamId: string, teamName: string): CSGOTeam => ({
   teamId,
@@ -108,7 +107,7 @@ describe('TournamentCsgoComponent', () => {
   });
 
   it('loads the active tournament data when the route carries no tournament id', async () => {
-    expect(component.tournamentId()).toBeUndefined();
+    expect(component.tournamentId()).toBe('');
     flushUser(null);
     // An empty id loads the active tournament rather than requesting `/tournament?id=undefined`
     httpMock.expectNone(req => req.url.includes('/tournament?id='));
@@ -117,9 +116,9 @@ describe('TournamentCsgoComponent', () => {
     httpMock.verify();
     await render();
 
-    expect(component.tournament().name).toBe('Spring');
-    expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Spring Counter-Strike League');
-    expect(el().querySelector('igx-grid-toolbar-title').textContent).toContain('Spring Schedule');
+    expect(component.tournament()!.name).toBe('Spring');
+    expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Spring Counter-Strike League');
+    expect(el().querySelector('igx-grid-toolbar-title')!.textContent).toContain('Spring Schedule');
   });
 
   it('fetches the tournament, registrations, matches and groups for the routed tournament id', async () => {
@@ -145,8 +144,8 @@ describe('TournamentCsgoComponent', () => {
     expect(component.loadingMatches()).toBe(false);
     await render();
 
-    expect(component.registrations().length).toBe(1);
-    expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Season 2 Counter-Strike League');
+    expect(component.registrations()!.length).toBe(1);
+    expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Season 2 Counter-Strike League');
   });
 
   it('shows a progress bar while the registrations are loading', async () => {
@@ -191,18 +190,19 @@ describe('TournamentCsgoComponent', () => {
     const groupGrid = () => fixture.debugElement
       .queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
       .map(debugEl => debugEl.componentInstance as IgxGridComponent)
-      .find(g => g.data === component.groups()[0].participants);
-    expect(groupGrid().isLoading).toBe(false);
+      .find(g => g.data === component.groups()![0].participants);
+    expect(groupGrid()!.isLoading).toBe(false);
 
-    apiService.refreshCsgoGroups(undefined);
+    // the page shows the active tournament, which is cached under the empty tournament id
+    apiService.refreshCsgoGroups('');
     await render();
     expect(component.loadingGroups()).toBe(true);
     expect(component.loading()).toBe(false);
-    expect(groupGrid().isLoading).toBe(true);
+    expect(groupGrid()!.isLoading).toBe(true);
 
     httpMock.expectOne(api('csgogroups')).flush([{ id: 'g1', name: 'Group A', participants: [] }]);
     await render();
-    expect(groupGrid().isLoading).toBe(false);
+    expect(groupGrid()!.isLoading).toBe(false);
   });
 
   it('renders every registration and flags only the current user\'s unconfirmed one', async () => {
@@ -224,10 +224,10 @@ describe('TournamentCsgoComponent', () => {
     expect(slots.length).toBe(3);
     expect(slots.map(s => !!s.querySelector('igx-badge'))).toEqual([true, false, false]);
 
-    const link = slots[0].querySelector<HTMLAnchorElement>('a');
+    const link = slots[0].querySelector<HTMLAnchorElement>('a')!;
     expect(link.textContent.trim()).toBe('Alpha');
     expect(link.getAttribute('href')).toBe(`${component.environment.bellumgens}/team/team-1-url`);
-    expect(slots[0].querySelector('span').textContent).toBe('[Alpha Inc.]');
+    expect(slots[0].querySelector('span')!.textContent).toBe('[Alpha Inc.]');
   });
 
   it('renders the schedule with winners highlighted, media links and match details', async () => {
@@ -286,7 +286,7 @@ describe('TournamentCsgoComponent', () => {
     expect(detailText.filter(t => t.includes('The match has not been played yet')).length).toBe(1);
 
     const mapAvatar = schedule.querySelector<HTMLElement>('.score-container + igx-avatar');
-    expect(mapAvatar.getAttribute('title')).toBe('Mirage');
+    expect(mapAvatar!.getAttribute('title')).toBe('Mirage');
   });
 
   it('renders a standings grid per group with colour-coded round difference', async () => {
@@ -311,7 +311,7 @@ describe('TournamentCsgoComponent', () => {
 
     const groupGrids = Array.from(el().querySelectorAll<HTMLElement>('.group-columns igx-grid'));
     expect(groupGrids.length).toBe(2);
-    expect(groupGrids.map(g => g.querySelector('igx-grid-toolbar-title').textContent.trim())).toEqual(['Group A', 'Group B']);
+    expect(groupGrids.map(g => g.querySelector('igx-grid-toolbar-title')!.textContent.trim())).toEqual(['Group A', 'Group B']);
 
     const teamLinks = Array.from(groupGrids[0].querySelectorAll<HTMLAnchorElement>('a[igxListLineTitle]'));
     expect(teamLinks.map(a => a.textContent.trim())).toEqual(['Alpha', 'Bravo', 'Charlie']);
@@ -320,7 +320,7 @@ describe('TournamentCsgoComponent', () => {
     const rows = Array.from(groupGrids[0].querySelectorAll('igx-grid-row'));
     const diffClass = (row: Element) => {
       const span = Array.from(row.querySelectorAll('span')).find(s => /^-?\d+$/.test(s.textContent.trim()));
-      return span.className;
+      return span!.className;
     };
     expect(rows.map(diffClass)).toEqual(['color-success', 'color-error', '']);
   });
@@ -340,7 +340,7 @@ describe('TournamentCsgoComponent', () => {
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=t2`).flush({ id: 't2', name: 'Season 3' });
     flushPage('?tournamentId=t2');
     httpMock.verify();
-    expect(component.tournament().name).toBe('Season 3');
+    expect(component.tournament()!.name).toBe('Season 3');
   });
 
   it('hides the team brackets for registrations without a team', async () => {
@@ -349,14 +349,14 @@ describe('TournamentCsgoComponent', () => {
     flushPage('', {
       registrations: [
         makeRegistration('r1', 'u1', TournamentApplicationState.Confirmed, team('team-1', 'Alpha')),
-        { ...makeRegistration('r2', 'u2', TournamentApplicationState.Confirmed, team('team-2', 'Bravo')), companyId: null }
+        { ...makeRegistration('r2', 'u2', TournamentApplicationState.Confirmed, team('team-2', 'Bravo')), companyId: '' }
       ]
     });
     await render();
 
     const slots = Array.from(el().querySelectorAll('.registration-slot'));
     expect(slots.map(s => s.querySelector(':scope > span')?.textContent ?? null)).toEqual(['[Alpha Inc.]', null]);
-    expect(el().querySelector('.participants-container').textContent).not.toContain('[]');
+    expect(el().querySelector('.participants-container')!.textContent).not.toContain('[]');
   });
 
   describe('on a narrow screen', () => {
@@ -393,22 +393,47 @@ describe('TournamentCsgoComponent', () => {
       expect(component.narrowScreen()).toBe(true);
       const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
         .map(debugEl => debugEl.componentInstance as IgxGridComponent)
-        .find(g => g.data === component.csgomatches());
+        .find(g => g.data === component.csgomatches())!;
       expect(grid.getColumnByName('videoLink').hidden).toBe(true);
       expect(grid.getColumnByName('demoLink').hidden).toBe(true);
       expect(grid.getColumnByName('startTime').width).toBe('150px');
 
       const schedule = grids()[0];
-      const row = schedule.querySelector('igx-grid-row');
+      const row = schedule.querySelector('igx-grid-row')!;
       expect(row.textContent).toMatch(/1\/15\/24, 6:30\sPM/);
       expect(row.querySelectorAll('a.horizontal-center').length).toBe(0);
 
       grid.expandAll();
       await render();
       const links = Array.from(schedule.querySelectorAll<HTMLAnchorElement>('.match-links a'));
-      expect(links.map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()])).toEqual([
+      expect(links.map(a => [a.getAttribute('href'), a.querySelector('span')!.textContent.trim()])).toEqual([
         ['https://video/1', 'Video'],
         ['https://demo/1', 'Demo']
+      ]);
+    });
+
+    it('shows only the media links a match has in its details', async () => {
+      const match = (id: string, links: Partial<TournamentCSGOMatch>): TournamentCSGOMatch => ({
+        id, team1: team('team-1', 'Alpha'), team2: team('team-2', 'Bravo'), team1Id: 'team-1', team2Id: 'team-2',
+        startTime: new Date(2024, 0, 15, 18, 30), maps: [], ...links
+      });
+      const matches = [match('m1', { videoLink: 'https://video/1' }), match('m2', { demoLink: 'https://demo/2' }), match('m3', {})];
+      httpMock.match(req => req.url.includes('csgomatches')).forEach(req => req.flush(matches));
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      await render();
+
+      const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
+        .map(debugEl => debugEl.componentInstance as IgxGridComponent)
+        .find(g => g.data === component.csgomatches());
+      grid!.expandAll();
+      await render();
+
+      // The match without links gets no links area at all
+      const linkAreas = Array.from(grids()[0].querySelectorAll('.match-links'))
+        .map(area => Array.from(area.querySelectorAll('a')).map(a => [a.getAttribute('href'), a.querySelector('span')!.textContent.trim()]));
+      expect(linkAreas).toEqual([
+        [['https://video/1', 'Video']],
+        [['https://demo/2', 'Demo']]
       ]);
     });
   });

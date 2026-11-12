@@ -1,0 +1,25 @@
+# Esports Business League
+
+> The Esports Business League (EB-League) is an amateur esports competition for people at the workplace, in Counter-Strike and StarCraft II. Companies enter teams and players to build team bonds through friendly or competitive gaming against colleagues and other companies. It is organized by Bellum Gens in Bulgaria.
+
+- The site is available in English at https://eb-league.com and in Bulgarian under https://eb-league.com/bg.
+- Matches are played in the evening, after working hours (from 7:30pm EET), Monday to Thursday.
+- Contact: info@eb-league.com
+
+## League
+
+- [Seasons](https://eb-league.com/tournaments): The league seasons, with their Counter-Strike and StarCraft II competitions.
+- [Tournament format and rules](https://eb-league.com/tournaments/format): How the leagues work. Teams and players are split into groups of 4-8 and play 1-2 matches a week, and the best of each group go to the finals. Includes the Counter-Strike and StarCraft II match rules, map veto and schedule.
+- [Counter-Strike league](https://eb-league.com/tournaments/csgo/): Groups, standings and match results of the Counter-Strike league.
+- [StarCraft II league](https://eb-league.com/tournaments/sc2/): Groups, standings and match results of the StarCraft II league.
+- [Tournaments](https://eb-league.com/tournaments/hub): Browse and join esports tournaments, or create and manage your own.
+
+## About
+
+- [Production crew](https://eb-league.com/tournaments/crew): The casters, admins and production team behind the league.
+- [News](https://eb-league.com/news): League announcements and updates.
+
+## Optional
+
+- [Bellum Gens](https://bellumgens.com): The organizer of the league, which also runs the Bellum Gens Elite StarCraft II events.
+- [Shop](https://bellumgens.com/shop): Official Esports Business League merchandise, sold through the Bellum Gens shop.

@@ -5,7 +5,7 @@ import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { CommunicationService } from 'bellum-gens-common';
+import { CommunicationService } from 'bellum-gens-common/services';
 
 describe('SuccessErrorComponent', () => {
   let component: SuccessErrorComponent;

@@ -1,7 +1,7 @@
-@if (authUser()) {
+@if (authUser(); as user) {
   <igx-list>
     <igx-list-item [isHeader]="true">
-      <span i18n>Notifications for {{ authUser().username }}</span>
+      <span i18n>Notifications for {{ user.username }}</span>
     </igx-list-item>
     @if (!notifications()?.length) {
       <igx-list-item>

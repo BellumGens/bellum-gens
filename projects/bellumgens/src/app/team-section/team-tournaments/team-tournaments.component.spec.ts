@@ -4,7 +4,7 @@ import { TeamTournamentsComponent } from './team-tournaments.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { signal } from '@angular/core';
-import { CSGOTeam, TEAM_PLACEHOLDER, Tournament } from '../../../../../common/src/public_api';
+import { CSGOTeam, TEAM_PLACEHOLDER, Tournament } from 'bellum-gens-common/models';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamTournamentsComponent', () => {

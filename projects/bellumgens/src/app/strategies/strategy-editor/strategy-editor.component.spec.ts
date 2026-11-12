@@ -7,14 +7,12 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { PLATFORM_ID, Provider, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
+import { IDropDroppedEventArgs, IgxDragDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { By } from '@angular/platform-browser';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+import { ConfirmComponent } from 'bellum-gens-common';
 import {
   ACTIVE_DUTY,
-  ApiStrategiesService,
-  BellumgensApiService,
   CSGOMap,
   CSGOStrategy,
   CSGOTeam,
@@ -25,9 +23,10 @@ import {
   Side,
   StrategyEditor,
   TeamMember
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { ApiStrategiesService, BellumgensApiService } from 'bellum-gens-common/services';
 
-const radar = (map: CSGOMap) => ACTIVE_DUTY.find(m => m.mapId === map).radar[0];
+const radar = (map: CSGOMap) => ACTIVE_DUTY.find(m => m.mapId === map)!.radar![0];
 
 const imageMeta = (name: string, src: string, movable = true): EditorLayer => ({
   name, src, movable, x: 10, y: 20, width: 24, height: 24, type: EditorLayerType.Image, displayRatio: 1
@@ -53,9 +52,9 @@ describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
   let fixture: ComponentFixture<StrategyEditorComponent>;
   let params$: BehaviorSubject<Params>;
-  let strat: WritableSignal<CSGOStrategy>;
-  let team: WritableSignal<CSGOTeam>;
-  let members: WritableSignal<TeamMember []>;
+  let strat: WritableSignal<CSGOStrategy | null>;
+  let team: WritableSignal<CSGOTeam | null>;
+  let members: WritableSignal<TeamMember [] | null>;
   let strategiesService: ApiStrategiesService;
   let apiService: BellumgensApiService;
 
@@ -92,16 +91,15 @@ describe('StrategyEditorComponent', () => {
 
   beforeEach(() => {
     params$ = new BehaviorSubject<Params>({});
-    strat = signal<CSGOStrategy>(null);
-    team = signal<CSGOTeam>(null);
-    members = signal<TeamMember []>(null);
+    strat = signal<CSGOStrategy | null>(null);
+    team = signal<CSGOTeam | null>(null);
+    members = signal<TeamMember [] | null>(null);
     vi.spyOn(HTMLCanvasElement.prototype, 'toDataURL').mockReturnValue('data:image/png;base64,board');
   });
 
   afterEach(() => {
     // Destroy while the canvas stubs are still in place, as the editor saves pending changes on destroy.
     fixture?.destroy();
-    fixture = undefined;
     vi.useRealTimers();
     vi.restoreAllMocks();
   });
@@ -244,7 +242,7 @@ describe('StrategyEditorComponent', () => {
         team.set({ teamId: 'team-a', teamName: 'Team A' } as CSGOTeam);
         await fixture.whenStable();
 
-        expect(component.team().teamId).toBe('team-a');
+        expect(component.team()!.teamId).toBe('team-a');
         expect(apiService.getTeamMembers).toHaveBeenCalledWith('team-a');
 
         members.set([
@@ -253,11 +251,22 @@ describe('StrategyEditorComponent', () => {
         ] as TeamMember []);
         await fixture.whenStable();
 
-        expect(component.teammembers().map(m => m.userId)).toEqual(['u1', 'u2']);
+        expect(component.teammembers()!.map(m => m.userId)).toEqual(['u1', 'u2']);
         expect(fixture.nativeElement.textContent).toContain('Team');
         const avatars = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-avatar[title]'))
           .map(a => a.getAttribute('title'));
         expect(avatars).toEqual(['alpha', 'bravo']);
+      });
+
+      it('puts the brush down when a team member starts to be dragged', async () => {
+        team.set({ teamId: 'team-a', teamName: 'Team A' } as CSGOTeam);
+        members.set([{ userId: 'u1', username: 'alpha', avatarIcon: 'a.png' }] as TeamMember []);
+        await fixture.whenStable();
+        component.selectBrush();
+
+        fixture.debugElement.query(By.css('igx-avatar[title="alpha"]')).triggerEventHandler('dragStart', {});
+
+        expect(component.brushSelected()).toBe(false);
       });
 
       it('does not re-fetch the team when the strategy updates with the same team', async () => {
@@ -267,7 +276,7 @@ describe('StrategyEditorComponent', () => {
         strat.set(strategy({ teamId: 'team-a', title: 'Renamed' }));
         await fixture.whenStable();
 
-        expect(component.newStrategy().title).toBe('Renamed');
+        expect(component.newStrategy()!.title).toBe('Renamed');
         expect(apiService.getTeam).toHaveBeenCalledTimes(1);
         expect(apiService.getTeamMembers).toHaveBeenCalledTimes(1);
       });
@@ -421,8 +430,8 @@ describe('StrategyEditorComponent', () => {
         const confirm = fixture.debugElement.query(By.directive(ConfirmComponent)).componentInstance as ConfirmComponent;
         const open = vi.spyOn(confirm, 'open').mockImplementation(() => undefined);
         const item = fixture.nativeElement.querySelectorAll('igx-list-item')[1] as HTMLElement;
-        const hide = item.querySelector<HTMLButtonElement>('igx-prefix button');
-        const remove = item.querySelector<HTMLButtonElement>('igx-suffix button');
+        const hide = item.querySelector<HTMLButtonElement>('igx-prefix button')!;
+        const remove = item.querySelector<HTMLButtonElement>('igx-suffix button')!;
 
         expect(hide.type).toBe('button');
         expect(hide.getAttribute('aria-label')).toBe('Hide layer');
@@ -457,8 +466,8 @@ describe('StrategyEditorComponent', () => {
         const items: HTMLElement [] = Array.from(fixture.nativeElement.querySelectorAll('igx-list-item'));
         expect(items.length).toBe(2);
         for (const item of items) {
-          expect(item.querySelector('input[igxInput]').getAttribute('aria-label')).toBe('Layer name');
-          expect(item.querySelector('igx-checkbox input').getAttribute('aria-label')).toBe('Select layer');
+          expect(item.querySelector('input[igxInput]')!.getAttribute('aria-label')).toBe('Layer name');
+          expect(item.querySelector('igx-checkbox input')!.getAttribute('aria-label')).toBe('Select layer');
         }
       });
 
@@ -483,6 +492,72 @@ describe('StrategyEditorComponent', () => {
 
         expect(component.brushSelected()).toBe(false);
         expect(fixture.nativeElement.textContent).not.toContain('Brush Color');
+      });
+
+      it('puts the brush down when a token or utility starts to be dragged', async () => {
+        const draggables = fixture.debugElement.queryAll(By.directive(IgxDragDirective));
+        // Five of each token kind and the utility
+        expect(draggables.length).toBe(15 + component.utility.length);
+
+        for (const draggable of draggables) {
+          component.selectBrush();
+          expect(component.brushSelected()).toBe(true);
+
+          draggable.triggerEventHandler('dragStart', {});
+
+          expect(component.brushSelected()).toBe(false);
+        }
+      });
+
+      it('starts drawing from a pointer down on the board', async () => {
+        component.selectBrush();
+        await fixture.whenStable();
+        const board = fixture.debugElement.query(By.css('canvas.drawing-board'));
+
+        board.triggerEventHandler('pointerdown', pointer(12, 34));
+        fixture.debugElement.query(By.css('.strat-editor-host')).triggerEventHandler('pointermove', pointer(20, 40));
+        fixture.debugElement.query(By.css('.strat-editor-host')).triggerEventHandler('pointerup', {});
+
+        const drawing = component.layers()[1] as FreeflowLayer;
+        expect(drawing).toBeInstanceOf(FreeflowLayer);
+        expect([drawing.x, drawing.y]).toEqual([12, 34]);
+        expect(drawing.paths[0].points[0]).toEqual({ x: 12, y: 34 });
+      });
+
+      it('changes the map from the map selector', async () => {
+        fixture.debugElement.query(By.css('igx-select#mapSelector')).triggerEventHandler('ngModelChange', CSGOMap.Overpass);
+        await fixture.whenStable();
+
+        expect(component.newStrategy()!.map).toBe(CSGOMap.Overpass);
+        expect((component.layers()[0] as ImageLayer).src).toBe(radar(CSGOMap.Overpass));
+        expect(component.changes()).toBe(true);
+      });
+
+      it('selects a layer and renames it from the layer list', async () => {
+        component.surfaceDrop(dropArgs({ name: 't', src: '/assets/editor/t-pin.png', width: 24, height: 24 }));
+        component.selectBrush();
+        await fixture.whenStable();
+        const token = component.layers()[1];
+        token.selected = false;
+        const item = fixture.debugElement.queryAll(By.css('igx-list-item'))[1];
+
+        const checkbox = item.query(By.css('igx-checkbox'));
+        checkbox.triggerEventHandler('ngModelChange', true);
+        checkbox.triggerEventHandler('change', {});
+        const name = item.query(By.css('input[igxInput]')).nativeElement as HTMLInputElement;
+        name.value = 'Entry T';
+        name.dispatchEvent(new Event('input'));
+        await fixture.whenStable();
+
+        expect(token.selected).toBe(true);
+        expect(component.brushSelected()).toBe(false);
+        expect(token.name).toBe('Entry T');
+      });
+
+      it('does not let the map radar be selected from the layer list', () => {
+        const radarCheckbox = fixture.nativeElement.querySelector('igx-list-item igx-checkbox input') as HTMLInputElement;
+
+        expect(radarCheckbox.disabled).toBe(true);
       });
 
       it('does not save without changes', () => {
@@ -512,7 +587,7 @@ describe('StrategyEditorComponent', () => {
         expect(payload.id).toBe('strat-1');
         expect(payload.title).toBe('Mid take');
         expect(payload.stratImage).toBe('data:image/png;base64,board');
-        const layers: EditorLayer [] = JSON.parse(payload.editorMetadata);
+        const layers: EditorLayer [] = JSON.parse(payload.editorMetadata!);
         expect(layers.map(l => [l.name, l.src])).toEqual([['Map Radar', radar(CSGOMap.Inferno)]]);
         expect(component.newStrategy()).toBe(payload);
         expect(component.brushSelected()).toBe(false);
@@ -588,7 +663,7 @@ describe('StrategyEditorComponent', () => {
 
   describe('on the server', () => {
     const globals = globalThis as { ngServerMode?: boolean };
-    let serverMode: boolean;
+    let serverMode: boolean | undefined;
 
     beforeEach(async () => {
       // Angular skips render hooks on the server via the ngServerMode flag the SSR build sets.

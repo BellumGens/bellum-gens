@@ -5,8 +5,8 @@ import { provideRouter, ActivatedRoute } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Subject } from 'rxjs';
-import { LoginService } from '../../services/login.service';
-import { ApplicationUser } from '../../models/applicationuser';
+import { LoginService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('UnauthorizedComponent', () => {
@@ -79,7 +79,7 @@ describe('UnauthorizedComponent', () => {
   describe('actions', () => {
     const el = (): HTMLElement => fixture.nativeElement;
     const loginButton = () => Array.from(el().querySelectorAll<HTMLButtonElement>('button')).find(b => b.textContent.includes('login'));
-    const flushUser = async (user: ApplicationUser) => {
+    const flushUser = async (user: ApplicationUser | null) => {
       TestBed.inject(HttpTestingController).expectOne(TestBed.inject(LoginService)['_apiEndpoint']).flush(user);
       await fixture.whenStable();
     };
@@ -87,8 +87,8 @@ describe('UnauthorizedComponent', () => {
     it('should explain the page and link to the home page', async () => {
       await flushUser(null);
 
-      expect(el().querySelector('p').textContent).toContain("You don't have access to this page.");
-      const home: HTMLAnchorElement = el().querySelector('a[igxButton]');
+      expect(el().querySelector('p')!.textContent).toContain("You don't have access to this page.");
+      const home = el().querySelector<HTMLAnchorElement>('a[igxButton]')!;
       expect(home.getAttribute('href')).toBe('/');
       expect(home.textContent).toContain('Go to the home page');
     });
@@ -98,7 +98,7 @@ describe('UnauthorizedComponent', () => {
       const loginService = TestBed.inject(LoginService);
       const openLogin = vi.spyOn(loginService, 'emitOpenLogin');
 
-      loginButton().click();
+      loginButton()!.click();
 
       expect(openLogin).toHaveBeenCalledTimes(1);
     });

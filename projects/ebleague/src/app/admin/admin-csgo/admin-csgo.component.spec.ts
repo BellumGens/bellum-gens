@@ -14,8 +14,8 @@ import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-pick
 import { config, of, throwError } from 'rxjs';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   CSGOMap,
   CSGOTeam,
   Tournament,
@@ -24,8 +24,8 @@ import {
   TournamentCSGOMatchMap,
   TournamentGroup,
   TournamentParticipant
-} from '../../../../../common/src/public_api';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 
 const team = (teamId: string, teamName: string): CSGOTeam => ({
   teamId,
@@ -54,9 +54,9 @@ describe('AdminCsgoComponent', () => {
   let component: AdminCsgoComponent;
   let fixture: ComponentFixture<AdminCsgoComponent>;
   let apiService: ApiTournamentsService;
-  let registrations: WritableSignal<TournamentParticipant []>;
-  let groups: WritableSignal<TournamentGroup []>;
-  let matches: WritableSignal<TournamentCSGOMatch []>;
+  let registrations: WritableSignal<TournamentParticipant [] | null>;
+  let groups: WritableSignal<TournamentGroup [] | null>;
+  let matches: WritableSignal<TournamentCSGOMatch [] | null>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -68,9 +68,9 @@ describe('AdminCsgoComponent', () => {
     // the service's own state; its lazy getter hands it out read-only without fetching
     apiService['_tournaments'].set(TOURNAMENTS);
 
-    registrations = signal<TournamentParticipant []>(null);
-    groups = signal<TournamentGroup []>(null);
-    matches = signal<TournamentCSGOMatch []>(null);
+    registrations = signal<TournamentParticipant [] | null>(null);
+    groups = signal<TournamentGroup [] | null>(null);
+    matches = signal<TournamentCSGOMatch [] | null>(null);
     vi.spyOn(apiService, 'getCsgoRegistrations').mockReturnValue(registrations);
     vi.spyOn(apiService, 'getCsgoGroups').mockReturnValue(groups);
     vi.spyOn(apiService, 'getCsgoMatches').mockReturnValue(matches);
@@ -119,7 +119,7 @@ describe('AdminCsgoComponent', () => {
       expect(apiService.getCsgoRegistrations).not.toHaveBeenCalled();
       expect(apiService.getCsgoGroups).not.toHaveBeenCalled();
       expect(apiService.getCsgoMatches).not.toHaveBeenCalled();
-      expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('No Participants');
+      expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('No Participants');
       expect(el().querySelectorAll('.registration-slot').length).toBe(0);
       expect(groupCards().length).toBe(0);
     });
@@ -127,7 +127,7 @@ describe('AdminCsgoComponent', () => {
     it('shows the new group card', () => {
       create();
 
-      const newGroupCard = el().querySelector('.new-group-card');
+      const newGroupCard = el().querySelector('.new-group-card')!;
       expect(newGroupCard.textContent).toContain('New group');
       expect(named(newGroupCard, 'New group')).toBeTruthy();
     });
@@ -147,9 +147,9 @@ describe('AdminCsgoComponent', () => {
       expect(apiService.getCsgoGroups).toHaveBeenCalledWith('t1');
       expect(apiService.getCsgoMatches).toHaveBeenCalledWith('t1');
       expect(component.registrations()).toEqual([participant('p1', 'Alpha')]);
-      expect(component.groups().map(g => g.name)).toEqual(['Group A']);
+      expect(component.groups()!.map(g => g.name)).toEqual(['Group A']);
       expect(component.matches()).toEqual([]);
-      expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Spring Cup Participants');
+      expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Spring Cup Participants');
     });
 
     it('switches to the data of another tournament', () => {
@@ -180,8 +180,8 @@ describe('AdminCsgoComponent', () => {
 
       expect(component.selectedTournament()).toBe(TOURNAMENTS[1]);
       expect(apiService.getCsgoRegistrations).toHaveBeenCalledWith('t2');
-      expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Autumn Cup Participants');
-      expect(el().querySelector('igx-grid-toolbar-title').textContent).toContain('Autumn Cup Counter-Strike matches');
+      expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Autumn Cup Participants');
+      expect(el().querySelector('igx-grid-toolbar-title')!.textContent).toContain('Autumn Cup Counter-Strike matches');
       expect(unassigned()).toEqual(['Alpha']);
     });
 
@@ -268,7 +268,7 @@ describe('AdminCsgoComponent', () => {
     it('renders each group with its participants', () => {
       const cards = groupCards();
       expect(cards.length).toBe(1);
-      expect(cards[0].querySelector('h1').textContent.trim()).toBe('Group A');
+      expect(cards[0].querySelector('h1')!.textContent.trim()).toBe('Group A');
       expect(groupMembers(cards[0])).toEqual(['Bravo']);
     });
 
@@ -277,14 +277,14 @@ describe('AdminCsgoComponent', () => {
       const labels = (root: Element) => Array.from(root.querySelectorAll('button')).map(b => b.getAttribute('aria-label'));
 
       expect(el().querySelectorAll('igx-icon.navigatable').length).toBe(0);
-      expect(labels(card.querySelector('.action-buttons'))).toEqual(['Edit group', 'Delete group']);
-      expect(named(card.querySelector('igx-list-item'), 'Remove from group').type).toBe('button');
-      expect(named(el().querySelector('.new-group-card'), 'New group').type).toBe('button');
+      expect(labels(card.querySelector('.action-buttons')!)).toEqual(['Edit group', 'Delete group']);
+      expect(named(card.querySelector('igx-list-item')!, 'Remove from group')!.type).toBe('button');
+      expect(named(el().querySelector('.new-group-card')!, 'New group')!.type).toBe('button');
 
-      named(card, 'Edit group').click();
+      named(card, 'Edit group')!.click();
       fixture.detectChanges();
 
-      expect(labels(card.querySelector('.action-buttons'))).toEqual(['Cancel', 'Save group']);
+      expect(labels(card.querySelector('.action-buttons')!)).toEqual(['Cancel', 'Save group']);
     });
 
     it('moves a dropped participant from the unassigned list into the group', () => {
@@ -316,7 +316,7 @@ describe('AdminCsgoComponent', () => {
       expect(unassigned()).toEqual(['Alpha']);
       const trigger = component.pipeTrigger();
 
-      named(groupCards()[0].querySelector('igx-list-item'), 'Remove from group').click();
+      named(groupCards()[0].querySelector('igx-list-item')!, 'Remove from group')!.click();
       fixture.detectChanges();
 
       expect(apiService.removeParticipantFromGroup).toHaveBeenCalledWith('p2', 'g1');
@@ -358,72 +358,72 @@ describe('AdminCsgoComponent', () => {
       const submit = vi.spyOn(apiService, 'submitCSGOGroup').mockReturnValue(of(groupA));
       const card = groupCards()[0];
 
-      named(card, 'Edit group').click();
+      named(card, 'Edit group')!.click();
       fixture.detectChanges();
       expect(groupA.inEdit).toBe(true);
-      const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
+      const input = card.querySelector<HTMLInputElement>('input#groupNameg1')!;
       input.value = 'Group Alpha';
       input.dispatchEvent(new Event('input'));
 
-      named(card, 'Save group').click();
+      named(card, 'Save group')!.click();
       fixture.detectChanges();
 
       expect(submit).toHaveBeenCalledWith(groupA, 't1');
       expect(groupA.name).toBe('Group Alpha');
       expect(groupA.inEdit).toBe(false);
-      expect(card.querySelector('h1').textContent.trim()).toBe('Group Alpha');
+      expect(card.querySelector('h1')!.textContent.trim()).toBe('Group Alpha');
       expect(card.querySelector('input#groupNameg1')).toBeNull();
     });
 
     it('clears the name of a group in edit', async () => {
       const card = groupCards()[0];
-      named(card, 'Edit group').click();
+      named(card, 'Edit group')!.click();
       fixture.detectChanges();
       await fixture.whenStable();
       fixture.detectChanges();
 
-      const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
+      const input = card.querySelector<HTMLInputElement>('input#groupNameg1')!;
       expect(input.value).toBe('Group A');
-      named(card, 'Clear group name').click();
+      named(card, 'Clear group name')!.click();
       fixture.detectChanges();
       await fixture.whenStable();
       fixture.detectChanges();
 
-      expect(groupA.name).toBeNull();
+      expect(groupA.name).toBe('');
       expect(input.value).toBe('');
       expect(card.querySelector('igx-suffix')).toBeNull();
     });
 
     it('clears the name of the new group', async () => {
-      const newGroupCard = el().querySelector('.new-group-card');
-      named(newGroupCard, 'New group').click();
+      const newGroupCard = el().querySelector('.new-group-card')!;
+      named(newGroupCard, 'New group')!.click();
       fixture.detectChanges();
-      const input = newGroupCard.querySelector<HTMLInputElement>('input#newGroupName');
+      const input = newGroupCard.querySelector<HTMLInputElement>('input#newGroupName')!;
       input.value = 'Group B';
       input.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
       expect(component.newGroup.name).toBe('Group B');
-      named(newGroupCard, 'Clear group name').click();
+      named(newGroupCard, 'Clear group name')!.click();
       fixture.detectChanges();
       await fixture.whenStable();
       fixture.detectChanges();
 
-      expect(component.newGroup.name).toBeNull();
+      expect(component.newGroup.name).toBe('');
       expect(newGroupCard.querySelector('igx-suffix')).toBeNull();
     });
 
     it('gives each group name editor an id of its own, labelled by its label', () => {
       groups.set([groupA, { id: 'g2', name: 'Group B', participants: [] }]);
       fixture.detectChanges();
-      groupCards().forEach(card => named(card, 'Edit group').click());
-      named(el().querySelector('.new-group-card'), 'New group').click();
+      groupCards().forEach(card => named(card, 'Edit group')!.click());
+      named(el().querySelector('.new-group-card')!, 'New group')!.click();
       fixture.detectChanges();
 
       const inputs = Array.from(el().querySelectorAll<HTMLInputElement>('.card-wrapper igx-card-header input'));
       expect(inputs.map(i => i.id)).toEqual(['groupNameg1', 'groupNameg2', 'newGroupName']);
       inputs.forEach(input => {
-        const label = input.closest('igx-input-group').querySelector('label');
+        const label = input.closest('igx-input-group')!.querySelector('label')!;
         expect(label.htmlFor).toBe(input.id);
         expect(label.textContent).toContain('Group name');
       });
@@ -433,9 +433,9 @@ describe('AdminCsgoComponent', () => {
       const submit = vi.spyOn(apiService, 'submitCSGOGroup');
       const card = groupCards()[0];
 
-      named(card, 'Edit group').click();
+      named(card, 'Edit group')!.click();
       fixture.detectChanges();
-      named(card, 'Cancel').click();
+      named(card, 'Cancel')!.click();
       fixture.detectChanges();
 
       expect(groupA.inEdit).toBe(false);
@@ -445,33 +445,33 @@ describe('AdminCsgoComponent', () => {
     it('creates a new group for the selected tournament and relies on the service cache to show it', () => {
       const created: TournamentGroup = { id: 'g2', name: 'Group B', participants: [] };
       const submit = vi.spyOn(apiService, 'submitCSGOGroup').mockImplementation(() => {
-        groups.update(list => [...list, created]);
+        groups.update(list => [...list!, created]);
         return of(created);
       });
-      const newGroupCard = el().querySelector('.new-group-card');
+      const newGroupCard = el().querySelector('.new-group-card')!;
 
-      named(newGroupCard, 'New group').click();
+      named(newGroupCard, 'New group')!.click();
       fixture.detectChanges();
       expect(component.newGroup.inEdit).toBe(true);
       component.newGroup.name = 'Group B';
 
       const submitButton = Array.from(newGroupCard.querySelectorAll('button')).find(b => b.textContent.trim() === 'Submit');
-      submitButton.click();
+      submitButton!.click();
       fixture.detectChanges();
 
       expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Group B' }), 't1');
       expect(component.newGroup.inEdit).toBe(false);
       expect(component.newGroup.name).toBeFalsy();
-      expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A', 'Group B']);
+      expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group A', 'Group B']);
     });
 
     it('cancels creating a new group', () => {
-      const newGroupCard = el().querySelector('.new-group-card');
-      named(newGroupCard, 'New group').click();
+      const newGroupCard = el().querySelector('.new-group-card')!;
+      named(newGroupCard, 'New group')!.click();
       fixture.detectChanges();
 
       const cancelButton = Array.from(newGroupCard.querySelectorAll('button')).find(b => b.textContent.trim() === 'Cancel');
-      cancelButton.click();
+      cancelButton!.click();
       fixture.detectChanges();
 
       expect(component.newGroup.inEdit).toBe(false);
@@ -553,7 +553,7 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('does not add a row when the server returns nothing', () => {
-      vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(null));
+      vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(null as unknown as TournamentCSGOMatch));
       const matchGrid = grid();
       component.matchInEdit = { team1Id: 'team-p1', team2Id: 'team-p2' };
 
@@ -563,7 +563,7 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('deletes a match removed from the grid', () => {
-      const remove = vi.spyOn(apiService, 'deleteCSGOMatch').mockReturnValue(of(null));
+      const remove = vi.spyOn(apiService, 'deleteCSGOMatch').mockReturnValue(of({ id: 'm1' }));
       const match: TournamentCSGOMatch = { id: 'm1' };
 
       component.deleteMatch({ data: match } as IRowDataEventArgs);
@@ -631,7 +631,7 @@ describe('AdminCsgoComponent', () => {
         };
         resultsDialog = fixture.debugElement.queryAll(By.directive(IgxDialogComponent))
           .map(d => d.componentInstance as IgxDialogComponent)
-          .find(d => d.title === 'Results');
+          .find(d => d.title === 'Results')!;
         component.editMatch(match, resultsDialog);
         fixture.detectChanges();
         await fixture.whenStable();
@@ -650,12 +650,12 @@ describe('AdminCsgoComponent', () => {
         dialogButtons('Add a match map')[0].click();
         fixture.detectChanges();
 
-        expect(match.maps.length).toBe(2);
-        expect(match.maps[1]).toEqual({ csgoMatchId: 'm1' });
+        expect(match.maps!.length).toBe(2);
+        expect(match.maps![1]).toEqual({ csgoMatchId: 'm1' });
       });
 
       it('removes a deleted map from the row and marks the view for check', () => {
-        const remove = vi.spyOn(apiService, 'deleteCSGOMatchMap').mockReturnValue(of(null));
+        const remove = vi.spyOn(apiService, 'deleteCSGOMatchMap').mockReturnValue(of(match.maps![0]));
         const markForCheck = vi.spyOn(component['cdr'], 'markForCheck');
         const maps = match.maps;
 
@@ -670,9 +670,9 @@ describe('AdminCsgoComponent', () => {
       it('keeps the map when deleting it fails', async () => {
         vi.spyOn(apiService, 'deleteCSGOMatchMap').mockReturnValue(throwError(() => new Error('nope')));
 
-        await expectUnhandledError(() => component.deleteMatchMap(match.maps[0], match.maps));
+        await expectUnhandledError(() => component.deleteMatchMap(match.maps![0], match.maps!));
 
-        expect(match.maps.length).toBe(1);
+        expect(match.maps!.length).toBe(1);
       });
     });
   });
@@ -699,7 +699,7 @@ describe('AdminCsgoComponent', () => {
     const dialogButton = (target: IgxDialogComponent, label: string) =>
       Array.from((target.toggleRef.element as HTMLElement).querySelectorAll<HTMLButtonElement>('.igx-dialog__window-actions button'))
         .find(b => b.textContent.trim() === label);
-    const rowAction = (row: Element, label: string) => named(row.querySelector('.match-actions'), label);
+    const rowAction = (row: Element, label: string) => named(row.querySelector('.match-actions')!, label);
     const selectsIn = (target: IgxDialogComponent) => fixture.debugElement.queryAll(By.directive(IgxSelectComponent))
       .filter(d => (target.toggleRef.element as HTMLElement).contains(d.nativeElement))
       .map(d => d.componentInstance as IgxSelectComponent);
@@ -747,7 +747,7 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('renders a row per match with the teams, the winner, media links and start time', () => {
-      expect(el().querySelector('igx-grid-toolbar-title').textContent).toContain('Spring Cup Counter-Strike matches');
+      expect(el().querySelector('igx-grid-toolbar-title')!.textContent).toContain('Spring Cup Counter-Strike matches');
       expect(rows().length).toBe(3);
 
       const teamLinks = (row: Element) => Array.from(row.querySelectorAll<HTMLAnchorElement>('a.grid-team-name'));
@@ -778,14 +778,14 @@ describe('AdminCsgoComponent', () => {
       expect(details[1]).toContain('Walkover');
       expect(details[1]).not.toContain('The match has not been played yet');
       expect(details[2]).toContain('The match has not been played yet');
-      expect(el().querySelector('.score-container + igx-avatar').getAttribute('title')).toBe('Mirage');
+      expect(el().querySelector('.score-container + igx-avatar')!.getAttribute('title')).toBe('Mirage');
     });
 
     it('opens the results dialog for a row and submits the results', async () => {
       const submit = vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(played));
-      const results = dialog('Results');
+      const results = dialog('Results')!;
 
-      rowAction(rows()[0], 'Add results').click();
+      rowAction(rows()[0], 'Add results')!.click();
       await render();
 
       expect(results.isOpen).toBe(true);
@@ -793,7 +793,7 @@ describe('AdminCsgoComponent', () => {
       const labels = Array.from((results.toggleRef.element as HTMLElement).querySelectorAll('label')).map(l => l.textContent.trim());
       expect(labels).toEqual(expect.arrayContaining(['Points Alpha', 'Points Bravo', 'Rounds Alpha', 'Rounds Bravo']));
 
-      dialogButton(results, 'Submit').click();
+      dialogButton(results, 'Submit')!.click();
       await render();
 
       expect(submit).toHaveBeenCalledWith(played);
@@ -804,15 +804,15 @@ describe('AdminCsgoComponent', () => {
 
     it('closes the results dialog on cancel without submitting', async () => {
       const submit = vi.spyOn(apiService, 'submitCSGOMatch');
-      const results = dialog('Results');
+      const results = dialog('Results')!;
 
-      rowAction(rows()[2], 'Add results').click();
+      rowAction(rows()[2], 'Add results')!.click();
       await render();
       expect(results.isOpen).toBe(true);
       // no maps are recorded yet, so the walkover checkbox is offered
       expect((results.toggleRef.element as HTMLElement).querySelector('igx-checkbox')).not.toBeNull();
 
-      dialogButton(results, 'Cancel').click();
+      dialogButton(results, 'Cancel')!.click();
       await render();
 
       expect(results.isOpen).toBe(false);
@@ -821,15 +821,15 @@ describe('AdminCsgoComponent', () => {
 
     it('opens a row for editing in the match dialog and cancels it', async () => {
       const submit = vi.spyOn(apiService, 'submitCSGOMatch');
-      const newMatch = dialog('New match');
+      const newMatch = dialog('New match')!;
 
-      rowAction(rows()[1], 'Edit match').click();
+      rowAction(rows()[1], 'Edit match')!.click();
       await render();
 
       expect(newMatch.isOpen).toBe(true);
       expect(component.matchInEdit).toBe(walkover);
 
-      dialogButton(newMatch, 'Cancel').click();
+      dialogButton(newMatch, 'Cancel')!.click();
       await render();
 
       expect(newMatch.isOpen).toBe(false);
@@ -837,14 +837,14 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('deletes a match row after confirmation', async () => {
-      const remove = vi.spyOn(apiService, 'deleteCSGOMatch').mockReturnValue(of(null));
+      const remove = vi.spyOn(apiService, 'deleteCSGOMatch').mockReturnValue(of(walkover));
       const confirm = confirmMatch().dialog();
 
-      rowAction(rows()[1], 'Delete match').click();
+      rowAction(rows()[1], 'Delete match')!.click();
       await render();
       expect(confirm.isOpen).toBe(true);
 
-      dialogButton(confirm, 'OK').click();
+      dialogButton(confirm, 'OK')!.click();
       await render();
 
       expect(remove).toHaveBeenCalledWith(walkover);
@@ -858,12 +858,12 @@ describe('AdminCsgoComponent', () => {
         startTime: '2026-10-04T18:30:00' as unknown as Date
       };
       const submit = vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(saved));
-      const newMatch = dialog('New match');
+      const newMatch = dialog('New match')!;
       component.matchInEdit = played;
 
       const newMatchButton = Array.from(el().querySelectorAll<HTMLButtonElement>('igx-grid-toolbar button'))
         .find(b => b.textContent.includes('New match'));
-      newMatchButton.click();
+      newMatchButton!.click();
       await render();
 
       expect(newMatch.isOpen).toBe(true);
@@ -872,7 +872,7 @@ describe('AdminCsgoComponent', () => {
       component.matchInEdit.team1Id = 'team-p2';
       component.matchInEdit.team2Id = 'team-p1';
 
-      dialogButton(newMatch, 'Submit').click();
+      dialogButton(newMatch, 'Submit')!.click();
       await render();
 
       expect(submit).toHaveBeenCalledWith(expect.objectContaining({ team1Id: 'team-p2', team2Id: 'team-p1' }));
@@ -884,13 +884,13 @@ describe('AdminCsgoComponent', () => {
 
     it('closes the new match dialog without submitting a match missing a team', async () => {
       const submit = vi.spyOn(apiService, 'submitCSGOMatch');
-      const newMatch = dialog('New match');
+      const newMatch = dialog('New match')!;
       const newMatchButton = Array.from(el().querySelectorAll<HTMLButtonElement>('igx-grid-toolbar button'))
         .find(b => b.textContent.includes('New match'));
-      newMatchButton.click();
+      newMatchButton!.click();
       await render();
 
-      dialogButton(newMatch, 'Submit').click();
+      dialogButton(newMatch, 'Submit')!.click();
       await render();
 
       expect(submit).not.toHaveBeenCalled();
@@ -899,11 +899,11 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('fills in a new match from the dialog form', async () => {
-      const submit = vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(null));
-      const newMatch = dialog('New match');
+      const submit = vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(null as unknown as TournamentCSGOMatch));
+      const newMatch = dialog('New match')!;
       const newMatchButton = Array.from(el().querySelectorAll<HTMLButtonElement>('igx-grid-toolbar button'))
         .find(b => b.textContent.includes('New match'));
-      newMatchButton.click();
+      newMatchButton!.click();
       await render();
 
       const [groupSelect, team1Select, team2Select] = selectsIn(newMatch);
@@ -916,18 +916,18 @@ describe('AdminCsgoComponent', () => {
 
       fixture.debugElement.query(By.directive(IgxDatePickerComponent)).injector.get(IgxDatePickerComponent)
         .select(new Date(2026, 9, 4));
-      expect(component.matchInEdit.startTime.getDate()).toBe(4);
+      expect(component.matchInEdit.startTime!.getDate()).toBe(4);
       fixture.debugElement.query(By.directive(IgxTimePickerComponent)).injector.get(IgxTimePickerComponent)
         .select(new Date(2026, 9, 4, 18, 30));
-      expect(component.matchInEdit.startTime.getHours()).toBe(18);
-      expect(component.matchInEdit.startTime.getMinutes()).toBe(30);
+      expect(component.matchInEdit.startTime!.getHours()).toBe(18);
+      expect(component.matchInEdit.startTime!.getMinutes()).toBe(30);
 
       const [videoInput, demoInput] = Array.from((newMatch.toggleRef.element as HTMLElement)
         .querySelectorAll<HTMLInputElement>('input[type="url"]'));
       typeInto(videoInput, 'https://video/4');
       typeInto(demoInput, 'https://demo/4');
 
-      dialogButton(newMatch, 'Submit').click();
+      dialogButton(newMatch, 'Submit')!.click();
       await render();
 
       expect(submit).toHaveBeenCalledWith(expect.objectContaining({
@@ -941,8 +941,8 @@ describe('AdminCsgoComponent', () => {
 
     it('records the results of a match from the results form', async () => {
       const submit = vi.spyOn(apiService, 'submitCSGOMatch').mockReturnValue(of(played));
-      const results = dialog('Results');
-      rowAction(rows()[0], 'Add results').click();
+      const results = dialog('Results')!;
+      rowAction(rows()[0], 'Add results')!.click();
       await render();
 
       const [team1Points, team2Points, team1Rounds, team2Rounds] = Array.from((results.toggleRef.element as HTMLElement)
@@ -955,13 +955,13 @@ describe('AdminCsgoComponent', () => {
       expect(mapSelect.items.length).toBe(component.mapList.length);
       mapSelect.selectItem(mapSelect.items[0]);
 
-      dialogButton(results, 'Submit').click();
+      dialogButton(results, 'Submit')!.click();
       await render();
 
       expect(submit).toHaveBeenCalledWith(played);
       expect(played.team1Points).toBe(2);
       expect(played.team2Points).toBe(1);
-      expect(played.maps[0]).toEqual(expect.objectContaining({
+      expect(played.maps![0]).toEqual(expect.objectContaining({
         map: component.mapList[0].mapId,
         team1Score: 16,
         team2Score: 14
@@ -970,10 +970,10 @@ describe('AdminCsgoComponent', () => {
 
     it('marks a match without maps as a walkover', async () => {
       const results = dialog('Results');
-      rowAction(rows()[2], 'Add results').click();
+      rowAction(rows()[2], 'Add results')!.click();
       await render();
 
-      (results.toggleRef.element as HTMLElement).querySelector<HTMLInputElement>('igx-checkbox input').click();
+      (results!.toggleRef.element as HTMLElement).querySelector<HTMLInputElement>('igx-checkbox input')!.click();
       fixture.detectChanges();
 
       expect(upcoming.noShow).toBe(true);
@@ -981,11 +981,11 @@ describe('AdminCsgoComponent', () => {
 
     it('clears the video and demo links of the match in edit', async () => {
       const newMatch = dialog('New match');
-      rowAction(rows()[0], 'Edit match').click();
+      rowAction(rows()[0], 'Edit match')!.click();
       await render();
       await render();
 
-      const content = newMatch.toggleRef.element as HTMLElement;
+      const content = newMatch!.toggleRef.element as HTMLElement;
       // the date and time pickers carry suffixes of their own, so only look at the link inputs
       const suffixes = () => Array.from(content.querySelectorAll('igx-input-group'))
         .filter(group => group.querySelector('input[type="url"]'))

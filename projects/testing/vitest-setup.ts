@@ -85,12 +85,13 @@ if (noCanvasBackend) {
 // exercises it in full.
 if (noCanvasBackend) {
   const nativeSrc = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'src');
+  const nativeSetSrc = nativeSrc?.set;
 
-  if (nativeSrc?.set) {
+  if (nativeSetSrc) {
     Object.defineProperty(HTMLImageElement.prototype, 'src', {
       ...nativeSrc,
       set(value: string) {
-        nativeSrc.set.call(this, value);
+        nativeSetSrc.call(this, value);
         // A macrotask, so a handler assigned right after `src` is still registered in time.
         setTimeout(() => this.dispatchEvent(new Event('load')), 0);
       }

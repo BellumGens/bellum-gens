@@ -1,8 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament } from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
+import { Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament } from 'bellum-gens-common/models';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import { TournamentCardComponent } from '../tournament-card/tournament-card.component';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -71,6 +70,9 @@ export class TournamentListComponent {
   }
 
   public onDeleteTournament(tournament: Tournament) {
+    if (!tournament.id) {
+      return;
+    }
     // The service reports the failure to the user and the card stays in the list
     this.apiService.deleteTournament(tournament.id).subscribe({ error: () => undefined });
   }

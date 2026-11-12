@@ -1,0 +1,36 @@
+<div class="shop-container">
+  <header class="shop-header">
+    <h2 i18n>Merchandise</h2>
+    <p i18n>Official Bellum Gens, Esports Business League and BGE Stara Zagora gear. Prices are in EUR. We deliver across Bulgaria or hand your order over at one of our events.</p>
+  </header>
+
+  <div class="shop-filters" role="group" i18n-aria-label aria-label="Filter by brand">
+    <igx-chip [selectable]="true" [removable]="false" [selected]="brand() === null" (selectedChanged)="selectBrand(null, $event.owner.selected)" i18n>All brands</igx-chip>
+    @for (b of brands; track b) {
+      <igx-chip [selectable]="true" [removable]="false" [selected]="brand() === b" (selectedChanged)="selectBrand(b, $event.owner.selected)">{{ brandNames[b] }}</igx-chip>
+    }
+  </div>
+
+  @if (types().length > 1) {
+    <div class="shop-filters" role="group" i18n-aria-label aria-label="Filter by product type">
+      <igx-chip [selectable]="true" [removable]="false" [selected]="type() === null" (selectedChanged)="selectType(null, $event.owner.selected)" i18n>All products</igx-chip>
+      @for (t of types(); track t) {
+        <igx-chip [selectable]="true" [removable]="false" [selected]="type() === t" (selectedChanged)="selectType(t, $event.owner.selected)">{{ typeNames[t] }}</igx-chip>
+      }
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="horizontal-center shop-loading">
+      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+    </div>
+  } @else if (filtered().length === 0) {
+    <p class="horizontal-center shop-empty" i18n>Nothing matches this filter yet. Check back soon!</p>
+  } @else {
+    <div class="product-grid">
+      @for (product of filtered(); track product.id) {
+        <bg-product-card [product]="product"></bg-product-card>
+      }
+    </div>
+  }
+</div>

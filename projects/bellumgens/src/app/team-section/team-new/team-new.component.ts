@@ -1,11 +1,6 @@
 import { Component, inject, input, signal, viewChild } from '@angular/core';
-import {
-  ApplicationUser,
-  BellumgensApiService,
-  CSGOTeam,
-  SteamGroup,
-  EMPTY_NEW_TEAM
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, SteamGroup, EMPTY_NEW_TEAM } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -38,20 +33,23 @@ export class TeamNewComponent {
   private apiService = inject(BellumgensApiService);
   private router = inject(Router);
 
-  public authUser = input<ApplicationUser>();
+  public authUser = input<ApplicationUser | null>();
 
   public createTeam = viewChild(IgxDialogComponent);
 
-  public groups = signal<SteamGroup []>(undefined);
-  public searchGroups = signal<string>(undefined);
+  public groups = signal<SteamGroup [] | undefined>(undefined);
+  public searchGroups = signal('');
   public newTeam = Object.assign({}, EMPTY_NEW_TEAM);
   public navigateOnCreate = true;
   public inProgress = signal(false);
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
-    this.apiService.getPlayerGroups(this.authUser().steamId).subscribe(groups => this.groups.set(groups));
-    this.createTeam().open();
+    const steamId = this.authUser()?.steamId;
+    if (steamId) {
+      this.apiService.getPlayerGroups(steamId).subscribe(groups => this.groups.set(groups));
+    }
+    this.createTeam()?.open();
   }
 
   public createFromSteam(group: SteamGroup) {
@@ -72,7 +70,7 @@ export class TeamNewComponent {
 
   private teamCreated(team: CSGOTeam) {
     this.inProgress.set(false);
-    this.createTeam().close();
+    this.createTeam()?.close();
     if (this.navigateOnCreate) {
       this.router.navigate(['/team', team.customUrl]);
     }

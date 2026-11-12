@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, WritableSignal, inject, signal, untracked } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { CSGOMapPool } from '../models/csgomaps';
-import { environment } from '../environments/environment';
-import { CSGOStrategy, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
+import { CSGOMapPool, CSGOStrategy, StrategyComment, StrategyVote, VoteDirection } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { CommunicationService } from './communication.service';
 
 @Injectable({
@@ -20,7 +19,7 @@ export class ApiStrategiesService {
   public readonly loadingStrategies = this._loadingStrategies.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _strategyCache = new Map<string, WritableSignal<CSGOStrategy>>();
+  private _strategyCache = new Map<string, WritableSignal<CSGOStrategy | null>>();
   private _strategies = signal<CSGOStrategy []>([]);
   private _strategiesReadonly = this._strategies.asReadonly();
   private readonly PAGE_SIZE = 25;
@@ -62,24 +61,27 @@ export class ApiStrategiesService {
     return this.http.get<CSGOMapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public getStrategy(stratId: string): Signal<CSGOStrategy> {
+  public getStrategy(stratId: string): Signal<CSGOStrategy | null> {
     return untracked(() => {
-      if (!this._strategyCache.has(stratId)) {
-        const cached = signal<CSGOStrategy>(null);
-        this._strategyCache.set(stratId, cached);
-        this.getTeamStrat(stratId).subscribe(strat => cached.set(strat));
+      let cached = this._strategyCache.get(stratId);
+      if (!cached) {
+        const entry = signal<CSGOStrategy | null>(null);
+        cached = entry;
+        this._strategyCache.set(stratId, entry);
+        this.getTeamStrat(stratId).subscribe(strat => entry.set(strat));
       }
-      return this._strategyCache.get(stratId).asReadonly();
+      return cached.asReadonly();
     });
   }
 
   public submitStrategy(strat: CSGOStrategy) {
     return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
-        if (this._strategyCache.has(strat.id)) {
-          this._strategyCache.get(strat.id).set(response);
+        const cached = this._strategyCache.get(strat.id);
+        if (cached) {
+          cached.set(response);
         } else {
-          this._strategyCache.set(strat.id, signal(strat));
+          this._strategyCache.set(strat.id, signal<CSGOStrategy | null>(strat));
         }
         this.commService.emitSuccess('Strategy saved!');
         return response;

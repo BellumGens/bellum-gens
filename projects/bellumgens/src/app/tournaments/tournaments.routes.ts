@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from '../../../../common/src/public_api';
+import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from 'bellum-gens-common';
 
 export const routes: Routes = [
   {

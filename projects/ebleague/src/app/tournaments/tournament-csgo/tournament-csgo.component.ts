@@ -1,15 +1,11 @@
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import {
-  ApiTournamentsService,
-  LoginService
-} from '../../../../../common/src/public_api';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { CSGOMapnamePipe, CSGOMapimagePipe } from 'bellum-gens-common/pipes';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
-import { environment } from '../../../../../common/src/environments/environment';
-import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
-import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
@@ -43,14 +39,18 @@ export class TournamentCsgoComponent extends BaseDirective {
   public environment = environment;
   public authUser = this.loginService.applicationUser;
   // An empty tournament id loads the active tournament's data
-  public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
-  public tournament = computed(() => this.tournamentId()
-    ? this.apiService.getTournament(this.tournamentId())()
-    : this.apiService.activeTournament());
+  public tournamentId = toSignal(
+    this.activeRoute.params.pipe(map(params => (params['tournamentid'] as string | undefined) ?? '')),
+    { initialValue: '' }
+  );
+  public tournament = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getTournament(id)() : this.apiService.activeTournament();
+  });
   public loading = this.apiService.loadingCSGORegistrations;
   public registrations = computed(() => this.apiService.getCsgoRegistrations(this.tournamentId())());
   public loadingMatches = this.apiService.loadingCSGOMatches;
-  public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())() ?? undefined);
+  public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())());
   public loadingGroups = this.apiService.loadingCSGOGroups;
   public groups = computed(() => this.apiService.getCsgoGroups(this.tournamentId())());
   public narrowScreen = mediaQuery(NARROW_SCREEN_QUERY);

@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+}
+
+.settings-load-error {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+
+  igx-icon {
+    margin-right: 8px;
+  }
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings-note {
+  margin: 0;
+  opacity: 0.75;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  igx-icon {
+    margin-right: 8px;
+  }
+}
+
+.settings-updated {
+  opacity: 0.75;
+}

@@ -1,12 +1,6 @@
 import { Component, Signal, computed, inject, input, signal } from '@angular/core';
-import {
-  PLAYER_SEARCH,
-  PlayerSearch,
-  PlaystyleRole,
-  ApplicationUser,
-  LoginService,
-  CSGOTeam
-} from '../../../../../common/src/public_api';
+import { PLAYER_SEARCH, PlayerSearch, PlaystyleRole, ApplicationUser, CSGOTeam } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { Router } from '@angular/router';
 
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
@@ -37,11 +31,11 @@ export class PlayerSearchComponent {
   private authManager = inject(LoginService);
 
 
-  public authUser = input<ApplicationUser>();
-  public teamAdmin: Signal<CSGOTeam []> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
-  public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
+  public authUser = input<ApplicationUser | null>();
+  public teamAdmin: Signal<CSGOTeam [] | null> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
+  public role = signal<PlaystyleRole | null>(PLAYER_SEARCH.role);
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
-  public teamId = signal<string>(PLAYER_SEARCH.teamId);
+  public teamId = signal<string | undefined>(PLAYER_SEARCH.teamId);
   public userOverlap = signal(0);
 
   // Assembled from the individual field signals so the query builder keeps
@@ -63,7 +57,7 @@ export class PlayerSearchComponent {
 
   public searchPlayers() {
     if (!this.userOverlap()) {
-      this.teamId.set(null);
+      this.teamId.set(undefined);
     }
     this.router.navigate(['search/players', this.searchQuery]);
   }

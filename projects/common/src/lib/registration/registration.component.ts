@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, DestroyRef, ElementRef, Signal, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
-import { LoginService } from '../../services/login.service';
-import { UserRegistration } from '../../models/userlogin';
-import { ApplicationUser } from '../../models/applicationuser';
+import { LoginService } from 'bellum-gens-common/services';
+import { UserRegistration, ApplicationUser } from 'bellum-gens-common/models';
 
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
@@ -35,8 +34,9 @@ export class RegistrationComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       const user = this.authUser();
-      if (user && user.email) {
-        untracked(() => this.userAccount.update(account => ({ ...account, email: user.email, username: user.username })));
+      const email = user?.email;
+      if (user && email) {
+        untracked(() => this.userAccount.update(account => ({ ...account, email, username: user.username })));
       }
     });
   }

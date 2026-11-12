@@ -13,15 +13,9 @@ import { IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
 import { IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
 import { BannerResourceStringsEN, changei18n, getCurrentResourceStrings } from '@infragistics/igniteui-angular/core';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
-import {
-  ApplicationUser,
-  CSGOTeam,
-  CommunicationService,
-  NotificationState,
-  SearchResult,
-  UserNotification
-} from '../../../common/src/public_api';
-import { environment } from '../../../common/src/environments/environment';
+import { ApplicationUser, CSGOTeam, NotificationState, SearchResult, UserNotification } from 'bellum-gens-common/models';
+import { CommunicationService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 
 const authUser = { id: 'user-1', username: 'TestUser' } as ApplicationUser;
 
@@ -30,7 +24,7 @@ const team = (teamId: string): CSGOTeam => ({ teamId, teamName: teamId, teamAvat
 const notification = (state: NotificationState): UserNotification => ({
   state,
   teamInfo: team('team'),
-  invitingUser: null,
+  invitingUser: { id: 'inviter-1', username: 'Inviter' } as ApplicationUser,
   sent: ''
 });
 
@@ -91,7 +85,7 @@ describe('AppComponent', () => {
   };
 
   /** Answers the lazy "who is logged in" check made by the app shell and the login component. */
-  const flushUser = async (user: ApplicationUser) => {
+  const flushUser = async (user: ApplicationUser | null) => {
     httpMock.expectOne(userUrl).flush(user);
     await fixture.whenStable();
   };
@@ -104,13 +98,14 @@ describe('AppComponent', () => {
     // The user preferences in the login drop down load their own data once a user is known.
     httpMock.expectOne(loginProvidersUrl).flush([]);
     httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+    httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
     httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
     await fixture.whenStable();
   };
 
   const drawerItem = (link: string) => el().querySelector<HTMLElement>(`igx-nav-drawer [igxDrawerItem][routerLink="${link}"]`);
   const badgeValue = (link: string) => drawerItem(link)?.querySelector('igx-badge')?.textContent.trim();
-  const searchInput = (): HTMLInputElement => el().querySelector('#searchInput');
+  const searchInput = () => el().querySelector<HTMLInputElement>('#searchInput')!;
 
   afterEach(() => {
     vi.useRealTimers();
@@ -143,7 +138,7 @@ describe('AppComponent', () => {
     it('should render the footer with the current year', async () => {
       await flushUser(null);
 
-      expect(el().querySelector('footer').textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
+      expect(el().querySelector('footer')!.textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
     });
 
     describe('without a logged in user', () => {
@@ -175,7 +170,7 @@ describe('AppComponent', () => {
           [notification(NotificationState.NotSeen), notification(NotificationState.Seen), notification(NotificationState.NotSeen)]
         );
 
-        expect(component.teams().length).toBe(2);
+        expect(component.teams()!.length).toBe(2);
         expect(component.unreadNotifications()).toBe(2);
         expect(drawerItem('strategies/user')).not.toBeNull();
         expect(badgeValue('team/myteams')).toBe('2');
@@ -251,7 +246,7 @@ describe('AppComponent', () => {
         await fixture.whenStable();
         expect(component.searchTerm()).toBe('bellum');
 
-        const clear = el().querySelector<HTMLButtonElement>('igx-suffix button');
+        const clear = el().querySelector<HTMLButtonElement>('igx-suffix button')!;
         expect(clear.type).toBe('button');
         expect(clear.getAttribute('aria-label')).toBe('Clear search');
         clear.click();
@@ -263,8 +258,8 @@ describe('AppComponent', () => {
       });
 
       it('should expand the search collapsed on narrow screens from the toggle and focus the input', async () => {
-        const toggle = el().querySelector<HTMLButtonElement>('.search-toggle');
-        const navbar = el().querySelector('igx-navbar');
+        const toggle = el().querySelector<HTMLButtonElement>('.search-toggle')!;
+        const navbar = el().querySelector('igx-navbar')!;
         expect(toggle.type).toBe('button');
         expect(toggle.getAttribute('aria-label')).toBe('Search');
         expect(toggle.getAttribute('aria-controls')).toBe('searchInput');
@@ -276,7 +271,7 @@ describe('AppComponent', () => {
 
         expect(component.searchExpanded()).toBe(true);
         expect(toggle.getAttribute('aria-expanded')).toBe('true');
-        expect(toggle.querySelector('igx-icon').textContent.trim()).toBe('close');
+        expect(toggle.querySelector('igx-icon')!.textContent.trim()).toBe('close');
         expect(navbar.classList).toContain('search-expanded');
         expect(document.activeElement).toBe(searchInput());
 
@@ -285,7 +280,7 @@ describe('AppComponent', () => {
 
         expect(component.searchExpanded()).toBe(false);
         expect(toggle.getAttribute('aria-expanded')).toBe('false');
-        expect(toggle.querySelector('igx-icon').textContent.trim()).toBe('search');
+        expect(toggle.querySelector('igx-icon')!.textContent.trim()).toBe('search');
         expect(navbar.classList).not.toContain('search-expanded');
       });
 
@@ -299,7 +294,7 @@ describe('AppComponent', () => {
         expect(el().querySelector('igx-banner app-search')).not.toBeNull();
 
         const hide = Array.from(el().querySelectorAll<HTMLButtonElement>('igx-banner button'))
-          .find(b => b.textContent.trim() === 'Hide');
+          .find(b => b.textContent.trim() === 'Hide')!;
         hide.click();
         await fixture.whenStable();
         expect(banner.collapsed).toBe(true);
@@ -325,7 +320,7 @@ describe('AppComponent', () => {
         await fixture.whenStable();
 
         expect(component.quickSearchDropDown().collapsed).toBe(false);
-        expect(document.querySelector('app-quick-search').textContent).toContain('No matching players...');
+        expect(document.querySelector('app-quick-search')!.textContent).toContain('No matching players...');
         component.quickSearchDropDown().close();
       });
 
@@ -352,7 +347,7 @@ describe('AppComponent', () => {
       await fixture.whenStable();
 
       expect(messages).toEqual(['Welcome back']);
-      expect(el().querySelector('bg-success-error .msg-container').textContent).toBe('Welcome back');
+      expect(el().querySelector('bg-success-error .msg-container')!.textContent).toBe('Welcome back');
     });
 
     it('should ignore query params without a message', async () => {
@@ -371,7 +366,7 @@ describe('AppComponent', () => {
       const drawer = fixture.debugElement.query(By.directive(IgxNavigationDrawerComponent)).componentInstance as IgxNavigationDrawerComponent;
       expect(drawer.isOpen).toBe(false);
 
-      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action')!;
       expect(menu.type).toBe('button');
       expect(menu.getAttribute('aria-label')).toBe('Navigation menu');
       expect(menu.getAttribute('aria-controls')).toBe('navigation');
@@ -393,9 +388,9 @@ describe('AppComponent', () => {
         expect(item.tagName).toBe('A');
         expect(item.getAttribute('href')).toBeTruthy();
       }
-      expect(drawerItem('tournaments').getAttribute('href')).toBe('/tournaments');
+      expect(drawerItem('tournaments')!.getAttribute('href')).toBe('/tournaments');
 
-      const logo = el().querySelector<HTMLAnchorElement>('igx-navbar a.logo-link');
+      const logo = el().querySelector<HTMLAnchorElement>('igx-navbar a.logo-link')!;
       expect(logo.getAttribute('href')).toBe('/');
       expect(logo.getAttribute('aria-label')).toBe('Bellum Gens');
     });
@@ -414,7 +409,7 @@ describe('AppComponent', () => {
       const drawer = fixture.debugElement.query(By.directive(IgxNavigationDrawerComponent)).componentInstance as IgxNavigationDrawerComponent;
       expect(drawer.pin).toBe(true);
       const titles = Array.from(el().querySelectorAll('igx-nav-drawer [igxDrawerItem][title]')).map(i => i.getAttribute('title'));
-      expect(titles).toEqual(['My Teams', 'Notifications', 'My Strategies', 'Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Partners', 'About us']);
+      expect(titles).toEqual(['My Teams', 'Notifications', 'My Strategies', 'Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Shop', 'Partners', 'About us']);
       expect(badgeValue('team/myteams')).toBe('1');
       expect(badgeValue('notifications')).toBe('1');
     });
@@ -423,7 +418,7 @@ describe('AppComponent', () => {
       await flushUser(null);
 
       const titles = Array.from(el().querySelectorAll('igx-nav-drawer [igxDrawerItem][title]')).map(i => i.getAttribute('title'));
-      expect(titles).toEqual(['Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Partners', 'About us']);
+      expect(titles).toEqual(['Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Shop', 'Partners', 'About us']);
     });
 
     it('should hide the mini navigation badges when there is nothing to report', async () => {
@@ -471,6 +466,7 @@ describe('AppComponent', () => {
       // The user preferences in the login drop down load their own data for the user.
       httpMock.expectOne(loginProvidersUrl).flush([]);
       httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+      httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
       httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
       await fixture.whenStable();
 

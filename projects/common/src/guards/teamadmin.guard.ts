@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from 'bellum-gens-common/services';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -19,7 +19,11 @@ export class TeamadminGuard  {
 
   public canActivate(
     next: ActivatedRouteSnapshot) {
-    return this.isBrowser ? this.isTeamAdmin(next.parent.params.teamid) : true;
+    if (!this.isBrowser) {
+      return true;
+    }
+    const teamId: string | undefined = next.parent?.params['teamid'];
+    return teamId ? this.isTeamAdmin(teamId) : false;
   }
 
   public isTeamAdmin(teamid: string) {

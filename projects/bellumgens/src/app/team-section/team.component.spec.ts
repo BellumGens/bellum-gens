@@ -10,7 +10,7 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { TeamComponent } from './team.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
-import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from 'bellum-gens-common/models';
 
 const API = 'https://localhost:44348/api';
 const AUTH_API = `${API}/account`;
@@ -67,7 +67,7 @@ describe('TeamComponent', () => {
   const tabLabels = () => Array.from(element().querySelectorAll('igx-tab-header [igxTabHeaderLabel]'))
     .map(header => header.textContent.trim());
 
-  const flushUser = (user: ApplicationUser = null) => httpMock().expectOne(AUTH_API).flush(user);
+  const flushUser = (user: ApplicationUser | null = null) => httpMock().expectOne(AUTH_API).flush(user);
 
   const flushSvgs = () => httpMock().match(DISCORD_SVG).forEach(req => req.flush('<svg></svg>'));
 
@@ -87,11 +87,11 @@ describe('TeamComponent', () => {
     flushSvgs();
   };
 
-  const openTeam = async (team: CSGOTeam, { member = false, admin = false, user = null as ApplicationUser } = {}) => {
+  const openTeam = async (team: CSGOTeam, { member = false, admin = false, user = null as ApplicationUser | null } = {}) => {
     harness = await RouterTestingHarness.create();
-    await navigate(team.teamId, team);
+    await navigate(team.teamId!, team);
     flushUser(user);
-    flushRoles(team.teamId, member, admin);
+    flushRoles(team.teamId!, member, admin);
     await harness.fixture.whenStable();
   };
 
@@ -155,7 +155,7 @@ describe('TeamComponent', () => {
 
   it('should render the team header and tabs once the team is loaded', async () => {
     harness = await RouterTestingHarness.create();
-    await navigate(TEAM.teamId);
+    await navigate(TEAM.teamId!);
     flushUser();
     await harness.fixture.whenStable();
     expect(element().querySelector('.team-details-header')).toBeNull();
@@ -163,10 +163,10 @@ describe('TeamComponent', () => {
 
     httpMock().expectOne(`${API}/teams?teamid=${TEAM.teamId}`).flush(TEAM);
     TestBed.tick();
-    flushRoles(TEAM.teamId, false, false);
+    flushRoles(TEAM.teamId!, false, false);
     await harness.fixture.whenStable();
 
-    expect(element().querySelector('.team-details-header h1').textContent).toContain('Test Team');
+    expect(element().querySelector('.team-details-header h1')!.textContent).toContain('Test Team');
     expect(element().querySelector('igx-tabs')).not.toBeNull();
   });
 
@@ -176,13 +176,13 @@ describe('TeamComponent', () => {
 
       expect(component.team()).toEqual(TEAM);
       expect(TestBed.inject(Title).getTitle()).toBe('Counter-Strike Team: Test Team');
-      expect(element().querySelector('h1').textContent).toContain('Test Team');
-      expect(element().querySelector('h3').textContent).toContain('The best test team');
+      expect(element().querySelector('h1')!.textContent).toContain('Test Team');
+      expect(element().querySelector('h3')!.textContent).toContain('The best test team');
     });
 
     it('should keep the placeholder until the requested team arrives', async () => {
       harness = await RouterTestingHarness.create();
-      await navigate(TEAM.teamId);
+      await navigate(TEAM.teamId!);
       flushUser();
 
       expect(component.team()).toEqual(TEAM_PLACEHOLDER);
@@ -190,16 +190,16 @@ describe('TeamComponent', () => {
 
       httpMock().expectOne(`${API}/teams?teamid=${TEAM.teamId}`).flush(TEAM);
       TestBed.tick();
-      flushRoles(TEAM.teamId, false, false);
+      flushRoles(TEAM.teamId!, false, false);
 
       expect(component.team()).toEqual(TEAM);
     });
 
     it('should resolve a team by its custom url', async () => {
       harness = await RouterTestingHarness.create();
-      await navigate(TEAM.customUrl, TEAM);
+      await navigate(TEAM.customUrl!, TEAM);
       flushUser();
-      flushRoles(TEAM.teamId, false, false);
+      flushRoles(TEAM.teamId!, false, false);
 
       expect(component.team()).toEqual(TEAM);
     });
@@ -208,21 +208,21 @@ describe('TeamComponent', () => {
       await openTeam(TEAM, { member: true, admin: true });
       expect(component.isAdmin()).toBe(true);
 
-      await navigate(OTHER_TEAM.teamId);
+      await navigate(OTHER_TEAM.teamId!);
       // The service still holds the previous team, which must not be re-applied
       httpMock().expectNone(`${API}/teams/teammember?teamid=${TEAM.teamId}`);
       expect(component.team()).toEqual(TEAM);
 
       httpMock().expectOne(`${API}/teams?teamid=${OTHER_TEAM.teamId}`).flush(OTHER_TEAM);
       TestBed.tick();
-      flushRoles(OTHER_TEAM.teamId, false, false);
+      flushRoles(OTHER_TEAM.teamId!, false, false);
       await harness.fixture.whenStable();
 
       expect(component.team()).toEqual(OTHER_TEAM);
       expect(component.isMember()).toBe(false);
       expect(component.isAdmin()).toBe(false);
       expect(TestBed.inject(Title).getTitle()).toBe('Counter-Strike Team: Other Team');
-      expect(element().querySelector('h1').textContent).toContain('Other Team');
+      expect(element().querySelector('h1')!.textContent).toContain('Other Team');
     });
 
     it('should register the discord svg icon in the browser', async () => {
@@ -288,7 +288,7 @@ describe('TeamComponent', () => {
     });
 
     it('should render the discord link', () => {
-      const link: HTMLAnchorElement = element().querySelector('a[href="https://discord.gg/test-team"]');
+      const link: HTMLAnchorElement = element().querySelector('a[href="https://discord.gg/test-team"]')!;
       expect(link).toBeTruthy();
       expect(link.target).toBe('_blank');
       expect(link.rel).toBe('noopener');
@@ -333,7 +333,7 @@ describe('TeamComponent', () => {
       await harness.fixture.whenStable();
 
       expect(TestBed.inject(Router).url).toBe('/team/team-1/preferences');
-      expect(element().querySelector('.team-child').textContent).toBe('Test Team');
+      expect(element().querySelector('.team-child')!.textContent).toBe('Test Team');
     });
 
     it('should navigate to the child route of a tab activated with the keyboard', async () => {

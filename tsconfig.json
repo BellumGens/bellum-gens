@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "importHelpers": true,
     "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
@@ -15,6 +15,9 @@
     "paths": {
       "bellum-gens-common": [
         "./projects/common/src/public_api.ts"
+      ],
+      "bellum-gens-common/*": [
+        "./projects/common/src/*/index.ts"
       ],
       "projects/*": [
         "./projects/*"

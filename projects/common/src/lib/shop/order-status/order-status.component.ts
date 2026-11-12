@@ -1,0 +1,232 @@
+import { Component, DOCUMENT, DestroyRef, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { CurrencyPipe, DatePipe, isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subscription, timeout } from 'rxjs';
+import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { ApiShopService, CartService } from 'bellum-gens-common/services';
+import {
+  DELIVERY_METHOD_NAMES,
+  DeliveryMethod,
+  ORDER_STATUS_ICONS,
+  ORDER_STATUS_NAMES,
+  OrderStatus,
+  OrderStatusView,
+  PAYMENT_METHOD_NAMES,
+  PaymentMethod,
+  PaymentStatus
+} from 'bellum-gens-common/models';
+
+/** The customer paid or is paying and the confirmation from the payment provider has not arrived yet. */
+const isPaymentPending = (order: OrderStatusView) => order.status === OrderStatus.AwaitingPayment
+  && (order.paymentStatus === PaymentStatus.Pending || order.paymentStatus === PaymentStatus.Authorised);
+
+@Component({
+  selector: 'bg-order-status',
+  imports: [
+    CurrencyPipe,
+    DatePipe,
+    RouterLink,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxDividerComponent,
+    IgxIconComponent,
+    IgxCircularProgressBarComponent
+  ],
+  templateUrl: './order-status.component.html',
+  styleUrl: './order-status.component.scss'
+})
+export class OrderStatusComponent {
+  /** How often the page asks the API while a payment is still pending. */
+  public static readonly pollIntervalMs = 3000;
+  /** After this long the page stops polling and offers a manual refresh. */
+  public static readonly pollTimeoutMs = 120000;
+  /** The longest a single status request may take before the page gives up on it. */
+  public static readonly requestTimeoutMs = 15000;
+  /**
+   * Client errors that mean the link does not identify an order this page can show. Only the first load treats
+   * them that way: once an order is on screen, a refusal (an expired session, a WAF challenge) is a transient
+   * failure, not proof that the order is gone. A 404 always means the order no longer exists.
+   */
+  private static readonly notFoundStatuses = [400, 401, 403, 404];
+
+  private route = inject(ActivatedRoute);
+  private shopApi = inject(ApiShopService);
+  private cart = inject(CartService);
+  private document = inject(DOCUMENT);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+
+  public order = signal<OrderStatusView | null>(null);
+  public notFound = signal(false);
+  /** The order could not be (re)loaded for a reason other than not existing (server or network error). */
+  public loadFailed = signal(false);
+  /** The last attempt to start a new payment failed; cleared when the customer tries again or refreshes. */
+  public retryFailed = signal(false);
+  public polling = signal(false);
+  public timedOut = signal(false);
+  public busy = signal(false);
+
+  public statusNames = ORDER_STATUS_NAMES;
+  public deliveryNames = DELIVERY_METHOD_NAMES;
+  public paymentNames = PAYMENT_METHOD_NAMES;
+  public OrderStatus = OrderStatus;
+  public DeliveryMethod = DeliveryMethod;
+  public PaymentMethod = PaymentMethod;
+
+  private orderId = '';
+  private pollStarted = 0;
+  private timer: ReturnType<typeof setTimeout> | null = null;
+  private request: Subscription | null = null;
+  private retry: Subscription | null = null;
+
+  public paymentPending = computed(() => {
+    const order = this.order();
+    return !!order && isPaymentPending(order);
+  });
+
+  constructor() {
+    inject(DestroyRef).onDestroy(() => {
+      this.stopPolling();
+      this.cancelRetry();
+    });
+    this.route.paramMap.pipe(takeUntilDestroyed()).subscribe(params => {
+      // A retry started for the previous order must not redirect or reload this one.
+      this.cancelRetry();
+      this.orderId = params.get('id') ?? '';
+      this.order.set(null);
+      this.notFound.set(false);
+      this.retryFailed.set(false);
+      this.restartPolling();
+    });
+  }
+
+  public statusIcon(status: OrderStatus) {
+    return ORDER_STATUS_ICONS[status];
+  }
+
+  public refresh() {
+    this.retryFailed.set(false);
+    this.restartPolling();
+  }
+
+  public payNow() {
+    const url = this.order()?.checkoutUrl;
+    if (url) {
+      this.document.location.assign(url);
+    }
+  }
+
+  public retryPayment() {
+    this.cancelRetry();
+    this.retryFailed.set(false);
+    this.busy.set(true);
+    this.retry = this.shopApi.retryPayment(this.orderId).subscribe({
+      next: created => {
+        if (created.checkoutUrl) {
+          this.document.location.assign(created.checkoutUrl);
+        } else {
+          this.cancelRetry();
+          this.restartPolling();
+        }
+      },
+      error: () => {
+        this.retry = null;
+        this.busy.set(false);
+        this.retryFailed.set(true);
+        // The order may have changed (e.g. the old payment went through after all), so reload it in a fresh
+        // polling window: the customer may have been on the page for longer than the last one.
+        this.restartPolling();
+      }
+    });
+  }
+
+  private restartPolling() {
+    this.pollStarted = Date.now();
+    this.timedOut.set(false);
+    this.load();
+  }
+
+  private load() {
+    this.stopPolling();
+    this.loadFailed.set(false);
+    if (!this.orderId) {
+      this.notFound.set(true);
+      return;
+    }
+    // A stalled request must not leave a spinner on screen: bound it by the request limit and by what is left
+    // of the polling window, while still giving the last poll at least one interval to answer.
+    const remaining = OrderStatusComponent.pollTimeoutMs - (Date.now() - this.pollStarted);
+    const limit = Math.min(OrderStatusComponent.requestTimeoutMs, Math.max(remaining, OrderStatusComponent.pollIntervalMs));
+    this.request = this.shopApi.getOrder(this.orderId).pipe(timeout(limit)).subscribe({
+      next: order => {
+        this.order.set(order);
+        this.notFound.set(false);
+        this.loadFailed.set(false);
+        this.settleCart(order);
+        this.schedulePoll(order);
+      },
+      error: error => {
+        const order = this.order();
+        if (error?.status === 404 || (!order && OrderStatusComponent.notFoundStatuses.includes(error?.status))) {
+          this.notFound.set(true);
+          this.polling.set(false);
+        } else if (order && isPaymentPending(order)) {
+          // A hiccup while polling: keep the order on screen and try again on the next tick. If the window runs
+          // out on a failed request, say so instead of only promising that the payment will be confirmed.
+          this.schedulePoll(order);
+          this.loadFailed.set(this.timedOut());
+        } else {
+          this.loadFailed.set(true);
+          this.polling.set(false);
+        }
+      }
+    });
+  }
+
+  /**
+   * The cart is kept after placing an order in case the payment is abandoned. Once the order placed from it is paid
+   * (or confirmed, for cash on delivery), the cart is emptied; once it can no longer be paid, the cart is kept for a new order.
+   */
+  private settleCart(order: OrderStatusView) {
+    if (this.cart.pendingOrder()?.id !== order.id) {
+      return;
+    }
+    if (order.status === OrderStatus.Paid || order.status === OrderStatus.Shipped || order.status === OrderStatus.Delivered
+      || order.status === OrderStatus.Confirmed) {
+      this.cart.clear();
+    } else if (order.status === OrderStatus.Cancelled || order.status === OrderStatus.Refunded) {
+      this.cart.forgetPendingOrder();
+    }
+  }
+
+  private schedulePoll(order: OrderStatusView) {
+    if (!this.isBrowser || !isPaymentPending(order)) {
+      this.polling.set(false);
+      return;
+    }
+    if (Date.now() - this.pollStarted >= OrderStatusComponent.pollTimeoutMs) {
+      this.polling.set(false);
+      this.timedOut.set(true);
+      return;
+    }
+    this.polling.set(true);
+    this.timer = setTimeout(() => this.load(), OrderStatusComponent.pollIntervalMs);
+  }
+
+  private cancelRetry() {
+    this.retry?.unsubscribe();
+    this.retry = null;
+    this.busy.set(false);
+  }
+
+  private stopPolling() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+    this.request?.unsubscribe();
+    this.request = null;
+  }
+}

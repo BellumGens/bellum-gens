@@ -1,19 +1,24 @@
 import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamGroup, SteamUser } from '../models/steamuser';
+import {
+  SteamGroup,
+  SteamUser,
+  CSGOTeam,
+  TeamMember,
+  TeamApplication,
+  Availability,
+  Role,
+  CSGOMapPool,
+  CSGODetails,
+  UserNotification,
+  Tournament,
+  ApplicationUser,
+  EarlyBird
+} from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { Observable, Subscription, throwError } from 'rxjs';
-import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
-import { Availability } from '../models/playeravailability';
-import { Role } from '../models/playerrole';
-import { CSGOMapPool } from '../models/csgomaps';
-import { CSGODetails } from '../models/csgoplayer';
 import { map, catchError, finalize } from 'rxjs/operators';
-import { UserNotification } from '../models/usernotifications';
-import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
-import { Tournament } from '../models/tournament';
-import { ApplicationUser } from '../models/applicationuser';
-import { EarlyBird } from '../models/subscribers';
 
 @Injectable({
   providedIn: 'root'
@@ -31,18 +36,18 @@ export class BellumgensApiService {
 
   private _apiEndpoint = environment.apiEndpoint;
   // The id being fetched and its request, so navigating to another id can supersede it
-  private _teamRequest: { teamId: string; subscription: Subscription } = null;
-  private _playerRequest: { userId: string; subscription: Subscription } = null;
+  private _teamRequest: { teamId: string; subscription: Subscription } | null = null;
+  private _playerRequest: { userId: string; subscription: Subscription } | null = null;
 
   // Cache
-  private _currentTeam = signal<CSGOTeam>(null);
-  private _currentTeamMembers = signal<TeamMember []>(null);
-  private _currentTeamPractice = signal<Availability []>(null);
-  private _currentPlayer = signal<ApplicationUser>(null);
+  private _currentTeam = signal<CSGOTeam | null>(null);
+  private _currentTeamMembers = signal<TeamMember [] | null>(null);
+  private _currentTeamPractice = signal<Availability [] | null>(null);
+  private _currentPlayer = signal<ApplicationUser | null>(null);
   // The id the cached members and schedule were fetched for. They are cached
   // independently of the current team, so they carry their own key.
-  private _currentTeamMembersId: string = null;
-  private _currentTeamPracticeId: string = null;
+  private _currentTeamMembersId: string | null = null;
+  private _currentTeamPracticeId: string | null = null;
   private readonly currentTeam = this._currentTeam.asReadonly();
   private readonly currentTeamMembers = this._currentTeamMembers.asReadonly();
   private readonly currentTeamPractice = this._currentTeamPractice.asReadonly();
@@ -54,14 +59,16 @@ export class BellumgensApiService {
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
-    if (!this._teamApplications.has(teamId)) {
-      this._teamApplications.set(teamId, this.getTeamApplications(teamId));
+    let applications = this._teamApplications.get(teamId);
+    if (!applications) {
+      applications = this.getTeamApplications(teamId);
+      this._teamApplications.set(teamId, applications);
     }
 
-    return this._teamApplications.get(teamId);
+    return applications;
   }
 
-  public getTeam(teamId: string): Signal<CSGOTeam> {
+  public getTeam(teamId: string): Signal<CSGOTeam | null> {
     untracked(() => {
       if (this._teamRequest?.teamId === teamId) {
         return;
@@ -71,7 +78,7 @@ export class BellumgensApiService {
       if (!team || (team.teamId !== teamId && team.customUrl !== teamId)) {
         // A slower response for the previous team must not overwrite this one
         this._teamRequest?.subscription.unsubscribe();
-        const request = { teamId, subscription: null as Subscription };
+        const request = { teamId, subscription: Subscription.EMPTY };
         this._teamRequest = request;
         request.subscription = this.getTeamFromServer(teamId).pipe(
           finalize(() => {
@@ -85,7 +92,7 @@ export class BellumgensApiService {
     return this.currentTeam;
   }
 
-  public getTeamMembers(teamId: string): Signal<TeamMember []> {
+  public getTeamMembers(teamId: string): Signal<TeamMember [] | null> {
     untracked(() => {
       if (!this._currentTeamMembers() || this._currentTeamMembersId !== teamId) {
         this.getTeamMembersFromServer(teamId).subscribe(members => {
@@ -97,7 +104,7 @@ export class BellumgensApiService {
     return this.currentTeamMembers;
   }
 
-  public getTeamSchedule(teamId: string): Signal<Availability []> {
+  public getTeamSchedule(teamId: string): Signal<Availability [] | null> {
     untracked(() => {
       if (!this._currentTeamPractice() || this._currentTeamPracticeId !== teamId) {
         this.getTeamPractice(teamId).subscribe(schedule => {
@@ -286,7 +293,7 @@ export class BellumgensApiService {
     );
   }
 
-  public getPlayer(userId: string): Signal<ApplicationUser> {
+  public getPlayer(userId: string): Signal<ApplicationUser | null> {
     untracked(() => {
       if (this._playerRequest?.userId === userId || this.playerMatch(userId)) {
         return;
@@ -295,7 +302,7 @@ export class BellumgensApiService {
       this._playerRequest?.subscription.unsubscribe();
       this._currentPlayer.set(null);
       this._loadingPlayer.set(true);
-      const request = { userId, subscription: null as Subscription };
+      const request = { userId, subscription: Subscription.EMPTY };
       this._playerRequest = request;
       request.subscription = this.getPlayerFromServer(userId).pipe(
         finalize(() => {

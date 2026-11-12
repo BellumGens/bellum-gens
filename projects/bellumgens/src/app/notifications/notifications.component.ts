@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
-import { CSGOTeam, LoginService, NotificationState, TeamApplication } from '../../../../common/src/public_api';
+import { CSGOTeam, NotificationState, TeamApplication } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 
@@ -20,7 +21,7 @@ export class NotificationsComponent {
 
   // Only pull the admin teams once a user is logged in.
   private authUser = this.authService.applicationUser;
-  public teamAdmin = computed<CSGOTeam []>(() => this.authUser() ? this.authService.teamsAdmin() : undefined);
+  public teamAdmin = computed<CSGOTeam [] | null>(() => this.authUser() ? this.authService.teamsAdmin() : null);
 
   private unreadPipe = new UnreadNotificationsPipe();
   // Player notifications are updated in place in the LoginService cache, so they are recounted after each change.
@@ -33,7 +34,7 @@ export class NotificationsComponent {
   private teamCounts = signal(new Map<string, number>());
   private teamUnread = computed(() => {
     const counts = this.teamCounts();
-    return (this.teamAdmin() ?? []).reduce((total, team) => total + (counts.get(team.teamId) ?? 0), 0);
+    return (this.teamAdmin() ?? []).reduce((total, team) => total + (team.teamId ? counts.get(team.teamId) ?? 0 : 0), 0);
   });
   public unreadCount = computed(() => this.playerUnread() + this.teamUnread());
 
@@ -41,12 +42,18 @@ export class NotificationsComponent {
     effect(() => this.unreadChanged.emit(this.unreadCount()));
   }
 
-  public teamLoaded(teamId: string, applications: TeamApplication []) {
+  public teamLoaded(teamId: string | undefined, applications: TeamApplication [] | null) {
+    if (!teamId) {
+      return;
+    }
     const unread = applications ? applications.filter(a => a.state === NotificationState.NotSeen).length : 0;
     this.teamCounts.update(counts => new Map(counts).set(teamId, unread));
   }
 
-  public teamChanged(teamId: string, delta: number) {
+  public teamChanged(teamId: string | undefined, delta: number) {
+    if (!teamId) {
+      return;
+    }
     this.teamCounts.update(counts => new Map(counts).set(teamId, (counts.get(teamId) ?? 0) + delta));
   }
 

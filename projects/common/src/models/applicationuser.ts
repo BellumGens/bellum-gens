@@ -11,10 +11,10 @@ export interface AdminAppUserSummary {
 
 export interface ApplicationUser {
   id: string;
-  steamId: string;
+  steamId: string | null;
   username: string;
-  battleNetId: string;
-  email: string;
+  battleNetId: string | null;
+  email: string | null;
   searchVisible: boolean;
   externalLogins: string [];
   steamUserException: boolean;

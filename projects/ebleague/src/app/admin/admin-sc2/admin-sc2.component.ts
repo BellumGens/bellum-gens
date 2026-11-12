@@ -4,14 +4,17 @@ import {
   TournamentParticipant,
   EMPTY_NEW_GROUP,
   Tournament,
-  ApiTournamentsService,
-  TournamentSC2Match, TournamentMatchMap,
-  SC2_MAPS, SC2LadderMap,
-  CommunicationService,
+  TournamentSC2Match,
+  TournamentMatchMap,
+  SC2_MAPS,
+  SC2LadderMap,
   TournamentApplication,
   TournamentApplicationState
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { Sc2MapNamePipe } from 'bellum-gens-common/pipes';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
 import { IGridEditEventArgs, IRowDataEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -32,8 +35,6 @@ import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
 import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
-import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -77,20 +78,27 @@ export class AdminSc2Component {
 
   private allTournaments = this.apiService.tournaments;
   public tournaments = computed(() => this.allTournaments() ?? []);
-  public selectedTournament = signal<Tournament>(null);
+  public selectedTournament = signal<Tournament | null>(null);
   private tournamentId = computed(() => this.selectedTournament()?.id);
   // Local copies of the selected tournament's cached data, reset whenever the cache changes
-  public registrations = linkedSignal<TournamentApplication []>(() =>
-    this.tournamentId() ? this.apiService.tournamentRegistrations(this.tournamentId())() : null);
-  public participants = computed<TournamentParticipant []>(() =>
-    this.tournamentId() ? this.apiService.getSc2Registrations(this.tournamentId())() : null);
+  public registrations = linkedSignal<TournamentApplication [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.tournamentRegistrations(id)() : null;
+  });
+  public participants = computed<TournamentParticipant [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Registrations(id)() : null;
+  });
   // The service caches the groups in reverse server order; the admin view lists them in server order
-  public groups = linkedSignal<TournamentGroup []>(() => {
-    const groups = this.tournamentId() ? this.apiService.getSc2Groups(this.tournamentId())() : null;
+  public groups = linkedSignal<TournamentGroup [] | null>(() => {
+    const id = this.tournamentId();
+    const groups = id ? this.apiService.getSc2Groups(id)() : null;
     return groups ? [...groups].reverse() : groups;
   });
-  public matches = linkedSignal<TournamentSC2Match []>(() =>
-    this.tournamentId() ? this.apiService.getSc2Matches(this.tournamentId())() : null);
+  public matches = linkedSignal<TournamentSC2Match [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Matches(id)() : null;
+  });
   public loading = this.apiService.loadingSC2Registrations;
   public loadingRegs = this.apiService.loadingTourRegistrations;
   public loadingMatches = this.apiService.loadingSC2Matches;
@@ -122,15 +130,23 @@ export class AdminSc2Component {
 
   // Selecting a tournament always loads its latest data
   public selectTournament(tournament: Tournament) {
-    this.apiService.refreshSc2Registrations(tournament.id);
-    this.apiService.refreshTournamentRegistrations(tournament.id);
-    this.apiService.refreshSc2Groups(tournament.id);
-    this.apiService.refreshSc2Matches(tournament.id);
+    const id = tournament.id;
+    if (!id) {
+      return;
+    }
+    this.apiService.refreshSc2Registrations(id);
+    this.apiService.refreshTournamentRegistrations(id);
+    this.apiService.refreshSc2Groups(id);
+    this.apiService.refreshSc2Matches(id);
   }
 
   public confirmRegistration(event: IGridEditEventArgs) {
     const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue ? 1 : 0;
+    const field = event.column?.field;
+    if (!field) {
+      return;
+    }
+    rowData[field] = event.newValue ? 1 : 0;
     this.apiService.confirmRegistration(rowData).subscribe({
       next: () => this.registrationsGrid().transactions.clear(rowData.id),
       complete: () => {}
@@ -140,7 +156,7 @@ export class AdminSc2Component {
   // Applies the row's pending changes and deletes it on the server only if it was marked deleted
   public saveRegistration(rowContext: RowType) {
     const deleted = rowContext.deleted;
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    rowContext.grid.transactions.commit(rowContext.grid.data ?? [], rowContext.key);
     if (deleted) {
       this.apiService.deleteRegistration(rowContext.key).subscribe();
     }
@@ -148,10 +164,10 @@ export class AdminSc2Component {
 
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
-    group.tournamentId = this.selectedTournament().id;
+    group.tournamentId = this.tournamentId();
     this.apiService.submitSC2Group(group).subscribe(data => {
-      if (!this.groups().find(g => g.id === data.id)) {
-        this.groups.update(groups => [...groups, data]);
+      if (!this.groups()?.find(g => g.id === data.id)) {
+        this.groups.update(groups => [...(groups ?? []), data]);
       }
       if (group === this.newGroup) {
         // The New group card starts over once its group is created
@@ -162,7 +178,7 @@ export class AdminSc2Component {
 
   public deleteGroup(id: string) {
     this.apiService.deleteGroup(id).subscribe(() => {
-      this.groups.update(groups => groups.filter(g => g.id !== id));
+      this.groups.update(groups => groups?.filter(g => g.id !== id) ?? null);
       // The members of the deleted group are unassigned again
       this.participants()?.filter(p => p.tournamentSC2GroupId === id).forEach(p => p.tournamentSC2GroupId = null);
       this.pipeTrigger.update(trigger => trigger + 1);
@@ -170,19 +186,26 @@ export class AdminSc2Component {
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
-    this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe({
+    const groupId = group.id;
+    if (!groupId) {
+      return;
+    }
+    this.apiService.addParticipantToGroup(event.dragData, groupId).subscribe({
       next: () => {
         group.participants = [ ...(group.participants || []), event.dragData ];
-        event.dragData.tournamentSC2GroupId = group.id;
+        event.dragData.tournamentSC2GroupId = groupId;
       },
       complete: () => this.pipeTrigger.update(trigger => trigger + 1)
     });
   }
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+    if (!group.id) {
+      return;
+    }
     this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
       next: () => {
-        group.participants = group.participants.filter(p => p !== participant);
+        group.participants = group.participants?.filter(p => p !== participant);
         participant.tournamentSC2GroupId = null;
         // The groups list their own copies of the participants, so the unassigned participant is cleared as well
         const listed = this.participants()?.find(p => p.id === participant.id);
@@ -194,7 +217,10 @@ export class AdminSc2Component {
     });
   }
 
-  public submitParticipantPoints(participantId: string, groupId: string, points: number) {
+  public submitParticipantPoints(participantId: string, groupId: string | null | undefined, points: number) {
+    if (!groupId) {
+      return;
+    }
     this.apiService.submitParticipantPoints(participantId, groupId, points).subscribe();
   }
 
@@ -203,7 +229,9 @@ export class AdminSc2Component {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
-            data.startTime = new Date(data.startTime);
+            if (data.startTime) {
+              data.startTime = new Date(data.startTime);
+            }
             grid.addRow(data);
           }
         }
@@ -220,21 +248,26 @@ export class AdminSc2Component {
     const groups = this.groups();
     this.matchInEdit = {
       startTime: new Date(),
-      tournamentId: this.selectedTournament().id,
+      tournamentId: this.tournamentId(),
       maps: [],
-      groupId: groups?.length ? groups[groups.length - 1].id : null
+      groupId: groups?.length ? groups[groups.length - 1].id : undefined
     };
   }
 
   public editMatch(match: TournamentSC2Match, dialog: IgxDialogComponent) {
-    if (!(match.startTime instanceof Date)) {
-      match.startTime = new Date(match.startTime);
+    // The API sends the start time as an ISO string
+    const startTime: Date | string | undefined = match.startTime;
+    if (startTime && !(startTime instanceof Date)) {
+      match.startTime = new Date(startTime);
     }
     this.matchInEdit = match;
     dialog.open();
   }
 
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
+    if (!map.id) {
+      return;
+    }
     this.apiService.deleteSC2MatchMap(map.id).subscribe(() => {
       // The maps array belongs to the grid row being edited, so it's updated in place
       maps.splice(maps.indexOf(map), 1);
@@ -243,20 +276,33 @@ export class AdminSc2Component {
   }
 
   public refreshMatches() {
-    this.apiService.refreshSc2Matches(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshSc2Matches(id);
+    }
   }
 
   public refreshParticipants() {
-    this.apiService.refreshSc2Registrations(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshSc2Registrations(id);
+    }
   }
 
   public refreshRegistrations() {
-    this.apiService.refreshTournamentRegistrations(this.tournamentId());
-    this.apiService.refreshSc2Groups(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshTournamentRegistrations(id);
+      this.apiService.refreshSc2Groups(id);
+    }
   }
 
   public resetCheckinState() {
-    this.apiService.resetCheckinState(this.selectedTournament().id).subscribe({
+    const id = this.tournamentId();
+    if (!id) {
+      return;
+    }
+    this.apiService.resetCheckinState(id).subscribe({
       next: () => {
         // Row objects are shared with the grid's batch editing, so they're reset in place
         this.registrations()?.filter(r => r.state !== TournamentApplicationState.Banned).forEach(r => r.state = 0);
@@ -267,8 +313,12 @@ export class AdminSc2Component {
   }
 
   public sendCheckinEmails() {
+    const id = this.tournamentId();
+    if (!id) {
+      return;
+    }
     this.notificationService.emitMessage('Sending checkin emails...');
-    this.apiService.sendCheckinEmails(this.selectedTournament().id).subscribe({
+    this.apiService.sendCheckinEmails(id).subscribe({
       next: () => {},
       complete: () => {}
     });

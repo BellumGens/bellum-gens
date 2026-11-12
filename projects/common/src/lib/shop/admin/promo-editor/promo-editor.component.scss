@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.promo-code {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.inactive-chip {
+  margin-left: 8px;
+  --ig-size: var(--ig-size-small);
+}
+
+.promo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.form-actions igx-icon {
+  margin-right: 8px;
+}

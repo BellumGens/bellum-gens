@@ -9,11 +9,8 @@ import { config } from 'rxjs';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 
 import { TournamentListComponent } from './tournament-list.component';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
-import { CommunicationService } from '../../../services/communication.service';
-import { Tournament, TournamentStatus } from '../../../models/tournament';
-import { ApplicationUser } from '../../../models/applicationuser';
+import { ApiTournamentsService, LoginService, CommunicationService } from 'bellum-gens-common/services';
+import { Tournament, TournamentStatus, ApplicationUser } from 'bellum-gens-common/models';
 
 describe('TournamentListComponent', () => {
   let component: TournamentListComponent;
@@ -27,7 +24,7 @@ describe('TournamentListComponent', () => {
   const tournamentsUrl = () => `${apiService['_apiEndpoint']}/tournament/tournaments`;
   const myTournamentsUrl = () => `${apiService['_apiEndpoint']}/tournament/mytournaments`;
 
-  const flushInitial = (publicList: Tournament[] = [], myList: Tournament[] = [], user: ApplicationUser = null) => {
+  const flushInitial = (publicList: Tournament[] = [], myList: Tournament[] = [], user: ApplicationUser | null = null) => {
     httpMock.expectOne(tournamentsUrl()).flush(publicList);
     httpMock.expectOne(myTournamentsUrl()).flush(myList);
     httpMock.expectOne(loginService['_apiEndpoint']).flush(user);
@@ -46,11 +43,11 @@ describe('TournamentListComponent', () => {
   };
   const cardNames = (tab: HTMLElement) => Array.from(tab.querySelectorAll('bg-tournament-card h3')).map(h => h.textContent.trim());
   const headerButton = (text: string): HTMLButtonElement =>
-    Array.from(host().querySelectorAll<HTMLButtonElement>('.header-actions button')).find(b => b.textContent.includes(text));
+    Array.from(host().querySelectorAll<HTMLButtonElement>('.header-actions button')).find(b => b.textContent.includes(text))!;
   const inviteDialog = (): IgxDialogComponent => fixture.debugElement.query(By.directive(IgxDialogComponent)).componentInstance;
   const dialogButton = (text: string): HTMLButtonElement =>
-    Array.from(document.querySelectorAll<HTMLButtonElement>('[igxDialogActions] button')).find(b => b.textContent.includes(text));
-  const inviteInput = (): HTMLInputElement => document.querySelector('input[name="inviteCode"]');
+    Array.from(document.querySelectorAll<HTMLButtonElement>('[igxDialogActions] button')).find(b => b.textContent.includes(text))!;
+  const inviteInput = (): HTMLInputElement => document.querySelector<HTMLInputElement>('input[name="inviteCode"]')!;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -152,19 +149,19 @@ describe('TournamentListComponent', () => {
 
     const active = await showTab(0);
     expect(cardNames(active)).toEqual(['Running']);
-    expect(active.querySelector('igx-chip.status-in-progress').textContent).toContain('In Progress');
+    expect(active.querySelector('igx-chip.status-in-progress')!.textContent).toContain('In Progress');
     const upcoming = await showTab(1);
     expect(cardNames(upcoming)).toEqual(['Next month']);
-    expect(upcoming.querySelector('igx-chip.status-open').textContent).toContain('Open');
+    expect(upcoming.querySelector('igx-chip.status-open')!.textContent).toContain('Open');
     const completed = await showTab(2);
     expect(cardNames(completed)).toEqual(['Last month']);
-    expect(completed.querySelector('igx-chip.status-completed').textContent).toContain('Completed');
+    expect(completed.querySelector('igx-chip.status-completed')!.textContent).toContain('Completed');
   });
 
   it('should show empty states when there are no tournaments', async () => {
     flushInitial();
 
-    const emptyTitle = async (index: number) => (await showTab(index)).querySelector('.empty-state h3').textContent;
+    const emptyTitle = async (index: number) => (await showTab(index)).querySelector('.empty-state h3')!.textContent;
     expect(await emptyTitle(0)).toContain('No active tournaments');
     expect(await emptyTitle(1)).toContain('No upcoming tournaments');
     expect(await emptyTitle(2)).toContain('No completed tournaments yet');
@@ -195,7 +192,7 @@ describe('TournamentListComponent', () => {
     expect(component.loading()).toBe(false);
     const active = await showTab(0);
     expect(active.querySelector('igx-circular-bar')).toBeNull();
-    expect(active.querySelector('.empty-state h3').textContent).toContain('No active tournaments');
+    expect(active.querySelector('.empty-state h3')!.textContent).toContain('No active tournaments');
   });
 
   it('should stop loading and show the empty state when the tournaments fail to load', async () => {
@@ -213,7 +210,7 @@ describe('TournamentListComponent', () => {
     expect(component.tournaments()).toEqual([]);
     const active = await showTab(0);
     expect(active.querySelector('igx-circular-bar')).toBeNull();
-    expect(active.querySelector('.empty-state h3').textContent).toContain('No active tournaments');
+    expect(active.querySelector('.empty-state h3')!.textContent).toContain('No active tournaments');
   });
 
   it('should reflect the logged in user', () => {
@@ -226,17 +223,17 @@ describe('TournamentListComponent', () => {
 
   it('should navigate to create on createTournament', () => {
     flushInitial();
-    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.createTournament();
     expect(spy).toHaveBeenCalledWith(['/tournaments/create']);
   });
 
   it('should navigate to create from the header and the empty My Tournaments tab', async () => {
     flushInitial();
-    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
 
     headerButton('Create Tournament').click();
-    (await showTab(3)).querySelector<HTMLButtonElement>('.empty-state button').click();
+    (await showTab(3)).querySelector<HTMLButtonElement>('.empty-state button')!.click();
 
     expect(spy).toHaveBeenCalledTimes(2);
     expect(spy).toHaveBeenNthCalledWith(1, ['/tournaments/create']);
@@ -245,7 +242,7 @@ describe('TournamentListComponent', () => {
 
   it('should navigate to manage on manageTournament', () => {
     flushInitial();
-    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.manageTournament({ id: 't1', name: 'Test' });
     expect(spy).toHaveBeenCalledWith(['/tournaments/manage', 't1']);
   });
@@ -272,7 +269,7 @@ describe('TournamentListComponent', () => {
     });
 
     it('should navigate to manage when a card emits manage', () => {
-      const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+      const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
       const manageButtons = Array.from(myTab.querySelectorAll<HTMLButtonElement>('bg-tournament-card button'))
         .filter(b => b.textContent.includes('Manage'));
 
@@ -282,7 +279,7 @@ describe('TournamentListComponent', () => {
     });
 
     it('should delete a tournament when a card emits deleteTournament', () => {
-      let success: string;
+      let success: string | undefined;
       commService.success.subscribe(s => success = s);
 
       myTab.querySelectorAll<HTMLButtonElement>('button.danger-btn')[0].click();
@@ -301,7 +298,7 @@ describe('TournamentListComponent', () => {
       // the service reports the error and the component handles the rethrown one, so nothing is left unhandled
       const unhandled = vi.fn();
       config.onUnhandledError = unhandled;
-      let error: string;
+      let error: string | undefined;
       commService.error.subscribe(e => error = e);
 
       myTab.querySelectorAll<HTMLButtonElement>('button.danger-btn')[1].click();
@@ -360,7 +357,7 @@ describe('TournamentListComponent', () => {
     });
 
     it('should join with the trimmed code, then close the dialog and reset the code', async () => {
-      let success: string;
+      let success: string | undefined;
       commService.success.subscribe(s => success = s);
       await typeCode('  ABC123 ');
 
@@ -383,7 +380,7 @@ describe('TournamentListComponent', () => {
       // the service reports the error and the component handles the rethrown one, so nothing is left unhandled
       const unhandled = vi.fn();
       config.onUnhandledError = unhandled;
-      let error: string;
+      let error: string | undefined;
       commService.error.subscribe(e => error = e);
       await typeCode('BADCODE');
 

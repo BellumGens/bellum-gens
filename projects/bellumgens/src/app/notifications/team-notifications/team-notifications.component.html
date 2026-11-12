@@ -1,9 +1,9 @@
 @if (applications()?.length) {
   <igx-list>
-    <igx-list-item [isHeader]="true" i18n>Notifications for {{ team().teamName }}</igx-list-item>
+    <igx-list-item [isHeader]="true" i18n>Notifications for {{ team()?.teamName }}</igx-list-item>
     @for (notification of applications() | sortApplications; track notification) {
       <igx-list-item [class]="notificationClass[notification.state]">
-        <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" shape="circle">
+        <igx-avatar igxListThumbnail [src]="notification.avatarIcon ?? ''" [initials]="notification.userName ?? ''" shape="circle">
         </igx-avatar>
         <h3 igxListLineTitle i18n><a [routerLink]="['/players', notification.applicantId]">{{ notification.userName }}</a> has applied to join your team!</h3>
         <span igxListLineSubTitle i18n>Application: {{ notification.message }}</span>

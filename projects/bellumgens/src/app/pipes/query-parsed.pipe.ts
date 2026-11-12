@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ALL_ROLES } from '../../../../common/src/public_api';
+import { ALL_ROLES } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'queryParsed'
 })
 export class QueryParsedPipe implements PipeTransform {
 
-  public transform(query: string, player = false): string {
+  public transform(query: string | null, player = false): string {
     if (query) {
       let result = '';
       if (player) {
@@ -14,7 +14,7 @@ export class QueryParsedPipe implements PipeTransform {
         parts.forEach(part => {
           const token = part.split('=');
           if (token[0] === 'role' && token[1] !== 'null') {
-            result += ` playing as ${ALL_ROLES.find(r => r.id.toString() === token[1]).name}`;
+            result += ` playing as ${ALL_ROLES.find(r => r.id.toString() === token[1])?.name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
           } else if (token[0] === 'name' && token[1]) {
@@ -30,7 +30,7 @@ export class QueryParsedPipe implements PipeTransform {
         parts.forEach(part => {
           const token = part.split('=');
           if (token[0] === 'role' && token[1] !== 'null') {
-            result += ` looking for ${ALL_ROLES.find(r => r.id.toString() === token[1]).name}`;
+            result += ` looking for ${ALL_ROLES.find(r => r.id.toString() === token[1])?.name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
           } else if (token[0] === 'name' && token[1]) {

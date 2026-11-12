@@ -17,7 +17,8 @@ import {
 } from '@infragistics/igniteui-angular/core';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 import { heartCare } from '@igniteui/material-icons-extended';
-import { ApplicationUser, CommunicationService, LoginService } from '../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService } from 'bellum-gens-common/services';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -66,7 +67,7 @@ describe('AppComponent', () => {
   });
 
   // The login button looks up the logged in user and the external login providers on every platform
-  const flushUserCheck = (user: ApplicationUser = null) => {
+  const flushUserCheck = (user: ApplicationUser | null = null) => {
     httpMock.expectOne(loginService['_apiEndpoint']).flush(user);
     httpMock.expectOne(`${loginService['_apiEndpoint']}/ExternalLogins?returnUrl=%2F`).flush([]);
   };
@@ -95,10 +96,17 @@ describe('AppComponent', () => {
 
       expect(flushFlags()).toEqual([
         '/assets/country-flags/svg/united-kingdom.svg',
-        '/assets/country-flags/svg/bulgaria.svg'
+        '/assets/country-flags/svg/bulgaria.svg',
+        '/assets/country-flags/svg/germany.svg',
+        '/assets/country-flags/svg/france.svg',
+        '/assets/country-flags/svg/netherlands.svg',
+        '/assets/country-flags/svg/norway.svg',
+        '/assets/country-flags/svg/sweden.svg',
+        '/assets/country-flags/svg/republic-of-poland.svg',
+        '/assets/country-flags/svg/romania.svg'
       ]);
-      expect(iconService.isSvgIconCached('en', 'languages')).toBe(true);
-      expect(iconService.isSvgIconCached('bg', 'languages')).toBe(true);
+      ['en', 'bg', 'de', 'fr', 'nl', 'nb', 'sv', 'pl', 'ro']
+        .forEach(code => expect(iconService.isSvgIconCached(code, 'languages')).toBe(true));
     });
 
     it('should expose the logged in user', () => {
@@ -139,7 +147,7 @@ describe('AppComponent', () => {
     it('should toggle the drawer from the menu button and close it on navigation', async () => {
       flushFlags();
       flushUserCheck();
-      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action')!;
 
       expect(drawer().isOpen).toBe(false);
       expect(menu.getAttribute('aria-expanded')).toBe('false');
@@ -157,7 +165,7 @@ describe('AppComponent', () => {
     it('should expose the menu toggle as a named button controlling the drawer', () => {
       flushFlags();
       flushUserCheck();
-      const menu = el().querySelector<HTMLButtonElement>('igx-navbar-action button.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('igx-navbar-action button.drawer-action')!;
 
       expect(menu).not.toBeNull();
       expect(menu.type).toBe('button');
@@ -170,11 +178,11 @@ describe('AppComponent', () => {
     it('should link the logo to the home page', () => {
       flushFlags();
       flushUserCheck();
-      const logo = el().querySelector<HTMLImageElement>('igx-navbar-action img');
+      const logo = el().querySelector<HTMLImageElement>('igx-navbar-action img')!;
       const link = logo.closest('a');
 
       expect(link).not.toBeNull();
-      expect(link.getAttribute('href')).toBe('/');
+      expect(link!.getAttribute('href')).toBe('/');
       expect(logo.getAttribute('alt')).toBe('Esports Business League');
     });
 
@@ -188,11 +196,11 @@ describe('AppComponent', () => {
         expect(item.tagName).toBe('A');
         expect(item.getAttribute('href')).toBeTruthy();
       });
-      expect(items.map(i => i.querySelector('span').textContent.trim())).toEqual([
+      expect(items.map(i => i.querySelector('span')!.textContent.trim())).toEqual([
         'EBL Seasons', 'Tournaments', 'Shop', 'Tournament format', 'Our partners', 'Our crew', 'Contact us'
       ]);
       expect(items.map(i => i.getAttribute('href'))).toEqual([
-        '/tournaments', '/tournaments/hub', '/shop', '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
+        '/tournaments', '/tournaments/hub', component.shopUrl, '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
       ]);
     });
 
@@ -245,7 +253,7 @@ describe('AppComponent', () => {
       flushFlags();
       flushUserCheck();
 
-      expect(el().querySelector('footer').textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
+      expect(el().querySelector('footer')!.textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
     });
   });
 

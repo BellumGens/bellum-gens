@@ -5,8 +5,7 @@ import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
-import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
-import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
+import { CountrySVGPipe, Sc2RaceThumbPipe } from 'bellum-gens-common/pipes';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -74,7 +73,7 @@ export class EventsComponent extends BaseDirective {
   public minutes = signal(0);
   public hours = signal(0);
   public days = signal(0);
-  public sub: Subscription;
+  public sub?: Subscription;
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-2025-stara-zagora-leten-teatr-662711/event.html';
 
@@ -110,7 +109,7 @@ export class EventsComponent extends BaseDirective {
 
   public scrollTo(id: string) {
     const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 
   // public ngOnDestroy() {

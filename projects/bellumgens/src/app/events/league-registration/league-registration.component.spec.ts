@@ -3,15 +3,8 @@ import { LeagueRegistrationComponent } from './league-registration.component';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import {
-  ApiTournamentsService,
-  ApplicationUser,
-  CommunicationService,
-  Game,
-  LoginService,
-  Tournament,
-  TournamentApplication
-} from '../../../../../common/src/public_api';
+import { ApiTournamentsService, CommunicationService, LoginService } from 'bellum-gens-common/services';
+import { ApplicationUser, Game, Tournament, TournamentApplication } from 'bellum-gens-common/models';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { SwPush } from '@angular/service-worker';
@@ -47,14 +40,14 @@ describe('LeagueRegistrationComponent', () => {
   const registerUrl = (id = '') => `${api()}/tournament/registerbge?tournamentId=${id}`;
 
   const el = (): HTMLElement => fixture.nativeElement;
-  const input = (name: string) => el().querySelector<HTMLInputElement>(`input[name="${name}"]`);
-  const suffix = (name: string) => input(name).closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
-  const submitButton = () => el().querySelector<HTMLButtonElement>('button.submit-registration');
-  const details = () => el().querySelector<HTMLElement>('.application-details');
+  const input = (name: string) => el().querySelector<HTMLInputElement>(`input[name="${name}"]`)!;
+  const suffix = (name: string) => input(name).closest('igx-input-group')!.querySelector<HTMLButtonElement>('igx-suffix button');
+  const submitButton = () => el().querySelector<HTMLButtonElement>('button.submit-registration')!;
+  const details = () => el().querySelector<HTMLElement>('.application-details')!;
   const termsDialog = (): IgxDialogComponent => fixture.debugElement.query(By.directive(IgxDialogComponent)).componentInstance;
   const termsCheckbox = (): IgxCheckboxComponent => fixture.debugElement.query(By.directive(IgxCheckboxComponent)).componentInstance;
   const dialogButton = (text: string): HTMLButtonElement =>
-    Array.from(document.querySelectorAll<HTMLButtonElement>('.igx-dialog__window-actions button')).find(b => b.textContent.includes(text));
+    Array.from(document.querySelectorAll<HTMLButtonElement>('.igx-dialog__window-actions button')).find(b => b.textContent.includes(text))!;
 
   const type = async (name: string, value: string) => {
     const field = input(name);
@@ -64,7 +57,7 @@ describe('LeagueRegistrationComponent', () => {
   };
 
   const acceptTerms = async () => {
-    el().querySelector<HTMLInputElement>('igx-checkbox input[type="checkbox"]').click();
+    el().querySelector<HTMLInputElement>('igx-checkbox input[type="checkbox"]')!.click();
     await fixture.whenStable();
   };
 
@@ -128,9 +121,9 @@ describe('LeagueRegistrationComponent', () => {
     });
 
     it('should render the tournament details', () => {
-      expect(el().querySelector('img').getAttribute('src')).toBe('active.png');
-      expect(el().querySelector('#registration').textContent.trim()).toBe('BGE Balkan Circuit');
-      expect(el().querySelector('p.horizontal-center').textContent.trim()).toBe('The active league');
+      expect(el().querySelector('img')!.getAttribute('src')).toBe('active.png');
+      expect(el().querySelector('#registration')!.textContent.trim()).toBe('BGE Balkan Circuit');
+      expect(el().querySelector('p.horizontal-center')!.textContent.trim()).toBe('The active league');
     });
 
     it('should ask the user to log in and hide the registration form', () => {
@@ -177,7 +170,7 @@ describe('LeagueRegistrationComponent', () => {
       httpMock.expectNone(activeTournamentUrl());
       expect(component.tournamentId()).toBe('t1');
       expect(component.application().tournamentId).toBe('t1');
-      expect(el().querySelector('#registration').textContent.trim()).toBe('BGE Balkan Circuit');
+      expect(el().querySelector('#registration')!.textContent.trim()).toBe('BGE Balkan Circuit');
     });
 
     it('should offer the European countries for a Europe tournament', async () => {
@@ -290,7 +283,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should update the country when one is selected', async () => {
-        const serbia = Array.from(el().querySelectorAll<HTMLElement>('igx-select-item')).find(i => i.textContent.includes('Serbia'));
+        const serbia = Array.from(el().querySelectorAll<HTMLElement>('igx-select-item')).find(i => i.textContent.includes('Serbia'))!;
         serbia.click();
         await fixture.whenStable();
 
@@ -303,14 +296,14 @@ describe('LeagueRegistrationComponent', () => {
           await type(field, 'Value');
         }
 
-        expect(fields.map(field => suffix(field).type)).toEqual(fields.map(() => 'button'));
-        expect(fields.map(field => suffix(field).getAttribute('aria-label'))).toEqual([
+        expect(fields.map(field => suffix(field)!.type)).toEqual(fields.map(() => 'button'));
+        expect(fields.map(field => suffix(field)!.getAttribute('aria-label'))).toEqual([
           'Clear email', 'Clear first name', 'Clear last name', 'Clear Discord ID', 'Clear battle tag', 'Clear team'
         ]);
       });
 
       it('should open the terms from a keyboard focusable link without navigating', async () => {
-        const link = el().querySelector<HTMLAnchorElement>('label a');
+        const link = el().querySelector<HTMLAnchorElement>('label a')!;
         expect(link.getAttribute('href')).toBe('#');
 
         const click = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -323,7 +316,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should label the battle tag field', () => {
-        expect(el().querySelector('label[for="battletag"]').textContent.trim()).toBe('Battle tag');
+        expect(el().querySelector('label[for="battletag"]')!.textContent.trim()).toBe('Battle tag');
       });
 
       it('should clear a field when its clear icon is clicked', async () => {
@@ -333,17 +326,17 @@ describe('LeagueRegistrationComponent', () => {
         }
 
         for (const field of fields) {
-          suffix(field).click();
+          suffix(field)!.click();
           await fixture.whenStable();
         }
 
         expect(component.application()).toEqual(expect.objectContaining({
-          email: null,
-          firstName: null,
-          lastName: null,
-          discord: null,
-          battleNetId: null,
-          companyId: null
+          email: '',
+          firstName: '',
+          lastName: '',
+          discord: '',
+          battleNetId: '',
+          companyId: ''
         }));
         for (const field of fields) {
           expect(input(field).value).toBe('');
@@ -371,7 +364,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should accept the terms from the terms and conditions dialog', async () => {
-        el().querySelector<HTMLAnchorElement>('label a').click();
+        el().querySelector<HTMLAnchorElement>('label a')!.click();
         await fixture.whenStable();
         expect(termsDialog().isOpen).toBe(true);
         expect(termsCheckbox().checked).toBe(false);
@@ -384,7 +377,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should not accept the terms when the terms and conditions dialog is cancelled', async () => {
-        el().querySelector<HTMLAnchorElement>('label a').click();
+        el().querySelector<HTMLAnchorElement>('label a')!.click();
         await fixture.whenStable();
         expect(termsDialog().isOpen).toBe(true);
 
@@ -509,10 +502,10 @@ describe('LeagueRegistrationComponent', () => {
       it('should clear the team and suggest all teams again when its clear icon is clicked', async () => {
         await type('company', 'a');
 
-        suffix('company').click();
+        suffix('company')!.click();
         await fixture.whenStable();
 
-        expect(component.application().companyId).toBeNull();
+        expect(component.application().companyId).toBe('');
         expect(input('company').value).toBe('');
         expect(suffix('company')).toBeNull();
         const suggestions = Array.from(document.querySelectorAll('igx-drop-down-item')).map(i => i.textContent.trim());

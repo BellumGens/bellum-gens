@@ -6,13 +6,13 @@ export interface CSGOStats {
   killDeathRatio: number;
   accuracy: number;
   private: boolean;
-  favouriteWeapon: WeaponDescriptor;
+  favouriteWeapon: WeaponDescriptor | null;
   weapons: WeaponDescriptor [];
 }
 
 export interface CSGODetails {
-  steamUser: SteamUser;
-  userStats: CSGOStats;
+  steamUser: SteamUser | null;
+  userStats: CSGOStats | null;
   primaryRole?: PlaystyleRole;
   secondaryRole?: PlaystyleRole;
   headshotPercentage: number;
@@ -20,7 +20,7 @@ export interface CSGODetails {
   accuracy: number;
   steamPrivate: boolean;
   realName: string;
-  customUrl: string;
+  customUrl: string | null;
   avatarFull: string;
   avatarMedium: string;
   avatarIcon: string;
@@ -33,7 +33,7 @@ export interface WeaponDescriptor {
 }
 
 export interface PlayerSearch {
-  role: PlaystyleRole;
+  role: PlaystyleRole | null;
   scheduleOverlap: number;
   teamId?: string;
 }

@@ -3,8 +3,8 @@ import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
-import { LOGIN_ASSETS } from '../../../models/misc';
-import { LoginProvider, LoginService } from '../../../public_api';
+import { LOGIN_ASSETS, LoginProvider } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('LoginButtonsComponent', () => {

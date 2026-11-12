@@ -4,7 +4,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TeamNewComponent } from './team-new.component';
-import { ApplicationUser, BellumgensApiService, CSGOTeam, CommunicationService, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common';
+import { ApplicationUser, CSGOTeam, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common/models';
+import { BellumgensApiService, CommunicationService } from 'bellum-gens-common/services';
 import { Router } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
@@ -55,7 +56,7 @@ describe('TeamNewComponent', () => {
   const submitButton = () => el().querySelector('.submit-button') as HTMLButtonElement;
   const form = () => el().querySelector('form') as HTMLFormElement;
   const suffixFor = (selector: string) =>
-    (el().querySelector(selector) as HTMLElement).closest('igx-input-group').querySelector('igx-suffix button') as HTMLButtonElement;
+    (el().querySelector(selector) as HTMLElement).closest('igx-input-group')!.querySelector('igx-suffix button') as HTMLButtonElement;
 
   const type = async (selector: string, value: string) => {
     const input = el().querySelector(selector) as HTMLInputElement | HTMLTextAreaElement;
@@ -132,7 +133,7 @@ describe('TeamNewComponent', () => {
     });
 
     it('should render a collapsed dialog with no groups', () => {
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
       expect(el().textContent).toContain('Import from Steam Group');
       expect(el().textContent).toContain('Or create with form');
       expect(listItems().length).toBe(0);
@@ -140,9 +141,19 @@ describe('TeamNewComponent', () => {
 
     it('should open the createTeam dialog and load the user Steam groups', async () => {
       await openWithGroups();
-      expect(component.createTeam().isCollapsed).toBe(false);
+      expect(component.createTeam()!.isCollapsed).toBe(false);
       expect(component.navigateOnCreate).toBe(true);
       expect(component.groups()).toEqual(mockGroups);
+    });
+
+    it('should open the dialog without requesting Steam groups for a user without a Steam id', async () => {
+      fixture.componentRef.setInput('authUser', { ...mockUser, steamId: null });
+      fixture.detectChanges();
+      component.open();
+      await fixture.whenStable();
+      httpMock.expectNone(req => req.url.includes('/users/usergroups'));
+      expect(component.createTeam()!.isCollapsed).toBe(false);
+      expect(component.groups()).toBeUndefined();
     });
 
     it('should render at most three groups', async () => {
@@ -158,9 +169,9 @@ describe('TeamNewComponent', () => {
       await openWithGroups();
       const buttons = Array.from(listItems()).map(item => item.querySelector('button'));
 
-      expect(buttons.map(b => b.type)).toEqual(['button', 'button', 'button']);
-      expect(buttons.map(b => b.textContent.trim())).toEqual(['Test Group', 'Another Clan', 'Third Group']);
-      expect(buttons.every(b => b.hasAttribute('igxListLineTitle'))).toBe(true);
+      expect(buttons.map(b => b!.type)).toEqual(['button', 'button', 'button']);
+      expect(buttons.map(b => b!.textContent.trim())).toEqual(['Test Group', 'Another Clan', 'Third Group']);
+      expect(buttons.every(b => b!.hasAttribute('igxListLineTitle'))).toBe(true);
     });
 
     it('should name the clear buttons and keep them from submitting the form', async () => {
@@ -198,14 +209,14 @@ describe('TeamNewComponent', () => {
 
       suffixFor('#searchGroups').click();
       await fixture.whenStable();
-      expect(component.searchGroups()).toBeNull();
+      expect(component.searchGroups()).toBe('');
       expect((el().querySelector('#searchGroups') as HTMLInputElement).value).toBe('');
       expect(suffixFor('#searchGroups')).toBeNull();
       expect(listItems().length).toBe(3);
     });
 
     it('should create a team from a Steam group', () => {
-      vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+      vi.spyOn(router, 'navigate').mockResolvedValue(true);
       component.createFromSteam(mockGroup);
       const req = httpMock.expectOne(`${apiService["_apiEndpoint"]}/teams/team`);
       expect(req.request.method).toBe('POST');
@@ -215,7 +226,7 @@ describe('TeamNewComponent', () => {
       req.flush(mockTeam);
       expect(component.inProgress()).toBe(false);
       expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
     });
 
     it('should create a team when a group list item is clicked', async () => {
@@ -223,7 +234,7 @@ describe('TeamNewComponent', () => {
       const success = vi.spyOn(TestBed.inject(CommunicationService), 'emitSuccess');
       await openWithGroups();
 
-      listItems()[1].querySelector('button').click();
+      listItems()[1].querySelector('button')!.click();
       await fixture.whenStable();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/team`);
@@ -233,7 +244,7 @@ describe('TeamNewComponent', () => {
       await fixture.whenStable();
 
       expect(success).toHaveBeenCalledWith('Another Clan registered successfully!');
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
       expect(navigate).toHaveBeenCalledWith(['/team', 'test-url']);
       expect(submitButton().textContent).toContain('Submit');
       expect(submitButton().textContent).not.toContain('Submitting...');
@@ -249,7 +260,7 @@ describe('TeamNewComponent', () => {
       await fixture.whenStable();
 
       expect(component.inProgress()).toBe(false);
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
       expect(navigate).not.toHaveBeenCalled();
     });
 
@@ -266,12 +277,12 @@ describe('TeamNewComponent', () => {
 
       expect(error).toHaveBeenCalled();
       expect(component.inProgress()).toBe(false);
-      expect(component.createTeam().isCollapsed).toBe(false);
+      expect(component.createTeam()!.isCollapsed).toBe(false);
       expect(navigate).not.toHaveBeenCalled();
     });
 
     it('should create a team from the form', () => {
-      vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+      vi.spyOn(router, 'navigate').mockResolvedValue(true);
       component.newTeam.teamName = 'Test Team';
       component.newTeam.description = 'Test Description';
       component.createFromForm();
@@ -282,7 +293,7 @@ describe('TeamNewComponent', () => {
       expect(component.inProgress()).toBe(true);
       req.flush(mockTeam);
       expect(component.inProgress()).toBe(false);
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
       expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
     });
 
@@ -312,12 +323,12 @@ describe('TeamNewComponent', () => {
 
       suffixFor('#teamName').click();
       await fixture.whenStable();
-      expect(component.newTeam.teamName).toBeNull();
+      expect(component.newTeam.teamName).toBe('');
       expect(suffixFor('#teamName')).toBeNull();
 
       suffixFor('#teamDescripton').click();
       await fixture.whenStable();
-      expect(component.newTeam.description).toBeNull();
+      expect(component.newTeam.description).toBe('');
       expect(suffixFor('#teamDescripton')).toBeNull();
       expect(submitButton().disabled).toBe(true);
     });
@@ -325,25 +336,25 @@ describe('TeamNewComponent', () => {
     it('should validate the team avatar url, preview it and clear it', async () => {
       await openWithGroups();
       const avatarGroup = () => (el().querySelector('#teamAvatar') as HTMLElement).closest('igx-input-group');
-      expect(avatarGroup().querySelector('igx-prefix igx-icon').textContent).toContain('link');
-      expect(avatarGroup().querySelector('igx-hint')).toBeNull();
+      expect(avatarGroup()!.querySelector('igx-prefix igx-icon')!.textContent).toContain('link');
+      expect(avatarGroup()!.querySelector('igx-hint')).toBeNull();
       expect(suffixFor('#teamAvatar')).toBeNull();
 
       await type('#teamAvatar', 'not-a-url');
-      expect(avatarGroup().querySelector('igx-hint').textContent).toContain('You must provide an image url');
-      expect(avatarGroup().querySelector('.team-preview-avatar')).not.toBeNull();
+      expect(avatarGroup()!.querySelector('igx-hint')!.textContent).toContain('You must provide an image url');
+      expect(avatarGroup()!.querySelector('.team-preview-avatar')).not.toBeNull();
 
       await type('#teamAvatar', 'https://cdn.example.com/avatars/team.png');
       expect(component.newTeam.teamAvatar).toBe('https://cdn.example.com/avatars/team.png');
-      expect(avatarGroup().querySelector('igx-hint')).toBeNull();
-      expect(avatarGroup().querySelector('.team-preview-avatar')).not.toBeNull();
-      expect(avatarGroup().querySelector('igx-prefix igx-icon')).toBeNull();
+      expect(avatarGroup()!.querySelector('igx-hint')).toBeNull();
+      expect(avatarGroup()!.querySelector('.team-preview-avatar')).not.toBeNull();
+      expect(avatarGroup()!.querySelector('igx-prefix igx-icon')).toBeNull();
 
       suffixFor('#teamAvatar').click();
       await fixture.whenStable();
-      expect(component.newTeam.teamAvatar).toBeNull();
-      expect(avatarGroup().querySelector('.team-preview-avatar')).toBeNull();
-      expect(avatarGroup().querySelector('igx-prefix igx-icon').textContent).toContain('link');
+      expect(component.newTeam.teamAvatar).toBe('');
+      expect(avatarGroup()!.querySelector('.team-preview-avatar')).toBeNull();
+      expect(avatarGroup()!.querySelector('igx-prefix igx-icon')!.textContent).toContain('link');
       expect(suffixFor('#teamAvatar')).toBeNull();
     });
 
@@ -374,7 +385,7 @@ describe('TeamNewComponent', () => {
 
       expect(success).toHaveBeenCalledWith('Team Name registered successfully!');
       expect(component.inProgress()).toBe(false);
-      expect(component.createTeam().isCollapsed).toBe(true);
+      expect(component.createTeam()!.isCollapsed).toBe(true);
       expect(navigate).toHaveBeenCalledWith(['/team', 'test-url']);
     });
 
@@ -393,7 +404,7 @@ describe('TeamNewComponent', () => {
 
       expect(error).toHaveBeenCalled();
       expect(component.inProgress()).toBe(false);
-      expect(component.createTeam().isCollapsed).toBe(false);
+      expect(component.createTeam()!.isCollapsed).toBe(false);
       expect(submitButton().disabled).toBe(false);
       expect(navigate).not.toHaveBeenCalled();
     });

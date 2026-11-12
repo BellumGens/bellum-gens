@@ -5,16 +5,15 @@ import {
   ALL_ROLES,
   ApplicationUser,
   Availability,
-  AvailabilityComponent,
-  BellumgensApiService,
-  CountrySVGPipe,
+  CSGODetails,
   CSGOMapPool,
   CSGOTeam,
-  LoadingComponent,
-  LoginService,
   PlaystyleRole,
   WeaponDescriptor
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { AvailabilityComponent, LoadingComponent } from 'bellum-gens-common';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -64,34 +63,34 @@ export class CsPlayerComponent extends BaseDirective {
   private iconService = inject(IgxIconService);
 
   // Handed down by the parent PlayerComponent through the router outlet.
-  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
+  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser | null>;
 
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   // Only pull the admin teams once a user is logged in.
-  public teamsAdmin = computed<CSGOTeam []>(() => this.authUser() ? this.authManager.teamsAdmin() : null);
+  public teamsAdmin = computed<CSGOTeam [] | null>(() => this.authUser() ? this.authManager.teamsAdmin() : null);
   public userTeams = signal<CSGOTeam []>([]);
-  public availability = signal<Availability []>(null);
-  public mapPool = signal<CSGOMapPool []>(null);
+  public availability = signal<Availability [] | null>(null);
+  public mapPool = signal<CSGOMapPool [] | null>(null);
   public viewAll = signal(false);
   public loading = this.apiService.loadingPlayer;
   public roles = ALL_ROLES;
 
   public newUser = toSignal(
-    this.activatedRoute.parent.params.pipe(map(params => !!params['newuser'])),
+    (this.activatedRoute.parent ?? this.activatedRoute).params.pipe(map(params => !!params['newuser'])),
     { initialValue: false }
   );
 
   // Locally editable copy of the roles, so a pick shows up immediately instead of
   // waiting for the server. Re-seeds whenever a new player comes down from the parent.
-  public csgoDetails = linkedSignal(() => this.player()?.csgoDetails);
+  public csgoDetails = linkedSignal<Partial<CSGODetails> | undefined>(() => this.player()?.csgoDetails);
 
   public playerIsUser = computed(() => {
     const player = this.player();
     const authUser = this.authUser();
-    return !!player && !!authUser && player.steamUser.steamID64 === authUser.steamId;
+    return !!player && !!authUser && player.steamUser?.steamID64 === authUser.steamId;
   });
 
-  private detailsLoadedFor: string;
+  private detailsLoadedFor?: string;
 
   constructor() {
     super();
@@ -101,7 +100,7 @@ export class CsPlayerComponent extends BaseDirective {
       if (!player || player.steamUserException) {
         return;
       }
-      this.titleService.setTitle('Counter-Strike Player: ' + player.steamUser.steamID);
+      this.titleService.setTitle('Counter-Strike Player: ' + (player.steamUser?.steamID ?? ''));
 
       // The player object is replaced whenever a role changes, so only pull the
       // rest of the profile once per player.
@@ -143,31 +142,50 @@ export class CsPlayerComponent extends BaseDirective {
   }
 
   public submitAvailability(args: Availability) {
-    args.userId = this.authUser().id;
+    const user = this.authUser();
+    if (!user) {
+      return;
+    }
+    args.userId = user.id;
     this.apiService.setAvailability(args).subscribe();
   }
 
   public selectPrimary(value: PlaystyleRole) {
     this.csgoDetails.update(details => ({ ...details, primaryRole: value }));
-    this.apiService.setPrimaryRole(this.roles.find(r => r.id === value), this.player().id).subscribe();
+    const role = this.roles.find(r => r.id === value);
+    const player = this.player();
+    if (role && player) {
+      this.apiService.setPrimaryRole(role, player.id).subscribe();
+    }
   }
 
   public selectSecondary(value: PlaystyleRole) {
     this.csgoDetails.update(details => ({ ...details, secondaryRole: value }));
-    this.apiService.setSecondaryRole(this.roles.find(r => r.id === value), this.player().id).subscribe();
+    const role = this.roles.find(r => r.id === value);
+    const player = this.player();
+    if (role && player) {
+      this.apiService.setSecondaryRole(role, player.id).subscribe();
+    }
   }
 
   public mapChange(args: CSGOMapPool) {
-    args.userId = this.authUser().id;
+    const user = this.authUser();
+    if (!user) {
+      return;
+    }
+    args.userId = user.id;
     this.apiService.setMapPool(args).subscribe();
   }
 
   public inviteToTeam(args: ISelectionEventArgs) {
-    this.apiService.inviteToTeam(this.player().steamUser, args.newSelection.value).subscribe();
+    const steamUser = this.player()?.steamUser;
+    if (steamUser) {
+      this.apiService.inviteToTeam(steamUser, args.newSelection.value).subscribe();
+    }
   }
 
-  private loadSvgs(weapons: WeaponDescriptor []) {
-    weapons.forEach(w => {
+  private loadSvgs(weapons: WeaponDescriptor [] | null) {
+    weapons?.forEach(w => {
       this.iconService.addSvgIcon(w.name, `/assets/weapon-icons/svg_normal/weapon_${w.name}.svg`, 'weapon-icons');
     });
   }

@@ -49,13 +49,13 @@ export interface Tournament {
 export interface TournamentApplication {
   id?: string;
   userId?: string;
-  companyId?: string;
+  companyId?: string | null;
   tournamentId?: string;
   tournamentName?: string;
-  game: Game;
+  game: Game | null;
   teamId?: string;
   email: string;
-  battleNetId?: string;
+  battleNetId?: string | null;
   firstName?: string;
   lastName?: string;
   discord?: string;
@@ -69,12 +69,12 @@ export interface TournamentParticipant {
   id: string;
   userId: string;
   teamId?: string;
-  tournamentCSGOGroupId?: string;
-  tournamentSC2GroupId?: string;
+  tournamentCSGOGroupId?: string | null;
+  tournamentSC2GroupId?: string | null;
   state: TournamentApplicationState;
   user?: ApplicationUser;
   team?: CSGOTeam;
-  companyId: string;
+  companyId: string | null;
   country?: string;
   playerPoints?: number;
   teamPoints?: number;
@@ -127,7 +127,7 @@ const toTime = (date?: Date | string): number | null => {
  * Active tournaments are in progress, inactive ones that haven't started yet are open and those that have ended are completed.
  * Returns null when the status can't be determined.
  */
-export const getTournamentStatus = (tournament: Tournament, now = Date.now()): TournamentStatus | null => {
+export const getTournamentStatus = (tournament: Tournament | null | undefined, now = Date.now()): TournamentStatus | null => {
   if (!tournament) {
     return null;
   }
@@ -152,12 +152,12 @@ export const getTournamentStatus = (tournament: Tournament, now = Date.now()): T
  * Whether the tournament starts in the future and is either a draft
  * or comes without a status and isn't active (the API's tournaments that haven't started yet).
  */
-export const isUpcomingTournament = (tournament: Tournament, now = Date.now()): boolean => {
+export const isUpcomingTournament = (tournament: Tournament | null | undefined, now = Date.now()): boolean => {
   const start = toTime(tournament?.startDate);
   if (start === null || start <= now) {
     return false;
   }
-  return tournament.status ? tournament.status === TournamentStatus.Draft : !tournament.active;
+  return tournament?.status ? tournament.status === TournamentStatus.Draft : !tournament?.active;
 };
 
 export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };

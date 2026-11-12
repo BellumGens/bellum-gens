@@ -1,13 +1,9 @@
 import { Component, Injector, Signal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import {
-  BellumgensApiService,
-  CSGOTeam, TeamMember,
-  ApplicationUser,
-  LoginService,
-  CountrySVGPipe
-} from '../../../../../common/src/public_api';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { CSGOTeam, TeamMember, ApplicationUser } from 'bellum-gens-common/models';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -43,14 +39,14 @@ export class TeamPreferencesComponent {
 
   // Handed down by the parent TeamComponent through the router outlet. The form edits it in place.
   public team = inject(ROUTER_OUTLET_DATA) as Signal<CSGOTeam>;
-  public teammembers = signal<TeamMember []>(undefined);
+  public teammembers = signal<TeamMember [] | null>(null);
 
-  public authUser: Signal<ApplicationUser> = this.authService.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;
 
   constructor() {
     toObservable(this.team).pipe(
       map(team => team?.teamId),
-      filter(teamId => !!teamId),
+      filter((teamId): teamId is string => !!teamId),
       distinctUntilChanged(),
       switchMap(teamId => toObservable(this.apiService.getTeamMembers(teamId), { injector: this.injector })),
       takeUntilDestroyed()

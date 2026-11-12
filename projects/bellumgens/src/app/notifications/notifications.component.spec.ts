@@ -6,14 +6,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import {
-  ApplicationUser,
-  CSGOTeam,
-  LoginService,
-  NotificationState,
-  TeamApplication,
-  UserNotification
-} from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, NotificationState, TeamApplication, UserNotification } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 
@@ -26,18 +20,19 @@ describe('NotificationsComponent', () => {
   const apiEndpoint = 'https://localhost:44348/api';
   const authApiEndpoint = 'https://localhost:44348/api/account';
   const team = { teamId: 'team-1', teamName: 'Admin Team', customUrl: 'admin-team' } as CSGOTeam;
+  const inviter = { id: 'inviter-1', username: 'Inviter' } as ApplicationUser;
 
   const invite = (teamId: string, state: NotificationState): UserNotification => ({
     state,
     teamInfo: { teamId, teamName: teamId, customUrl: teamId, teamAvatar: '' } as CSGOTeam,
-    invitingUser: null,
+    invitingUser: inviter,
     sent: '2024-01-15T10:00:00Z'
   });
 
   const application = (applicantId: string, state: NotificationState): TeamApplication => ({
     state,
     applicantId,
-    teamId: team.teamId,
+    teamId: team.teamId!,
     message: '',
     userName: applicantId
   });
@@ -84,7 +79,7 @@ describe('NotificationsComponent', () => {
     });
 
     it('should not load the admin teams', () => {
-      expect(component.teamAdmin()).toBeUndefined();
+      expect(component.teamAdmin()).toBeNull();
       httpMock.expectNone(`${authApiEndpoint}/userteamsadmin`);
     });
 
@@ -112,11 +107,26 @@ describe('NotificationsComponent', () => {
       expect(reported.at(-1)).toBe(3);
     });
 
+    it('should count no unread applications for a team whose applications could not be loaded', () => {
+      component.teamLoaded(team.teamId!, null);
+
+      expect(component.unreadCount()).toBe(2);
+    });
+
+    it('should count a change for a team before its applications have loaded', () => {
+      // As if the team view reported a change before its applications loaded
+      component['teamCounts'].set(new Map());
+
+      component.teamChanged(team.teamId!, 1);
+
+      expect(component.unreadCount()).toBe(3);
+    });
+
     it('should report fewer unread notifications once an invitation is accepted', async () => {
       vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
       const player = fixture.debugElement.query(By.directive(PlayerNotificationsComponent)).componentInstance as PlayerNotificationsComponent;
 
-      player.acceptInvitation(player.notifications().find(n => n.teamInfo.teamId === 'a'));
+      player.acceptInvitation(player.notifications()!.find(n => n.teamInfo.teamId === 'a')!);
       httpMock.expectOne(`${apiEndpoint}/users/acceptTeamInvite`).flush({});
       await fixture.whenStable();
 
@@ -127,8 +137,8 @@ describe('NotificationsComponent', () => {
     it('should report fewer unread notifications once an application is handled', async () => {
       const teamView = fixture.debugElement.query(By.directive(TeamNotificationsComponent)).componentInstance as TeamNotificationsComponent;
 
-      const pending = teamView.applications().find(a => a.applicantId === 'p1');
-      teamView.rejectApplication(pending);
+      const pending = teamView.applications()!.find(a => a.applicantId === 'p1');
+      teamView.rejectApplication(pending!);
       httpMock.expectOne(`${apiEndpoint}/teams/rejectapplication`).flush({ ...pending, state: NotificationState.Rejected });
       await fixture.whenStable();
 
@@ -139,7 +149,7 @@ describe('NotificationsComponent', () => {
     it('should not count the same notifications again when the view is shown again', async () => {
       vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
       const player = fixture.debugElement.query(By.directive(PlayerNotificationsComponent)).componentInstance as PlayerNotificationsComponent;
-      player.rejectInvitation(player.notifications().find(n => n.teamInfo.teamId === 'a'));
+      player.rejectInvitation(player.notifications()!.find(n => n.teamInfo.teamId === 'a')!);
       httpMock.expectOne(`${apiEndpoint}/users/rejectTeamInvite`).flush({});
       await fixture.whenStable();
       fixture.destroy();

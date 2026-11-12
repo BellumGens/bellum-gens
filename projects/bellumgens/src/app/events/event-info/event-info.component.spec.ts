@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventInfoComponent } from './event-info.component';
-import { ApiTournamentsService } from '../../../../../common/src/public_api';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { BehaviorSubject, of } from 'rxjs';
 import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -87,12 +87,12 @@ describe('EventInfoComponent', () => {
       // The meta tags are updated by an effect
       await fixture.whenStable();
       expect(titleService.getTitle()).toBe('Test Tournament');
-      expect(metaService.getTag('name="og:title"').content).toBe('Test Tournament');
-      expect(metaService.getTag('name="og:image"').content).toBe('test-logo');
-      expect(metaService.getTag('name="og:description"').content).toBe('Test Description');
-      expect(metaService.getTag('name="description"').content).toBe('Test Description');
-      expect(metaService.getTag('name="twitter:title"').content).toBe('Test Tournament');
-      expect(metaService.getTag('name="twitter:description"').content).toBe('Test Description');
+      expect(metaService.getTag('name="og:title"')!.content).toBe('Test Tournament');
+      expect(metaService.getTag('name="og:image"')!.content).toBe('test-logo');
+      expect(metaService.getTag('name="og:description"')!.content).toBe('Test Description');
+      expect(metaService.getTag('name="description"')!.content).toBe('Test Description');
+      expect(metaService.getTag('name="twitter:title"')!.content).toBe('Test Tournament');
+      expect(metaService.getTag('name="twitter:description"')!.content).toBe('Test Description');
 
       httpMock.expectOne(regsUrl()).flush([]);
       httpMock.expectOne(matchesUrl()).flush([]);
@@ -144,7 +144,7 @@ describe('EventInfoComponent', () => {
 
       await loadTournament({ tournament: { id: '456', name: 'Second Circuit', description: 'Another', logo: 'other.png' } }, '456');
       expect(component.tournamentId()).toBe('456');
-      expect(el().querySelector('[igxCardHeaderTitle]').textContent.trim()).toBe('Second Circuit');
+      expect(el().querySelector('[igxCardHeaderTitle]')!.textContent.trim()).toBe('Second Circuit');
       expect(titleService.getTitle()).toBe('Second Circuit');
     });
 
@@ -160,9 +160,9 @@ describe('EventInfoComponent', () => {
     it('should render the tournament name, description and an enabled sign-up link', async () => {
       await loadTournament();
 
-      expect(el().querySelector('[igxCardHeaderTitle]').textContent.trim()).toBe('BGE Circuit');
-      expect(el().querySelector('igx-card-content p').textContent.trim()).toBe('SC2 league');
-      const signUp = el().querySelector('igx-card-header a[igxButton]');
+      expect(el().querySelector('[igxCardHeaderTitle]')!.textContent.trim()).toBe('BGE Circuit');
+      expect(el().querySelector('igx-card-content p')!.textContent.trim()).toBe('SC2 league');
+      const signUp = el().querySelector('igx-card-header a[igxButton]')!;
       expect(signUp.textContent.trim()).toBe('Sign-up to participate');
       expect(signUp.classList).not.toContain('igx-button--disabled');
     });
@@ -190,18 +190,18 @@ describe('EventInfoComponent', () => {
       expect(slots.length).toBe(2);
 
       const first = slots[0];
-      const firstLink = first.querySelector('a');
+      const firstLink = first.querySelector('a')!;
       expect(firstLink.textContent.trim()).toBe('Alpha');
       expect(firstLink.getAttribute('href')).toBe('/players/u1/sc');
-      expect(first.querySelector('span').textContent).toBe('[ACME]');
-      expect(avatarImage(first.querySelector('igx-avatar'))).toContain('alpha.png');
-      expect(first.querySelector('.country-badge-small').getAttribute('title')).toBe('North Macedonia');
-      expect(avatarImage(first.querySelector('.country-badge-small'))).toContain('assets/country-flags/svg/north-macedonia.svg');
+      expect(first.querySelector('span')!.textContent).toBe('[ACME]');
+      expect(avatarImage(first.querySelector('igx-avatar')!)).toContain('alpha.png');
+      expect(first.querySelector('.country-badge-small')!.getAttribute('title')).toBe('North Macedonia');
+      expect(avatarImage(first.querySelector('.country-badge-small')!)).toContain('assets/country-flags/svg/north-macedonia.svg');
 
       // Without a username the participant's battle tag is shown, and there's no company tag
       const second = slots[1];
-      expect(second.querySelector('a').textContent.trim()).toBe('Beta#1234');
-      expect(second.querySelector('a').getAttribute('href')).toBe('/players/u2/sc');
+      expect(second.querySelector('a')!.textContent.trim()).toBe('Beta#1234');
+      expect(second.querySelector('a')!.getAttribute('href')).toBe('/players/u2/sc');
       expect(second.querySelector('span')).toBeNull();
     });
 
@@ -211,8 +211,8 @@ describe('EventInfoComponent', () => {
       const slots = el().querySelectorAll('.registration-slot');
       expect(slots.length).toBe(1);
       expect(slots[0].querySelector('a')).toBeNull();
-      expect(slots[0].querySelector('.participant-name').textContent.trim()).toBe('Gamma#4321');
-      expect(slots[0].querySelector('.country-badge-small').getAttribute('title')).toBe('Greece');
+      expect(slots[0].querySelector('.participant-name')!.textContent.trim()).toBe('Gamma#4321');
+      expect(slots[0].querySelector('.country-badge-small')!.getAttribute('title')).toBe('Greece');
       expect(slots[0].textContent).toContain('[ACME]');
     });
 
@@ -233,8 +233,8 @@ describe('EventInfoComponent', () => {
     it('should show the empty grid message when there are no matches', async () => {
       await loadTournament();
 
-      const grid = el().querySelector('igx-grid');
-      expect(grid.querySelector('igx-grid-toolbar-title').textContent.trim()).toBe('Match Results');
+      const grid = el().querySelector('igx-grid')!;
+      expect(grid.querySelector('igx-grid-toolbar-title')!.textContent.trim()).toBe('Match Results');
       expect(grid.textContent).toContain('No matches found...');
       expect(grid.querySelectorAll('igx-grid-row').length).toBe(0);
     });
@@ -255,9 +255,9 @@ describe('EventInfoComponent', () => {
         }]
       });
 
-      const grid = el().querySelector('igx-grid');
+      const grid = el().querySelector('igx-grid')!;
       expect(grid.querySelectorAll('igx-grid-groupby-row').length).toBe(1);
-      const cells = grid.querySelector('igx-grid-row').querySelectorAll('igx-grid-cell');
+      const cells = grid.querySelector('igx-grid-row')!.querySelectorAll('igx-grid-cell');
       expect(cells[0].textContent.trim()).toBe('Oct 1, 2026, 6:30 PM');
 
       const players = cells[1].querySelectorAll('.grid-team-name');
@@ -265,17 +265,17 @@ describe('EventInfoComponent', () => {
       expect(players[0].className).toContain('color-success');
       expect(players[0].textContent).toContain('Alpha');
       expect(players[0].querySelector('igx-icon[title="Winner"]')).toBeTruthy();
-      expect(avatarImage(players[0].querySelector('.avatar-no-background'))).toContain('assets/bge/race/protoss.png');
+      expect(avatarImage(players[0].querySelector('.avatar-no-background')!)).toContain('assets/bge/race/protoss.png');
 
       expect(players[1].className).not.toContain('highlight');
       expect(players[1].textContent).toContain('Beta');
       expect(players[1].querySelector('igx-icon[title="Winner"]')).toBeNull();
-      expect(avatarImage(players[1].querySelector('.avatar-no-background'))).toContain('assets/bge/race/terran.png');
+      expect(avatarImage(players[1].querySelector('.avatar-no-background')!)).toContain('assets/bge/race/terran.png');
 
-      const video = cells[2].querySelector('a');
+      const video = cells[2].querySelector('a')!;
       expect(video.getAttribute('href')).toBe('https://youtube.com/watch?v=1');
       expect(video.textContent).toContain('Video');
-      const replay = cells[3].querySelector('a');
+      const replay = cells[3].querySelector('a')!;
       expect(replay.getAttribute('href')).toBe('https://replays.example/1');
       expect(replay.textContent).toContain('Replay');
     });
@@ -292,7 +292,7 @@ describe('EventInfoComponent', () => {
         }]
       });
 
-      const cells = el().querySelector('igx-grid igx-grid-row').querySelectorAll('igx-grid-cell');
+      const cells = el().querySelector('igx-grid igx-grid-row')!.querySelectorAll('igx-grid-cell');
       const players = cells[1].querySelectorAll('.grid-team-name');
       expect(players[0].className).not.toContain('highlight');
       expect(players[0].querySelector('igx-icon[title="Winner"]')).toBeNull();
@@ -318,7 +318,7 @@ describe('EventInfoComponent', () => {
       await loadTournament({ tournament: { id: closedId, name: 'Closed Circuit' } }, closedId);
 
       expect(component.signUpDisabled()).toBe(true);
-      const signUp = el().querySelector('igx-card-header a[igxButton]');
+      const signUp = el().querySelector('igx-card-header a[igxButton]')!;
       expect(signUp.classList).toContain('igx-button--disabled');
     });
   });
@@ -334,10 +334,10 @@ describe('EventInfoComponent', () => {
 
       expect(component.tournamentId()).toBeUndefined();
       expect(component.tournament()).toBeNull();
-      expect(component.registrations()).toBeUndefined();
-      expect(component.sc2matches()).toBeUndefined();
+      expect(component.registrations()).toBeNull();
+      expect(component.sc2matches()).toBeNull();
       expect(component.signUpDisabled()).toBe(false);
-      expect(el().querySelector('[igxCardHeaderTitle]').textContent.trim()).toBe('');
+      expect(el().querySelector('[igxCardHeaderTitle]')!.textContent.trim()).toBe('');
       expect(el().querySelectorAll('.registration-slot').length).toBe(0);
       // Without a tournament the page keeps the default title from the route data
       expect(titleService.getTitle()).toBe('Bellum Gens: Premier Gaming and Esports Events Organizer');

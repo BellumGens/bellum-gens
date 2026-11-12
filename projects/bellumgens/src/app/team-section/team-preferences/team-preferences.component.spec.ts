@@ -5,15 +5,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, ROUTER_OUTLET_DATA, provideRouter } from '@angular/router';
 import { WritableSignal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ApplicationUser,
-  BellumgensApiService,
-  CSGOTeam,
-  LoginService,
-  PlaystyleRole,
-  TEAM_PLACEHOLDER,
-  TeamMember
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -31,7 +24,7 @@ const TEAM: CSGOTeam = {
 } as CSGOTeam;
 
 const member = (userId: string, overrides: Partial<TeamMember> = {}): TeamMember => ({
-  teamId: TEAM.teamId,
+  teamId: TEAM.teamId!,
   userId,
   steamId: `steam-${userId}`,
   isActive: true,
@@ -51,10 +44,10 @@ const member = (userId: string, overrides: Partial<TeamMember> = {}): TeamMember
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
   let fixture: ComponentFixture<TeamPreferencesComponent>;
-  let team: WritableSignal<CSGOTeam>;
+  let team: WritableSignal<CSGOTeam | null>;
 
   beforeEach(async () => {
-    team = signal(TEAM_PLACEHOLDER);
+    team = signal<CSGOTeam | null>(TEAM_PLACEHOLDER);
     await TestBed.configureTestingModule({
       imports: [
 
@@ -107,7 +100,7 @@ describe('TeamPreferencesComponent', () => {
     it('should not load members or render the form for a team without an id', async () => {
       await fixture.whenStable();
       expect(apiService.getTeamMembers).not.toHaveBeenCalled();
-      expect(component.teammembers()).toBeUndefined();
+      expect(component.teammembers()).toBeNull();
       expect(fixture.nativeElement.querySelector('form')).toBeNull();
     });
 
@@ -122,16 +115,16 @@ describe('TeamPreferencesComponent', () => {
   describe('with a team', () => {
     let apiService: BellumgensApiService;
     let httpMock: HttpTestingController;
-    let members: WritableSignal<TeamMember []>;
+    let members: WritableSignal<TeamMember [] | null>;
 
     const me = member('me', { isAdmin: true, isEditor: true, username: 'Me' });
     const player = member('player', { username: 'Player', realName: 'Real Player', country: 'bg', customUrl: 'the-player' });
     const editor = member('editor', { isEditor: true, username: 'Editor' });
 
-    const setup = async (options: { teamMembers?: TeamMember [], user?: Partial<ApplicationUser> | null, team?: CSGOTeam } = {}) => {
+    const setup = async (options: { teamMembers?: TeamMember [] | null, user?: Partial<ApplicationUser> | null, team?: CSGOTeam } = {}) => {
       apiService = TestBed.inject(BellumgensApiService);
       httpMock = TestBed.inject(HttpTestingController);
-      members = signal(options.teamMembers === undefined ? [me, player, editor].map(m => ({ ...m })) : options.teamMembers);
+      members = signal<TeamMember [] | null>(options.teamMembers === undefined ? [me, player, editor].map(m => ({ ...m })) : options.teamMembers);
       if (options.user !== null) {
         TestBed.inject(LoginService)['_applicationUser'].set((options.user ?? { id: 'me' }) as ApplicationUser);
       }
@@ -149,7 +142,7 @@ describe('TeamPreferencesComponent', () => {
 
     const el = () => fixture.nativeElement as HTMLElement;
     const input = (id: string) => el().querySelector(`#${id}`) as HTMLInputElement;
-    const suffix = (id: string) => input(id).closest('igx-input-group').querySelector('igx-suffix button') as HTMLButtonElement;
+    const suffix = (id: string) => input(id).closest('igx-input-group')!.querySelector('igx-suffix button') as HTMLButtonElement;
     const listItems = () => Array.from(el().querySelectorAll('igx-list-item')) as HTMLElement [];
     const switchFor = (prefix: string, index: number) =>
       fixture.debugElement.query(By.css(`#${prefix}_switch_${index}`)).componentInstance as IgxSwitchComponent;
@@ -170,7 +163,7 @@ describe('TeamPreferencesComponent', () => {
       it('should load the team members for the team id', async () => {
         await setup();
         expect(apiService.getTeamMembers).toHaveBeenCalledWith(TEAM.teamId);
-        expect(component.teammembers().map(m => m.userId)).toEqual(['me', 'player', 'editor']);
+        expect(component.teammembers()!.map(m => m.userId)).toEqual(['me', 'player', 'editor']);
       });
 
       it('should update when the members signal changes', async () => {
@@ -242,9 +235,9 @@ describe('TeamPreferencesComponent', () => {
         suffix('teamDescription').click();
         suffix('teamDiscord').click();
         await fixture.whenStable();
-        expect(component.team().teamName).toBeNull();
-        expect(component.team().description).toBeNull();
-        expect(component.team().discord).toBeNull();
+        expect(component.team().teamName).toBe('');
+        expect(component.team().description).toBe('');
+        expect(component.team().discord).toBe('');
       });
 
       it('should clear the team avatar through the suffix', async () => {
@@ -253,12 +246,12 @@ describe('TeamPreferencesComponent', () => {
         await fixture.whenStable();
         fixture.detectChanges();
         await fixture.whenStable();
-        expect(component.team().teamAvatar).toBeNull();
+        expect(component.team()!.teamAvatar).toBe('');
         expect(suffix('teamAvatar')).toBeNull();
       });
 
       it('should render the form for a team without an avatar', async () => {
-        await setup({ team: { ...TEAM, teamAvatar: null } });
+        await setup({ team: { ...TEAM, teamAvatar: '' } });
         expect(input('teamAvatar').value).toBe('');
         expect(suffix('teamAvatar')).toBeNull();
         expect(el().querySelectorAll('form igx-suffix').length).toBe(3);
@@ -276,7 +269,7 @@ describe('TeamPreferencesComponent', () => {
         await type('teamAvatar', 'not-an-image');
         fixture.detectChanges();
         expect(component.team().teamAvatar).toBe('not-an-image');
-        expect(el().querySelector('igx-hint').textContent).toContain('You must provide an image url');
+        expect(el().querySelector('igx-hint')!.textContent).toContain('You must provide an image url');
       });
 
       it('should keep the submit button disabled until the form is touched', async () => {
@@ -315,7 +308,7 @@ describe('TeamPreferencesComponent', () => {
         const items = listItems();
         expect(items.length).toBe(3);
         expect(items[0].textContent).toContain('Me');
-        const links = items.map(i => i.querySelector('a').getAttribute('href'));
+        const links = items.map(i => i.querySelector('a')!.getAttribute('href'));
         expect(links).toEqual(['/players/me', '/players/the-player', '/players/editor']);
         expect(items[1].textContent).toContain('Real Player');
       });
@@ -372,8 +365,8 @@ describe('TeamPreferencesComponent', () => {
 
         fixture.detectChanges();
         await fixture.whenStable();
-        expect(component.teammembers()[1].isAdmin).toBe(true);
-        expect(component.teammembers()[1].isEditor).toBe(true);
+        expect(component.teammembers()![1].isAdmin).toBe(true);
+        expect(component.teammembers()![1].isEditor).toBe(true);
         expect(switchFor('editor', 1).disabled).toBe(true);
       });
 

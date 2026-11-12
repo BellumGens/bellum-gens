@@ -4,11 +4,15 @@ import {
   Tournament,
   TournamentGroup,
   TournamentParticipant,
-  ApiTournamentsService,
-  TournamentCSGOMatch, TournamentMatchMap,
-  CSGOActiveDutyMap, ACTIVE_DUTY
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+  TournamentCSGOMatch,
+  TournamentMatchMap,
+  CSGOActiveDutyMap,
+  ACTIVE_DUTY
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { CSGOMapnamePipe, CSGOMapimagePipe } from 'bellum-gens-common/pipes';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IRowDataEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -25,9 +29,6 @@ import { IGX_DATE_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/date-
 import { IGX_TIME_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/time-picker';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
-import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
-import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -65,14 +66,20 @@ export class AdminCsgoComponent {
   private cdr = inject(ChangeDetectorRef);
 
   public tournaments = this.apiService.tournaments;
-  public selectedTournament = signal<Tournament>(null);
+  public selectedTournament = signal<Tournament | null>(null);
   private tournamentId = computed(() => this.selectedTournament()?.id);
-  public registrations = computed<TournamentParticipant []>(() =>
-    this.tournamentId() ? this.apiService.getCsgoRegistrations(this.tournamentId())() : null);
-  public groups = computed<TournamentGroup []>(() =>
-    this.tournamentId() ? this.apiService.getCsgoGroups(this.tournamentId())() : null);
-  public matches = computed<TournamentCSGOMatch []>(() =>
-    this.tournamentId() ? this.apiService.getCsgoMatches(this.tournamentId())() : null);
+  public registrations = computed<TournamentParticipant [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getCsgoRegistrations(id)() : null;
+  });
+  public groups = computed<TournamentGroup [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getCsgoGroups(id)() : null;
+  });
+  public matches = computed<TournamentCSGOMatch [] | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getCsgoMatches(id)() : null;
+  });
   public loading = this.apiService.loadingCSGORegistrations;
   public loadingMatches = this.apiService.loadingCSGOMatches;
   public environment = environment;
@@ -105,13 +112,20 @@ export class AdminCsgoComponent {
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
-    this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe();
+    const groupId = group.id;
+    if (!groupId) {
+      return;
+    }
+    this.apiService.addParticipantToGroup(event.dragData, groupId).subscribe();
     group.participants = [ ...(group.participants || []), event.dragData ];
-    event.dragData.tournamentCSGOGroupId = group.id;
+    event.dragData.tournamentCSGOGroupId = groupId;
     this.pipeTrigger.update(trigger => trigger + 1);
   }
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+    if (!group.id) {
+      return;
+    }
     this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
       next: () => {
         group.participants = group.participants?.filter(p => p !== participant);
@@ -131,7 +145,9 @@ export class AdminCsgoComponent {
       this.apiService.submitCSGOMatch(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
-            data.startTime = new Date(data.startTime);
+            if (data.startTime) {
+              data.startTime = new Date(data.startTime);
+            }
             grid.addRow(data);
           }
         }
@@ -149,14 +165,19 @@ export class AdminCsgoComponent {
   }
 
   public editMatch(match: TournamentCSGOMatch, dialog: IgxDialogComponent) {
-    if (!(match.startTime instanceof Date)) {
-      match.startTime = new Date(match.startTime);
+    // The API sends the start time as an ISO string
+    const startTime: Date | string | undefined = match.startTime;
+    if (startTime && !(startTime instanceof Date)) {
+      match.startTime = new Date(startTime);
     }
     this.matchInEdit = match;
     dialog.open();
   }
 
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
+    if (!map.id) {
+      return;
+    }
     this.apiService.deleteCSGOMatchMap(map.id).subscribe(() => {
       // The maps array belongs to the grid row being edited, so it's updated in place
       maps.splice(maps.indexOf(map), 1);

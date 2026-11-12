@@ -10,21 +10,19 @@ import { By } from '@angular/platform-browser';
 import { PLATFORM_ID, Provider, WritableSignal } from '@angular/core';
 import { BehaviorSubject, config as rxjsConfig } from 'rxjs';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApiStrategiesService, LoginService, SocialMediaStrategyService } from 'bellum-gens-common/services';
 import {
-  ApiStrategiesService,
   ApplicationUser,
   CSGOMap,
   CSGOStrategy,
   GLOBAL_OVERLAY_SETTINGS,
-  LoginService,
   NEW_EMPTY_COMMENT,
   Side,
-  SocialMediaStrategyService,
   StrategyComment,
   VoteDirection
-} from '../../../../../common/src/public_api';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
-import { environment } from '../../../../../common/src/environments/environment.prod';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
+import { environment } from 'bellum-gens-common/environments';
 
 const comment = (id: string, overrides: Partial<StrategyComment> = {}): StrategyComment => ({
   id,
@@ -56,7 +54,7 @@ describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
   let fixture: ComponentFixture<StrategyDetailsComponent>;
   let params$: BehaviorSubject<Params>;
-  let authUser: WritableSignal<ApplicationUser>;
+  let authUser: WritableSignal<ApplicationUser | null>;
   let authService: LoginService;
   let strategiesService: ApiStrategiesService;
   let smService: SocialMediaStrategyService;
@@ -80,10 +78,10 @@ describe('StrategyDetailsComponent', () => {
 
   const button = (label: string): HTMLButtonElement =>
     Array.from<HTMLElement>(el().querySelectorAll('igx-icon'))
-      .find(i => i.getAttribute('title') === label || i.textContent.trim() === label)
-      .closest('button');
+      .find(i => i.getAttribute('title') === label || i.textContent.trim() === label)!
+      .closest('button')!;
 
-  const textarea = (): HTMLTextAreaElement => el().querySelector('textarea#comment');
+  const textarea = () => el().querySelector<HTMLTextAreaElement>('textarea#comment')!;
 
   const typeComment = async (text: string) => {
     const box = textarea();
@@ -95,15 +93,15 @@ describe('StrategyDetailsComponent', () => {
   // The list item of the comment at the given index (the first list item is the "Comments" header).
   const commentItem = (index: number): HTMLElement => el().querySelectorAll<HTMLElement>('igx-list-item')[index + 1];
 
-  const actionsButton = (index: number): HTMLButtonElement => commentItem(index).querySelector('button');
+  const actionsButton = (index: number): HTMLButtonElement => commentItem(index).querySelector('button')!;
 
   // Opens the actions drop-down of the comment at the given index and clicks the item with the given label.
   const commentAction = async (index: number, label: string) => {
     actionsButton(index).click();
     await fixture.whenStable();
-    const dropDown = commentItem(index).querySelector('igx-drop-down');
+    const dropDown = commentItem(index).querySelector('igx-drop-down')!;
     const item = Array.from<HTMLElement>(dropDown.querySelectorAll('igx-drop-down-item'))
-      .find(i => i.querySelector('.dd-item-content span').textContent.trim() === label);
+      .find(i => i.querySelector('.dd-item-content span')!.textContent.trim() === label)!;
     item.click();
     await fixture.whenStable();
   };
@@ -142,7 +140,6 @@ describe('StrategyDetailsComponent', () => {
   afterEach(() => {
     httpMock?.verify();
     fixture?.destroy();
-    fixture = undefined;
     vi.restoreAllMocks();
   });
 
@@ -169,17 +166,17 @@ describe('StrategyDetailsComponent', () => {
 
       await loadStrategy(strategy({ lastUpdated: new Date(2024, 0, 15) }));
 
-      const image = `${environment.rootApiEndpoint}/Content/Strats/strat-1.png`;
+      const image = `${environment.publicRootApiEndpoint}/Content/Strats/strat-1.png`;
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'og:image', content: image });
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'twitter:image', content: image });
-      expect(component.strat().id).toBe('strat-1');
+      expect(component.strat()!.id).toBe('strat-1');
       expect(el().querySelector('bg-loading')).toBeNull();
-      expect(el().querySelector('h1').textContent).toBe('Mid take');
-      expect(el().querySelector('h3[igxCardHeaderSubtitle]').textContent).toBe('Smoke window, flash connector');
+      expect(el().querySelector('h1')!.textContent).toBe('Mid take');
+      expect(el().querySelector('h3[igxCardHeaderSubtitle]')!.textContent).toBe('Smoke window, flash connector');
       const author = el().querySelector('.card-smaller-subtitle a') as HTMLAnchorElement;
       expect(author.textContent).toBe('The Author');
       expect(author.getAttribute('href')).toBe('/players/author');
-      expect(el().querySelector('.card-smaller-subtitle').textContent).toContain('Last Edit: Jan 15, 2024');
+      expect(el().querySelector('.card-smaller-subtitle')!.textContent).toContain('Last Edit: Jan 15, 2024');
       expect(el().querySelector('iframe')).toBeNull();
       expect(el().querySelector('.strategy-image-container')).toBeNull();
     });
@@ -196,16 +193,16 @@ describe('StrategyDetailsComponent', () => {
     it('omits the author link for strategies without an owner', async () => {
       await create();
 
-      await loadStrategy(strategy({ userId: null, owner: null }));
+      await loadStrategy(strategy({ userId: undefined, owner: undefined }));
 
       expect(el().querySelector('.card-smaller-subtitle a')).toBeNull();
-      expect(el().querySelector('.card-smaller-subtitle').textContent).toContain('Last Edit');
+      expect(el().querySelector('.card-smaller-subtitle')!.textContent).toContain('Last Edit');
     });
 
     it('names the author link even when the strategy comes without the author name', async () => {
       await create();
 
-      await loadStrategy(strategy({ owner: null }));
+      await loadStrategy(strategy({ owner: undefined }));
 
       const author = el().querySelector('.card-smaller-subtitle a') as HTMLAnchorElement;
       expect(author.getAttribute('href')).toBe('/players/author');
@@ -217,27 +214,27 @@ describe('StrategyDetailsComponent', () => {
 
       await loadStrategy(strategy({ url: 'https://www.youtube.com/embed/abc123', stratImage: 'ignored.png' }));
 
-      const iframe = el().querySelector('iframe');
+      const iframe = el().querySelector('iframe')!;
       expect(iframe.getAttribute('src')).toBe('https://www.youtube.com/embed/abc123');
       expect(iframe.getAttribute('title')).toBe('Mid take');
-      expect(iframe.closest('igx-card-media').getAttribute('role')).toBe('none');
+      expect(iframe.closest('igx-card-media')!.getAttribute('role')).toBe('none');
       expect(el().querySelector('.strategy-image-container')).toBeNull();
     });
 
     it('drops a strategy image that fails to load instead of showing it broken', async () => {
       await create();
       await loadStrategy(strategy({ stratImage: 'https://example.com/missing.png' }));
-      const media = el().querySelector('.strategy-image-container');
+      const media = el().querySelector('.strategy-image-container')!;
       expect(media.getAttribute('role')).toBe('none');
 
-      media.querySelector('img').dispatchEvent(new Event('error'));
+      media.querySelector('img')!.dispatchEvent(new Event('error'));
       await fixture.whenStable();
 
       expect(el().querySelector('.strategy-image-container')).toBeNull();
-      expect(el().querySelector('h1').textContent).toBe('Mid take');
+      expect(el().querySelector('h1')!.textContent).toBe('Mid take');
 
       // Another image (e.g. a re-saved strategy) is tried again.
-      strategiesService['_strategyCache'].get('strat-1').set(strategy({ stratImage: 'https://example.com/other.png' }));
+      strategiesService['_strategyCache'].get('strat-1')!.set(strategy({ stratImage: 'https://example.com/other.png' }));
       await fixture.whenStable();
       expect(el().querySelector('.strategy-image-container img')).toBeTruthy();
     });
@@ -276,7 +273,7 @@ describe('StrategyDetailsComponent', () => {
 
       await loadStrategy(strategy({ votes: [{ userId: 'a', vote: VoteDirection.Up }, { userId: 'b', vote: VoteDirection.Up }] }));
 
-      expect(button('vote up').querySelector('span').textContent.trim()).toBe('2');
+      expect(button('vote up').querySelector('span')!.textContent.trim()).toBe('2');
       expect(button('vote down').querySelector('span')).toBeNull();
     });
 
@@ -297,14 +294,14 @@ describe('StrategyDetailsComponent', () => {
 
       expect(matchMedia).toHaveBeenCalledWith('(min-width: 768px)');
       expect(component.horizontal()).toBe(false);
-      expect(el().querySelector('igx-divider').classList).not.toContain('igx-divider--vertical');
+      expect(el().querySelector('igx-divider')!.classList).not.toContain('igx-divider--vertical');
 
       matchMedia.mockReturnValue({ matches: true } as MediaQueryList);
       window.dispatchEvent(new Event('resize'));
       await fixture.whenStable();
 
       expect(component.horizontal()).toBe(true);
-      expect(el().querySelector('igx-divider').classList).toContain('igx-divider--vertical');
+      expect(el().querySelector('igx-divider')!.classList).toContain('igx-divider--vertical');
     });
 
     it('keeps the comment draft while the same strategy refreshes, but retargets it for another strategy', async () => {
@@ -315,15 +312,15 @@ describe('StrategyDetailsComponent', () => {
       component.newComment.update(c => ({ ...c, comment: 'draft' }));
       const draft = component.newComment();
       // Refresh the cached strategy, as a vote or comment from elsewhere would.
-      strategiesService['_strategyCache'].get('strat-1').set(strategy({ title: 'Refreshed' }));
+      strategiesService['_strategyCache'].get('strat-1')!.set(strategy({ title: 'Refreshed' }));
       await fixture.whenStable();
 
-      expect(el().querySelector('h1').textContent).toBe('Refreshed');
+      expect(el().querySelector('h1')!.textContent).toBe('Refreshed');
       expect(component.newComment()).toBe(draft);
 
       await loadStrategy(strategy({ id: 'strat-2', title: 'Long A' }));
 
-      expect(el().querySelector('h1').textContent).toBe('Long A');
+      expect(el().querySelector('h1')!.textContent).toBe('Long A');
       expect(component.newComment()).toEqual({ ...NEW_EMPTY_COMMENT, comment: 'draft', stratId: 'strat-2' });
     });
 
@@ -335,8 +332,8 @@ describe('StrategyDetailsComponent', () => {
 
       it('asks to log in before commenting', () => {
         expect(textarea().disabled).toBe(true);
-        expect(el().querySelector('label[for="comment"]').textContent).toContain('Login to comment...');
-        expect(component.newComment().userId).toBeNull();
+        expect(el().querySelector('label[for="comment"]')!.textContent).toContain('Login to comment...');
+        expect(component.newComment().userId).toBe('');
         expect(el().querySelector('.comment-box igx-avatar')).toBeTruthy();
         expect(button('vote up').className).not.toContain('user-has-voted');
       });
@@ -388,9 +385,9 @@ describe('StrategyDetailsComponent', () => {
       });
 
       it('assigns the user to the comment draft and enables commenting', () => {
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: '' });
         expect(textarea().disabled).toBe(false);
-        expect(el().querySelector('label[for="comment"]').textContent).toContain('Leave a comment...');
+        expect(el().querySelector('label[for="comment"]')!.textContent).toContain('Leave a comment...');
         expect(button('vote down').className).toContain('user-has-voted');
         expect(button('vote up').className).not.toContain('user-has-voted');
       });
@@ -431,6 +428,27 @@ describe('StrategyDetailsComponent', () => {
         expect(actionsButton(1).getAttribute('aria-expanded')).toBe('false');
       });
 
+      it('keeps the open comment actions marked when another drop-down reports it closed', async () => {
+        actionsButton(1).click();
+        await fixture.whenStable();
+
+        component.actionsClosed('c1');
+        await fixture.whenStable();
+
+        expect(component.openedActionsId()).toBe('c2');
+        expect(actionsButton(1).getAttribute('aria-expanded')).toBe('true');
+      });
+
+      it('leaves an anonymous draft when an edit is cancelled after logging out', async () => {
+        await commentAction(1, 'Edit');
+        authUser.set(null);
+
+        component.cancelEdit();
+
+        expect(component.editedCommentId()).toBeNull();
+        expect(component.newComment()).toEqual({ userId: '', stratId: 'strat-1', comment: '' });
+      });
+
       it('edits a comment with the keyboard', async () => {
         const actions = actionsButton(1);
         actions.click();
@@ -459,9 +477,9 @@ describe('StrategyDetailsComponent', () => {
         req.flush({ userId: 'me', vote: VoteDirection.Up });
         await fixture.whenStable();
 
-        expect(component.strat().votes).toEqual([{ userId: 'me', vote: VoteDirection.Up }]);
+        expect(component.strat()!.votes).toEqual([{ userId: 'me', vote: VoteDirection.Up }]);
         expect(button('vote up').className).toContain('user-has-voted');
-        expect(button('vote up').querySelector('span').textContent.trim()).toBe('1');
+        expect(button('vote up').querySelector('span')!.textContent.trim()).toBe('1');
         expect(button('vote down').querySelector('span')).toBeNull();
       });
 
@@ -473,15 +491,15 @@ describe('StrategyDetailsComponent', () => {
         expect(component.newComment().comment).toBe('Nice smokes');
         expect(send.disabled).toBe(false);
 
-        el().querySelector('form').dispatchEvent(new Event('submit'));
+        el().querySelector('form')!.dispatchEvent(new Event('submit'));
         const req = httpMock.expectOne(r => r.method === 'POST' && r.url.endsWith('/strategy/comment'));
         expect(req.request.body).toEqual({ userId: 'me', stratId: 'strat-1', comment: 'Nice smokes' });
         req.flush(comment('c3', { comment: 'Nice smokes', userId: 'me' }));
         await fixture.whenStable();
 
-        expect(component.strat().comments.map(c => c.id)).toEqual(['c1', 'c2', 'c3']);
+        expect(component.strat()!.comments!.map(c => c.id)).toEqual(['c1', 'c2', 'c3']);
         expect(el().querySelectorAll('h3[igxListLineTitle]')[2].textContent).toBe('Nice smokes');
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: '' });
         expect(textarea().value).toBe('');
         expect(send.disabled).toBe(true);
       });
@@ -506,7 +524,7 @@ describe('StrategyDetailsComponent', () => {
       it('edits a copy of a listed comment and applies it once saved', async () => {
         await commentAction(1, 'Edit');
 
-        const listed = component.strat().comments[1];
+        const listed = component.strat()!.comments![1];
         expect(component.newComment()).not.toBe(listed);
         expect(component.newComment()).toEqual(listed);
         expect(component.editedCommentId()).toBe('c2');
@@ -520,30 +538,30 @@ describe('StrategyDetailsComponent', () => {
         expect(listed.comment).toBe('Comment c2');
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].textContent).toBe('Comment c2');
 
-        el().querySelector('form').dispatchEvent(new Event('submit'));
+        el().querySelector('form')!.dispatchEvent(new Event('submit'));
         const req = httpMock.expectOne(r => r.method === 'POST' && r.url.endsWith('/strategy/comment'));
         expect(req.request.body).toEqual({ ...listed, comment: 'Updated' });
         expect('_inEdit' in req.request.body).toBe(false);
         req.flush(comment('c2', { comment: 'Updated', userId: 'me' }));
         await fixture.whenStable();
 
-        expect(component.strat().comments.map(c => c.comment)).toEqual(['Comment c1', 'Updated']);
+        expect(component.strat()!.comments!.map(c => c.comment)).toEqual(['Comment c1', 'Updated']);
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).not.toContain('comment-editing');
         expect(component.editedCommentId()).toBeNull();
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: '' });
       });
 
       it('keeps the edit when saving it fails', async () => {
         await commentAction(1, 'Edit');
         await typeComment('Updated');
 
-        el().querySelector('form').dispatchEvent(new Event('submit'));
+        el().querySelector('form')!.dispatchEvent(new Event('submit'));
         failRequest('POST', '/strategy/comment');
         await fixture.whenStable();
         await flushUnhandledErrors();
 
         expect(unhandledError).not.toHaveBeenCalled();
-        expect(component.strat().comments[1].comment).toBe('Comment c2');
+        expect(component.strat()!.comments![1].comment).toBe('Comment c2');
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].textContent).toBe('Comment c2');
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).toContain('comment-editing');
         expect(component.editedCommentId()).toBe('c2');
@@ -553,13 +571,13 @@ describe('StrategyDetailsComponent', () => {
       it('keeps a new comment draft when submitting it fails', async () => {
         await typeComment('Nice smokes');
 
-        el().querySelector('form').dispatchEvent(new Event('submit'));
+        el().querySelector('form')!.dispatchEvent(new Event('submit'));
         failRequest('POST', '/strategy/comment');
         await fixture.whenStable();
         await flushUnhandledErrors();
 
         expect(unhandledError).not.toHaveBeenCalled();
-        expect(component.strat().comments.length).toBe(2);
+        expect(component.strat()!.comments!.length).toBe(2);
         expect(component.newComment().comment).toBe('Nice smokes');
         expect(textarea().value).toBe('Nice smokes');
       });
@@ -571,15 +589,15 @@ describe('StrategyDetailsComponent', () => {
 
         await commentAction(1, 'Edit');
         await typeComment('Updated');
-        expect(cancel().type).toBe('button');
+        expect(cancel()!.type).toBe('button');
 
-        cancel().click();
+        cancel()!.click();
         await fixture.whenStable();
 
         httpMock.expectNone(r => r.url.includes('/strategy/comment'));
         expect(component.editedCommentId()).toBeNull();
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
-        expect(component.strat().comments[1].comment).toBe('Comment c2');
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: '' });
+        expect(component.strat()!.comments![1].comment).toBe('Comment c2');
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).not.toContain('comment-editing');
         expect(textarea().value).toBe('');
         expect(document.activeElement).toBe(textarea());
@@ -589,13 +607,13 @@ describe('StrategyDetailsComponent', () => {
       it('drops the edit when the edited comment is deleted', async () => {
         await commentAction(1, 'Edit');
 
-        component.deleteComment(component.strat().comments[1]);
+        component.deleteComment(component.strat()!.comments![1]);
         httpMock.expectOne(r => r.method === 'DELETE' && r.url.endsWith('/strategy/comment?id=c2')).flush(null);
         await fixture.whenStable();
 
-        expect(component.strat().comments.map(c => c.id)).toEqual(['c1']);
+        expect(component.strat()!.comments!.map(c => c.id)).toEqual(['c1']);
         expect(component.editedCommentId()).toBeNull();
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: '' });
       });
 
       it('drops the edit when another strategy loads', async () => {
@@ -604,17 +622,17 @@ describe('StrategyDetailsComponent', () => {
         await loadStrategy(strategy({ id: 'strat-2', title: 'Long A' }));
 
         expect(component.editedCommentId()).toBeNull();
-        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-2', comment: null });
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-2', comment: '' });
       });
 
       it('keeps the comment when deleting it fails', async () => {
-        component.deleteComment(component.strat().comments[0]);
+        component.deleteComment(component.strat()!.comments![0]);
         failRequest('DELETE', '/strategy/comment?id=c1');
         await fixture.whenStable();
         await flushUnhandledErrors();
 
         expect(unhandledError).not.toHaveBeenCalled();
-        expect(component.strat().comments.map(c => c.id)).toEqual(['c1', 'c2']);
+        expect(component.strat()!.comments!.map(c => c.id)).toEqual(['c1', 'c2']);
       });
 
       it('deletes a comment after confirmation', async () => {
@@ -622,7 +640,7 @@ describe('StrategyDetailsComponent', () => {
         vi.spyOn(confirm, 'open');
 
         await commentAction(1, 'Delete');
-        const target = component.strat().comments[1];
+        const target = component.strat()!.comments![1];
         expect(confirm.open).toHaveBeenCalledWith(target);
         expect(component.editedCommentId()).toBeNull();
 
@@ -631,7 +649,7 @@ describe('StrategyDetailsComponent', () => {
         req.flush(null);
         await fixture.whenStable();
 
-        expect(component.strat().comments.map(c => c.id)).toEqual(['c1']);
+        expect(component.strat()!.comments!.map(c => c.id)).toEqual(['c1']);
         expect(el().querySelectorAll('h3[igxListLineTitle]').length).toBe(1);
       });
     });

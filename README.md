@@ -101,26 +101,27 @@ Output is generated in the `dist/` directory.
 
 ### Server-Side Rendering (SSR)
 
-Build with SSR:
+Both apps render on the server in development and production.
+
+Develop with SSR (the Angular dev server, one locale, rebuilds on change; `localhost:4200` and `localhost:4201`):
 
 ```bash
-npm run build:ssr:bellumgens
-npm run build:ssr:ebleague
+npm run dev:ssr               # both apps
+npm run dev:ssr:bellumgens
+npm run dev:ssr:ebleague
 ```
 
-Serve SSR applications:
+The dev server renders with Angular's built-in engine and skips `server.ts`, so the locale redirect, the per-locale static files and other Express middleware only run in the production server.
+
+Run the production SSR builds (all locales, through `server.ts`; `localhost:4000` and `localhost:4001`). Build first with `npm run build`:
 
 ```bash
+npm run serve:ssr             # both apps
 npm run serve:ssr:bellumgens
 npm run serve:ssr:ebleague
 ```
 
-Or run concurrently:
-
-```bash
-npm run dev:ssr:bellumgens
-npm run dev:ssr:ebleague
-```
+The production builds only accept the public domains in `security.allowedHosts` in `angular.json`; only the `development` configuration adds `localhost`. Any other host gets `Header "host" ... is not allowed` on every server-rendered page. To run a production build on localhost, start it with `NG_ALLOWED_HOSTS=localhost` (this is what CI and `scripts/e2e.js` do).
 
 ## Testing
 

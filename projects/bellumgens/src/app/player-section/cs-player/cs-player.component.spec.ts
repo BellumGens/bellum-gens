@@ -16,21 +16,20 @@ import {
   ALL_ROLES,
   ApplicationUser,
   Availability,
-  BellumgensApiService,
   CSGOMap,
   CSGOMapPool,
   CSGOTeam,
   DayOfWeek,
-  LoginService,
   PlaystyleRole
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 
 const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'player-1',
   steamId: '76561198000000001',
   username: 'sn1per',
-  battleNetId: null,
-  email: null,
+  battleNetId: '',
+  email: '',
   searchVisible: true,
   externalLogins: [],
   steamUserException: false,
@@ -86,9 +85,9 @@ const team = (teamId: string, teamName: string): CSGOTeam => ({
 describe('CsPlayerComponent', () => {
   let component: CsPlayerComponent;
   let fixture: ComponentFixture<CsPlayerComponent>;
-  let player: WritableSignal<ApplicationUser>;
-  let authUser: WritableSignal<ApplicationUser>;
-  let teamsAdmin: WritableSignal<CSGOTeam []>;
+  let player: WritableSignal<ApplicationUser | null>;
+  let authUser: WritableSignal<ApplicationUser | null>;
+  let teamsAdmin: WritableSignal<CSGOTeam [] | null>;
   let parentParams: BehaviorSubject<Record<string, string>>;
   let apiService: BellumgensApiService;
   let loginService: LoginService;
@@ -96,7 +95,7 @@ describe('CsPlayerComponent', () => {
   let title: Title;
 
   beforeEach(async () => {
-    player = signal<ApplicationUser>(null);
+    player = signal<ApplicationUser | null>(null);
     parentParams = new BehaviorSubject<Record<string, string>>({});
 
     await TestBed.configureTestingModule({
@@ -146,7 +145,7 @@ describe('CsPlayerComponent', () => {
     it('shows the not found message when there is no player', () => {
       create();
 
-      expect(el().querySelector('.loading-overview').textContent).toContain('player profile not found');
+      expect(el().querySelector('.loading-overview')!.textContent).toContain('player profile not found');
       expect(el().querySelector('.profile-view-layout')).toBeNull();
       expect(apiService.getUserTeams).not.toHaveBeenCalled();
     });
@@ -179,11 +178,11 @@ describe('CsPlayerComponent', () => {
 
       expect(el().querySelector('.loading-overview')).toBeNull();
       expect(el().querySelector('bg-loading')).toBeNull();
-      const link = el().querySelector<HTMLAnchorElement>('h1 a');
+      const link = el().querySelector<HTMLAnchorElement>('h1 a')!;
       expect(link.textContent.trim()).toBe('sn1per');
-      expect(el().querySelector('h4[igxCardHeaderSubtitle]').textContent.trim()).toBe('John Sniper');
+      expect(el().querySelector('h4[igxCardHeaderSubtitle]')!.textContent.trim()).toBe('John Sniper');
       expect(el().querySelectorAll('.player-detail__stats').length).toBe(7);
-      expect(el().querySelector('.top-weapon h5').textContent.trim()).toBe('awp');
+      expect(el().querySelector('.top-weapon h5')!.textContent.trim()).toBe('awp');
       expect(el().querySelector('.player-exception')).toBeNull();
       expect(el().querySelectorAll('.role-select').length).toBe(2);
     });
@@ -206,17 +205,17 @@ describe('CsPlayerComponent', () => {
     });
 
     it('renders the country badge when the player has a country', () => {
-      player.set(makePlayer({ steamUser: { ...makePlayer().steamUser, country: 'BG' } }));
+      player.set(makePlayer({ steamUser: { ...makePlayer().steamUser!, country: 'BG' } }));
       create();
 
       expect(el().querySelector('.country-badge-large')).not.toBeNull();
     });
 
     it('shows the private account notice and hides stats and roles when steam stats are private', () => {
-      player.set(makePlayer({ userStatsException: true, userStats: null }));
+      player.set(makePlayer({ userStatsException: true, userStats: undefined }));
       create();
 
-      expect(el().querySelector('.player-exception').textContent).toContain('Steam account is private.');
+      expect(el().querySelector('.player-exception')!.textContent).toContain('Steam account is private.');
       expect(el().querySelector('.player-detail__stats')).toBeNull();
       expect(el().querySelector('.role-select')).toBeNull();
       expect(iconService.addSvgIcon).not.toHaveBeenCalled();
@@ -248,10 +247,10 @@ describe('CsPlayerComponent', () => {
       player.set(makePlayer());
       create();
 
-      const header = () => el().querySelector('.map-pool h4').textContent.trim();
+      const header = () => el().querySelector('.map-pool h4')!.textContent.trim();
       expect(header()).toBe('Showing Active Duty Maps');
 
-      el().querySelector<HTMLButtonElement>('.map-pool button').click();
+      el().querySelector<HTMLButtonElement>('.map-pool button')!.click();
       fixture.detectChanges();
 
       expect(component.viewAll()).toBe(true);
@@ -276,7 +275,7 @@ describe('CsPlayerComponent', () => {
       expect(apiService.getMapPool).toHaveBeenCalledWith('player-1');
       expect(component.userTeams()).toEqual(teams);
       expect(el().querySelectorAll('.team-avatar-link').length).toBe(1);
-      const teamLink = el().querySelector<HTMLAnchorElement>('a.team-avatar-link');
+      const teamLink = el().querySelector<HTMLAnchorElement>('a.team-avatar-link')!;
       expect(teamLink.getAttribute('href')).toBe(`/team/${teams[0].customUrl}`);
       expect(teamLink.getAttribute('aria-label')).toBe(teams[0].teamName);
       expect(fixture.debugElement.query(By.css('bg-availability')).componentInstance.availability()).toEqual(availability);
@@ -292,7 +291,7 @@ describe('CsPlayerComponent', () => {
       expect(apiService.getAvailability).not.toHaveBeenCalled();
       expect(apiService.getMapPool).not.toHaveBeenCalled();
 
-      const register = el().querySelector<HTMLButtonElement>('button.text-button');
+      const register = el().querySelector<HTMLButtonElement>('button.text-button')!;
       expect(register.type).toBe('button');
       expect(register.textContent.trim()).toBe('register');
       register.click();
@@ -309,7 +308,7 @@ describe('CsPlayerComponent', () => {
       expect(apiService.getUserTeams).toHaveBeenCalledTimes(1);
       expect(apiService.getAvailability).toHaveBeenCalledTimes(1);
       expect(apiService.getMapPool).toHaveBeenCalledTimes(1);
-      expect(component.csgoDetails().primaryRole).toBe(PlaystyleRole.IGL);
+      expect(component.csgoDetails()!.primaryRole).toBe(PlaystyleRole.IGL);
 
       player.set(makePlayer({ id: 'player-2' }));
       fixture.detectChanges();
@@ -424,8 +423,8 @@ describe('CsPlayerComponent', () => {
     });
 
     it('submits availability changes for the logged in user', () => {
-      vi.spyOn(apiService, 'setAvailability').mockReturnValue(of(null));
       const day: Availability = { day: DayOfWeek.Friday, available: true, from: new Date(), to: new Date() };
+      vi.spyOn(apiService, 'setAvailability').mockReturnValue(of(day));
 
       fixture.debugElement.query(By.css('bg-availability')).triggerEventHandler('availabilityChanged', day);
 
@@ -447,8 +446,8 @@ describe('CsPlayerComponent', () => {
       component.selectPrimary(PlaystyleRole.IGL);
 
       expect(apiService.setPrimaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.IGL), 'player-1');
-      expect(component.csgoDetails().primaryRole).toBe(PlaystyleRole.IGL);
-      expect(component.csgoDetails().secondaryRole).toBe(PlaystyleRole.Support);
+      expect(component.csgoDetails()!.primaryRole).toBe(PlaystyleRole.IGL);
+      expect(component.csgoDetails()!.secondaryRole).toBe(PlaystyleRole.Support);
     });
 
     it('sets the secondary role and shows it immediately', () => {
@@ -457,8 +456,27 @@ describe('CsPlayerComponent', () => {
       component.selectSecondary(PlaystyleRole.Lurker);
 
       expect(apiService.setSecondaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.Lurker), 'player-1');
-      expect(component.csgoDetails().secondaryRole).toBe(PlaystyleRole.Lurker);
-      expect(component.csgoDetails().primaryRole).toBe(PlaystyleRole.Awper);
+      expect(component.csgoDetails()!.secondaryRole).toBe(PlaystyleRole.Lurker);
+      expect(component.csgoDetails()!.primaryRole).toBe(PlaystyleRole.Awper);
+    });
+
+    it('saves the roles picked in the selects and keeps each one out of the other select', async () => {
+      vi.spyOn(apiService, 'setPrimaryRole').mockReturnValue(of(null));
+      vi.spyOn(apiService, 'setSecondaryRole').mockReturnValue(of(null));
+      await fixture.whenStable();
+      const [primary, secondary] = fixture.debugElement.queryAll(By.directive(IgxSelectComponent))
+        .map(s => s.componentInstance as IgxSelectComponent);
+      const item = (select: IgxSelectComponent, role: PlaystyleRole) => select.items.find(i => i.value === role);
+
+      primary.selectItem(item(primary, PlaystyleRole.IGL)!);
+      secondary.selectItem(item(secondary, PlaystyleRole.Lurker)!);
+      fixture.detectChanges();
+
+      expect(apiService.setPrimaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.IGL), 'player-1');
+      expect(apiService.setSecondaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.Lurker), 'player-1');
+      expect(item(secondary, PlaystyleRole.IGL)!.disabled).toBe(true);
+      expect(item(primary, PlaystyleRole.Lurker)!.disabled).toBe(true);
+      expect(item(primary, PlaystyleRole.Awper)!.disabled).toBe(false);
     });
 
     it('does not offer to invite yourself to a team', () => {
@@ -502,7 +520,7 @@ describe('CsPlayerComponent', () => {
       authUser.set(makeUser());
       teamsAdmin.set(teams);
       player.set(makePlayer());
-      vi.spyOn(apiService, 'inviteToTeam').mockReturnValue(of(null));
+      vi.spyOn(apiService, 'inviteToTeam').mockReturnValue(of({}));
       create();
 
       expect(el().querySelector('button[title="Invite to team"]')).not.toBeNull();

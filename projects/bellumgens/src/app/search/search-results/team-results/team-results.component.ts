@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ApiSearchService } from '../../../../../../common/src/public_api';
+import { ApiSearchService } from 'bellum-gens-common/services';
+import { LoadingComponent } from 'bellum-gens-common';
 import { BaseDirective } from '../../../base/base.component';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class TeamResultsComponent extends BaseDirective {
 
   public teams = this.apiService.teamSearchResult;
   public loading = this.apiService.loadingSearch;
-  public query = signal<string>(null);
+  public query = signal<string | null>(null);
 
   constructor() {
     super();

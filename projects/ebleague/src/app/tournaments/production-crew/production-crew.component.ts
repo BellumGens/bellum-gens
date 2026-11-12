@@ -1,5 +1,5 @@
 import { Component, LOCALE_ID, inject } from '@angular/core';
-import { CREW_MEMBERS, CREW_MEMBERS_BG } from '../../../../../common/src/public_api';
+import { CREW_MEMBERS, CREW_MEMBERS_BG } from 'bellum-gens-common/models';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

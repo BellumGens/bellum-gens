@@ -1,7 +1,8 @@
 import { Component, PLATFORM_ID, Signal, inject, signal, viewChild } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
-import { environment } from '../../../../common/src/environments/environment';
+import { LoginService, SocialMediaService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
 import { IGX_CAROUSEL_DIRECTIVES, IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
@@ -37,12 +38,12 @@ export class HomeComponent extends BaseDirective {
   public carousel = viewChild(IgxCarouselComponent);
 
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
   public navigation = signal(true);
   public environment = environment;
-  public userEmail = signal<string>(null);
+  public userEmail = signal('');
 
   constructor() {
     super();

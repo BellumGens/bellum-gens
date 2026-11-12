@@ -1,18 +1,9 @@
 import { Component, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import {
-  ApplicationUser,
-  LoginService,
-  ApiTournamentsService,
-  StartsWithPipe,
-  TournamentApplication,
-  Game,
-  CountrySVGPipe,
-  CommunicationService,
-  BATTLE_TAG_REGEX,
-  EMAIL_REGEX
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, TournamentApplication, Game, BATTLE_TAG_REGEX, EMAIL_REGEX } from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
+import { StartsWithPipe, CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { FormsModule } from '@angular/forms';
 import { IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_DROP_DOWN_DIRECTIVES, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';
@@ -53,11 +44,12 @@ export class LeagueRegistrationComponent {
   public application = signal<TournamentApplication>({ game: Game.StarCraft2, email: '' });
   private routeTournamentId = toSignal(this.activatedRoute.params.pipe(map(params => params['tournamentId'] as string)));
   // Without a tournament in the route, the registration is for the active tournament
-  public tournament = computed(() => this.routeTournamentId()
-    ? this.apiService.getTournament(this.routeTournamentId())()
-    : this.apiService.activeTournament());
+  public tournament = computed(() => {
+    const id = this.routeTournamentId();
+    return id ? this.apiService.getTournament(id)() : this.apiService.activeTournament();
+  });
   public tournamentId = computed(() => this.routeTournamentId() ?? this.tournament()?.id);
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   public companies = this.apiService.companies;
   public inProgress = signal(false);
   public battleTagRegex = BATTLE_TAG_REGEX;
@@ -236,7 +228,7 @@ export class LeagueRegistrationComponent {
     } else if (name?.includes('Americas')) {
       return this.americasCountries;
     } else if (name?.includes('Wildcard')) {
-      return [].concat(this.europeCountries, this.asiaCountries, this.americasCountries, this.oceaniaCountries).sort((a, b) => a.name > b.name ? 1 : -1);
+      return [...this.europeCountries, ...this.asiaCountries, ...this.americasCountries, ...this.oceaniaCountries].sort((a, b) => a.name > b.name ? 1 : -1);
     }
     return this.balkanCountries;
   });
@@ -256,7 +248,7 @@ export class LeagueRegistrationComponent {
             this.application.set(data);
           } else {
             this.patchApplication({
-              email: user.email,
+              email: user.email ?? '',
               battleNetId: user.sc2Details?.battleNetBattleTag,
               country: user.steamUser?.country
             });

@@ -3,12 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
-import {
-  ApiTournamentsService,
-  LoginService
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
-import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { Sc2MapNamePipe } from 'bellum-gens-common/pipes';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
@@ -41,14 +38,18 @@ export class TournamentSc2Component extends BaseDirective {
   public environment = environment;
   public authUser = this.loginService.applicationUser;
   // An empty tournament id loads the active tournament's data
-  public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
-  public tournament = computed(() => this.tournamentId()
-    ? this.apiService.getTournament(this.tournamentId())()
-    : this.apiService.activeTournament());
+  public tournamentId = toSignal(
+    this.activeRoute.params.pipe(map(params => (params['tournamentid'] as string | undefined) ?? '')),
+    { initialValue: '' }
+  );
+  public tournament = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getTournament(id)() : this.apiService.activeTournament();
+  });
   public loading = this.apiService.loadingSC2Registrations;
   public registrations = computed(() => this.apiService.getSc2Registrations(this.tournamentId())());
   public loadingMatches = this.apiService.loadingSC2Matches;
-  public sc2matches = computed(() => this.apiService.getSc2Matches(this.tournamentId())() ?? undefined);
+  public sc2matches = computed(() => this.apiService.getSc2Matches(this.tournamentId())());
   public loadingGroups = this.apiService.loadingSC2Groups;
   public groups = computed(() => this.apiService.getSc2Groups(this.tournamentId())());
   public narrowScreen = mediaQuery(NARROW_SCREEN_QUERY);

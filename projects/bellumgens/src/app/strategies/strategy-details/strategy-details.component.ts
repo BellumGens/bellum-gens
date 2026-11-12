@@ -9,18 +9,16 @@ import {
   VoteDirection,
   NEW_EMPTY_COMMENT,
   StrategyComment,
-  LoginService,
   ApplicationUser,
-  GLOBAL_OVERLAY_SETTINGS,
-  SocialMediaStrategyService,
-  ApiStrategiesService
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment.prod';
+  GLOBAL_OVERLAY_SETTINGS
+} from 'bellum-gens-common/models';
+import { LoginService, SocialMediaStrategyService, ApiStrategiesService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { ConfirmComponent, LoadingComponent } from 'bellum-gens-common';
 import { VotesPipe } from '../../pipes/votes.pipe';
 import { HasVotedPipe } from '../../pipes/has-voted.pipe';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
@@ -29,7 +27,6 @@ import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 import { voteLabel } from '../vote-label';
 
 @Component({
@@ -72,21 +69,21 @@ export class StrategyDetailsComponent extends BaseDirective {
   private socialMedia = inject(SocialMediaStrategyService);
   private injector = inject(Injector);
 
-  public strat = signal<CSGOStrategy>(null);
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public strat = signal<CSGOStrategy | null>(null);
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   public newComment = signal<StrategyComment>(Object.assign({}, NEW_EMPTY_COMMENT));
   /**
    * Id of the listed comment being edited. The draft in newComment is a copy of it,
    * so the listed comment only changes once the edit is saved.
    */
-  public editedCommentId = signal<string>(null);
+  public editedCommentId = signal<string | null>(null);
   /** Id of the comment whose actions drop-down is open. */
-  public openedActionsId = signal<string>(null);
+  public openedActionsId = signal<string | null>(null);
   public horizontal = signal(true);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public voteLabel = voteLabel;
   /** Strategy image that failed to load; it is left out instead of showing a broken image. */
-  public brokenImage = signal<string>(null);
+  public brokenImage = signal<string | null>(null);
   /** Names the author link when the strategy comes without its author's name. */
   public authorFallback = $localize`Profile`;
   /** The share button only shows the Twitter logo. */
@@ -100,11 +97,11 @@ export class StrategyDetailsComponent extends BaseDirective {
       map(params => params['stratid'] as string),
       filter(stratid => !!stratid),
       tap(stratid => {
-        this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-        this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'og:image', content: `${environment.publicRootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'twitter:image', content: `${environment.publicRootApiEndpoint}/Content/Strats/${stratid}.png` });
       }),
       switchMap(stratid => toObservable(this.apiService.getStrategy(stratid), { injector: this.injector })),
-      filter(strat => !!strat),
+      filter((strat): strat is CSGOStrategy => !!strat),
       takeUntilDestroyed()
     ).subscribe(strat => {
       this.strat.set(strat);
@@ -155,7 +152,11 @@ export class StrategyDetailsComponent extends BaseDirective {
   }
 
   public submitComment() {
-    this.apiService.submitStratComment(this.newComment(), this.strat()).subscribe({
+    const strat = this.strat();
+    if (!strat) {
+      return;
+    }
+    this.apiService.submitStratComment(this.newComment(), strat).subscribe({
       next: updated => {
         this.strat.set(updated);
         this.resetComment(updated.id);
@@ -185,23 +186,30 @@ export class StrategyDetailsComponent extends BaseDirective {
     }
   }
 
-  public actionsClosed(commentId: string) {
+  public actionsClosed(commentId: string | null) {
     if (this.openedActionsId() === commentId) {
       this.openedActionsId.set(null);
     }
   }
 
   public editComment(comment: StrategyComment) {
-    this.editedCommentId.set(comment.id);
+    this.editedCommentId.set(comment.id ?? null);
     this.newComment.set({ ...comment });
   }
 
   public cancelEdit() {
-    this.resetComment(this.strat().id);
+    const strat = this.strat();
+    if (strat) {
+      this.resetComment(strat.id);
+    }
   }
 
   public deleteComment(comment: StrategyComment) {
-    this.apiService.deleteStratComment(comment, this.strat()).subscribe({
+    const strat = this.strat();
+    if (!strat) {
+      return;
+    }
+    this.apiService.deleteStratComment(comment, strat).subscribe({
       next: updated => {
         this.strat.set(updated);
         if (comment.id === this.editedCommentId()) {
@@ -219,6 +227,6 @@ export class StrategyDetailsComponent extends BaseDirective {
 
   private resetComment(stratId: string) {
     this.editedCommentId.set(null);
-    this.newComment.set({ userId: this.authUser()?.id ?? null, stratId, comment: null });
+    this.newComment.set({ userId: this.authUser()?.id ?? '', stratId, comment: '' });
   }
 }

@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 import { TournamentCardComponent } from './tournament-card.component';
-import { Tournament, TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
+import { Tournament, TournamentStatus, TournamentVisibility, Game } from 'bellum-gens-common/models';
 
 describe('TournamentCardComponent', () => {
   let component: TournamentCardComponent;
@@ -110,7 +110,7 @@ describe('TournamentCardComponent', () => {
 
       const statusChip = Array.from(el().querySelectorAll('igx-chip')).find(c => c.textContent.trim() === label);
       expect(statusChip).toBeDefined();
-      expect(statusChip.classList).toContain(cssClass);
+      expect(statusChip!.classList).toContain(cssClass);
       expect(el().querySelectorAll('igx-chip[class*="status-"]').length).toBe(1);
     }
   });
@@ -127,17 +127,17 @@ describe('TournamentCardComponent', () => {
   it('should derive the status of an API tournament that comes without one', () => {
     render({ ...mockTournament, status: undefined, active: true });
     expect(component.status).toBe(TournamentStatus.InProgress);
-    expect(el().querySelector('igx-chip.status-in-progress').textContent.trim()).toBe('In Progress');
+    expect(el().querySelector('igx-chip.status-in-progress')!.textContent.trim()).toBe('In Progress');
 
     render({ ...mockTournament, status: undefined, active: false, startDate: new Date('2000-01-01'), endDate: new Date('2000-01-02') });
-    expect(el().querySelector('igx-chip.status-completed').textContent.trim()).toBe('Completed');
+    expect(el().querySelector('igx-chip.status-completed')!.textContent.trim()).toBe('Completed');
 
     render({ ...mockTournament, status: undefined, active: false, startDate: new Date('2999-01-01'), endDate: undefined });
-    expect(el().querySelector('igx-chip.status-open').textContent.trim()).toBe('Open');
+    expect(el().querySelector('igx-chip.status-open')!.textContent.trim()).toBe('Open');
   });
 
   it('should render the chips as non-focusable options of a named listbox', () => {
-    const badges = el().querySelector('.card-badges');
+    const badges = el().querySelector('.card-badges')!;
     expect(badges.getAttribute('role')).toBe('listbox');
     expect(badges.getAttribute('aria-label')).toBe('Tournament details');
     el().querySelectorAll('igx-chip').forEach(chip => {
@@ -150,16 +150,16 @@ describe('TournamentCardComponent', () => {
     render({ ...mockTournament, visibility: undefined });
 
     expect(component.visibilityIcon).toBe('public');
-    const visibilityChip = el().querySelector('igx-chip');
-    expect(visibilityChip.querySelector('igx-icon').textContent.trim()).toBe('public');
+    const visibilityChip = el().querySelector('igx-chip')!;
+    expect(visibilityChip.querySelector('igx-icon')!.textContent.trim()).toBe('public');
     expect(visibilityChip.textContent).toContain('public');
   });
 
   it('should render the visibility icon and text in the first chip', () => {
     render({ ...mockTournament, visibility: TournamentVisibility.InviteOnly });
 
-    const visibilityChip = el().querySelector('igx-chip');
-    expect(visibilityChip.querySelector('igx-icon').textContent.trim()).toBe('mail');
+    const visibilityChip = el().querySelector('igx-chip')!;
+    expect(visibilityChip.querySelector('igx-icon')!.textContent.trim()).toBe('mail');
     expect(visibilityChip.textContent).toContain('invite-only');
   });
 
@@ -178,7 +178,7 @@ describe('TournamentCardComponent', () => {
   it('should render the logo image when the tournament has a logo', () => {
     render({ ...mockTournament, logo: '/assets/tournament-logo.png' });
 
-    const img: HTMLImageElement = el().querySelector('igx-card-media img');
+    const img = el().querySelector<HTMLImageElement>('igx-card-media img')!;
     expect(img).not.toBeNull();
     expect(img.getAttribute('src')).toContain('/assets/tournament-logo.png');
     expect(img.alt).toBe('Test Tournament');
@@ -187,20 +187,20 @@ describe('TournamentCardComponent', () => {
 
   it('should render a placeholder when the tournament has no logo', () => {
     expect(el().querySelector('igx-card-media img')).toBeNull();
-    expect(el().querySelector('.card-placeholder-media igx-icon').textContent.trim()).toBe('emoji_events');
+    expect(el().querySelector('.card-placeholder-media igx-icon')!.textContent.trim()).toBe('emoji_events');
   });
 
   it('should render start and end dates', () => {
-    const meta = el().querySelector('.card-meta');
-    expect(meta.textContent).toContain(mediumDate(mockTournament.startDate));
-    expect(meta.textContent).toContain(mediumDate(mockTournament.endDate));
+    const meta = el().querySelector('.card-meta')!;
+    expect(meta.textContent).toContain(mediumDate(mockTournament.startDate!));
+    expect(meta.textContent).toContain(mediumDate(mockTournament.endDate!));
   });
 
   it('should render only the start date when there is no end date', () => {
     render({ ...mockTournament, endDate: undefined });
 
-    const meta = el().querySelector('.card-meta');
-    expect(meta.textContent).toContain(mediumDate(mockTournament.startDate));
+    const meta = el().querySelector('.card-meta')!;
+    expect(meta.textContent).toContain(mediumDate(mockTournament.startDate!));
     expect(meta.querySelector('.meta-item span')).toBeNull();
   });
 
@@ -211,8 +211,8 @@ describe('TournamentCardComponent', () => {
   });
 
   it('should render prize pool and description when present', () => {
-    expect(el().querySelector('.prize-amount').textContent.trim()).toBe('$1000');
-    expect(el().querySelector('.card-description').textContent.trim()).toBe('A test tournament');
+    expect(el().querySelector('.prize-amount')!.textContent.trim()).toBe('$1000');
+    expect(el().querySelector('.card-description')!.textContent.trim()).toBe('A test tournament');
 
     render({ ...mockTournament, prizePool: undefined, description: undefined });
 
@@ -221,7 +221,7 @@ describe('TournamentCardComponent', () => {
   });
 
   it('should link to the details page using the route prefix', () => {
-    const link: HTMLAnchorElement = el().querySelector('igx-card-actions a');
+    const link = el().querySelector<HTMLAnchorElement>('igx-card-actions a')!;
     expect(link.getAttribute('href')).toBe('/tournaments/t1');
 
     fixture.componentRef.setInput('detailRoutePrefix', '/tournaments/view');
@@ -241,7 +241,7 @@ describe('TournamentCardComponent', () => {
     let emitted: Tournament | undefined;
     component.manage.subscribe((t: Tournament) => emitted = t);
     const manageButton = buttons().find(b => b.textContent.includes('Manage'));
-    manageButton.click();
+    manageButton!.click();
 
     expect(emitted).toEqual(mockTournament);
   });
@@ -254,7 +254,7 @@ describe('TournamentCardComponent', () => {
     let managed = false;
     component.deleteTournament.subscribe((t: Tournament) => emitted = t);
     component.manage.subscribe(() => managed = true);
-    el().querySelector<HTMLButtonElement>('button.danger-btn').click();
+    el().querySelector<HTMLButtonElement>('button.danger-btn')!.click();
 
     expect(emitted).toEqual(mockTournament);
     expect(managed).toBe(false);
@@ -264,7 +264,7 @@ describe('TournamentCardComponent', () => {
     fixture.componentRef.setInput('showManage', true);
     fixture.detectChanges();
 
-    expect(el().querySelector('button.danger-btn').getAttribute('aria-label')).toBe('Delete tournament');
+    expect(el().querySelector('button.danger-btn')!.getAttribute('aria-label')).toBe('Delete tournament');
   });
 
   it('should default detailRoutePrefix to /tournaments', () => {

@@ -8,15 +8,13 @@ import {
   TournamentVisibility,
   TournamentStatus,
   Game,
-  getTournamentStatus
-} from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
-import { CountrySVGPipe } from '../../pipes/country-svg.pipe';
-import { RaceIconPipe } from '../../pipes/race-icon.pipe';
-import { ParticipantTeamPipe } from '../../pipes/participant-team.pipe';
+  getTournamentStatus,
+  TournamentSC2Match,
+  TournamentCSGOMatch
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { CountrySVGPipe, RaceIconPipe, ParticipantTeamPipe } from 'bellum-gens-common/pipes';
 import { map } from 'rxjs/operators';
-import { TournamentSC2Match, TournamentCSGOMatch } from '../../../models/tournament-schedule';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -52,17 +50,32 @@ export class TournamentDetailComponent {
 
   private tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentId'] as string)));
 
-  public tournament = computed<Tournament | null>(() => this.tournamentId() ? this.apiService.getTournament(this.tournamentId())() ?? null : null);
+  public tournament = computed<Tournament | null>(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getTournament(id)() ?? null : null;
+  });
   public loading = computed(() => !this.tournament());
   // Each game's data is only loaded for tournaments of that game (or of no specific game)
-  private hasSc2Data = computed(() => this.tournament() && (this.tournament().game === Game.StarCraft2 || this.tournament().game == null));
-  private hasCsgoData = computed(() => this.tournament() && (this.tournament().game === Game.CSGO || this.tournament().game == null));
-  public registrations = computed<TournamentParticipant[]>(() =>
-    this.hasSc2Data() ? this.apiService.getSc2Registrations(this.tournament().id)() ?? [] : []);
-  public sc2Matches = computed<TournamentSC2Match[] | null>(() =>
-    this.hasSc2Data() ? this.apiService.getSc2Matches(this.tournament().id)() : null);
-  public csgoMatches = computed<TournamentCSGOMatch[] | null>(() =>
-    this.hasCsgoData() ? this.apiService.getCsgoMatches(this.tournament().id)() : null);
+  private sc2DataId = computed(() => {
+    const t = this.tournament();
+    return t?.id && (t.game === Game.StarCraft2 || t.game == null) ? t.id : null;
+  });
+  private csgoDataId = computed(() => {
+    const t = this.tournament();
+    return t?.id && (t.game === Game.CSGO || t.game == null) ? t.id : null;
+  });
+  public registrations = computed<TournamentParticipant[]>(() => {
+    const id = this.sc2DataId();
+    return id ? this.apiService.getSc2Registrations(id)() ?? [] : [];
+  });
+  public sc2Matches = computed<TournamentSC2Match[] | null>(() => {
+    const id = this.sc2DataId();
+    return id ? this.apiService.getSc2Matches(id)() : null;
+  });
+  public csgoMatches = computed<TournamentCSGOMatch[] | null>(() => {
+    const id = this.csgoDataId();
+    return id ? this.apiService.getCsgoMatches(id)() : null;
+  });
   public loadingRegistrations = this.apiService.loadingSC2Registrations;
 
   private authUser = this.loginService.applicationUser;

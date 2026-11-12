@@ -9,8 +9,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { QueryParsedPipe } from 'projects/bellumgens/src/app/pipes/query-parsed.pipe';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { CSGOTeam } from '../../../../../../common/src/public_api';
-import { environment } from '../../../../../../common/src/environments/environment';
+import { CSGOTeam } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 
 const team = (teamId: string, teamName: string, description: string): CSGOTeam => ({
   teamId,
@@ -68,7 +68,7 @@ describe('TeamResultsComponent', () => {
     httpMock.expectNone(() => true);
     expect(component.query()).toBeNull();
     expect(component.teams()).toBeNull();
-    expect(el().querySelector('h4').textContent).toContain('results for teams with no search criteria');
+    expect(el().querySelector('h4')!.textContent).toContain('results for teams with no search criteria');
     expect(el().querySelectorAll('igx-card').length).toBe(0);
   });
 
@@ -86,8 +86,8 @@ describe('TeamResultsComponent', () => {
     req.flush([]);
     await fixture.whenStable();
     expect(el().querySelector('bg-loading')).toBeNull();
-    expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('0');
-    expect(el().querySelector('h4').textContent)
+    expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('0');
+    expect(el().querySelector('h4')!.textContent)
       .toContain('results for teams looking for Entry with availability overlap of at least 20 hours');
   });
 
@@ -99,13 +99,13 @@ describe('TeamResultsComponent', () => {
     ]);
     await fixture.whenStable();
 
-    expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('2');
+    expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('2');
     const cards = el().querySelectorAll('igx-card');
     expect(cards.length).toBe(2);
-    expect(cards[0].querySelector('h3').textContent).toContain('Team One');
-    expect(cards[0].querySelector('igx-card-content').textContent).toContain('First team');
-    expect(cards[1].querySelector('h3').textContent).toContain('Team Two');
-    expect(cards[1].querySelector('igx-card-content').textContent).toContain('Second team');
+    expect(cards[0].querySelector('h3')!.textContent).toContain('Team One');
+    expect(cards[0].querySelector('igx-card-content')!.textContent).toContain('First team');
+    expect(cards[1].querySelector('h3')!.textContent).toContain('Team Two');
+    expect(cards[1].querySelector('igx-card-content')!.textContent).toContain('Second team');
   });
 
   it('should navigate to the team page when a card is clicked', async () => {
@@ -115,7 +115,7 @@ describe('TeamResultsComponent', () => {
 
     const router = TestBed.inject(Router);
     const navigate = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-    const link = el().querySelector<HTMLAnchorElement>('igx-card h3 a.card-link');
+    const link = el().querySelector<HTMLAnchorElement>('igx-card h3 a.card-link')!;
     expect(link.getAttribute('href')).toBe('/team/t1-url');
     expect(link.textContent.trim()).toBe('Team One');
     link.click();
@@ -132,6 +132,6 @@ describe('TeamResultsComponent', () => {
 
     expect(component.loading()).toBe(false);
     expect(el().querySelector('bg-loading')).toBeNull();
-    expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('0');
+    expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('0');
   });
 });

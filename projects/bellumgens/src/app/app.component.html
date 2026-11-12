@@ -6,8 +6,8 @@
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
           <span i18n>My Teams</span>
-          @if (teams()?.length > 0) {
-            <igx-badge class="notifications-badge" aria-hidden="true" [value]="teams().length" type="info"></igx-badge>
+          @if (teamCount() > 0) {
+            <igx-badge class="notifications-badge" aria-hidden="true" [value]="teamCount()" type="info"></igx-badge>
           }
         </a>
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
@@ -35,6 +35,10 @@
         <igx-icon>military_tech</igx-icon>
         <span i18n>Tournaments</span>
       </a>
+      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
+        <igx-icon>shopping_cart</igx-icon>
+        <span i18n>Shop</span>
+      </a>
       <a igxDrawerItem igxRipple routerLink="/" fragment="partners">
         <igx-icon>people_alt</igx-icon>
         <span i18n>Partners</span>
@@ -51,8 +55,8 @@
         @if (authUser()) {
           <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
             <igx-icon>people</igx-icon>
-            @if (teams()?.length > 0) {
-              <igx-badge class="notifications-badge" aria-hidden="true" [value]="teams().length" type="info"></igx-badge>
+            @if (teamCount() > 0) {
+              <igx-badge class="notifications-badge" aria-hidden="true" [value]="teamCount()" type="info"></igx-badge>
             }
           </a>
           <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
@@ -74,6 +78,9 @@
         </a>
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments" i18n-title title="Tournaments">
           <igx-icon>military_tech</igx-icon>
+        </a>
+        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
+          <igx-icon>shopping_cart</igx-icon>
         </a>
         <a igxDrawerItem igxRipple routerLink="partners" i18n-title title="Partners">
           <igx-icon>people_alt</igx-icon>
@@ -128,6 +135,7 @@
         <igx-icon>{{ searchExpanded() ? 'close' : 'search' }}</igx-icon>
       </button>
 
+      <bg-cart-badge></bg-cart-badge>
       <bg-languages></bg-languages>
       <bg-login></bg-login>
     </igx-navbar>

@@ -21,7 +21,8 @@
   rightButtonLabel="Submit"
   (leftButtonSelect)="availabilityCancel()"
   (rightButtonSelect)="availabilityChange()">
-  <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay() ? (selectedDay().day | weekday) : ''}}</span></h5>
+  @let selected = selectedDay();
+  <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selected ? (selected.day | weekday) : ''}}</span></h5>
   @if (selectedDay(); as day) {
     <div>
       <div class="horizontal-center">

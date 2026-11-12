@@ -4,10 +4,9 @@ import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   ApplicationUser,
-  CommunicationService,
   SC2_MAPS,
   Tournament,
   TournamentGroup,
@@ -15,7 +14,8 @@ import {
   TournamentParticipant,
   TournamentApplication,
   TournamentApplicationState
-} from 'projects/common/src/public_api';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -25,7 +25,6 @@ import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-pick
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IDropDroppedEventArgs, IgxDropDirective } from '@infragistics/igniteui-angular/directives';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { createSpyObj, SpyObj } from '../../../../../testing/spy-obj';
 
 describe('AdminSc2Component', () => {
@@ -113,7 +112,7 @@ describe('AdminSc2Component', () => {
       const newGroup: TournamentGroup = {
         id: undefined,
         name: 'Group A',
-        tournamentId: null,
+        tournamentId: undefined,
         inEdit: true,
         participants: []
       };
@@ -134,8 +133,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.body.inEdit).toBe(false);
       req.flush(returnedGroup);
 
-      expect(component.groups().length).toBe(1);
-      expect(component.groups()[0]).toEqual(returnedGroup);
+      expect(component.groups()!.length).toBe(1);
+      expect(component.groups()![0]).toEqual(returnedGroup);
     });
 
     it('should submit an existing group and not duplicate it in the array', () => {
@@ -155,14 +154,14 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('PUT');
       req.flush(existingGroup);
 
-      expect(component.groups().length).toBe(1);
+      expect(component.groups()!.length).toBe(1);
     });
 
     it('should set tournamentId and inEdit flag correctly', () => {
       const newGroup: TournamentGroup = {
         id: undefined,
         name: 'Group B',
-        tournamentId: null,
+        tournamentId: undefined,
         inEdit: true,
         participants: []
       };
@@ -190,8 +189,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(component.groups().length).toBe(1);
-      expect(component.groups()[0]).toEqual(group2);
+      expect(component.groups()!.length).toBe(1);
+      expect(component.groups()![0]).toEqual(group2);
       expect(component.pipeTrigger()).toBe(1);
     });
 
@@ -335,12 +334,12 @@ describe('AdminSc2Component', () => {
       expect(component.matchInEdit.startTime).toEqual(expect.any(Date));
     });
 
-    it('should set groupId to null when no groups exist', () => {
+    it('should leave groupId unset when no groups exist', () => {
       component.groups.set([]);
 
       component.addNewMatch();
 
-      expect(component.matchInEdit.groupId).toBeNull();
+      expect(component.matchInEdit.groupId).toBeUndefined();
     });
 
     it('should set groupId to the last group in the array', () => {
@@ -359,7 +358,7 @@ describe('AdminSc2Component', () => {
       component.addNewMatch();
 
       expect(component.matchInEdit.maps).toBeDefined();
-      expect(component.matchInEdit.maps.length).toBe(0);
+      expect(component.matchInEdit.maps!.length).toBe(0);
     });
   });
 
@@ -454,7 +453,7 @@ describe('AdminSc2Component', () => {
       const group: TournamentGroup = {
         id: 'group-1',
         name: 'Group A',
-        participants: null
+        participants: undefined
       };
 
       const dropEvent = {
@@ -507,8 +506,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('PUT');
       req.flush({});
 
-      expect(group.participants.length).toBe(2);
-      expect(group.participants[1]).toEqual(newParticipant);
+      expect(group.participants!.length).toBe(2);
+      expect(group.participants![1]).toEqual(newParticipant);
       expect(newParticipant.tournamentSC2GroupId).toBe('group-1');
       expect(component.pipeTrigger()).toBe(6);
     });
@@ -547,8 +546,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(group.participants.length).toBe(1);
-      expect(group.participants[0]).toEqual(participant2);
+      expect(group.participants!.length).toBe(1);
+      expect(group.participants![0]).toEqual(participant2);
       expect(participant1.tournamentSC2GroupId).toBeNull();
       expect(participant2.tournamentSC2GroupId).toBe('group-1');
       expect(component.pipeTrigger()).toBe(1);
@@ -577,9 +576,9 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush({});
 
-      expect(component.registrations()[0].state).toBe(0);
-      expect(component.registrations()[1].state).toBe(0);
-      expect(component.registrations()[2].state).toBe(2); // Banned users should not change
+      expect(component.registrations()![0].state).toBe(0);
+      expect(component.registrations()![1].state).toBe(0);
+      expect(component.registrations()![2].state).toBe(2); // Banned users should not change
       expect(gridSpy.notifyChanges).toHaveBeenCalledWith(true);
     });
 
@@ -599,8 +598,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush({});
 
-      expect(component.registrations()[0].state).toBe(0);
-      expect(component.registrations()[1].state).toBe(TournamentApplicationState.Banned); // Should remain unchanged
+      expect(component.registrations()![0].state).toBe(0);
+      expect(component.registrations()![1].state).toBe(TournamentApplicationState.Banned); // Should remain unchanged
     });
 
     it('should reset checkin state while no registrations are loaded', () => {
@@ -778,8 +777,8 @@ describe('AdminSc2Component', () => {
       };
       req.flush(returnedGroup);
 
-      expect(component.groups().length).toBe(1);
-      expect(component.groups()[0]).toEqual(returnedGroup);
+      expect(component.groups()!.length).toBe(1);
+      expect(component.groups()![0]).toEqual(returnedGroup);
     });
 
     it('should edit an existing group', () => {
@@ -801,8 +800,8 @@ describe('AdminSc2Component', () => {
 
       req.flush(existingGroup);
 
-      expect(component.groups().length).toBe(1);
-      expect(component.groups()[0].name).toBe('Group A Updated');
+      expect(component.groups()!.length).toBe(1);
+      expect(component.groups()![0].name).toBe('Group A Updated');
     });
 
     it('should delete a group with full UI flow', () => {
@@ -817,8 +816,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(component.groups().length).toBe(1);
-      expect(component.groups()[0].name).toBe('Group B');
+      expect(component.groups()!.length).toBe(1);
+      expect(component.groups()![0].name).toBe('Group B');
       expect(component.pipeTrigger()).toBe(1);
     });
 
@@ -858,7 +857,7 @@ describe('AdminSc2Component', () => {
       const group: TournamentGroup = {
         id: 'group-1',
         name: 'Group A',
-        participants: null
+        participants: undefined
       };
 
       const dragEvent = { dragData: player } as any;
@@ -904,8 +903,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('PUT');
       req.flush({});
 
-      expect(group.participants.length).toBe(2);
-      expect(group.participants[1]).toEqual(player2);
+      expect(group.participants!.length).toBe(2);
+      expect(group.participants![1]).toEqual(player2);
     });
 
     it('should remove a player from a group with full UI flow', () => {
@@ -938,8 +937,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(group.participants.length).toBe(1);
-      expect(group.participants[0]).toEqual(player2);
+      expect(group.participants!.length).toBe(1);
+      expect(group.participants![0]).toEqual(player2);
       expect(component.pipeTrigger()).toBe(1);
     });
 
@@ -1123,10 +1122,10 @@ describe('AdminSc2Component', () => {
       expect(component.selectedTournament()).toBeNull();
       const titles = Array.from(el().querySelectorAll('igx-grid-toolbar-title')).map(t => t.textContent.trim());
       expect(titles).toEqual(['No Registrations', 'No StarCraft II matches']);
-      expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('No Participants');
+      expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('No Participants');
       expect(el().querySelectorAll('.registration-slot').length).toBe(0);
       expect(groupCards().length).toBe(0);
-      expect(newGroupCard().textContent).toContain('New group');
+      expect(newGroupCard()!.textContent).toContain('New group');
     });
 
     it('shows progress indicators while the participants and groups load', async () => {
@@ -1154,17 +1153,17 @@ describe('AdminSc2Component', () => {
       it('names the selected tournament in the toolbars and the participants card', () => {
         const titles = Array.from(el().querySelectorAll('igx-grid-toolbar-title')).map(t => t.textContent.trim());
         expect(titles).toEqual(['Spring League Registrations', 'Spring League StarCraft II matches']);
-        expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Spring League Participants');
+        expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Spring League Participants');
       });
 
       it('names its icon only refresh buttons and has no clickable icons', () => {
         [
           named(registrationsGrid().nativeElement, 'Refresh registrations'),
           named(matchGrid().nativeElement, 'Refresh matches'),
-          named(el().querySelector('igx-card-header'), 'Refresh participants')
+          named(el().querySelector('igx-card-header')!, 'Refresh participants')
         ].forEach(button => {
           expect(button).not.toBeNull();
-          expect(button.type).toBe('button');
+          expect(button!.type).toBe('button');
         });
         expect(el().querySelectorAll('igx-icon.navigatable').length).toBe(0);
         Array.from(el().querySelectorAll<HTMLButtonElement>('button[igxIconButton]'))
@@ -1179,7 +1178,7 @@ describe('AdminSc2Component', () => {
       });
 
       it('loads the data of a tournament picked from the tournament select', async () => {
-        const tournamentSelect = selectLabelled('Select tournament');
+        const tournamentSelect = selectLabelled('Select tournament')!;
         expect(tournamentSelect.items.map(i => i.element.nativeElement.textContent.trim())).toEqual(['Spring League', 'Autumn League']);
         participants = [sc2Player('p9', 'Omega#999')];
         registrations = [];
@@ -1190,7 +1189,7 @@ describe('AdminSc2Component', () => {
         await flushTournamentData('t2');
 
         expect(component.selectedTournament()).toEqual(TOURNAMENTS[1]);
-        expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Autumn League Participants');
+        expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent).toContain('Autumn League Participants');
         expect(unassigned()).toEqual(['Omega#999']);
         expect(groupCards().length).toBe(0);
       });
@@ -1239,7 +1238,7 @@ describe('AdminSc2Component', () => {
         it('refreshes the registrations and groups from the toolbar', () => {
           const toolbar = registrationsGrid().nativeElement.querySelector('igx-grid-toolbar');
 
-          named(toolbar, 'Refresh registrations').click();
+          named(toolbar!, 'Refresh registrations')!.click();
 
           httpMock.expectOne(`${api()}/tournament/tournamentregistrations?tournamentId=t1`).flush([]);
           httpMock.expectOne(`${api()}/tournament/sc2groups?tournamentId=t1`).flush([]);
@@ -1249,17 +1248,17 @@ describe('AdminSc2Component', () => {
 
         it('resets the check-in state of all but banned registrations once confirmed', async () => {
           const resetCheckin = confirms()[3];
-          buttonIn(registrationsGrid().nativeElement, 'Reset Checkin State').click();
+          buttonIn(registrationsGrid().nativeElement, 'Reset Checkin State')!.click();
           await render();
           expect(resetCheckin.dialog().isOpen).toBe(true);
 
-          dialogAction(resetCheckin.dialog(), 'OK').click();
+          dialogAction(resetCheckin.dialog(), 'OK')!.click();
           const req = httpMock.expectOne(`${api()}/tournament/resetstate?tournamentId=t1`);
           expect(req.request.method).toBe('GET');
           req.flush({ message: 'Check-in reset' });
           await render();
 
-          expect(component.registrations().map(r => r.state)).toEqual([
+          expect(component.registrations()!.map(r => r.state)).toEqual([
             TournamentApplicationState.Pending,
             TournamentApplicationState.Pending,
             TournamentApplicationState.Banned
@@ -1271,11 +1270,11 @@ describe('AdminSc2Component', () => {
           const messages: string [] = [];
           const subscription = TestBed.inject(CommunicationService).message.subscribe(m => messages.push(m));
           const confirmEmails = confirms()[2];
-          buttonIn(registrationsGrid().nativeElement, 'Send Emails for Checkin').click();
+          buttonIn(registrationsGrid().nativeElement, 'Send Emails for Checkin')!.click();
           await render();
           expect(confirmEmails.dialog().isOpen).toBe(true);
 
-          dialogAction(confirmEmails.dialog(), 'OK').click();
+          dialogAction(confirmEmails.dialog(), 'OK')!.click();
 
           expect(messages).toEqual(['Sending checkin emails...']);
           const req = httpMock.expectOne(`${api()}/tournament/sendcheckinemails?tournamentId=t1`);
@@ -1287,7 +1286,7 @@ describe('AdminSc2Component', () => {
         describe('row actions', () => {
           // The grid shows its action strip in the hovered row
           const stripButton = (title: string) =>
-            dataRow(registrationsGrid(), 'r2').element.nativeElement.querySelector<HTMLButtonElement>(`igx-action-strip button[title="${title}"]`);
+            dataRow(registrationsGrid(), 'r2')!.element.nativeElement.querySelector<HTMLButtonElement>(`igx-action-strip button[title="${title}"]`);
 
           beforeEach(async () => {
             registrationsGrid().actionStrip.show(dataRow(registrationsGrid(), 'r2'));
@@ -1306,35 +1305,35 @@ describe('AdminSc2Component', () => {
             await render();
             expect(stripButton('Save')).not.toBeNull();
 
-            stripButton('Save').click();
+            stripButton('Save')!.click();
             await render();
 
             httpMock.expectNone(`${api()}/tournament/delete?id=r2`);
             expect(registrationsGrid().transactions.getState('r2')).toBeUndefined();
-            expect(registrationsGrid().data.map(r => r.id)).toEqual(['r1', 'r2', 'r3']);
-            expect(registrationsGrid().data[1].state).toBe(false);
+            expect(registrationsGrid().data!.map(r => r.id)).toEqual(['r1', 'r2', 'r3']);
+            expect(registrationsGrid().data![1].state).toBe(false);
           });
 
           it('marks a registration deleted, then commits and deletes it on save', async () => {
-            stripButton('Delete').click();
+            stripButton('Delete')!.click();
             await render();
             expect(registrationsGrid().transactions.getState('r2')).toBeDefined();
             expect(stripButton('Delete')).toBeNull();
 
-            stripButton('Save').click();
+            stripButton('Save')!.click();
 
             const req = httpMock.expectOne(`${api()}/tournament/delete?id=r2`);
             expect(req.request.method).toBe('DELETE');
             req.flush({});
             expect(registrationsGrid().transactions.getState('r2')).toBeUndefined();
-            expect(registrationsGrid().data.map(r => r.id)).toEqual(['r1', 'r3']);
+            expect(registrationsGrid().data!.map(r => r.id)).toEqual(['r1', 'r3']);
           });
 
           it('undoes a pending deletion', async () => {
-            stripButton('Delete').click();
+            stripButton('Delete')!.click();
             await render();
 
-            stripButton('Undo').click();
+            stripButton('Undo')!.click();
             await render();
 
             expect(registrationsGrid().transactions.getState('r2')).toBeUndefined();
@@ -1345,7 +1344,7 @@ describe('AdminSc2Component', () => {
 
       describe('matches grid', () => {
         const cellOf = (id: string, field: string): HTMLElement =>
-          dataRow(matchGrid(), id).cells.find(c => c.column.field === field).nativeElement;
+          dataRow(matchGrid(), id)!.cells.find(c => c.column.field === field)!.nativeElement!;
 
         it('renders the players of each match and highlights the winner', () => {
           const m1 = cellOf('m1', 'teams');
@@ -1357,8 +1356,8 @@ describe('AdminSc2Component', () => {
         });
 
         it('links the video and replay of a match when present', () => {
-          expect(cellOf('m1', 'videoLink').querySelector('a').getAttribute('href')).toBe('https://youtu.be/m1');
-          expect(cellOf('m1', 'demoLink').querySelector('a').getAttribute('href')).toBe('https://replays.sc2.gg/m1');
+          expect(cellOf('m1', 'videoLink').querySelector('a')!.getAttribute('href')).toBe('https://youtu.be/m1');
+          expect(cellOf('m1', 'demoLink').querySelector('a')!.getAttribute('href')).toBe('https://replays.sc2.gg/m1');
           expect(cellOf('m2', 'videoLink').textContent.trim()).toBe('No video');
           expect(cellOf('m2', 'demoLink').textContent.trim()).toBe('No replay');
         });
@@ -1384,7 +1383,7 @@ describe('AdminSc2Component', () => {
         it('refreshes the matches from the toolbar', () => {
           const toolbar = matchGrid().nativeElement.querySelector('igx-grid-toolbar');
 
-          named(toolbar, 'Refresh matches').click();
+          named(toolbar!, 'Refresh matches')!.click();
 
           httpMock.expectOne(`${api()}/tournament/sc2matches?tournamentId=t1`).flush([]);
           expect(component.matches()).toEqual([]);
@@ -1392,24 +1391,24 @@ describe('AdminSc2Component', () => {
 
         it('deletes a match once its deletion is confirmed', async () => {
           const confirmMatch = confirms()[1];
-          named(cellOf('m2', 'actions'), 'Delete match').click();
+          named(cellOf('m2', 'actions'), 'Delete match')!.click();
           await render();
           expect(confirmMatch.dialog().isOpen).toBe(true);
 
-          dialogAction(confirmMatch.dialog(), 'OK').click();
+          dialogAction(confirmMatch.dialog(), 'OK')!.click();
 
           const req = httpMock.expectOne(`${api()}/tournament/sc2match?id=m2`);
           expect(req.request.method).toBe('DELETE');
           req.flush({});
-          expect(matchGrid().data.map(m => m.id)).toEqual(['m1', 'm3']);
+          expect(matchGrid().data!.map(m => m.id)).toEqual(['m1', 'm3']);
         });
 
         describe('new match dialog', () => {
           let dialog: IgxDialogComponent;
 
           beforeEach(async () => {
-            dialog = dialogTitled('New match');
-            buttonIn(matchGrid().nativeElement, 'New match').click();
+            dialog = dialogTitled('New match')!;
+            buttonIn(matchGrid().nativeElement, 'New match')!.click();
             await render();
           });
 
@@ -1418,26 +1417,26 @@ describe('AdminSc2Component', () => {
           it('starts a new match in the last group of the selected tournament', () => {
             expect(dialog.isOpen).toBe(true);
             expect(component.matchInEdit).toEqual(expect.objectContaining({ tournamentId: 't1', groupId: 'g2', maps: [] }));
-            expect(selectLabelled('Player 1').items.map(i => (i as IgxSelectItemComponent).itemText)).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
+            expect(selectLabelled('Player 1')!.items.map(i => (i as IgxSelectItemComponent).itemText)).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
           });
 
           it('clears the group of the match', async () => {
-            const clearGroup = () => named(selectElement(selectLabelled('Group')), 'Clear group');
+            const clearGroup = () => named(selectElement(selectLabelled('Group')!), 'Clear group');
             expect(clearGroup()).not.toBeNull();
-            expect(clearGroup().type).toBe('button');
+            expect(clearGroup()!.type).toBe('button');
 
-            clearGroup().click();
+            clearGroup()!.click();
             await render();
 
             expect(component.matchInEdit.groupId).toBeNull();
             expect(clearGroup()).toBeNull();
             // clearing the group does not open the group select
-            expect(selectLabelled('Group').collapsed).toBe(true);
+            expect(selectLabelled('Group')!.collapsed).toBe(true);
           });
 
           it('clears the video and demo links of the match', async () => {
             const [video, demo] = Array.from(dialogWindow(dialog).querySelectorAll<HTMLInputElement>('input[type="url"]'));
-            const clearOf = (input: HTMLInputElement) => input.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+            const clearOf = (input: HTMLInputElement) => input.closest('igx-input-group')!.querySelector<HTMLButtonElement>('igx-suffix button');
             expect(clearOf(video)).toBeNull();
             expect(clearOf(demo)).toBeNull();
 
@@ -1446,11 +1445,11 @@ describe('AdminSc2Component', () => {
             await render();
             expect(component.matchInEdit.videoLink).toBe('https://youtu.be/new');
             expect(component.matchInEdit.demoLink).toBe('https://replays.sc2.gg/new');
-            expect(clearOf(video).getAttribute('aria-label')).toBe('Clear video link');
-            expect(clearOf(demo).getAttribute('aria-label')).toBe('Clear demo link');
+            expect(clearOf(video)!.getAttribute('aria-label')).toBe('Clear video link');
+            expect(clearOf(demo)!.getAttribute('aria-label')).toBe('Clear demo link');
 
-            clearOf(video).click();
-            clearOf(demo).click();
+            clearOf(video)!.click();
+            clearOf(demo)!.click();
             await render();
 
             expect(component.matchInEdit.videoLink).toBeNull();
@@ -1460,13 +1459,13 @@ describe('AdminSc2Component', () => {
           });
 
           it('submits the picked players and adds the created match to the grid', async () => {
-            const player1 = selectLabelled('Player 1');
-            const player2 = selectLabelled('Player 2');
+            const player1 = selectLabelled('Player 1')!;
+            const player2 = selectLabelled('Player 2')!;
             player1.selectItem(player1.items[0]);
             player2.selectItem(player2.items[1]);
             await render();
 
-            dialogAction(dialog, 'Submit').click();
+            dialogAction(dialog, 'Submit')!.click();
 
             const req = httpMock.expectOne(`${api()}/tournament/sc2match`);
             expect(req.request.method).toBe('PUT');
@@ -1485,14 +1484,14 @@ describe('AdminSc2Component', () => {
             await render();
 
             expect(dialog.isOpen).toBe(false);
-            const added = matchGrid().data.find(m => m.id === 'm4');
+            const added = matchGrid().data!.find(m => m.id === 'm4');
             expect(added.startTime).toEqual(new Date('2026-10-04T18:00:00Z'));
           });
 
           it('schedules the match in the picked group at the picked date and time', async () => {
             const datePicker = fixture.debugElement.query(By.directive(IgxDatePickerComponent)).componentInstance as IgxDatePickerComponent;
             const timePicker = fixture.debugElement.query(By.directive(IgxTimePickerComponent)).componentInstance as IgxTimePickerComponent;
-            const groupPicker = selectLabelled('Group');
+            const groupPicker = selectLabelled('Group')!;
 
             datePicker.select(new Date(2026, 10, 5));
             await render();
@@ -1510,8 +1509,8 @@ describe('AdminSc2Component', () => {
             const raceInput = (group: number, race: string) => Array.from(dialogWindow(dialog).querySelectorAll('igx-radio-group'))[group]
               .querySelectorAll('igx-radio').item(['Protoss', 'Terran', 'Zerg'].indexOf(race)).querySelector('input');
 
-            raceInput(0, 'Terran').click();
-            raceInput(1, 'Zerg').click();
+            raceInput(0, 'Terran')!.click();
+            raceInput(1, 'Zerg')!.click();
             await render();
 
             expect(component.matchInEdit.player1Race).toBe(2);
@@ -1522,15 +1521,15 @@ describe('AdminSc2Component', () => {
             component.matchInEdit.player1Id = 'user-p1';
             component.matchInEdit.player2Id = 'user-p2';
 
-            dialogAction(dialog, 'Submit').click();
+            dialogAction(dialog, 'Submit')!.click();
 
             httpMock.expectOne(`${api()}/tournament/sc2match`).flush(null);
             await render();
-            expect(matchGrid().data.length).toBe(3);
+            expect(matchGrid().data!.length).toBe(3);
           });
 
           it('closes without submitting on cancel', async () => {
-            dialogAction(dialog, 'Cancel').click();
+            dialogAction(dialog, 'Cancel')!.click();
             await render();
 
             expect(dialog.isOpen).toBe(false);
@@ -1538,30 +1537,30 @@ describe('AdminSc2Component', () => {
         });
 
         it('opens a match for editing with a Date start time', async () => {
-          const dialog = dialogTitled('New match');
+          const dialog = dialogTitled('New match')!;
 
-          named(cellOf('m3', 'actions'), 'Edit match').click();
+          named(cellOf('m3', 'actions'), 'Edit match')!.click();
           await render();
 
           expect(dialog.isOpen).toBe(true);
           expect(component.matchInEdit.id).toBe('m3');
           expect(component.matchInEdit.startTime).toEqual(new Date('2026-10-03T18:00:00Z'));
 
-          dialogAction(dialog, 'Submit').click();
+          dialogAction(dialog, 'Submit')!.click();
           const req = httpMock.expectOne(`${api()}/tournament/sc2match?id=m3`);
           req.flush(matches[2]);
-          expect(matchGrid().data.length).toBe(3);
+          expect(matchGrid().data!.length).toBe(3);
         });
 
         describe('results dialog', () => {
           let dialog: IgxDialogComponent;
 
           const openResults = async (id: string) => {
-            named(cellOf(id, 'actions'), 'Add results').click();
+            named(cellOf(id, 'actions'), 'Add results')!.click();
             await render();
           };
 
-          beforeEach(() => dialog = dialogTitled('Results'));
+          beforeEach(() => dialog = dialogTitled('Results')!);
 
           afterEach(() => dialog.close());
 
@@ -1582,7 +1581,7 @@ describe('AdminSc2Component', () => {
             await openResults('m1');
             const maps = matches[0].maps;
 
-            buttonIn(dialogWindow(dialog), 'Delete').click();
+            buttonIn(dialogWindow(dialog), 'Delete')!.click();
 
             const req = httpMock.expectOne(`${api()}/tournament/sc2matchmap?id=mm1`);
             expect(req.request.method).toBe('DELETE');
@@ -1590,7 +1589,7 @@ describe('AdminSc2Component', () => {
             await render();
 
             expect(component.matchInEdit.maps).toBe(maps);
-            expect(maps.map(m => m.id)).toEqual(['mm2']);
+            expect(maps!.map(m => m.id)).toEqual(['mm2']);
             expect(dialogWindow(dialog).querySelectorAll('.delete-map').length).toBe(1);
           });
 
@@ -1598,7 +1597,7 @@ describe('AdminSc2Component', () => {
             await openResults('m3');
             expect(dialogWindow(dialog).querySelector('igx-checkbox')).not.toBeNull();
 
-            buttonIn(dialogWindow(dialog), 'Add a match map').click();
+            buttonIn(dialogWindow(dialog), 'Add a match map')!.click();
             await render();
 
             expect(component.matchInEdit.maps).toEqual([{ sc2MatchId: 'm3' }]);
@@ -1608,8 +1607,8 @@ describe('AdminSc2Component', () => {
           it('records the points, map and winner entered for the match', async () => {
             await openResults('m1');
             const [points1, points2] = Array.from(dialogWindow(dialog).querySelectorAll<HTMLInputElement>('input[type="number"]'));
-            const mapSelect = selects().find(s => selectElement(s).textContent.includes('Map'));
-            const winnerSelect = selects().find(s => selectElement(s).textContent.includes('Winner'));
+            const mapSelect = selects().find(s => selectElement(s).textContent.includes('Map'))!;
+            const winnerSelect = selects().find(s => selectElement(s).textContent.includes('Winner'))!;
 
             typeInto(points1, '3');
             typeInto(points2, '0');
@@ -1619,13 +1618,13 @@ describe('AdminSc2Component', () => {
 
             expect(component.matchInEdit.player1Points).toBe(3);
             expect(component.matchInEdit.player2Points).toBe(0);
-            expect(component.matchInEdit.maps[0]).toEqual(expect.objectContaining({ id: 'mm1', map: SC2_MAPS[2].id, winnerId: 'user-p3' }));
+            expect(component.matchInEdit.maps![0]).toEqual(expect.objectContaining({ id: 'mm1', map: SC2_MAPS[2].id, winnerId: 'user-p3' }));
           });
 
           it('records a walkover for a match without maps', async () => {
             await openResults('m3');
 
-            dialogWindow(dialog).querySelector<HTMLInputElement>('igx-checkbox input').click();
+            dialogWindow(dialog).querySelector<HTMLInputElement>('igx-checkbox input')!.click();
             await render();
 
             expect(component.matchInEdit.noShow).toBe(true);
@@ -1634,20 +1633,20 @@ describe('AdminSc2Component', () => {
           it('submits the results without adding a row', async () => {
             await openResults('m2');
 
-            dialogAction(dialog, 'Submit').click();
+            dialogAction(dialog, 'Submit')!.click();
 
             const req = httpMock.expectOne(`${api()}/tournament/sc2match?id=m2`);
             expect(req.request.body).toEqual(expect.objectContaining({ id: 'm2', noShow: true }));
             req.flush(matches[1]);
             await render();
             expect(dialog.isOpen).toBe(false);
-            expect(matchGrid().data.length).toBe(3);
+            expect(matchGrid().data!.length).toBe(3);
           });
 
           it('closes without submitting on cancel', async () => {
             await openResults('m2');
 
-            dialogAction(dialog, 'Cancel').click();
+            dialogAction(dialog, 'Cancel')!.click();
             await render();
 
             expect(dialog.isOpen).toBe(false);
@@ -1665,39 +1664,39 @@ describe('AdminSc2Component', () => {
           const slots = el().querySelectorAll('.registration-slot');
           expect(slots[0].querySelector('igx-badge')).not.toBeNull();
           expect(slots[1].querySelector('igx-badge')).toBeNull();
-          expect(slots[0].querySelector('a').getAttribute('href')).toBe(`${component.environment.bellumgens}/players/user-p1`);
+          expect(slots[0].querySelector('a')!.getAttribute('href')).toBe(`${component.environment.bellumgens}/players/user-p1`);
           const avatars = fixture.debugElement.queryAll(By.css('.registration-slot igx-avatar')).map(a => a.componentInstance as IgxAvatarComponent);
-          expect(avatars.map(a => [a.initials, a.src])).toEqual([['Alpha#111', undefined], ['Charlie', 'charlie.png']]);
+          expect(avatars.map(a => [a.initials, a.src])).toEqual([['Alpha#111', ''], ['Charlie', 'charlie.png']]);
         });
 
         it('exposes the group actions as named buttons', async () => {
           const card = groupCards()[0];
           const labels = (root: Element) => Array.from(root.querySelectorAll('button')).map(b => b.getAttribute('aria-label'));
 
-          expect(labels(card.querySelector('.action-buttons'))).toEqual(['Edit group', 'Delete group']);
-          expect(named(card.querySelector('igx-list-item'), 'Remove from group').type).toBe('button');
-          expect(named(newGroupCard(), 'New group').type).toBe('button');
+          expect(labels(card.querySelector('.action-buttons')!)).toEqual(['Edit group', 'Delete group']);
+          expect(named(card.querySelector('igx-list-item')!, 'Remove from group')!.type).toBe('button');
+          expect(named(newGroupCard()!, 'New group')!.type).toBe('button');
 
-          named(card, 'Edit group').click();
+          named(card, 'Edit group')!.click();
           await render();
 
-          expect(labels(card.querySelector('igx-card-header igx-suffix'))).toEqual(['Save group', 'Cancel']);
+          expect(labels(card.querySelector('igx-card-header igx-suffix')!)).toEqual(['Save group', 'Cancel']);
         });
 
         it('links a participant through its custom url when it has one', async () => {
           participants[0].user = sc2User('user-p1', 'Alpha', customUrl('alpha'));
 
-          named(el().querySelector('igx-card-header'), 'Refresh participants').click();
+          named(el().querySelector('igx-card-header')!, 'Refresh participants')!.click();
 
           httpMock.expectOne(`${api()}/tournament/sc2regs?tournamentId=t1`).flush([...participants]);
           await render();
 
-          expect(el().querySelector('.registration-slot a').getAttribute('href')).toBe(`${component.environment.bellumgens}/players/alpha`);
+          expect(el().querySelector('.registration-slot a')!.getAttribute('href')).toBe(`${component.environment.bellumgens}/players/alpha`);
         });
 
         it('renders the groups in server order with their members', () => {
           const cards = groupCards();
-          expect(cards.map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A', 'Group B']);
+          expect(cards.map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group A', 'Group B']);
           expect(members(cards[0])).toEqual(['Bravo', 'Delta']);
           const links = Array.from(cards[0].querySelectorAll('igx-list-item a')).map(a => a.getAttribute('href'));
           expect(links).toEqual([
@@ -1732,7 +1731,7 @@ describe('AdminSc2Component', () => {
         it('removes a participant from a group', async () => {
           const trigger = component.pipeTrigger();
 
-          named(groupCards()[0].querySelector('igx-list-item'), 'Remove from group').click();
+          named(groupCards()[0].querySelector('igx-list-item')!, 'Remove from group')!.click();
 
           const req = httpMock.expectOne(`${api()}/tournament/participanttogroup?id=p2&groupid=g1`);
           expect(req.request.method).toBe('DELETE');
@@ -1746,15 +1745,15 @@ describe('AdminSc2Component', () => {
 
         it('labels the points input of each group member with the player it is for', () => {
           const points = Array.from(groupCards()[0].querySelectorAll<HTMLInputElement>('input[name="groupPosition"]'));
-          const accessibleName = (input: HTMLInputElement) => input.getAttribute('aria-labelledby').split(' ')
-            .map(id => el().querySelector(`#${id}`).textContent.trim()).join(' ');
+          const accessibleName = (input: HTMLInputElement) => input.getAttribute('aria-labelledby')!.split(' ')
+            .map(id => el().querySelector(`#${id}`)!.textContent.trim()).join(' ');
           expect(points.map(accessibleName)).toEqual(['Points Bravo#222', 'Points Delta#444']);
-          expect(points.map(p => Array.from(p.labels).map(l => l.textContent.trim()))).toEqual([['Points'], ['Points']]);
+          expect(points.map(p => Array.from(p.labels!).map(l => l.textContent.trim()))).toEqual([['Points'], ['Points']]);
           expect(new Set(points.map(p => p.id)).size).toBe(points.length);
         });
 
         it('submits the points entered for a group member', async () => {
-          const points = groupCards()[0].querySelector<HTMLInputElement>('input[name="groupPosition"]');
+          const points = groupCards()[0].querySelector<HTMLInputElement>('input[name="groupPosition"]')!;
           await render();
           expect(points.value).toBe('3');
 
@@ -1764,19 +1763,19 @@ describe('AdminSc2Component', () => {
           expect(req.request.method).toBe('PUT');
           expect(req.request.body).toEqual({ points: 7 });
           req.flush({});
-          expect(component.groups()[0].participants[0].playerPoints).toBe(7);
+          expect(component.groups()![0].participants![0].playerPoints).toBe(7);
         });
 
         it('renames a group inline and submits it for the selected tournament', async () => {
           const card = groupCards()[0];
 
-          named(card, 'Edit group').click();
+          named(card, 'Edit group')!.click();
           await render();
           const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
           expect(input).not.toBeNull();
-          typeInto(input, 'Group Alpha');
+          typeInto(input!, 'Group Alpha');
 
-          named(card, 'Save group').click();
+          named(card, 'Save group')!.click();
 
           const req = httpMock.expectOne(`${api()}/tournament/sc2group?id=g1`);
           expect(req.request.method).toBe('PUT');
@@ -1785,29 +1784,29 @@ describe('AdminSc2Component', () => {
           await render();
 
           expect(card.querySelector('input#groupNameg1')).toBeNull();
-          expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group Alpha', 'Group B']);
+          expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group Alpha', 'Group B']);
         });
 
         it('cancels renaming a group without submitting', async () => {
           const card = groupCards()[0];
 
-          named(card, 'Edit group').click();
+          named(card, 'Edit group')!.click();
           await render();
-          named(card, 'Cancel').click();
+          named(card, 'Cancel')!.click();
           await render();
 
           expect(card.querySelector('input#groupNameg1')).toBeNull();
-          expect(card.querySelector('h1').textContent.trim()).toBe('Group A');
+          expect(card.querySelector('h1')!.textContent.trim()).toBe('Group A');
         });
 
         it('deletes a group once its deletion is confirmed', async () => {
           const confirmGroup = confirms()[0];
           const trigger = component.pipeTrigger();
 
-          named(groupCards()[1], 'Delete group').click();
+          named(groupCards()[1], 'Delete group')!.click();
           await render();
           expect(confirmGroup.dialog().isOpen).toBe(true);
-          dialogAction(confirmGroup.dialog(), 'OK').click();
+          dialogAction(confirmGroup.dialog(), 'OK')!.click();
 
           const req = httpMock.expectOne(`${api()}/tournament/group?id=g2`);
           expect(req.request.method).toBe('DELETE');
@@ -1815,32 +1814,32 @@ describe('AdminSc2Component', () => {
           await render();
 
           expect(component.pipeTrigger()).toBe(trigger + 1);
-          expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A']);
+          expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group A']);
         });
 
         it('returns the members of a deleted group to the unassigned participants', async () => {
           const confirmGroup = confirms()[0];
           expect(unassigned()).toEqual(['Alpha#111', 'Charlie#333']);
 
-          named(groupCards()[0], 'Delete group').click();
+          named(groupCards()[0], 'Delete group')!.click();
           await render();
-          dialogAction(confirmGroup.dialog(), 'OK').click();
+          dialogAction(confirmGroup.dialog(), 'OK')!.click();
 
           httpMock.expectOne(`${api()}/tournament/group?id=g1`).flush({});
           await render();
 
-          expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group B']);
+          expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group B']);
           expect(unassigned()).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
         });
 
         it('creates a new group for the selected tournament', async () => {
-          named(newGroupCard(), 'New group').click();
+          named(newGroupCard()!, 'New group')!.click();
           await render();
-          const input = newGroupCard().querySelector<HTMLInputElement>('input#newGroupName');
-          typeInto(input, 'Group C');
+          const input = newGroupCard()!.querySelector<HTMLInputElement>('input#newGroupName');
+          typeInto(input!, 'Group C');
           await render();
 
-          buttonIn(newGroupCard(), 'Submit').click();
+          buttonIn(newGroupCard()!, 'Submit')!.click();
 
           const req = httpMock.expectOne(`${api()}/tournament/sc2group`);
           expect(req.request.method).toBe('PUT');
@@ -1848,47 +1847,47 @@ describe('AdminSc2Component', () => {
           req.flush({ id: 'g3', name: 'Group C', tournamentId: 't1', participants: [] });
           await render();
 
-          expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A', 'Group B', 'Group C']);
-          expect(newGroupCard().textContent).toContain('New group');
+          expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group A', 'Group B', 'Group C']);
+          expect(newGroupCard()!.textContent).toContain('New group');
 
           // Starting another group begins with an empty name
           expect(component.newGroup).toEqual({ id: '', name: '', inEdit: false });
-          named(newGroupCard(), 'New group').click();
+          named(newGroupCard()!, 'New group')!.click();
           await render();
-          expect(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName').value).toBe('');
+          expect(newGroupCard()!.querySelector<HTMLInputElement>('input#newGroupName')!.value).toBe('');
         });
 
         it('gives each group name editor an id of its own, labelled by its label', async () => {
-          groupCards().forEach(card => named(card, 'Edit group').click());
-          named(newGroupCard(), 'New group').click();
+          groupCards().forEach(card => named(card, 'Edit group')!.click());
+          named(newGroupCard()!, 'New group')!.click();
           await render();
 
           const inputs = Array.from(el().querySelectorAll<HTMLInputElement>('.card-wrapper igx-card-header input'));
           expect(inputs.map(i => i.id)).toEqual(['groupNameg1', 'groupNameg2', 'newGroupName']);
           inputs.forEach(input => {
-            const label = input.closest('igx-input-group').querySelector('label');
+            const label = input.closest('igx-input-group')!.querySelector('label')!;
             expect(label.htmlFor).toBe(input.id);
             expect(label.textContent).toContain('Group name');
           });
         });
 
         it('clears the name of a new group and cancels creating it', async () => {
-          named(newGroupCard(), 'New group').click();
+          named(newGroupCard()!, 'New group')!.click();
           await render();
-          expect(newGroupCard().querySelector('igx-suffix')).toBeNull();
-          typeInto(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName'), 'Group C');
+          expect(newGroupCard()!.querySelector('igx-suffix')).toBeNull();
+          typeInto(newGroupCard()!.querySelector<HTMLInputElement>('input#newGroupName')!, 'Group C');
           await render();
 
-          named(newGroupCard(), 'Clear group name').click();
+          named(newGroupCard()!, 'Clear group name')!.click();
           await render();
-          expect(component.newGroup.name).toBeNull();
-          expect(newGroupCard().querySelector('igx-suffix')).toBeNull();
+          expect(component.newGroup.name).toBe('');
+          expect(newGroupCard()!.querySelector('igx-suffix')).toBeNull();
 
-          buttonIn(newGroupCard(), 'Cancel').click();
+          buttonIn(newGroupCard()!, 'Cancel')!.click();
           await render();
 
           expect(component.newGroup.inEdit).toBe(false);
-          expect(newGroupCard().textContent).toContain('New group');
+          expect(newGroupCard()!.textContent).toContain('New group');
         });
       });
     });

@@ -10,7 +10,7 @@
     @for (player of players(); track player.id) {
       <igx-card class="result-card" elevated>
         <igx-card-header>
-          <igx-avatar igxCardThumbnail [src]="player.csgoDetails?.avatarMedium" [size]="'medium'" [initials]="player.username" shape="circle"></igx-avatar>
+          <igx-avatar igxCardThumbnail [src]="player.csgoDetails?.avatarMedium ?? ''" [size]="'medium'" [initials]="player.username" shape="circle"></igx-avatar>
           <h3 igxCardHeaderTitle class="highlight">
             <!-- The link covers the whole card, so the card stays clickable everywhere -->
             <a class="card-link" [routerLink]="['/players', player.csgoDetails?.customUrl || player.id]">{{ player.username }}</a>

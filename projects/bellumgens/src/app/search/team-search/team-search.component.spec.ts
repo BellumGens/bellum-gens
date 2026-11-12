@@ -6,7 +6,7 @@ import { Router, provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, PlaystyleRole } from '../../../../../common/src/public_api';
+import { ApplicationUser, PlaystyleRole } from 'bellum-gens-common/models';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -36,7 +36,7 @@ describe('TeamSearchComponent', () => {
   });
 
   const submit = async () => {
-    el().querySelector<HTMLButtonElement>('button.search-button').click();
+    el().querySelector<HTMLButtonElement>('button.search-button')!.click();
     await fixture.whenStable();
   };
 
@@ -100,7 +100,7 @@ describe('TeamSearchComponent', () => {
   it('should include the schedule overlap in the search query', async () => {
     fixture.componentRef.setInput('authUser', { id: 'user-id', username: 'TestUser' } as ApplicationUser);
     await fixture.whenStable();
-    const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb');
+    const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb')!;
     for (let i = 0; i < 5; i++) {
       thumb.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
     }

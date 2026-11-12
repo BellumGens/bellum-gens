@@ -1,5 +1,8 @@
 import { Component, effect, inject, signal, Signal } from '@angular/core';
-import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
+import { ApplicationUser, Tournament } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
+import { LoadingComponent } from 'bellum-gens-common';
+import { RaceIconPipe } from 'bellum-gens-common/pipes';
 import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -28,12 +31,12 @@ export class ScPlayerComponent {
   private apiService = inject(BellumgensApiService);
 
   // Handed down by the parent PlayerComponent through the router outlet.
-  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
+  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser | null>;
 
   public loading = this.apiService.loadingPlayer;
   public tournaments = signal<Tournament []>([]);
 
-  private tournamentsLoadedFor: string;
+  private tournamentsLoadedFor?: string;
 
   constructor() {
     effect(() => {

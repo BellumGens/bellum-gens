@@ -12,8 +12,8 @@
         }
         @for (registration of registrations(); track registration.id) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.team.teamAvatar"
-              [initials]="registration.team.teamName"
+            <igx-avatar [src]="registration.team?.teamAvatar ?? ''"
+              [initials]="registration.team?.teamName ?? ''"
               [title]="registration.companyId"
               size="medium"
               shape="circle">
@@ -27,7 +27,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
+            <a [href]="environment.bellumgens + '/team/' + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }
@@ -150,7 +150,7 @@
           <igx-grid
             cellSelection="none"
             [isLoading]="loadingGroups()"
-            [data]="group.participants">
+            [data]="group.participants ?? null">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
             </igx-grid-toolbar>

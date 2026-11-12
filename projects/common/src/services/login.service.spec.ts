@@ -1,11 +1,25 @@
 import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
-import { ApplicationUser, CSGOTeam, CommunicationService, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification, UserPreferences, UserRegistration } from '../public_api';
-import { Game } from '../models/tournament';
+import {
+  ApplicationUser,
+  CSGOTeam,
+  LoginProvider,
+  NotificationState,
+  TournamentApplication,
+  UserLogin,
+  UserNotification,
+  UserPreferences,
+  UserRegistration,
+  Game
+} from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
+import { PAGE_LOCATION } from './page-location';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
@@ -13,8 +27,11 @@ describe('LoginService', () => {
   let service: LoginService;
   let commsService: CommunicationService;
   let httpMock: HttpTestingController;
+  let location: { href: string };
 
   beforeEach(() => {
+    // jsdom does not implement navigation, so the location the service reads and writes is stubbed.
+    location = { href: 'http://localhost:4200/' };
     TestBed.configureTestingModule({
     imports: [
         ServiceWorkerModule.register('', { enabled: false })
@@ -23,7 +40,8 @@ describe('LoginService', () => {
           LoginService,
           { provide: SwPush, useValue: {} },
           provideHttpClient(withXhr(), withInterceptorsFromDi()),
-          provideHttpClientTesting()
+          provideHttpClientTesting(),
+          { provide: PAGE_LOCATION, useFactory: () => location }
       ]
     });
     service = TestBed.inject(LoginService);
@@ -194,8 +212,8 @@ describe('LoginService', () => {
 
   it('should get user notifications', () => {
     const userNotifications: UserNotification[] = [
-      { state: NotificationState.Seen, teamInfo: null, invitingUser: null, sent: '2021-01-01T00:00:00.000Z' },
-      { state: NotificationState.Accepted, teamInfo: null, invitingUser: null, sent: '2021-01-01T00:00:00.000Z' }
+      { state: NotificationState.Seen, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '2021-01-01T00:00:00.000Z' },
+      { state: NotificationState.Accepted, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '2021-01-01T00:00:00.000Z' }
     ];
 
     const result = service.userNotifications;
@@ -394,4 +412,158 @@ describe('LoginService', () => {
     expect(req.request.withCredentials).toEqual(true);
   });
 
+  it('should send the user to the login provider and back to the current page', () => {
+    const page = 'http://localhost:4200/players/some-player';
+    location.href = page;
+    service.login({ name: 'Steam', url: 'https://localhost:44348/api/account/externallogin?provider=Steam', state: '' });
+
+    expect(location.href).toBe(`https://localhost:44348/api/account/externallogin?provider=Steam&returnUrl=${page}`);
+  });
+
+  it('should report a failed logout and keep the user', () => {
+    const errors: string[] = [];
+    commsService.error.subscribe(message => errors.push(message));
+    service['_applicationUser'].set({ id: '1' } as ApplicationUser);
+
+    service.logout().subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/logout`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(errors.length).toBe(1);
+    expect(service['_applicationUser']()).toEqual({ id: '1' });
+  });
+
+  it('should report a failed newsletter subscription', () => {
+    const errors: string[] = [];
+    commsService.error.subscribe(message => errors.push(message));
+
+    service.addSubscriber('test-email').subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/account/subscribe`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(errors.length).toBe(1);
+  });
+
+  it('should report the server message when the login is rejected', () => {
+    const errors: string[] = [];
+    commsService.error.subscribe(message => errors.push(message));
+
+    service.loginWithForm({ username: 'u', password: 'p', rememberMe: false }).subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/login`).flush('Account locked.', { status: 401, statusText: 'Unauthorized' });
+    service.loginWithForm({ username: 'u', password: 'p', rememberMe: false }).subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/login`).flush('', { status: 401, statusText: 'Unauthorized' });
+
+    expect(errors).toEqual(['Account locked.', 'Login failed. Please check your credentials and try again.']);
+    expect(service['_applicationUser']()).toBeNull();
+  });
+
+});
+
+describe('LoginService push notifications', () => {
+  let service: LoginService;
+  let httpMock: HttpTestingController;
+  let commsService: CommunicationService;
+  let router: Router;
+  let messages: Subject<unknown>;
+  let clicks: Subject<{ action: string; notification: { data: unknown } }>;
+  let swPush: { isEnabled: boolean; requestSubscription: ReturnType<typeof vi.fn>; messages: Subject<unknown>; notificationClicks: Subject<{ action: string; notification: { data: unknown } }> };
+  const user = { id: '1', username: 'test-user' } as ApplicationUser;
+  const subscription = { endpoint: 'https://push.example.com/1' } as PushSubscription;
+  // The subscription request resolves a promise, so its follow-up runs on a later tick
+  const settle = () => new Promise(resolve => setTimeout(resolve));
+
+  const configure = (enabled: boolean, request: Promise<PushSubscription>) => {
+    messages = new Subject();
+    clicks = new Subject();
+    swPush = { isEnabled: enabled, requestSubscription: vi.fn().mockReturnValue(request), messages, notificationClicks: clicks };
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: SwPush, useValue: swPush },
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting()
+      ]
+    });
+    service = TestBed.inject(LoginService);
+    httpMock = TestBed.inject(HttpTestingController);
+    commsService = TestBed.inject(CommunicationService);
+    router = TestBed.inject(Router);
+  };
+
+  const logIn = async () => {
+    service.applicationUser();
+    httpMock.expectOne(`${service['_apiEndpoint']}`).flush(user);
+    await settle();
+  };
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+  it('should subscribe the logged in user to push notifications', async () => {
+    configure(true, Promise.resolve(subscription));
+
+    await logIn();
+
+    expect(swPush.requestSubscription).toHaveBeenCalledWith({ serverPublicKey: expect.any(String) });
+    const req = httpMock.expectOne(`${service['_apiBase']}/push/subscribe`);
+    expect(req.request.body).toEqual(subscription);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+  });
+
+  it('should show a pushed message and reload the user', async () => {
+    configure(true, Promise.resolve(subscription));
+    await logIn();
+    httpMock.expectOne(`${service['_apiBase']}/push/subscribe`).flush({});
+    const shown: string[] = [];
+    commsService.message.subscribe(message => shown.push(message));
+
+    messages.next({ notification: { title: 'You were invited to a team' } });
+    const updated = { ...user, username: 'renamed' };
+    httpMock.expectOne(`${service['_apiEndpoint']}`).flush(updated);
+
+    expect(shown).toEqual(['You were invited to a team']);
+    expect(service.applicationUser()).toEqual(updated);
+  });
+
+  it('should open the page a clicked notification points to', async () => {
+    configure(true, Promise.resolve(subscription));
+    await logIn();
+    httpMock.expectOne(`${service['_apiBase']}/push/subscribe`).flush({});
+    const navigate = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+    const open = vi.spyOn(window, 'open').mockReturnValue(null);
+
+    clicks.next({ action: 'viewteam', notification: { data: 'team-1' } });
+    clicks.next({ action: 'viewuser', notification: { data: 'user-1' } });
+    clicks.next({ action: 'viewstrategy', notification: { data: 'strat-1' } });
+    clicks.next({ action: 'checkin', notification: { data: { callbackUrl: 'https://checkin.example.com' } } });
+    clicks.next({ action: '', notification: { data: null } });
+
+    expect(navigate.mock.calls).toEqual([
+      [['team', 'team-1']],
+      [['players', 'user-1']],
+      [['strategies', 'details', 'strat-1']]
+    ]);
+    expect(open).toHaveBeenCalledExactlyOnceWith('https://checkin.example.com', '_blank');
+    open.mockRestore();
+  });
+
+  it('should keep working when the browser refuses push notifications', async () => {
+    const log = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    configure(true, Promise.reject(new Error('Permission denied')));
+
+    await logIn();
+
+    httpMock.expectNone(`${service['_apiBase']}/push/subscribe`);
+    expect(log).toHaveBeenCalledWith(new Error('Permission denied'));
+    expect(service.applicationUser()).toEqual(user);
+    log.mockRestore();
+  });
+
+  it('should not ask for push notifications without a service worker', async () => {
+    configure(false, Promise.resolve(subscription));
+
+    await logIn();
+
+    expect(swPush.requestSubscription).not.toHaveBeenCalled();
+    httpMock.expectNone(`${service['_apiBase']}/push/subscribe`);
+  });
 });

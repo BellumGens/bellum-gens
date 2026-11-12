@@ -1,0 +1,13 @@
+import { Pipe, type PipeTransform } from '@angular/core';
+import { ACTIVE_DUTY, type CSGOMap } from 'bellum-gens-common/models';
+
+@Pipe({
+    name: 'csgomapimage'
+})
+export class CSGOMapimagePipe implements PipeTransform {
+
+  public transform(map: CSGOMap | null | undefined): string {
+    return ACTIVE_DUTY.find(m => m.mapId === map)?.image || '';
+  }
+
+}

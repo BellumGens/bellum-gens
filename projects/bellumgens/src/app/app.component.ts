@@ -5,7 +5,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
-import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSettings, changei18n } from '@infragistics/igniteui-angular/core';
+import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSettings } from '@infragistics/igniteui-angular/core';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective, IgxPrefixDirective, IgxSuffixDirective } from '@infragistics/igniteui-angular/input-group';
 import { IgxBannerActionsDirective, IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
@@ -15,28 +15,17 @@ import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 
-import {
-  LoginService,
-  ApplicationUser,
-  BellumgensApiService,
-  SearchResult,
-  GLOBAL_OVERLAY_SETTINGS,
-  CSGOTeam,
-  ApiSearchService,
-  CommunicationService
-} from '../../../common/src/public_api';
+import { LoginService, BellumgensApiService, ApiSearchService, CommunicationService } from 'bellum-gens-common/services';
+import { ApplicationUser, GLOBAL_OVERLAY_SETTINGS, CSGOTeam } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
+import { SuccessErrorComponent, LoginComponent, LanguagesComponent, CartBadgeComponent, LANGUAGES, localizeIgniteUI } from 'bellum-gens-common';
 
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { environment } from '../../../common/src/environments/environment';
-import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { SearchComponent } from './search/search/search.component';
-import { LoginComponent } from '../../../common/src/lib/login/login.component';
-import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
-import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 // Type only, so the lazy loaded notifications route stays out of the main bundle
 import type { NotificationsComponent } from './notifications/notifications.component';
 
@@ -65,6 +54,7 @@ import type { NotificationsComponent } from './notifications/notifications.compo
     IgxInputDirective,
     IgxSuffixDirective,
     LanguagesComponent,
+    CartBadgeComponent,
     LoginComponent,
     IgxBannerComponent,
     IgxBannerActionsDirective,
@@ -95,9 +85,9 @@ export class AppComponent {
 
   private isBrowser = isPlatformBrowser(this.platformId);
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser>(null).asReadonly();
-  public teams = signal<CSGOTeam []>(null);
-  public searchResult: SearchResult;
+  public authUser: Signal<ApplicationUser | null> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser | null>(null).asReadonly();
+  public teams = signal<CSGOTeam [] | null>(null);
+  public teamCount = computed(() => this.teams()?.length ?? 0);
   public searchTerm = signal('');
   // Whether the search, collapsed behind a toggle on narrow screens, is shown
   public searchExpanded = signal(false);
@@ -184,12 +174,9 @@ export class AppComponent {
     //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
 
-    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
-    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+    LANGUAGES.forEach(l => this.iconService.addSvgIcon(l.code, `/assets/country-flags/svg/${l.flag}.svg`, 'languages'));
 
-    if (this.localeId === 'bg') {
-      changei18n(IgxResourceStringsBG);
-    }
+    localizeIgniteUI(this.localeId);
   }
 
   private initQuickSearch() {

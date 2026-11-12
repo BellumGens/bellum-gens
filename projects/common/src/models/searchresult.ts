@@ -4,7 +4,7 @@ import { ApplicationUser } from './applicationuser';
 
 export interface SearchResult {
   teams: CSGOTeam [];
-  steamUser: ApplicationUser;
+  steamUser: ApplicationUser | null;
   players: ApplicationUser [];
   strategies: CSGOStrategy [];
 }

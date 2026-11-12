@@ -2,12 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { provideRouter } from '@angular/router';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { LoginService, SocialMediaService } from 'bellum-gens-common/services';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,7 +19,6 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        
         ServiceWorkerModule.register('', { enabled: false }),
         HomeComponent
       ],
@@ -47,16 +48,42 @@ describe('HomeComponent', () => {
     expect(component.resize).toHaveBeenCalled();
   });
 
-  it('should call subscribe method when subscribe is called', () => {
-    vi.spyOn(component, 'subscribe').mockImplementation(() => undefined);
-    component.subscribe();
-    expect(component.subscribe).toHaveBeenCalled();
+  it('should subscribe the typed email to the newsletter', async () => {
+    const httpMock = TestBed.inject(HttpTestingController);
+    const email = fixture.nativeElement.querySelector('#subemail') as HTMLInputElement;
+    const submit = fixture.nativeElement.querySelector('.submit-email') as HTMLButtonElement;
+    expect(submit.disabled).toBe(true);
+
+    email.value = 'fan@example.com';
+    email.dispatchEvent(new Event('input'));
+    await fixture.whenStable();
+    expect(submit.disabled).toBe(false);
+    submit.click();
+
+    const req = httpMock.expectOne(r => r.url.endsWith('/account/subscribe'));
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual({ email: 'fan@example.com' });
+    req.flush({});
   });
 
-  it('should call tweet method when tweet is called', () => {
-    vi.spyOn(component, 'tweet').mockImplementation(() => undefined);
-    component.tweet();
-    expect(component.tweet).toHaveBeenCalled();
+  it('should not subscribe without an email', () => {
+    const httpMock = TestBed.inject(HttpTestingController);
+
+    component.subscribe();
+    component.userEmail.set('');
+    component.subscribe();
+
+    httpMock.expectNone(r => r.url.endsWith('/account/subscribe'));
+  });
+
+  it('should tweet at Bellum Gens', () => {
+    const tweet = vi.spyOn(TestBed.inject(SocialMediaService), 'tweetWithText').mockImplementation(() => undefined);
+
+    const button = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
+      .find(b => b.getAttribute('class')?.includes('space-out-button'))!;
+    button.click();
+
+    expect(tweet).toHaveBeenCalledWith('Hey @BellumGens ...');
   });
 
   it('should initialize navigation property', () => {
@@ -64,8 +91,8 @@ describe('HomeComponent', () => {
     expect(typeof component.navigation()).toBe('boolean');
   });
 
-  it('should initialize userEmail to null', () => {
-    expect(component.userEmail()).toBeNull();
+  it('should initialize userEmail to an empty string', () => {
+    expect(component.userEmail()).toBe('');
   });
 
   it('should have environment property', () => {
@@ -76,25 +103,38 @@ describe('HomeComponent', () => {
     expect(component.authUser()).toBeDefined();
   });
 
-  it('should call openLogin method when openLogin is called', () => {
-    vi.spyOn(component, 'openLogin').mockImplementation(() => undefined);
-    component.openLogin();
-    expect(component.openLogin).toHaveBeenCalled();
+  it('should ask the app to open the login dialog from the sign-up button', () => {
+    let opened = 0;
+    TestBed.inject(LoginService).openLogin.subscribe(() => opened++);
+    const signUp = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('.slide2 button'));
+
+    expect(signUp.map(b => b.textContent.trim())).toEqual(['Sign-up Now']);
+    signUp[0].click();
+
+    expect(opened).toBe(1);
+  });
+
+  it('should send a logged in user to the team section instead of the sign-up', async () => {
+    TestBed.inject(LoginService)['_applicationUser'].set({ id: 'user-1' } as ApplicationUser);
+    await fixture.whenStable();
+
+    const buttons = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('.slide2 button'));
+    expect(buttons.map(b => b.textContent.trim())).toEqual(['Go to Team Section']);
   });
 
   it('should clear the subscription email from a named button that does not submit the form', async () => {
     const email = fixture.nativeElement.querySelector('#subemail') as HTMLInputElement;
-    const clear = () => email.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+    const clear = () => email.closest('igx-input-group')!.querySelector<HTMLButtonElement>('igx-suffix button');
     expect(clear()).toBeNull();
 
     email.value = 'fan@example.com';
     email.dispatchEvent(new Event('input'));
     await fixture.whenStable();
 
-    expect(clear().type).toBe('button');
-    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+    expect(clear()!.type).toBe('button');
+    expect(clear()!.getAttribute('aria-label')).toBe('Clear email');
 
-    clear().click();
+    clear()!.click();
     await fixture.whenStable();
 
     expect(component.userEmail()).toBe('');

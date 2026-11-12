@@ -1,13 +1,7 @@
 import { Component, Signal, effect, inject, input, signal, untracked } from '@angular/core';
-import {
-  EMPTY_NEW_APPLICATION, Game, GAMES,
-  ApplicationUser,
-  LoginService,
-  ApiTournamentsService,
-  BellumgensApiService,
-  CSGOTeam,
-  BATTLE_TAG_REGEX
-} from '../../../../common/src/public_api';
+import { EMPTY_NEW_APPLICATION, Game, GAMES, ApplicationUser, CSGOTeam, BATTLE_TAG_REGEX } from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService, BellumgensApiService } from 'bellum-gens-common/services';
+import { StartsWithPipe } from 'bellum-gens-common/pipes';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IGX_DRAG_DROP_DIRECTIVES, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
@@ -18,7 +12,6 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import { StartsWithPipe } from '../../../../common/src/lib/pipes/starts-with.pipe';
 
 @Component({
   selector: 'app-tournament-registration',
@@ -48,13 +41,13 @@ export class TournamentRegistrationComponent {
   public tournamentId = input<string>();
 
   public application = signal(Object.assign({}, EMPTY_NEW_APPLICATION));
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   public companies = this.apiService.companies;
   public games = GAMES;
   public gameEnum = Game;
   public inProgress = signal(false);
   public detailsVisible = signal(false);
-  public userTeams = signal<CSGOTeam []>(null);
+  public userTeams = signal<CSGOTeam [] | null>(null);
 
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
@@ -66,7 +59,7 @@ export class TournamentRegistrationComponent {
     effect(() => {
       const user = this.authUser();
       if (user) {
-        untracked(() => this.application.update(application => ({ ...application, email: user.email })));
+        untracked(() => this.application.update(application => ({ ...application, email: user.email ?? '' })));
       }
     });
   }
@@ -89,7 +82,7 @@ export class TournamentRegistrationComponent {
   public selectGame(game: Game) {
     this.application.update(application => ({ ...application, game }));
     const element = document.getElementById('registration');
-    element.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: 'smooth' });
     this.showDetails();
   }
 
@@ -97,10 +90,14 @@ export class TournamentRegistrationComponent {
     const game = this.application().game;
     if (game !== null) {
       this.detailsVisible.set(true);
+      const user = this.authUser();
+      if (!user) {
+        return;
+      }
       if (game === Game.CSGO) {
-        this.userService.getUserTeams(this.authUser().id).subscribe(teams => this.userTeams.set(teams));
+        this.userService.getUserTeams(user.id).subscribe(teams => this.userTeams.set(teams));
       } else if (game === Game.StarCraft2) {
-        this.application.update(application => ({ ...application, battleNetId: this.authUser().battleNetId }));
+        this.application.update(application => ({ ...application, battleNetId: user.battleNetId }));
       }
     }
   }

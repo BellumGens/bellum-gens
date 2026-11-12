@@ -1,11 +1,11 @@
 import { Component, OnInit, PLATFORM_ID, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { isPlatformBrowser, DatePipe } from '@angular/common';
-import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
+import { ApplicationUser, EarlyBird } from 'bellum-gens-common/models';
+import { BellumgensApiService, CommunicationService, LoginService } from 'bellum-gens-common/services';
 import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
-import { EarlyBird } from '../../../../common/src/models/subscribers';
 import { BaseDirective } from '../base/base.component';
 
 @Component({
@@ -85,6 +85,9 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
   }
 
   public submit() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     if (!this.authUser() || this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -94,7 +97,6 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
       email: this.form.value.email as string,
       firstTime: !!this.form.value.firstTime
     };
-    if (!isPlatformBrowser(this.platformId)) return;
     this.apiService.earlyBirdSignup(payload).subscribe({
       next: () => {
         this.submitting.set(false);

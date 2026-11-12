@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, input, output, signal } from '@angular/core';
-import { TeamApplication, CSGOTeam, BellumgensApiService } from '../../../../../common/src/public_api';
+import { TeamApplication, CSGOTeam } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
@@ -35,14 +36,14 @@ export class TeamNotificationsComponent implements OnInit {
   public changed = output<number>();
 
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  public applications = signal<TeamApplication []>(null);
+  public applications = signal<TeamApplication [] | null>(null);
   public actionInProgress = signal(false);
   public actionText = signal('');
 
   public ngOnInit() {
-    const team = this.team();
-    if (team) {
-      this.apiService.teamApplications(team.teamId).subscribe(data => {
+    const teamId = this.team()?.teamId;
+    if (teamId) {
+      this.apiService.teamApplications(teamId).subscribe(data => {
         this.applications.set(data);
         this.loaded.emit(data);
       });
@@ -80,6 +81,6 @@ export class TeamNotificationsComponent implements OnInit {
   }
 
   private replaceApplication(application: TeamApplication, updated: TeamApplication) {
-    this.applications.update(list => list.map(a => a === application ? { ...a, ...updated } : a));
+    this.applications.update(list => list && list.map(a => a === application ? { ...a, ...updated } : a));
   }
 }

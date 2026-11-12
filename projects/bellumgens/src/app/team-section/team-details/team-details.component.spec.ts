@@ -9,20 +9,11 @@ import { Observable, config, of, throwError } from 'rxjs';
 import { WritableSignal, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import type { Mock } from 'vitest';
-import {
-  ApplicationUser,
-  Availability,
-  BellumgensApiService,
-  CSGOTeam,
-  ConfirmComponent,
-  DayOfWeek,
-  LoginService,
-  PlaystyleRole,
-  TEAM_PLACEHOLDER,
-  TeamMember
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, Availability, CSGOTeam, DayOfWeek, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
+import { IDragStartEventArgs, IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
 
 const TEAM: CSGOTeam = {
   teamId: 'team-1',
@@ -33,7 +24,7 @@ const TEAM: CSGOTeam = {
 } as CSGOTeam;
 
 const member = (userId: string, overrides: Partial<TeamMember> = {}): TeamMember => ({
-  teamId: TEAM.teamId,
+  teamId: TEAM.teamId!,
   userId,
   steamId: `steam-${userId}`,
   isActive: true,
@@ -53,10 +44,10 @@ const member = (userId: string, overrides: Partial<TeamMember> = {}): TeamMember
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
   let fixture: ComponentFixture<TeamDetailsComponent>;
-  let team: WritableSignal<CSGOTeam>;
+  let team: WritableSignal<CSGOTeam | null>;
 
   beforeEach(async () => {
-    team = signal(TEAM_PLACEHOLDER);
+    team = signal<CSGOTeam | null>(TEAM_PLACEHOLDER);
     await TestBed.configureTestingModule({
       imports: [
 
@@ -153,7 +144,7 @@ describe('TeamDetailsComponent', () => {
   describe('with a team', () => {
     let apiService: BellumgensApiService;
     let loginService: LoginService;
-    let members: WritableSignal<TeamMember []>;
+    let members: WritableSignal<TeamMember [] | null>;
     let schedule: WritableSignal<Availability []>;
     let updateTeamMember: Mock;
     let removeTeamMember: Mock;
@@ -171,10 +162,10 @@ describe('TeamDetailsComponent', () => {
       { day: DayOfWeek.Monday, available: true, from: new Date(2020, 0, 1, 18), to: new Date(2020, 0, 1, 22) }
     ];
 
-    const setup = async (options: { admin?: boolean, teamMembers?: TeamMember [], user?: Partial<ApplicationUser> } = {}) => {
+    const setup = async (options: { admin?: boolean, teamMembers?: TeamMember [] | null, user?: Partial<ApplicationUser> } = {}) => {
       apiService = TestBed.inject(BellumgensApiService);
       loginService = TestBed.inject(LoginService);
-      members = signal(options.teamMembers === undefined ? allMembers : options.teamMembers);
+      members = signal<TeamMember [] | null>(options.teamMembers === undefined ? allMembers : options.teamMembers);
       schedule = signal(practice);
       loginService['_applicationUser'].set((options.user ?? { id: 'me' }) as ApplicationUser);
       vi.spyOn(loginService, 'getUserIsTeamAdmin').mockReturnValue(of(!!options.admin));
@@ -195,7 +186,7 @@ describe('TeamDetailsComponent', () => {
     const byTitle = (title: string) => Array.from((fixture.nativeElement as HTMLElement).querySelectorAll(`igx-avatar[title="${title}"]`)) as HTMLElement [];
     // The member actions are named after the action and the member, e.g. "Remove igl-user from role".
     const actions = (prefix: string, suffix: string) => Array.from((fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>('button.avatar-action'))
-      .filter(b => b.getAttribute('aria-label').startsWith(prefix) && b.getAttribute('aria-label').endsWith(suffix));
+      .filter(b => b.getAttribute('aria-label')!.startsWith(prefix) && b.getAttribute('aria-label')!.endsWith(suffix));
     const removeFromRoleButtons = () => actions('Remove ', ' from role');
     const moveToInactiveButtons = () => actions('Move ', ' to inactive');
     const removeFromTeamButtons = () => actions('Remove ', ' from team');
@@ -214,11 +205,11 @@ describe('TeamDetailsComponent', () => {
 
       it('should split members into role slots, bench and inactive lists', async () => {
         await setup();
-        expect(slot(PlaystyleRole.IGL).user).toEqual(igl);
-        expect(slot(PlaystyleRole.Awper).user).toEqual(awper);
-        expect(slot(PlaystyleRole.EntryFragger).user).toBeNull();
-        expect(slot(PlaystyleRole.Support).user).toBeNull();
-        expect(slot(PlaystyleRole.Lurker).user).toBeNull();
+        expect(slot(PlaystyleRole.IGL)!.user).toEqual(igl);
+        expect(slot(PlaystyleRole.Awper)!.user).toEqual(awper);
+        expect(slot(PlaystyleRole.EntryFragger)!.user).toBeNull();
+        expect(slot(PlaystyleRole.Support)!.user).toBeNull();
+        expect(slot(PlaystyleRole.Lurker)!.user).toBeNull();
         expect(ids(component.activeMembers())).toEqual(['bench-a', 'bench-b']);
         expect(ids(component.inactiveMembers())).toEqual(['inactive-a', 'inactive-b']);
       });
@@ -226,15 +217,15 @@ describe('TeamDetailsComponent', () => {
       it('should render role users, bench and inactive members', async () => {
         await setup();
         const el: HTMLElement = fixture.nativeElement;
-        const leaderLink = Array.from(el.querySelectorAll('.member-slot a')).find(a => a.textContent.trim() === 'Leader');
+        const leaderLink = Array.from(el.querySelectorAll('.member-slot a')).find(a => a.textContent.trim() === 'Leader')!;
         expect(leaderLink.getAttribute('href')).toBe('/players/leader');
         expect(text()).toContain('Sniper');
         expect(el.querySelectorAll('.empty-role').length).toBe(3);
-        expect(text().match(/\[ empty \]/g).length).toBe(3);
+        expect(text().match(/\[ empty \]/g)!.length).toBe(3);
         expect(el.querySelectorAll('.active-inactive-users').length).toBe(4);
         expect(text()).toContain('user-bench-a');
         expect(text()).toContain('user-inactive-b');
-        const benchLink = Array.from(el.querySelectorAll('.active-inactive-users a')).find(a => a.textContent.trim() === 'user-bench-a');
+        const benchLink = Array.from(el.querySelectorAll('.active-inactive-users a')).find(a => a.textContent.trim() === 'user-bench-a')!;
         expect(benchLink.getAttribute('href')).toBe('/players/bench-a');
         expect(text()).not.toContain('Bench is currently empty.');
         expect(text()).not.toContain('No inactive members.');
@@ -243,11 +234,11 @@ describe('TeamDetailsComponent', () => {
       it('should wait for members to arrive before splitting them', async () => {
         await setup({ teamMembers: null });
         expect(component.activeMembers()).toEqual([]);
-        expect(slot(PlaystyleRole.IGL).user).toBeNull();
+        expect(slot(PlaystyleRole.IGL)!.user).toBeNull();
 
         members.set(allMembers);
         await fixture.whenStable();
-        expect(slot(PlaystyleRole.IGL).user).toEqual(igl);
+        expect(slot(PlaystyleRole.IGL)!.user).toEqual(igl);
         expect(ids(component.activeMembers())).toEqual(['bench-a', 'bench-b']);
       });
 
@@ -324,7 +315,7 @@ describe('TeamDetailsComponent', () => {
       it('should not offer removing the current user from the team', () => {
         const removable = removeFromTeamButtons();
         expect(removable.length).toBe(1);
-        expect(removable[0].closest('.active-inactive-users').textContent).toContain('user-inactive-a');
+        expect(removable[0].closest('.active-inactive-users')!.textContent).toContain('user-inactive-a');
       });
 
       it('should highlight empty role slots while dragging and clear them when dragging ends', () => {
@@ -359,7 +350,7 @@ describe('TeamDetailsComponent', () => {
         expect(Object.keys(payload)).not.toContain('Role');
         expect(Object.keys(payload)).not.toContain('IsActive');
 
-        expect(slot(PlaystyleRole.EntryFragger).user).toEqual(payload);
+        expect(slot(PlaystyleRole.EntryFragger)!.user).toEqual(payload);
         expect(ids(component.activeMembers())).toEqual(['bench-a']);
         expect(ids(component.inactiveMembers())).toEqual(['inactive-a', 'inactive-b']);
         expect(text()).toContain('user-bench-b');
@@ -367,21 +358,21 @@ describe('TeamDetailsComponent', () => {
       });
 
       it('should activate an inactive member dropped into a role and remove only that member from the inactive list', () => {
-        component.assignToRole(dropArgs(inactiveA), slot(PlaystyleRole.Lurker));
+        component.assignToRole(dropArgs(inactiveA), slot(PlaystyleRole.Lurker)!);
 
         const payload: TeamMember = updateTeamMember.mock.calls[0][0];
         expect(payload).toEqual({ ...inactiveA, isActive: true, role: PlaystyleRole.Lurker });
         expect(Object.keys(payload)).not.toContain('Role');
         expect(Object.keys(payload)).not.toContain('IsActive');
-        expect(slot(PlaystyleRole.Lurker).user.userId).toBe('inactive-a');
+        expect(slot(PlaystyleRole.Lurker)!.user!.userId).toBe('inactive-a');
         expect(ids(component.inactiveMembers())).toEqual(['inactive-b']);
         expect(ids(component.activeMembers())).toEqual(['bench-a', 'bench-b']);
       });
 
       it('should clear drag highlighting after a drop', () => {
-        component.roleDragging({ cancel: false });
+        component.roleDragging({ cancel: false } as IDragStartEventArgs);
         expect(fixture.nativeElement.querySelectorAll('.empty-role-active').length).toBe(3);
-        component.assignToRole(dropArgs(benchA), slot(PlaystyleRole.Support));
+        component.assignToRole(dropArgs(benchA), slot(PlaystyleRole.Support)!);
         expect(fixture.nativeElement.querySelectorAll('.empty-role-active').length).toBe(0);
       });
 
@@ -391,7 +382,7 @@ describe('TeamDetailsComponent', () => {
         await fixture.whenStable();
 
         expect(updateTeamMember).toHaveBeenCalledWith({ ...igl, role: PlaystyleRole.NotSet });
-        expect(slot(PlaystyleRole.IGL).user).toBeNull();
+        expect(slot(PlaystyleRole.IGL)!.user).toBeNull();
         expect(ids(component.activeMembers())).toEqual(['bench-a', 'bench-b', 'igl']);
         expect(component.activeMembers()[2].role).toBe(PlaystyleRole.NotSet);
         expect(moveToInactiveButtons().length).toBe(3);

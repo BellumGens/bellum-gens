@@ -7,15 +7,13 @@ import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDra
 import { IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
-import { changei18n } from '@infragistics/igniteui-angular/core';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
-import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
-import { LoginService, ApplicationUser, CommunicationService } from '../../../common/src/public_api';
-import { environment } from '../../../common/src/environments/environment';
-import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
-import { LoginComponent } from '../../../common/src/lib/login/login.component';
-import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { LoginService, CommunicationService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
+import { SuccessErrorComponent, LoginComponent, LanguagesComponent, LANGUAGES, localizeIgniteUI } from 'bellum-gens-common';
+import { shopRedirectUrl } from './guards/shop-redirect.guard';
 
 @Component({
   selector: 'app-root',
@@ -58,12 +56,14 @@ export class AppComponent {
   private drawer = viewChild.required<IgxNavigationDrawerComponent>('drawer');
 
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
   public drawerPinned = signal(false);
   public environment = environment;
   public year = new Date().getFullYear();
+  /** The shop lives on bellumgens.com; link there in the visitor's language. */
+  public shopUrl = shopRedirectUrl('/shop', this.localeId);
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
@@ -103,11 +103,8 @@ export class AppComponent {
     //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
 
-    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
-    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+    LANGUAGES.forEach(l => this.iconService.addSvgIcon(l.code, `/assets/country-flags/svg/${l.flag}.svg`, 'languages'));
 
-    if (this.localeId === 'bg') {
-      changei18n(IgxResourceStringsBG);
-    }
+    localizeIgniteUI(this.localeId);
   }
 }

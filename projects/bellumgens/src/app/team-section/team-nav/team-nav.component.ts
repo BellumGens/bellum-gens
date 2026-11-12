@@ -1,11 +1,8 @@
 import { Component, inject, linkedSignal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import {
-  CSGOTeam,
-  BellumgensApiService,
-  LoginService,
-  ConfirmComponent
-} from '../../../../../common/src/public_api';
+import { CSGOTeam } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { TeamNewComponent } from '../team-new/team-new.component';

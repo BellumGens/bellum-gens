@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
-import { CommunicationService } from '../../services/communication.service';
+import { CommunicationService } from 'bellum-gens-common/services';
 
 @Component({
     selector: 'bg-success-error',
@@ -46,7 +46,7 @@ export class SuccessErrorComponent {
       .subscribe(message => this.showMessage('warn', message));
   }
 
-  public showMessage(type: string, msg?: string) {
+  public showMessage(type: keyof SuccessErrorComponent['settings'], msg?: string) {
     // The snackbar overlay needs a real DOM, and an error thrown here during SSR takes down the server process
     if (!this.isBrowser) {
       return;

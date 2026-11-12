@@ -257,13 +257,23 @@ textarea {
   border-radius: 20px;
 }
 
+.subscription-form {
+  width: min(480px, 100%);
+
+  .horizontal {
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .subscription-form-input {
-  min-width: min(348px, 100%);
+  flex: 1 1 220px;
+  min-width: 0;
 }
 
 .submit-email {
+  flex: none;
   height: 56px;
-  margin: 0 8px;
 }
 
 .contacts {

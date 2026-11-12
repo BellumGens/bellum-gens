@@ -1,0 +1,68 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/*.js",
+          "/manifest.json"
+        ]
+      }
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-public",
+      "urls": [
+        "https://api.bellumgens.com/api/companies$",
+        "https://api.bellumgens.com/api/shop/products$",
+        "https://api.bellumgens.com/api/shop/products?*$",
+        "https://api.bellumgens.com/api/shop/products/*$",
+        "https://api.bellumgens.com/api/strategy/strategies?*$",
+        "https://api.bellumgens.com/api/teams?*$",
+        "https://api.bellumgens.com/api/teams/availability?*$",
+        "https://api.bellumgens.com/api/teams/members?*$",
+        "https://api.bellumgens.com/api/teams/tournaments?*$",
+        "https://api.bellumgens.com/api/tournament?*$",
+        "https://api.bellumgens.com/api/tournament/activetournament$",
+        "https://api.bellumgens.com/api/tournament/tournaments$",
+        "https://api.bellumgens.com/api/tournament/regcount?*$",
+        "https://api.bellumgens.com/api/tournament/csgoregs$",
+        "https://api.bellumgens.com/api/tournament/csgoregs?*$",
+        "https://api.bellumgens.com/api/tournament/sc2regs$",
+        "https://api.bellumgens.com/api/tournament/sc2regs?*$",
+        "https://api.bellumgens.com/api/tournament/sc2groups$",
+        "https://api.bellumgens.com/api/tournament/sc2groups?*$",
+        "https://api.bellumgens.com/api/tournament/sc2matches$",
+        "https://api.bellumgens.com/api/tournament/sc2matches?*$",
+        "https://api.bellumgens.com/api/users?*$",
+        "https://api.bellumgens.com/api/users/availability?*$",
+        "https://api.bellumgens.com/api/users/mapPool?*$",
+        "https://api.bellumgens.com/api/users/tournaments?*$",
+        "https://api.bellumgens.com/api/users/usergroups?*$"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1d",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
+  ]
+}

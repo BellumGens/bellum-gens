@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SteamUser } from '../../../../common/src/public_api';
+import { SteamUser } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'steamCustomUrl'
 })
 export class SteamCustomUrlPipe implements PipeTransform {
 
-  public transform(user: SteamUser): string {
+  public transform(user: SteamUser | null | undefined): string | null {
     if (user && user.customURL) {
       return `https://steamcommunity.com/id/${user.customURL}`;
     } else if (user && user.steamID64) {

@@ -6,7 +6,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { ApplicationUser, CommunicationService, LoginService } from '../../../public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService } from 'bellum-gens-common/services';
 
 import { LoginDialogComponent } from './login-dialog.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -76,24 +77,51 @@ describe('LoginDialogComponent', () => {
 
   it('should open the registration dialog', () => {
     vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.openRegistration();
     expect(component.dialog().close).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
 
   it('should open the registration from a button that does not submit the form', async () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.openLogin();
     await fixture.whenStable();
 
-    const register = document.querySelector<HTMLButtonElement>('button.register-link');
+    const register = document.querySelector<HTMLButtonElement>('button.register-link')!;
     expect(register.type).toBe('button');
     expect(register.textContent.trim()).toBe("Don't have an account?");
 
     register.click();
 
     expect(router.navigate).toHaveBeenCalledWith(['register']);
+  });
+
+  it('should log in with what is typed into the form', async () => {
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
+    component.openLogin();
+    await fixture.whenStable();
+    const type = (id: string, value: string) => {
+      const input = document.querySelector<HTMLInputElement>(`#${id}`)!;
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+    };
+    const submit = () => document.querySelector<HTMLButtonElement>('button.submit-button')!;
+    expect(submit().disabled).toBe(true);
+
+    type('username', 'kdinev');
+    type('passwordField', 'secret');
+    document.querySelector<HTMLInputElement>('igx-checkbox[name="rememberme"] input[type="checkbox"]')!.click();
+    await fixture.whenStable();
+    expect(submit().disabled).toBe(false);
+
+    submit().click();
+
+    const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
+    expect(req.request.body).toEqual({ username: 'kdinev', password: 'secret', rememberMe: true });
+    req.flush(applicationUser);
+    httpMock.expectOne(`${loginService['_apiBase']}/tournament/registrations`).flush([]);
+    expect(component.dialog().close).toHaveBeenCalled();
   });
 
   it('should perform login with form data', () => {

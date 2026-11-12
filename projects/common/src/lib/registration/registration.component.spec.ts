@@ -6,8 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { Router } from '@angular/router';
 
 import { RegistrationComponent } from './registration.component';
-import { LoginService } from '../../services/login.service';
-import { CommunicationService } from '../../public_api';
+import { LoginService, CommunicationService } from 'bellum-gens-common/services';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('RegistrationComponent', () => {
@@ -53,7 +52,7 @@ describe('RegistrationComponent', () => {
   });
 
   it('should submit registration', () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
 
     component.submitRegistration();
@@ -119,6 +118,61 @@ describe('RegistrationComponent', () => {
     component.error.set('Registration failed');
     await fixture.whenStable();
     expect(fixture.nativeElement.querySelector('.error-hint').textContent.trim()).toBe('Registration failed');
+  });
+
+  describe('filling in the form', () => {
+    const el = (): HTMLElement => fixture.nativeElement;
+    const registerButton = () => el().querySelector<HTMLButtonElement>('button.submit-button')!;
+    const type = async (fields: Record<string, string>) => {
+      for (const [id, value] of Object.entries(fields)) {
+        const input = el().querySelector<HTMLInputElement>(`#${id}`)!;
+        input.value = value;
+        input.dispatchEvent(new Event('input'));
+        input.dispatchEvent(new Event('blur'));
+      }
+      await fixture.whenStable();
+      fixture.detectChanges();
+    };
+    const valid = { regusername: 'new-user', email: 'new@user.com', password: 'Passw0rd!', confirmPassword: 'Passw0rd!' };
+
+    it('keeps the register button disabled until the form was touched', () => {
+      expect(registerButton().disabled).toBe(true);
+    });
+
+    it('explains the password rules once a weak password was left', async () => {
+      expect(el().textContent).not.toContain('Must 8 or more characters');
+
+      await type({ password: 'weak' });
+
+      expect(el().textContent).toContain('Must 8 or more characters');
+      expect(registerButton().disabled).toBe(true);
+    });
+
+    it('flags a confirmation that does not match the password', async () => {
+      await type({ password: 'Passw0rd!', confirmPassword: 'Passw0rd?' });
+
+      expect(el().textContent).toContain('Doesn\'t match...');
+
+      await type({ confirmPassword: 'Passw0rd!' });
+
+      expect(el().textContent).not.toContain('Doesn\'t match...');
+    });
+
+    it('registers a complete account from the register button, disabled while it submits', async () => {
+      vi.spyOn(router, 'navigate').mockResolvedValue(true);
+      await type(valid);
+      expect(registerButton().disabled).toBe(false);
+
+      registerButton().click();
+      fixture.detectChanges();
+
+      expect(registerButton().disabled).toBe(true);
+      const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
+      expect(req.request.body).toEqual({ username: 'new-user', email: 'new@user.com', password: 'Passw0rd!', confirmPassword: 'Passw0rd!' });
+      req.flush({});
+
+      expect(router.navigate).toHaveBeenCalledWith(['/']);
+    });
   });
 
   describe('username check', () => {

@@ -17,15 +17,15 @@ export class IsVideoPipe implements PipeTransform {
 
   public static getYoutubeEmbedLink(url: string): string {
     const parts = this._youtubeRegEx.exec(url);
-    return `https://www.youtube.com/embed/${parts[5]}`;
+    return parts ? `https://www.youtube.com/embed/${parts[5]}` : '';
   }
 
   public static getTwitchEmbedLink(url: string): string {
     const parts = this._twitchRegEx.exec(url);
-    return `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}`;
+    return parts ? `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}` : '';
   }
 
-  public transform(url: string): any {
+  public transform(url: string): boolean {
     return IsVideoPipe.isYoutube(url) || IsVideoPipe.isTwitch(url);
   }
 

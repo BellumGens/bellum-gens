@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
-import { CSGOTeam } from '../models/csgoteam';
-import { SearchResult } from '../models/searchresult';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { CSGOTeam, SearchResult, CSGOStrategy, ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { throwError } from 'rxjs';
-import { environment } from '../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser } from '../models/applicationuser';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +15,11 @@ export class ApiSearchService {
 
   private _loadingQuickSearch = signal(false);
   private _loadingSearch = signal(false);
-  private _searchResult = signal<SearchResult>(null);
-  private _playerSearchResult = signal<ApplicationUser []>(null);
-  private _teamSearchResult = signal<CSGOTeam []>(null);
-  private _strategySearchResult = signal<CSGOStrategy []>(null);
-  private _searchTerm = signal<string>(null);
+  private _searchResult = signal<SearchResult | null>(null);
+  private _playerSearchResult = signal<ApplicationUser [] | null>(null);
+  private _teamSearchResult = signal<CSGOTeam [] | null>(null);
+  private _strategySearchResult = signal<CSGOStrategy [] | null>(null);
+  private _searchTerm = signal<string | null>(null);
 
   public readonly loadingQuickSearch = this._loadingQuickSearch.asReadonly();
   public readonly loadingSearch = this._loadingSearch.asReadonly();
@@ -40,8 +37,9 @@ export class ApiSearchService {
 
   public quickSearch(name: string) {
     this._searchTerm.set(name);
-    if (this._searchResultCache.has(name)) {
-      this._searchResult.set(this._searchResultCache.get(name));
+    const cached = this._searchResultCache.get(name);
+    if (cached) {
+      this._searchResult.set(cached);
     } else {
       this._loadingQuickSearch.set(true);
       this.getQuickSearch(name).subscribe({
@@ -56,8 +54,9 @@ export class ApiSearchService {
   }
 
   public searchTeams(query: string) {
-    if (this._teamSearchCache.has(query)) {
-      this._teamSearchResult.set(this._teamSearchCache.get(query));
+    const cached = this._teamSearchCache.get(query);
+    if (cached) {
+      this._teamSearchResult.set(cached);
     } else {
       if (query.startsWith('name')) {
         this.searchByName(query.split('=')[1], this._teamSearchResult, result => result.teams);
@@ -77,8 +76,9 @@ export class ApiSearchService {
   }
 
   public searchPlayers(query: string) {
-    if (this._playerSearchCache.has(query)) {
-      this._playerSearchResult.set(this._playerSearchCache.get(query));
+    const cached = this._playerSearchCache.get(query);
+    if (cached) {
+      this._playerSearchResult.set(cached);
     } else {
       if (query.startsWith('name')) {
         this.searchByName(query.split('=')[1], this._playerSearchResult, result => result.players);
@@ -98,8 +98,9 @@ export class ApiSearchService {
   }
 
   public searchStrategies(query: string) {
-    if (this._strategySearchCache.has(query)) {
-      this._strategySearchResult.set(this._strategySearchCache.get(query));
+    const cached = this._strategySearchCache.get(query);
+    if (cached) {
+      this._strategySearchResult.set(cached);
     } else {
       if (query.startsWith('name')) {
         this.searchByName(query.split('=')[1], this._strategySearchResult, result => result.strategies);
@@ -122,9 +123,10 @@ export class ApiSearchService {
    * Name searches are answered by the quick search, so reuse its cached result when there is one. A deep link
    * or a reload of a name search lands here before any quick search ran, so fetch the quick search then.
    */
-  private searchByName<T>(name: string, result: WritableSignal<T []>, pick: (searchResult: SearchResult) => T []) {
-    if (this._searchResultCache.has(name)) {
-      result.set(pick(this._searchResultCache.get(name)));
+  private searchByName<T>(name: string, result: WritableSignal<T [] | null>, pick: (searchResult: SearchResult) => T []) {
+    const cached = this._searchResultCache.get(name);
+    if (cached) {
+      result.set(pick(cached));
     } else {
       result.set([]);
       this._loadingSearch.set(true);

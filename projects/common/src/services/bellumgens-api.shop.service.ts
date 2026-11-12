@@ -1,9 +1,28 @@
 import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
-import { environment } from '../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Order, Product, ProductOrderDetails, Promo } from '../models/order';
-import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'bellum-gens-common/environments';
+import {
+  AddressRequest,
+  Brand,
+  OrderCreated,
+  OrderRequest,
+  OrderStatus,
+  OrderStatusUpdate,
+  OrderStatusView,
+  Product,
+  ProductType,
+  Promo,
+  PromoView,
+  Quote,
+  QuoteRequest,
+  SavedAddress,
+  ShopOrder,
+  ShopSettings,
+  ShopSettingsView,
+  WebhookRegistration
+} from 'bellum-gens-common/models';
 import { CommunicationService } from './communication.service';
 
 @Injectable({
@@ -14,69 +33,259 @@ export class ApiShopService {
   private commService = inject(CommunicationService);
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _products = signal<Product []>(null);
+  private _products = signal<Product[] | null>(null);
   private _productsReadonly = this._products.asReadonly();
   private _productsRequested = false;
-  private _cart = signal<ProductOrderDetails []>([]);
+  private _settings = signal<ShopSettingsView | null>(null);
+  private _settingsReadonly = this._settings.asReadonly();
+  private _settingsRequested = false;
 
-  public readonly cart = this._cart.asReadonly();
+  // Storefront
 
-  public submitOrder(order: Order) {
-    return this.http.post<Order>(`${this._apiEndpoint}/shop/order`, order);
-  }
-
-  public get products(): Signal<Product []> {
+  /** Active products, null until they are loaded. Loaded on first read and kept for the lifetime of the app. */
+  public get products(): Signal<Product[] | null> {
     untracked(() => {
-      if (!this._products() && !this._productsRequested) {
-        this._productsRequested = true;
-        this.http.get<Product []>(`${this._apiEndpoint}/shop/products`).subscribe({
-          next: (products) => this._products.set(products),
-          error: (error) => {
-            this._productsRequested = false;
-            this.commService.emitError(error.message);
-          }
-        });
+      if (!this._productsRequested) {
+        this.loadProducts();
       }
     });
     return this._productsReadonly;
   }
 
-  public deleteOrder(orderId: string) {
-    return this.http.delete<Order>(`${this._apiEndpoint}/shop/order?orderId=${orderId}`, { withCredentials: true }).pipe(
-      map(response => {
-        this.commService.emitSuccess('Order deleted successfully!');
-        return response;
+  /** Reloads the products once the catalog changed, if anything has read them. */
+  public refreshProducts() {
+    if (this._productsRequested) {
+      this.loadProducts();
+    }
+  }
+
+  public getProducts(brand?: Brand, type?: ProductType) {
+    let params = new HttpParams();
+    if (brand !== undefined && brand !== null) {
+      params = params.set('brand', brand);
+    }
+    if (type !== undefined && type !== null) {
+      params = params.set('type', type);
+    }
+    return this.http.get<Product[]>(`${this._apiEndpoint}/shop/products`, { params });
+  }
+
+  public getProduct(slug: string) {
+    return this.http.get<Product>(`${this._apiEndpoint}/shop/products/${encodeURIComponent(slug)}`);
+  }
+
+  public checkPromo(code: string) {
+    return this.http.get<PromoView>(`${this._apiEndpoint}/shop/promo`, { params: { code } });
+  }
+
+  /**
+   * The shipping cost, free shipping threshold, per-line quantity limit and currency the server prices carts with,
+   * null until they are loaded. Loaded on first read; a failed load is tried again on the next read.
+   */
+  public get settings(): Signal<ShopSettingsView | null> {
+    untracked(() => {
+      if (!this._settingsRequested) {
+        this.loadSettings();
+      }
+    });
+    return this._settingsReadonly;
+  }
+
+  public getSettings() {
+    return this.http.get<ShopSettingsView>(`${this._apiEndpoint}/shop/settings`);
+  }
+
+  public quote(request: QuoteRequest) {
+    return this.http.post<Quote>(`${this._apiEndpoint}/shop/quote`, request);
+  }
+
+  public createOrder(request: OrderRequest) {
+    return this.http.post<OrderCreated>(`${this._apiEndpoint}/shop/orders`, request, { withCredentials: true });
+  }
+
+  public getOrder(orderId: string) {
+    return this.http.get<OrderStatusView>(`${this._apiEndpoint}/shop/orders/${encodeURIComponent(orderId)}`);
+  }
+
+  public retryPayment(orderId: string) {
+    return this.http.post<OrderCreated>(`${this._apiEndpoint}/shop/orders/${encodeURIComponent(orderId)}/retry-payment`, null);
+  }
+
+  public getMyOrders() {
+    return this.http.get<OrderStatusView[]>(`${this._apiEndpoint}/shop/orders/mine`, { withCredentials: true });
+  }
+
+  /** The signed-in customer's saved delivery addresses, the most recently used first. */
+  public getAddresses() {
+    return this.http.get<SavedAddress[]>(`${this._apiEndpoint}/shop/addresses`, { withCredentials: true });
+  }
+
+  /** Saves an address to the signed-in customer's account; saving one already there marks it as just used. */
+  public saveAddress(address: AddressRequest) {
+    return this.http.post<SavedAddress>(`${this._apiEndpoint}/shop/addresses`, address, { withCredentials: true });
+  }
+
+  public deleteAddress(id: string) {
+    return this.http.delete<void>(`${this._apiEndpoint}/shop/addresses/${encodeURIComponent(id)}`, { withCredentials: true });
+  }
+
+  // Administration
+
+  public getAdminProducts() {
+    return this.http.get<Product[]>(`${this._apiEndpoint}/shopadmin/products`, { withCredentials: true });
+  }
+
+  public saveProduct(product: Product) {
+    // A new product has no id yet and is sent without one: the server assigns it, and an empty string would not bind to its Guid.
+    const { id, ...created } = product;
+    const request = id
+      ? this.http.put<Product>(`${this._apiEndpoint}/shopadmin/products/${id}`, product, { withCredentials: true })
+      : this.http.post<Product>(`${this._apiEndpoint}/shopadmin/products`, created, { withCredentials: true });
+    return request.pipe(
+      tap(() => {
+        this.refreshProducts();
+        this.commService.emitSuccess($localize`:@@shopProductSaved:Product saved!`);
       }),
-      catchError(error => {
-        this.commService.emitError(error.message);
-        return throwError(() => error);
-      })
+      catchError(error => this.fail<Product>(error))
     );
   }
 
-  public checkForPromo(code: string) {
-    return this.http.get<Promo>(`${this._apiEndpoint}/shop/promo?code=${code}`);
-  }
-
-  public addToCart(cartItem: ProductOrderDetails) {
-    this._cart.update(cart => [...cart, cartItem]);
-    this.commService.emitSuccess(`${cartItem.product.productName} added to cart!`);
-  }
-
-  public getOrders() {
-    return this.http.get<Order []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
-  }
-
-  public confirmOrder(order: Order) {
-    return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true }).pipe(
-      map(response => {
-        this.commService.emitSuccess('Order confirmed successfully!');
-        return response;
+  public deleteProduct(productId: string) {
+    return this.http.delete<{ id: string; deactivated: boolean }>(`${this._apiEndpoint}/shopadmin/products/${productId}`, { withCredentials: true }).pipe(
+      tap(result => {
+        this.refreshProducts();
+        this.commService.emitSuccess(result.deactivated
+          ? $localize`:@@shopProductDeactivated:The product has orders, so it was deactivated instead of deleted.`
+          : $localize`:@@shopProductDeleted:Product deleted!`);
       }),
-      catchError(error => {
-        this.commService.emitError(error.message);
-        return throwError(() => error);
-      })
+      catchError(error => this.fail<{ id: string; deactivated: boolean }>(error))
     );
+  }
+
+  public uploadProductImage(productId: string, image: string) {
+    return this.http.post<{ url: string }>(`${this._apiEndpoint}/shopadmin/products/${productId}/image`, { image }, { withCredentials: true }).pipe(
+      tap(() => this.refreshProducts()),
+      catchError(error => this.fail<{ url: string }>(error))
+    );
+  }
+
+  public getAdminOrders(status?: OrderStatus) {
+    let params = new HttpParams();
+    if (status !== undefined && status !== null) {
+      params = params.set('status', status);
+    }
+    return this.http.get<ShopOrder[]>(`${this._apiEndpoint}/shopadmin/orders`, { params, withCredentials: true });
+  }
+
+  public updateOrderStatus(orderId: string, update: OrderStatusUpdate) {
+    return this.http.put<ShopOrder>(`${this._apiEndpoint}/shopadmin/orders/${orderId}/status`, update, { withCredentials: true }).pipe(
+      tap(() => this.commService.emitSuccess($localize`:@@shopOrderUpdated:Order updated!`)),
+      catchError(error => this.fail<ShopOrder>(error))
+    );
+  }
+
+  public refundOrder(orderId: string) {
+    return this.http.post<ShopOrder>(`${this._apiEndpoint}/shopadmin/orders/${orderId}/refund`, null, { withCredentials: true }).pipe(
+      tap(() => this.commService.emitSuccess($localize`:@@shopOrderRefunded:Refund sent to the payment provider.`)),
+      catchError(error => this.fail<ShopOrder>(error))
+    );
+  }
+
+  public getPromos() {
+    return this.http.get<Promo[]>(`${this._apiEndpoint}/shopadmin/promos`, { withCredentials: true });
+  }
+
+  public savePromo(promo: Promo, isNew: boolean) {
+    const request = isNew
+      ? this.http.post<Promo>(`${this._apiEndpoint}/shopadmin/promos`, promo, { withCredentials: true })
+      : this.http.put<Promo>(`${this._apiEndpoint}/shopadmin/promos/${encodeURIComponent(promo.code)}`, promo, { withCredentials: true });
+    return request.pipe(
+      tap(() => this.commService.emitSuccess($localize`:@@shopPromoSaved:Promo code saved!`)),
+      catchError(error => this.fail<Promo>(error))
+    );
+  }
+
+  public deletePromo(code: string) {
+    return this.http.delete<{ code: string; deactivated: boolean }>(`${this._apiEndpoint}/shopadmin/promos/${encodeURIComponent(code)}`, { withCredentials: true }).pipe(
+      tap(result => this.commService.emitSuccess(result.deactivated
+        ? $localize`:@@shopPromoDeactivated:The code was used by orders, so it was deactivated instead of deleted.`
+        : $localize`:@@shopPromoDeleted:Promo code deleted!`)),
+      catchError(error => this.fail<{ code: string; deactivated: boolean }>(error))
+    );
+  }
+
+  public getAdminSettings() {
+    return this.http.get<ShopSettings>(`${this._apiEndpoint}/shopadmin/settings`, { withCredentials: true });
+  }
+
+  public saveSettings(settings: ShopSettings) {
+    return this.http.put<ShopSettings>(`${this._apiEndpoint}/shopadmin/settings`, settings, { withCredentials: true }).pipe(
+      tap(saved => {
+        // The storefront limits follow the saved settings right away in this app.
+        this._settings.update(current => current ? {
+          ...current,
+          shippingCost: saved.shippingCost,
+          freeShippingThreshold: saved.freeShippingThreshold,
+          maxQuantityPerLine: saved.maxQuantityPerLine
+        } : current);
+        this.commService.emitSuccess($localize`:@@shopSettingsSaved:Shop settings saved!`);
+      }),
+      catchError(error => this.fail<ShopSettings>(error))
+    );
+  }
+
+  public registerWebhook(url: string) {
+    return this.http.post<WebhookRegistration>(`${this._apiEndpoint}/shopadmin/payments/webhook`, { url }, { withCredentials: true }).pipe(
+      catchError(error => this.fail<WebhookRegistration>(error))
+    );
+  }
+
+  private loadProducts() {
+    this._productsRequested = true;
+    this.http.get<Product[]>(`${this._apiEndpoint}/shop/products`).subscribe({
+      next: products => this._products.set(products),
+      error: error => {
+        // The next read tries again; until then the shop shows an empty list rather than loading forever
+        this._productsRequested = false;
+        this._products.update(products => products ?? []);
+        this.commService.emitError(error.message);
+      }
+    });
+  }
+
+  private loadSettings() {
+    this._settingsRequested = true;
+    this.getSettings().subscribe({
+      next: settings => this._settings.set(settings),
+      // Callers fall back to their defaults; the next read tries again.
+      error: () => this._settingsRequested = false
+    });
+  }
+
+  private fail<T>(error: { error?: unknown; message: string }): Observable<T> {
+    const detail = typeof error.error === 'string' && error.error.length ? error.error : error.message;
+    this.commService.emitError(detail);
+    return throwError(() => error);
   }
 }
+
+interface OrderError {
+  status?: number;
+  error?: { problems?: string[]; quote?: Quote } | string | null;
+}
+
+/**
+ * Extracts the readable problems from an order creation failure: the problems of a 409, or the plain text of another
+ * client error. Server and gateway errors (5xx) and rate limiting (429) give none, so the caller shows its own
+ * localized message instead of the server's English text.
+ */
+export const orderProblems = (error: OrderError): string[] => {
+  if (error?.status === 409 && error.error && typeof error.error === 'object' && error.error.problems?.length) {
+    return error.error.problems;
+  }
+  const clientError = !!error?.status && error.status >= 400 && error.status < 500 && error.status !== 429;
+  if (clientError && typeof error.error === 'string' && error.error.length) {
+    return [error.error];
+  }
+  return [];
+};

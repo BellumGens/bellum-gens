@@ -3,7 +3,8 @@ import { Component, Signal, ViewEncapsulation, inject, linkedSignal, signal } fr
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ApplicationUser, BellumgensApiService } from '../../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 
 @Component({
   selector: 'app-player',
@@ -22,10 +23,10 @@ export class PlayerComponent {
   private apiService = inject(BellumgensApiService);
   private activatedRoute = inject(ActivatedRoute);
 
-  private cachedPlayer = signal<Signal<ApplicationUser>>(null);
+  private cachedPlayer = signal<Signal<ApplicationUser | null> | null>(null);
 
   // Keeps showing the previous player while the next one loads (the service cache is cleared meanwhile).
-  public player = linkedSignal<ApplicationUser, ApplicationUser>({
+  public player = linkedSignal<ApplicationUser | null, ApplicationUser | null>({
     source: () => this.cachedPlayer()?.() ?? null,
     computation: (player, previous) => player ?? previous?.value ?? null
   });

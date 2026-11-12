@@ -6,8 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, CSGOTeam, PlaystyleRole } from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+import { ApplicationUser, CSGOTeam, PlaystyleRole } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 
 const authUser = { id: 'user-id', username: 'TestUser' } as ApplicationUser;
 
@@ -55,7 +55,7 @@ describe('PlayerSearchComponent', () => {
   });
 
   const submit = async () => {
-    el().querySelector<HTMLButtonElement>('button.search-button').click();
+    el().querySelector<HTMLButtonElement>('button.search-button')!.click();
     await fixture.whenStable();
   };
 
@@ -164,8 +164,8 @@ describe('PlayerSearchComponent', () => {
       await chooseTeamPractice([team('t1', 'Team One')]);
 
       radioInputs('lineup')[0].click();
-      el().querySelector<HTMLElement>('igx-select-item').click();
-      const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb');
+      el().querySelector<HTMLElement>('igx-select-item')!.click();
+      const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb')!;
       for (let i = 0; i < 3; i++) {
         thumb.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
       }
@@ -189,7 +189,7 @@ describe('PlayerSearchComponent', () => {
       await submit();
 
       expect(navigate).toHaveBeenCalledWith(['search/players', 'overlap=0']);
-      expect(component.teamId()).toBeNull();
+      expect(component.teamId()).toBeUndefined();
     });
   });
 });

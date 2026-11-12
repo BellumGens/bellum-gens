@@ -16,7 +16,14 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "bg": "projects/bellumgens/src/locale/messages.bg.xlf"
+          "bg": "projects/bellumgens/src/locale/messages.bg.xlf",
+          "de": "projects/bellumgens/src/locale/messages.de.xlf",
+          "fr": "projects/bellumgens/src/locale/messages.fr.xlf",
+          "nl": "projects/bellumgens/src/locale/messages.nl.xlf",
+          "nb": "projects/bellumgens/src/locale/messages.nb.xlf",
+          "sv": "projects/bellumgens/src/locale/messages.sv.xlf",
+          "pl": "projects/bellumgens/src/locale/messages.pl.xlf",
+          "ro": "projects/bellumgens/src/locale/messages.ro.xlf"
         }
       },
       "architect": {
@@ -45,6 +52,7 @@
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/robots.txt",
+              "projects/bellumgens/src/llms.txt",
               "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
@@ -78,17 +86,59 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/bellumgens/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "security": {
+                "allowedHosts": [
+                  "bellumgens.com",
+                  "www.bellumgens.com",
+                  "localhost"
+                ]
+              }
             },
             "bg": {
               "localize": [
                 "bg"
+              ]
+            },
+            "de": {
+              "localize": [
+                "de"
+              ]
+            },
+            "fr": {
+              "localize": [
+                "fr"
+              ]
+            },
+            "nl": {
+              "localize": [
+                "nl"
+              ]
+            },
+            "nb": {
+              "localize": [
+                "nb"
+              ]
+            },
+            "sv": {
+              "localize": [
+                "sv"
+              ]
+            },
+            "pl": {
+              "localize": [
+                "pl"
+              ]
+            },
+            "ro": {
+              "localize": [
+                "ro"
               ]
             },
             "testing": {
@@ -123,6 +173,27 @@
             },
             "bg": {
               "buildTarget": "bellum-gens:build:bg"
+            },
+            "de": {
+              "buildTarget": "bellum-gens:build:de"
+            },
+            "fr": {
+              "buildTarget": "bellum-gens:build:fr"
+            },
+            "nl": {
+              "buildTarget": "bellum-gens:build:nl"
+            },
+            "nb": {
+              "buildTarget": "bellum-gens:build:nb"
+            },
+            "sv": {
+              "buildTarget": "bellum-gens:build:sv"
+            },
+            "pl": {
+              "buildTarget": "bellum-gens:build:pl"
+            },
+            "ro": {
+              "buildTarget": "bellum-gens:build:ro"
             },
             "development": {
               "buildTarget": "bellum-gens:build:development"
@@ -206,7 +277,14 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "bg": "projects/ebleague/src/locale/messages.bg.xlf"
+          "bg": "projects/ebleague/src/locale/messages.bg.xlf",
+          "de": "projects/ebleague/src/locale/messages.de.xlf",
+          "fr": "projects/ebleague/src/locale/messages.fr.xlf",
+          "nl": "projects/ebleague/src/locale/messages.nl.xlf",
+          "nb": "projects/ebleague/src/locale/messages.nb.xlf",
+          "sv": "projects/ebleague/src/locale/messages.sv.xlf",
+          "pl": "projects/ebleague/src/locale/messages.pl.xlf",
+          "ro": "projects/ebleague/src/locale/messages.ro.xlf"
         }
       },
       "architect": {
@@ -235,6 +313,7 @@
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
               "projects/ebleague/src/robots.txt",
+              "projects/ebleague/src/llms.txt",
               "projects/ebleague/src/manifest.json"
             ],
             "styles": [
@@ -268,7 +347,7 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/ebleague/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "bg": {
@@ -276,10 +355,52 @@
                 "bg"
               ]
             },
+            "de": {
+              "localize": [
+                "de"
+              ]
+            },
+            "fr": {
+              "localize": [
+                "fr"
+              ]
+            },
+            "nl": {
+              "localize": [
+                "nl"
+              ]
+            },
+            "nb": {
+              "localize": [
+                "nb"
+              ]
+            },
+            "sv": {
+              "localize": [
+                "sv"
+              ]
+            },
+            "pl": {
+              "localize": [
+                "pl"
+              ]
+            },
+            "ro": {
+              "localize": [
+                "ro"
+              ]
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "security": {
+                "allowedHosts": [
+                  "eb-league.com",
+                  "www.eb-league.com",
+                  "localhost"
+                ]
+              }
             },
             "testing": {
               "aot": true,
@@ -314,8 +435,29 @@
             "bg": {
               "buildTarget": "eb-league:build:bg"
             },
+            "de": {
+              "buildTarget": "eb-league:build:de"
+            },
+            "fr": {
+              "buildTarget": "eb-league:build:fr"
+            },
+            "nl": {
+              "buildTarget": "eb-league:build:nl"
+            },
+            "nb": {
+              "buildTarget": "eb-league:build:nb"
+            },
+            "sv": {
+              "buildTarget": "eb-league:build:sv"
+            },
+            "pl": {
+              "buildTarget": "eb-league:build:pl"
+            },
+            "ro": {
+              "buildTarget": "eb-league:build:ro"
+            },
             "development": {
-              "buildTarget": "ssr-test:build:development"
+              "buildTarget": "eb-league:build:development"
             }
           }
         },
