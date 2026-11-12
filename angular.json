@@ -443,7 +443,7 @@
               "buildTarget": "eb-league:build:ro"
             },
             "development": {
-              "buildTarget": "ssr-test:build:development"
+              "buildTarget": "eb-league:build:development"
             }
           }
         },
