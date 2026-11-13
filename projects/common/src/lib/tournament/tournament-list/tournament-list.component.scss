@@ -1,5 +1,6 @@
 :host {
   display: block;
+  min-height: calc(100% - 40px);
 }
 
 .tournaments-hub {
@@ -62,7 +63,6 @@
     font-size: 64px;
     width: 64px;
     height: 64px;
-    margin-bottom: 16px;
     // With the 0.7 of the container this keeps the icon above the 3:1 non-text contrast minimum
     opacity: 0.75;
   }
