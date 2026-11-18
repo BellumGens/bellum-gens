@@ -18,6 +18,7 @@ import {
   SC2Race,
   TournamentCSGOMatch,
   TournamentSC2Match,
+  TournamentDota2Match,
   ApplicationUser
 } from 'bellum-gens-common/models';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
@@ -167,6 +168,9 @@ describe('TournamentDetailComponent (rendering)', () => {
   let sc2Registrations: Map<string, WritableSignal<TournamentParticipant [] | null>>;
   let sc2Matches: Map<string, WritableSignal<TournamentSC2Match [] | null>>;
   let csgoMatches: Map<string, WritableSignal<TournamentCSGOMatch [] | null>>;
+  let loadingDota2Registrations: WritableSignal<boolean>;
+  let dota2Registrations: Map<string, WritableSignal<TournamentParticipant [] | null>>;
+  let dota2Matches: Map<string, WritableSignal<TournamentDota2Match [] | null>>;
 
   const appUser = (id: string, username: string, overrides: Partial<ApplicationUser> = {}): ApplicationUser =>
     ({ id, username, ...overrides } as ApplicationUser);
@@ -230,14 +234,22 @@ describe('TournamentDetailComponent (rendering)', () => {
     sc2Registrations = new Map();
     sc2Matches = new Map();
     csgoMatches = new Map();
+    loadingDota2Registrations = signal(false);
+    dota2Registrations = new Map();
+    dota2Matches = new Map();
 
     apiService = createSpyObj<ApiTournamentsService>('ApiTournamentsService',
-      ['getTournament', 'getSc2Registrations', 'getSc2Matches', 'getCsgoMatches'],
-      { loadingSC2Registrations: loadingSC2Registrations.asReadonly() });
+      ['getTournament', 'getSc2Registrations', 'getSc2Matches', 'getCsgoMatches', 'getDota2Registrations', 'getDota2Matches'],
+      {
+        loadingSC2Registrations: loadingSC2Registrations.asReadonly(),
+        loadingDota2Registrations: loadingDota2Registrations.asReadonly()
+      });
     apiService.getTournament.mockImplementation((id: string) => entry(tournaments, id).asReadonly());
     apiService.getSc2Registrations.mockImplementation((id: string) => entry(sc2Registrations, id).asReadonly());
     apiService.getSc2Matches.mockImplementation((id: string) => entry(sc2Matches, id).asReadonly());
     apiService.getCsgoMatches.mockImplementation((id: string) => entry(csgoMatches, id).asReadonly());
+    apiService.getDota2Registrations.mockImplementation((id: string) => entry(dota2Registrations, id).asReadonly());
+    apiService.getDota2Matches.mockImplementation((id: string) => entry(dota2Matches, id).asReadonly());
 
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, TournamentDetailComponent],
@@ -632,6 +644,85 @@ describe('TournamentDetailComponent (rendering)', () => {
 
       expect(qa('.match-row').length).toBe(0);
       expect(q('.matches-section .empty-state')).toBeNull();
+    });
+  });
+
+  describe('Dota 2', () => {
+    const team = (teamId: string, teamName: string) => ({ teamId, teamName, teamAvatar: '' }) as TournamentParticipant['team'];
+
+    it('loads only the Dota 2 teams and series for a Dota 2 tournament', async () => {
+      await create(baseTournament({ game: Game.Dota2 }));
+
+      expect(component.isDota2()).toBe(true);
+      expect(apiService.getDota2Registrations).toHaveBeenCalledWith('t1');
+      expect(apiService.getDota2Matches).toHaveBeenCalledWith('t1');
+      expect(apiService.getSc2Registrations).not.toHaveBeenCalled();
+      expect(apiService.getSc2Matches).not.toHaveBeenCalled();
+    });
+
+    it('does not load Dota 2 data for other tournaments', async () => {
+      await create(baseTournament({ game: undefined }));
+
+      expect(component.isDota2()).toBe(false);
+      expect(component.dota2Registrations()).toEqual([]);
+      expect(component.dota2Matches()).toBeNull();
+      expect(apiService.getDota2Registrations).not.toHaveBeenCalled();
+      expect(apiService.getDota2Matches).not.toHaveBeenCalled();
+    });
+
+    it('lists the registered teams with their organisation', async () => {
+      entry(dota2Registrations, 't1').set([
+        participant('r1', { team: team('a', 'Team Alpha'), companyId: 'Acme' }),
+        participant('r2', { team: team('b', 'Team Beta') })
+      ]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Participants');
+
+      const cards = qa('.participant-card');
+      expect(cards.map(c => c.querySelector('.participant-name')!.textContent.trim())).toEqual(['Team Alpha', 'Team Beta']);
+      expect(cards[0].querySelector('.participant-org')!.textContent).toContain('Acme');
+      expect(cards[1].querySelector('.participant-org')).toBeNull();
+    });
+
+    it('shows the spinner while the teams load and the empty state when there are none', async () => {
+      loadingDota2Registrations.set(true);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Participants');
+      expect(q('igx-tab-content .loading-container')).toBeTruthy();
+
+      loadingDota2Registrations.set(false);
+      entry(dota2Registrations, 't1').set([]);
+      await render();
+      expect(q('.participants-grid .empty-state')!.textContent).toContain('No teams registered yet');
+    });
+
+    it('renders the series with the teams, the score and the winner', async () => {
+      entry(dota2Matches, 't1').set([
+        { id: 'd1', team1: team('a', 'Team Alpha'), team2: team('b', 'Team Beta'), team1Points: 2, team2Points: 1, videoLink: 'https://twitch.tv/vod/2' },
+        { id: 'd2', team1: team('a', 'Team Alpha'), team2: team('b', 'Team Beta'), team1Points: 1, team2Points: 1 }
+      ]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Matches');
+
+      const rows = qa('.matches-section .match-row');
+      expect(rows.length).toBe(2);
+      const [won, drawn] = rows;
+      const teams = (row: HTMLElement) => Array.from(row.querySelectorAll('.match-players > .player'));
+      expect(teams(won)[0].textContent).toContain('Team Alpha');
+      expect(teams(won)[0].classList).toContain('winner');
+      expect(teams(won)[1].classList).not.toContain('winner');
+      expect(won.querySelector('.match-score')!.textContent.replace(/\s+/g, '')).toBe('2:1');
+      expect(won.querySelector('.match-actions a')!.getAttribute('href')).toBe('https://twitch.tv/vod/2');
+      expect(teams(drawn).some(t => t.classList.contains('winner'))).toBe(false);
+      expect(drawn.querySelector('.match-actions a')).toBeNull();
+    });
+
+    it('shows the empty state for a Dota 2 tournament without series', async () => {
+      entry(dota2Matches, 't1').set([]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Matches');
+
+      expect(q('.matches-section .empty-state')!.textContent).toContain('No matches scheduled yet');
     });
   });
 

@@ -3,6 +3,7 @@ export * from './csgomaps';
 export * from './csgoplayer';
 export * from './csgostrategy';
 export * from './csgoteam';
+export * from './dota2player';
 export * from './login-provider';
 export * from './misc';
 export * from './playeravailability';

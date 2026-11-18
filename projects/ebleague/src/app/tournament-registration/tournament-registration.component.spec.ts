@@ -168,6 +168,33 @@ describe('TournamentRegistrationComponent', () => {
       expect(el().querySelector('#battletag')).toBeNull();
     });
 
+    it('shows the team selection with the teams of the user for Dota 2', () => {
+      vi.mocked(userService.getUserTeams).mockReturnValue(of([team('team-1', 'Alpha')]));
+      authUser.set(makeUser());
+      create();
+
+      component.selectGame(Game.Dota2);
+      fixture.detectChanges();
+
+      expect(component.application().game).toBe(Game.Dota2);
+      expect(component.teamGame()).toBe(true);
+      expect(userService.getUserTeams).toHaveBeenCalledWith('user-1');
+      const teamSelect = el().querySelector('igx-select#team')!;
+      expect(teamSelect).not.toBeNull();
+      expect(teamSelect.textContent).toContain('Alpha');
+      expect(el().querySelector('#battletag')).toBeNull();
+    });
+
+    it('warns a Dota 2 applicant without a Steam account', () => {
+      authUser.set(makeUser({ steamId: undefined }));
+      create();
+
+      component.selectGame(Game.Dota2);
+      fixture.detectChanges();
+
+      expect(el().textContent).toContain('You\'ve not associated a Steam account');
+    });
+
     it('warns a Counter-Strike applicant without a Steam account', () => {
       authUser.set(makeUser({ steamId: undefined }));
       create();

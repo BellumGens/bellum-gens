@@ -12,7 +12,7 @@
           {{ game.name }}
         </igx-select-item>
       }
-      @if (application().game === 0 && !authUser()?.steamId) {
+      @if (teamGame() && !authUser()?.steamId) {
         <igx-hint i18n>*You've not associated a Steam account...</igx-hint>
       }
     </igx-select>
@@ -35,7 +35,7 @@
       }
     </igx-input-group>
 
-    @if (application().game === gameEnum.CSGO) {
+    @if (teamGame()) {
       <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application().teamId" class="registration-form-input" (selectionChanging)="teamSelectionChanging($event, team, newTeam)">

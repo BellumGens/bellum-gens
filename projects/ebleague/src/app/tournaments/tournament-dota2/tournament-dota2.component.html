@@ -1,0 +1,211 @@
+<div class="overview-container-card">
+  <igx-card>
+    <igx-card-header>
+      <igx-avatar src="/assets/wallpapers/dota2-icon.png" igxCardThumbnail shape="circle"></igx-avatar>
+      <h1 igxCardHeaderTitle i18n>{{ tournament()?.name }} Dota 2 League</h1>
+    </igx-card-header>
+    <igx-card-content>
+      <h4 i18n>Participants</h4>
+      <div class="participants-container">
+        @if (loading()) {
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+        }
+        @for (registration of registrations(); track registration.id) {
+          <div class="registration-slot">
+            <igx-avatar [src]="registration.team?.teamAvatar ?? ''"
+              [initials]="registration.team?.teamName ?? ''"
+              [title]="registration.companyId"
+              size="medium"
+              shape="circle">
+            </igx-avatar>
+            @if (registration.userId === authUser()?.id && registration.state === 0) {
+              <igx-badge
+                type="warning"
+                icon="priority_high"
+                i18n-title
+                title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
+                class="registration-badge-style">
+              </igx-badge>
+            }
+            <a [href]="environment.bellumgens + '/team/' + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
+            }
+          </div>
+        }
+        <igx-divider></igx-divider>
+      </div>
+
+      <igx-grid cellSelection="none"
+        [data]="dota2matches()"
+        height="550px"
+        i18n-emptyGridMessage
+        emptyGridMessage="No matches found..."
+        [isLoading]="loadingMatches()"
+        [allowFiltering]="true">
+
+        <igx-grid-toolbar>
+          <igx-grid-toolbar-title i18n>{{ tournament()?.name }} Schedule</igx-grid-toolbar-title>
+        </igx-grid-toolbar>
+
+        <igx-column field="startTime" [width]="narrowScreen() ? '150px' : '220px'" dataType="date" i18n-header header="Start time">
+          <ng-template igxCell let-value>
+            {{ value | date:(narrowScreen() ? 'short' : 'MMM d, y, h:mm a') }}
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
+          <div *igxCell="let cell = cell" class="horizontal-center">
+            <igx-avatar igxListThumbnail
+              [src]="cell.row.data.team1?.teamAvatar"
+              [initials]="cell.row.data.team1?.teamName"
+              shape="circle">
+            </igx-avatar>
+            <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1?.customUrl"
+              [class]="cell.row.data.winnerTeamId === cell.row.data.team1Id ? 'highlight grid-team-name color-success' : 'grid-team-name'">
+              {{ cell.row.data.team1?.teamName }}
+            </a>
+
+            @if (played(cell.row.data) && !cell.row.data.noShow) {
+              <span class="grid-vs-divider series-score">{{ cell.row.data.team1Points }} : {{ cell.row.data.team2Points }}</span>
+            } @else {
+              <span class="grid-vs-divider" i18n="versus|Separates the two teams of a match">vs.</span>
+            }
+
+            <igx-avatar igxListThumbnail
+              [src]="cell.row.data.team2?.teamAvatar"
+              [initials]="cell.row.data.team2?.teamName"
+              shape="circle">
+            </igx-avatar>
+            <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2?.customUrl"
+              [class]="cell.row.data.winnerTeamId === cell.row.data.team2Id ? 'highlight grid-team-name color-success' : 'grid-team-name'">
+              {{ cell.row.data.team2?.teamName }}
+            </a>
+          </div>
+        </igx-column>
+
+        <!-- On phones the links move to the row details to leave room for the match -->
+        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false" [hidden]="narrowScreen()">
+          <ng-template igxCell let-value>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon>link</igx-icon>
+                <span>link</span>
+              </a>
+            }
+          </ng-template>
+        </igx-column>
+
+        <igx-column width="150px" field="demoLink" i18n-header header="Replay" [filterable]="false" [hidden]="narrowScreen()">
+          <ng-template igxCell let-value>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon>link</igx-icon>
+                <span>link</span>
+              </a>
+            }
+          </ng-template>
+        </igx-column>
+
+        <ng-template igxGridDetail let-dataItem>
+          @if (narrowScreen() && (dataItem.videoLink || dataItem.demoLink)) {
+            <div class="horizontal-center match-links">
+              @if (dataItem.videoLink) {
+                <a [href]="dataItem.videoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Video</span>
+                </a>
+              }
+              @if (dataItem.demoLink) {
+                <a [href]="dataItem.demoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Replay</span>
+                </a>
+              }
+            </div>
+          }
+
+          @if (dataItem.games?.length) {
+            <table class="series-games">
+              <thead>
+                <tr>
+                  <th scope="col" i18n="Dota 2 game column header|The number of the game in the series">Game</th>
+                  <th scope="col" i18n="Dota 2 side|The Radiant side of a Dota 2 game">Radiant</th>
+                  <th scope="col" i18n="Dota 2 side|The Dire side of a Dota 2 game">Dire</th>
+                  <th scope="col" i18n>Winner</th>
+                  <th scope="col" i18n>Steam match ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (game of sortedGames(dataItem); track game.id ?? $index) {
+                  <tr>
+                    <td>{{ game.gameNumber }}</td>
+                    <td>{{ teamName(dataItem, game.radiantTeamId) }}</td>
+                    <td>{{ teamName(dataItem, direTeamId(dataItem, game.radiantTeamId)) }}</td>
+                    <td [class]="game.winnerTeamId ? 'highlight color-success' : ''">{{ teamName(dataItem, game.winnerTeamId) }}</td>
+                    <td>{{ game.steamMatchId }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          }
+
+          @if (dataItem.noShow) {
+            <div class="horizontal-center" i18n>Walkover</div>
+          }
+
+          @if (drawn(dataItem)) {
+            <div class="horizontal-center" i18n>The series ended in a draw</div>
+          }
+
+          @if (!dataItem.games?.length && !dataItem.noShow) {
+            <div class="horizontal-center" i18n>The match has not been played yet, or there's no results on record...</div>
+          }
+        </ng-template>
+      </igx-grid>
+
+      <div class="group-columns">
+        @for (group of groups(); track group.id) {
+          <igx-grid
+            cellSelection="none"
+            [isLoading]="loadingGroups()"
+            [data]="group.participants ?? null">
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
+            </igx-grid-toolbar>
+            <igx-column field="team" i18n-header header="Team" width="25%">
+              <div *igxCell="let value">
+                <igx-avatar igxListThumbnail
+                  [src]="value?.teamAvatar"
+                  [initials]="value?.teamName"
+                  shape="circle">
+                </igx-avatar>
+                <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value?.customUrl" target="_blank">
+                  {{ value?.teamName }}
+                </a>
+              </div>
+            </igx-column>
+            <igx-column field="companyId" i18n-header header="Company" width="21%">
+            </igx-column>
+            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
+            </igx-column>
+            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="9%">
+            </igx-column>
+            <igx-column field="draws" dataType="number" i18n-header header="Draws" width="9%">
+            </igx-column>
+            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="9%">
+            </igx-column>
+            <igx-column field="gameDifference" dataType="number" i18n-header header="Game Diff" i18n-title title="Games won minus games lost" width="9%">
+              <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
+                {{ value }}
+              </span>
+            </igx-column>
+            <igx-column field="teamPoints" dataType="number" i18n-header header="Points" i18n-title title="Games won" width="9%">
+            </igx-column>
+          </igx-grid>
+        }
+      </div>
+
+    </igx-card-content>
+  </igx-card>
+</div>

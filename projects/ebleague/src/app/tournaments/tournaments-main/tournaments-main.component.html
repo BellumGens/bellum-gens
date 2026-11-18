@@ -40,14 +40,22 @@
               <p class="card-desc">{{tournament.description}}</p>
             }
             <div class="game-links">
-              <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
-                <igx-icon>sports_esports</igx-icon>
-                Counter-Strike
-              </a>
-              <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
-                <igx-icon>sports_esports</igx-icon>
-                StarCraft II
-              </a>
+              <!-- A Dota 2 tournament has only Dota 2 results; the league seasons run Counter-Strike and StarCraft II -->
+              @if (tournament.game === Game.Dota2) {
+                <a igxButton="outlined" igxRipple [routerLink]="['dota2', tournament.id]" class="game-btn" i18n>
+                  <igx-icon>sports_esports</igx-icon>
+                  Dota 2
+                </a>
+              } @else {
+                <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
+                  <igx-icon>sports_esports</igx-icon>
+                  Counter-Strike
+                </a>
+                <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
+                  <igx-icon>sports_esports</igx-icon>
+                  StarCraft II
+                </a>
+              }
             </div>
           </igx-card-content>
         </igx-card>
@@ -117,14 +125,22 @@
                 <p class="card-desc">{{tournament.description}}</p>
               }
               <div class="game-links">
-                <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
-                  <igx-icon>sports_esports</igx-icon>
-                  Counter-Strike
-                </a>
-                <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
-                  <igx-icon>sports_esports</igx-icon>
-                  StarCraft II
-                </a>
+                <!-- A Dota 2 tournament has only Dota 2 results; the league seasons run Counter-Strike and StarCraft II -->
+                @if (tournament.game === Game.Dota2) {
+                  <a igxButton="outlined" igxRipple [routerLink]="['dota2', tournament.id]" class="game-btn" i18n>
+                    <igx-icon>sports_esports</igx-icon>
+                    Dota 2
+                  </a>
+                } @else {
+                  <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
+                    <igx-icon>sports_esports</igx-icon>
+                    Counter-Strike
+                  </a>
+                  <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
+                    <igx-icon>sports_esports</igx-icon>
+                    StarCraft II
+                  </a>
+                }
               </div>
             </igx-card-content>
           </igx-card>

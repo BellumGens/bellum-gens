@@ -866,6 +866,14 @@ describe('BellumgensApiService', () => {
     req.flush([]);
   });
 
+  it('getDota2Profile should send a GET request with the steam id', () => {
+    service.getDota2Profile('76561198012345678').subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/dota2?steamid=76561198012345678`);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.withCredentials).toBe(false);
+    req.flush({});
+  });
+
   it('getSignupCount should read the early bird count', () => {
     const counts: number[] = [];
     service.getSignupCount().subscribe(count => counts.push(count));

@@ -13,6 +13,7 @@ import {
   UserNotification,
   Tournament,
   ApplicationUser,
+  Dota2Profile,
   EarlyBird
 } from 'bellum-gens-common/models';
 import { environment } from 'bellum-gens-common/environments';
@@ -321,6 +322,10 @@ export class BellumgensApiService {
 
   public getPlayerTournaments(userid: string) {
     return this.http.get<Tournament []>(`${this._apiEndpoint}/users/tournaments?userid=${userid}`);
+  }
+
+  public getDota2Profile(steamId: string) {
+    return this.http.get<Dota2Profile>(`${this._apiEndpoint}/users/dota2?steamid=${steamId}`);
   }
 
   public getPlayerGroups(userId: string) {

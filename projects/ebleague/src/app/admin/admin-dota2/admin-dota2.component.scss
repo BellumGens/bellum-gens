@@ -1,0 +1,39 @@
+// The grid, card, group and registration styles come from the parent admin page
+
+.series-score {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.series-games {
+  margin: 0 auto 8px;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 4px 12px;
+    text-align: center;
+  }
+
+  th {
+    font-weight: 600;
+  }
+}
+
+.series-game {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 12px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+
+  legend {
+    padding: 0 4px;
+  }
+}
+
+.delete-game {
+  align-self: flex-start;
+}
