@@ -10,7 +10,7 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { TeamComponent } from './team.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
-import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from 'bellum-gens-common/models';
+import { ApplicationUser, CSGOTeam, Game, TEAM_PLACEHOLDER } from 'bellum-gens-common/models';
 
 const API = 'https://localhost:44348/api';
 const AUTH_API = `${API}/account`;
@@ -299,6 +299,31 @@ describe('TeamComponent', () => {
       const labels = tabLabels();
       expect(labels).toContain('Strategies');
       expect(labels).not.toContain('Settings');
+    });
+  });
+
+  it('should show the game of the team, Counter-Strike for a team without one', async () => {
+    await openTeam(TEAM);
+
+    expect(component.hasStrategies()).toBe(true);
+    expect(element().querySelector('.team-details-header .team-game')!.textContent.trim()).toBe('Counter-Strike');
+  });
+
+  describe('for a Dota 2 team', () => {
+    const DOTA_TEAM: CSGOTeam = { ...TEAM, teamName: 'Dota Team', game: Game.Dota2 };
+
+    it('should name the game in the page title and the header', async () => {
+      await openTeam(DOTA_TEAM);
+
+      expect(TestBed.inject(Title).getTitle()).toBe('Dota 2 Team: Dota Team');
+      expect(element().querySelector('.team-details-header .team-game')!.textContent.trim()).toBe('Dota 2');
+    });
+
+    it('should not render the strategies tab, even for an admin', async () => {
+      await openTeam(DOTA_TEAM, { member: true, admin: true });
+
+      expect(component.hasStrategies()).toBe(false);
+      expect(tabLabels()).toEqual(['Details', 'Competitions', 'Settings']);
     });
   });
 

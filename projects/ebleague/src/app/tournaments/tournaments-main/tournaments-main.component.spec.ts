@@ -5,7 +5,7 @@ import { TournamentsMainComponent } from './tournaments-main.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideRouter, Router, UrlTree } from '@angular/router';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
-import { Tournament } from 'bellum-gens-common/models';
+import { Game, Tournament } from 'bellum-gens-common/models';
 
 describe('TournamentsMainComponent', () => {
   let component: TournamentsMainComponent;
@@ -289,6 +289,38 @@ describe('TournamentsMainComponent', () => {
       expect(navigateSpy).toHaveBeenCalledTimes(2);
       expect(router.serializeUrl(navigateSpy.mock.calls[0][0] as UrlTree)).toBe('/csgo/a1');
       expect(router.serializeUrl(navigateSpy.mock.calls[1][0] as UrlTree)).toBe('/sc2/a1');
+    });
+
+    it('should link a Dota 2 tournament only to its Dota 2 results', async () => {
+      await flushTournaments([
+        { id: 'd1', name: 'Dota Active', active: true, game: Game.Dota2, startDate: new Date(now - day), endDate: new Date(now + day) },
+        { id: 'c1', name: 'CS Active', active: true, game: Game.CSGO, startDate: new Date(now - day), endDate: new Date(now + day) },
+        { id: 'u1', name: 'Dota Upcoming', active: false, game: Game.Dota2, startDate: new Date(now + day), endDate: new Date(now + 2 * day) },
+        { id: 'd2', name: 'Dota Past', active: false, game: Game.Dota2, startDate: new Date(now - 2 * day), endDate: new Date(now - day) }
+      ]);
+
+      const [active, upcoming, past] = sections();
+      const links = (card: Element) => Array.from(card.querySelectorAll('.game-links a'))
+        .map(a => [a.getAttribute('href'), a.textContent!.replace('sports_esports', '').trim()]);
+      const activeCards = active.querySelectorAll('igx-card');
+      expect(links(activeCards[0])).toEqual([['/dota2/d1', 'Dota 2']]);
+      expect(links(activeCards[1])).toEqual([['/csgo/c1', 'Counter-Strike'], ['/sc2/c1', 'StarCraft II']]);
+      // Upcoming seasons have no results to link to yet
+      expect(upcoming.querySelector('.game-links')).toBeNull();
+      expect(links(past.querySelector('igx-card')!)).toEqual([['/dota2/d2', 'Dota 2']]);
+    });
+
+    it('should navigate to the Dota 2 route when the Dota 2 link is clicked', async () => {
+      await flushTournaments([
+        { id: 'd1', name: 'Dota Active', active: true, game: Game.Dota2, startDate: new Date(now - day), endDate: new Date(now + day) }
+      ]);
+      const router = TestBed.inject(Router);
+      const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+      fixture.nativeElement.querySelector('.game-links a').click();
+
+      expect(navigateSpy).toHaveBeenCalledTimes(1);
+      expect(router.serializeUrl(navigateSpy.mock.calls[0][0] as UrlTree)).toBe('/dota2/d1');
     });
   });
 });

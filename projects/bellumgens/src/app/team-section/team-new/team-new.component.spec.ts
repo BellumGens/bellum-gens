@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TeamNewComponent } from './team-new.component';
-import { ApplicationUser, CSGOTeam, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common/models';
+import { ApplicationUser, CSGOTeam, EMPTY_NEW_TEAM, Game, SteamGroup } from 'bellum-gens-common/models';
 import { BellumgensApiService, CommunicationService } from 'bellum-gens-common/services';
 import { Router } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -51,6 +51,9 @@ describe('TeamNewComponent', () => {
   };
 
   const groupsUrl = () => `${apiService['_apiEndpoint']}/users/usergroups?userid=${mockUser.steamId}`;
+  const steamTeamUrl = (game = Game.CSGO) => `${apiService['_apiEndpoint']}/teams/team?game=${game}`;
+  const gameGroup = () => el().querySelector('igx-radio-group');
+  const gameRadios = () => Array.from(el().querySelectorAll<HTMLInputElement>('igx-radio-group input[type="radio"]'));
   const el = (): HTMLElement => fixture.nativeElement;
   const listItems = () => el().querySelectorAll('igx-list-item');
   const submitButton = () => el().querySelector('.submit-button') as HTMLButtonElement;
@@ -218,7 +221,7 @@ describe('TeamNewComponent', () => {
     it('should create a team from a Steam group', () => {
       vi.spyOn(router, 'navigate').mockResolvedValue(true);
       component.createFromSteam(mockGroup);
-      const req = httpMock.expectOne(`${apiService["_apiEndpoint"]}/teams/team`);
+      const req = httpMock.expectOne(steamTeamUrl());
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockGroup);
       expect(req.request.withCredentials).toBe(true);
@@ -237,7 +240,7 @@ describe('TeamNewComponent', () => {
       listItems()[1].querySelector('button')!.click();
       await fixture.whenStable();
 
-      const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/team`);
+      const req = httpMock.expectOne(steamTeamUrl());
       expect(req.request.body).toEqual(mockGroups[1]);
       expect(submitButton().textContent).toContain('Submitting...');
       req.flush(mockTeam);
@@ -256,7 +259,7 @@ describe('TeamNewComponent', () => {
       expect(component.navigateOnCreate).toBe(false);
 
       component.createFromSteam(mockGroup);
-      httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/team`).flush(mockTeam);
+      httpMock.expectOne(steamTeamUrl()).flush(mockTeam);
       await fixture.whenStable();
 
       expect(component.inProgress()).toBe(false);
@@ -271,7 +274,7 @@ describe('TeamNewComponent', () => {
 
       component.createFromSteam(mockGroup);
       expect(component.inProgress()).toBe(true);
-      httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/team`)
+      httpMock.expectOne(steamTeamUrl())
         .flush('Error', { status: 500, statusText: 'Server Error' });
       await fixture.whenStable();
 
@@ -288,7 +291,7 @@ describe('TeamNewComponent', () => {
       component.createFromForm();
       const req = httpMock.expectOne(`${apiService["_apiEndpoint"]}/teams/newteam`);
       expect(req.request.method).toBe('POST');
-      expect(req.request.body).toEqual(component.newTeam);
+      expect(req.request.body).toEqual({ ...component.newTeam, game: Game.CSGO });
       expect(req.request.withCredentials).toBe(true);
       expect(component.inProgress()).toBe(true);
       req.flush(mockTeam);
@@ -375,7 +378,8 @@ describe('TeamNewComponent', () => {
         ...EMPTY_NEW_TEAM,
         teamName: 'Team Name',
         description: 'Our motto',
-        teamAvatar: 'https://cdn.example.com/avatars/team.png'
+        teamAvatar: 'https://cdn.example.com/avatars/team.png',
+        game: Game.CSGO
       });
       expect(submitButton().disabled).toBe(true);
       expect(submitButton().textContent).toContain('Submitting...');
@@ -413,6 +417,96 @@ describe('TeamNewComponent', () => {
       await openWithGroups();
       const avatars = fixture.debugElement.queryAll(By.css('igx-list-item igx-avatar'));
       expect(avatars.length).toBe(3);
+    });
+
+    describe('game of the team', () => {
+      it('should offer Counter-Strike and Dota 2 in a labelled radio group, Counter-Strike first', async () => {
+        await openWithGroups();
+
+        const group = gameGroup()!;
+        expect(group.getAttribute('role')).toBe('radiogroup');
+        expect(el().querySelector(`#${group.getAttribute('aria-labelledby')}`)!.textContent.trim()).toBe('Game');
+        expect(Array.from(el().querySelectorAll('igx-radio')).map(r => r.textContent.trim())).toEqual(['Counter-Strike', 'Dota 2']);
+        expect(gameRadios().map(r => r.checked)).toEqual([true, false]);
+        expect(component.game()).toBe(Game.CSGO);
+      });
+
+      it('should create a Dota 2 team from a Steam group once Dota 2 is chosen', async () => {
+        vi.spyOn(router, 'navigate').mockResolvedValue(true);
+        await openWithGroups();
+
+        gameRadios()[1].click();
+        await fixture.whenStable();
+        expect(component.game()).toBe(Game.Dota2);
+
+        listItems()[0].querySelector('button')!.click();
+        const req = httpMock.expectOne(steamTeamUrl(Game.Dota2));
+        expect(req.request.body).toEqual(mockGroup);
+        req.flush({ ...mockTeam, game: Game.Dota2 });
+      });
+
+      it('should create a Dota 2 team from the form once Dota 2 is chosen', async () => {
+        vi.spyOn(router, 'navigate').mockResolvedValue(true);
+        await openWithGroups();
+        gameRadios()[1].click();
+        await type('#teamName', 'Team Name');
+        await type('#teamDescripton', 'Our motto');
+
+        form().dispatchEvent(new Event('submit'));
+        await fixture.whenStable();
+
+        const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/newteam`);
+        expect(req.request.body).toEqual({ ...EMPTY_NEW_TEAM, teamName: 'Team Name', description: 'Our motto', game: Game.Dota2 });
+        req.flush({ ...mockTeam, game: Game.Dota2 });
+      });
+
+      it('should hide the choice and create a team for the game it was opened with', async () => {
+        await openWithGroups(mockGroups, false);
+        component.open(false, Game.Dota2);
+        httpMock.expectOne(groupsUrl()).flush(mockGroups);
+        await fixture.whenStable();
+
+        expect(component.gameFixed()).toBe(true);
+        expect(gameGroup()).toBeNull();
+
+        component.createFromSteam(mockGroup);
+        httpMock.expectOne(steamTeamUrl(Game.Dota2)).flush(mockTeam);
+      });
+
+      it('should offer the choice again when opened without a game', async () => {
+        component.open(false, Game.Dota2);
+        httpMock.expectOne(groupsUrl()).flush(mockGroups);
+        component.createTeam()!.close();
+        await fixture.whenStable();
+
+        await openWithGroups();
+        expect(component.gameFixed()).toBe(false);
+        expect(gameGroup()).not.toBeNull();
+        // The last game stays chosen
+        expect(gameRadios().map(r => r.checked)).toEqual([false, true]);
+      });
+    });
+
+    it('should emit the created team', () => {
+      vi.spyOn(router, 'navigate').mockResolvedValue(true);
+      const created = vi.fn();
+      component.created.subscribe(created);
+
+      component.createFromSteam(mockGroup);
+      expect(created).not.toHaveBeenCalled();
+      httpMock.expectOne(steamTeamUrl()).flush(mockTeam);
+
+      expect(created).toHaveBeenCalledExactlyOnceWith(mockTeam);
+    });
+
+    it('should not emit when creating the team fails', () => {
+      const created = vi.fn();
+      component.created.subscribe(created);
+
+      component.createFromForm();
+      httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/newteam`).flush('Error', { status: 400, statusText: 'Bad Request' });
+
+      expect(created).not.toHaveBeenCalled();
     });
   });
 });

@@ -6,6 +6,7 @@ import { ConfirmComponent } from 'bellum-gens-common';
 import { of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import { TeamNewComponent } from '../team-new/team-new.component';
+import { TeamGameNamePipe } from '../../pipes/team-game-name.pipe';
 import { RouterLink } from '@angular/router';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -24,7 +25,8 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
     IgxAvatarComponent,
     RouterLink,
     TeamNewComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    TeamGameNamePipe
   ]
 })
 export class TeamNavComponent {

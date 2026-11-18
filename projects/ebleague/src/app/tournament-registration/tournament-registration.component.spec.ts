@@ -31,12 +31,13 @@ const makeUser = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => 
   ...overrides
 } as ApplicationUser);
 
-const team = (teamId: string, teamName: string): CSGOTeam => ({
+const team = (teamId: string, teamName: string, game?: Game): CSGOTeam => ({
   teamId,
   teamName,
   teamAvatar: '',
   visible: true,
-  customUrl: teamId
+  customUrl: teamId,
+  game
 });
 
 describe('TournamentRegistrationComponent', () => {
@@ -145,8 +146,10 @@ describe('TournamentRegistrationComponent', () => {
       expect(userService.getUserTeams).not.toHaveBeenCalled();
     });
 
-    it('shows the team selection with the teams of the user for Counter-Strike', () => {
-      vi.mocked(userService.getUserTeams).mockReturnValue(of([team('team-1', 'Alpha'), team('team-2', 'Bravo')]));
+    it('shows the team selection with the Counter-Strike teams of the user for Counter-Strike', () => {
+      vi.mocked(userService.getUserTeams).mockReturnValue(of([
+        team('team-1', 'Alpha'), team('team-2', 'Bravo', Game.CSGO), team('team-3', 'Dota Squad', Game.Dota2)
+      ]));
       const scroll = vi.spyOn(Element.prototype, 'scrollIntoView');
       authUser.set(makeUser());
       create();
@@ -159,13 +162,43 @@ describe('TournamentRegistrationComponent', () => {
       expect(component.detailsVisible()).toBe(true);
       expect(details()!.classList).toContain('application-details-show');
       expect(userService.getUserTeams).toHaveBeenCalledWith('user-1');
-      expect(component.userTeams()!.map(t => t.teamName)).toEqual(['Alpha', 'Bravo']);
+      expect(component.gameTeams()!.map(t => t.teamName)).toEqual(['Alpha', 'Bravo']);
       const teamSelect = el().querySelector('igx-select#team')!;
       expect(teamSelect).not.toBeNull();
       expect(teamSelect.textContent).toContain('Alpha');
       expect(teamSelect.textContent).toContain('Bravo');
+      expect(teamSelect.textContent).not.toContain('Dota Squad');
       expect(teamSelect.textContent).toContain('Create a new team...');
       expect(el().querySelector('#battletag')).toBeNull();
+    });
+
+    it('shows the team selection with the Dota 2 teams of the user for Dota 2', () => {
+      vi.mocked(userService.getUserTeams).mockReturnValue(of([team('team-1', 'Alpha'), team('team-3', 'Dota Squad', Game.Dota2)]));
+      authUser.set(makeUser());
+      create();
+
+      component.selectGame(Game.Dota2);
+      fixture.detectChanges();
+
+      expect(component.application().game).toBe(Game.Dota2);
+      expect(component.teamGame()).toBe(true);
+      expect(userService.getUserTeams).toHaveBeenCalledWith('user-1');
+      expect(component.gameTeams()!.map(t => t.teamName)).toEqual(['Dota Squad']);
+      const teamSelect = el().querySelector('igx-select#team')!;
+      expect(teamSelect).not.toBeNull();
+      expect(teamSelect.textContent).toContain('Dota Squad');
+      expect(teamSelect.textContent).not.toContain('Alpha');
+      expect(el().querySelector('#battletag')).toBeNull();
+    });
+
+    it('warns a Dota 2 applicant without a Steam account', () => {
+      authUser.set(makeUser({ steamId: undefined }));
+      create();
+
+      component.selectGame(Game.Dota2);
+      fixture.detectChanges();
+
+      expect(el().textContent).toContain('You\'ve not associated a Steam account');
     });
 
     it('warns a Counter-Strike applicant without a Steam account', () => {
@@ -343,10 +376,36 @@ describe('TournamentRegistrationComponent', () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(openNewTeam).toHaveBeenCalledWith(false);
+      expect(openNewTeam).toHaveBeenCalledWith(false, Game.CSGO);
       expect(component.application().teamId).not.toBe(component.newTeamOption);
       expect(select.value).not.toBe(component.newTeamOption);
       expect(close).toHaveBeenCalled();
+    });
+
+    it('opens the new team dialog for the game of the league', async () => {
+      component.selectGame(Game.Dota2);
+      fixture.detectChanges();
+      select = fixture.debugElement.query(By.css('igx-select#team')).componentInstance as IgxSelectComponent;
+      select.open();
+      fixture.detectChanges();
+
+      select.items.find(i => i.value === component.newTeamOption)!.element.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(openNewTeam).toHaveBeenCalledWith(false, Game.Dota2);
+    });
+
+    it('offers and selects the team that was just created', async () => {
+      const created = team('team-new', 'Fresh Team', Game.CSGO);
+      const newTeam = fixture.debugElement.query(By.directive(TeamNewComponent)).componentInstance as TeamNewComponent;
+
+      newTeam.created.emit(created);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.gameTeams()!.map(t => t.teamName)).toEqual(['Alpha', 'Fresh Team']);
+      expect(component.application().teamId).toBe('team-new');
+      expect(select.value).toBe('team-new');
     });
 
     it('opens the new team dialog when the option is chosen with the keyboard', async () => {
@@ -359,7 +418,7 @@ describe('TournamentRegistrationComponent', () => {
       keydown('Enter');
       await fixture.whenStable();
 
-      expect(openNewTeam).toHaveBeenCalledWith(false);
+      expect(openNewTeam).toHaveBeenCalledWith(false, Game.CSGO);
       expect(component.application().teamId).not.toBe(component.newTeamOption);
       expect(select.value).not.toBe(component.newTeamOption);
       expect(close).toHaveBeenCalled();

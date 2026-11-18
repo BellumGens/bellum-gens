@@ -54,7 +54,7 @@
                   </igx-avatar>
                 }
                 @if (role.user) {
-                  <a [routerLink]="['/players', role.user.customUrl || role.user.userId]">{{ role.user.username }}</a>
+                  <a [routerLink]="['/players', role.user.customUrl || role.user.userId, playerTab()]">{{ role.user.username }}</a>
                 } @else {
                   <span i18n>[ empty ]</span>
                 }
@@ -93,7 +93,7 @@
                     </button>
                   }
                 </div>
-                <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
+                <a [routerLink]="['/players', user.customUrl || user.userId, playerTab()]">{{ user.username }}</a>
               </div>
             }
             @if (!activeMembers().length) {
@@ -129,7 +129,7 @@
                     </button>
                   }
                 </div>
-                <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
+                <a [routerLink]="['/players', user.customUrl || user.userId, playerTab()]">{{ user.username }}</a>
               </div>
             }
             @if (!inactiveMembers().length) {

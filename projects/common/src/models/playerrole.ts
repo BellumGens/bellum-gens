@@ -10,13 +10,21 @@ export interface RoleSlot {
   user: TeamMember | null;
 }
 
+/** The roles of a team roster. Counter-Strike and Dota 2 rosters each have their own five roles. */
 export enum PlaystyleRole {
   NotSet,
+  // Counter-Strike
   IGL,
   Awper,
   EntryFragger,
   Support,
-  Lurker
+  Lurker,
+  // Dota 2 positions 1 to 5
+  Carry,
+  Mid,
+  Offlane,
+  SoftSupport,
+  HardSupport
 }
 
 export const ALL_ROLES: Role [] = [{

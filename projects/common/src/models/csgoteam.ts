@@ -1,6 +1,7 @@
 import { PlaystyleRole } from './playerrole';
 import { SteamGroup } from './steamuser';
 import { NotificationState } from './usernotifications';
+import { Game } from './tournament';
 
 export interface CSGOTeam {
   teamId?: string;
@@ -11,7 +12,15 @@ export interface CSGOTeam {
   visible: boolean;
   customUrl?: string;
   steamGroup?: SteamGroup;
+  /** The game the team plays (Counter-Strike or Dota 2). It is set when the team is created and does not change. */
+  game?: Game;
 }
+
+/** The games teams are formed for. StarCraft II is played by single players. */
+export const TEAM_GAMES = [Game.CSGO, Game.Dota2] as const;
+
+/** The game of the team. Teams the API sends without one were created for Counter-Strike. */
+export const teamGame = (team: CSGOTeam | null | undefined): Game => team?.game ?? Game.CSGO;
 
 export interface TeamMember {
   teamId: string;

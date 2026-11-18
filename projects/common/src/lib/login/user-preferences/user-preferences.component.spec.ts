@@ -333,6 +333,18 @@ describe('UserPreferencesComponent', () => {
       expect(location.href).toBe(`${environment.ebleague}/tournaments`);
     });
 
+    it('should name the game of every registration', () => {
+      authService['_registrations'].set([
+        registrations[0],
+        registrations[1],
+        { ...registrations[0], id: '3', game: Game.Dota2 }
+      ]);
+      fixture.detectChanges();
+
+      const games = Array.from(el().querySelectorAll('.registration-game')).map(g => g.textContent.trim());
+      expect(games).toEqual(['Counter-Strike', 'StarCraft II', 'Dota 2']);
+    });
+
     it('should name the state of every registration, pending when it has none', () => {
       authService['_registrations'].set([
         { ...registrations[0], state: TournamentApplicationState.Confirmed },

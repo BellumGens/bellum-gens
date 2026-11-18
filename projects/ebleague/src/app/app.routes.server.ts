@@ -14,6 +14,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
+    path: 'tournaments/dota2/:tournamentid',
+    renderMode: RenderMode.Server
+  },
+  {
     path: 'admin/**',
     renderMode: RenderMode.Client
   },

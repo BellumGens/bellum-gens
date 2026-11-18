@@ -3,6 +3,7 @@ import { TournamentComponent } from './tournament.component';
 import { TournamentFormatComponent } from './tournament-format/tournament-format.component';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
+import { TournamentDota2Component } from './tournament-dota2/tournament-dota2.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentsMainComponent } from './tournaments-main/tournaments-main.component';
 import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from 'bellum-gens-common';
@@ -25,6 +26,15 @@ export const routes: Routes = [
         twitterTitle: 'Esports бизнес лига - StarCraft II',
         description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
         twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
+        image: '/assets/eb-league-logo-sm.png'
+      }
+    },
+    { path: 'dota2', redirectTo: 'dota2/', pathMatch: 'full' },
+    { path: 'dota2/:tournamentid', component: TournamentDota2Component, data: {
+        title: 'Esports Business League - Dota 2',
+        twitterTitle: 'Esports бизнес лига - Dota 2',
+        description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike, StarCraft II и Dota 2',
+        twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike, StarCraft II и Dota 2',
         image: '/assets/eb-league-logo-sm.png'
       }
     }

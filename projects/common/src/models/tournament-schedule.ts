@@ -63,6 +63,32 @@ export interface TournamentSC2Match extends TournamentMatch {
   maps?: TournamentSC2MatchMap [];
 }
 
+/** A Dota 2 series between two teams; the points are the games each team won. */
+export interface TournamentDota2Match extends TournamentMatch {
+  team1Id?: string;
+  team2Id?: string;
+  team1Points?: number;
+  team2Points?: number;
+  /** Computed by the API from the points; the empty GUID when the series is drawn or not played yet. */
+  winnerTeamId?: string;
+  team1?: CSGOTeam;
+  team2?: CSGOTeam;
+  games?: TournamentDota2MatchGame [];
+}
+
+/** A single game of a Dota 2 series. */
+export interface TournamentDota2MatchGame {
+  id?: string;
+  dota2MatchId?: string;
+  /** The position of the game in the series, starting at 1. */
+  gameNumber: number;
+  /** The id of the game on Steam, to find it in the Dota 2 client. */
+  steamMatchId?: number | null;
+  /** The team on the Radiant side; the other team played on the Dire side. */
+  radiantTeamId?: string | null;
+  winnerTeamId?: string | null;
+}
+
 export interface TournamentMatchMap {
   id?: string;
 }

@@ -38,7 +38,7 @@
     @for (registration of registrations(); track registration.id) {
       <igx-list-item>
         <span igxListLineTitle class="registration-title">{{ registration.tournamentName }}</span>
-        <span igxListLineSubTitle class="registration-game">{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</span>
+        <span igxListLineSubTitle class="registration-game">{{ gameName(registration.game) }}</span>
         <div class="horizontal-center" igxListAction>
           <span
             [class.color-error]="registration.state === 0"

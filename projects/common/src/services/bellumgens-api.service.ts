@@ -13,7 +13,9 @@ import {
   UserNotification,
   Tournament,
   ApplicationUser,
-  EarlyBird
+  Dota2Profile,
+  EarlyBird,
+  Game
 } from 'bellum-gens-common/models';
 import { environment } from 'bellum-gens-common/environments';
 import { Observable, Subscription, throwError } from 'rxjs';
@@ -116,8 +118,9 @@ export class BellumgensApiService {
     return this.currentTeamPractice;
   }
 
-  public registerSteamGroup(group: SteamGroup) {
-    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team`, group, { withCredentials: true }).pipe(
+  /** Creates a team for the game from a Steam group the user owns. */
+  public registerSteamGroup(group: SteamGroup, game = Game.CSGO) {
+    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team?game=${game}`, group, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess(`${group.groupName} registered successfully!`);
         return response;
@@ -321,6 +324,10 @@ export class BellumgensApiService {
 
   public getPlayerTournaments(userid: string) {
     return this.http.get<Tournament []>(`${this._apiEndpoint}/users/tournaments?userid=${userid}`);
+  }
+
+  public getDota2Profile(steamId: string) {
+    return this.http.get<Dota2Profile>(`${this._apiEndpoint}/users/dota2?steamid=${steamId}`);
   }
 
   public getPlayerGroups(userId: string) {

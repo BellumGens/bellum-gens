@@ -17,8 +17,16 @@
         <div igxTabHeaderLabel>StarCraft II</div>
       </igx-tab-header>
     </igx-tab-item>
-    <!-- <igx-tab-item routerLinkActive #rla3="routerLinkActive"
+    <igx-tab-item routerLinkActive #rla3="routerLinkActive"
+      [disabled]="!player()?.steamUser"
       [selected]="rla3.isActive">
+      <igx-tab-header routerLink="dota">
+        <igx-avatar class="tabs-avatar" src="/assets/wallpapers/dota2-icon.png" igxPrefix shape="circle" size="small" />
+        <div igxTabHeaderLabel>Dota 2</div>
+      </igx-tab-header>
+    </igx-tab-item>
+    <!-- <igx-tab-item routerLinkActive #rla4="routerLinkActive"
+      [selected]="rla4.isActive">
       <igx-tab-header routerLink="competitions">
         <igx-icon igxPrefix>sports_esports</igx-icon>
         <div igxTabHeaderLabel i18n>Competitions</div>

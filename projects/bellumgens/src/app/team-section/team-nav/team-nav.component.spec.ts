@@ -8,13 +8,13 @@ import { TeamNewComponent } from '../team-new/team-new.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { ApplicationUser, CSGOTeam } from 'bellum-gens-common/models';
+import { ApplicationUser, CSGOTeam, Game } from 'bellum-gens-common/models';
 import { ConfirmComponent } from 'bellum-gens-common';
 import { LoginService } from 'bellum-gens-common/services';
 
 const TEAMS: CSGOTeam [] = [
   { teamId: 'team-1', teamName: 'First Team', teamAvatar: '', description: 'The first team', customUrl: 'first-team', visible: true },
-  { teamId: 'team-2', teamName: 'Second Team', teamAvatar: '', description: 'The second team', customUrl: 'second-team', visible: true }
+  { teamId: 'team-2', teamName: 'Second Team', teamAvatar: '', description: 'The second team', customUrl: 'second-team', visible: true, game: Game.Dota2 }
 ] as CSGOTeam [];
 
 describe('TeamNavComponent', () => {
@@ -61,7 +61,7 @@ describe('TeamNavComponent', () => {
       await fixture.whenStable();
       const el: HTMLElement = fixture.nativeElement;
       expect(el.textContent).toContain('You need to login to view your teams.');
-      expect(el.textContent).not.toContain('Create New Counter-Strike Team');
+      expect(el.textContent).not.toContain('Create New Team');
       expect(el.querySelectorAll('igx-card').length).toBe(0);
     });
 
@@ -104,12 +104,31 @@ describe('TeamNavComponent', () => {
       await flushTeams(TEAMS);
       const el: HTMLElement = fixture.nativeElement;
       expect(el.textContent).not.toContain('You need to login to view your teams.');
-      expect(el.textContent).toContain('Create New Counter-Strike Team');
+      expect(el.textContent).toContain('Create New Team');
       const cards = el.querySelectorAll('igx-card');
       expect(cards.length).toBe(2);
       expect(cards[0].querySelector('h3')!.textContent).toContain('First Team');
       expect(cards[0].textContent).toContain('The first team');
       expect(cards[1].querySelector('h3')!.textContent).toContain('Second Team');
+    });
+
+    it('should show the game of each team, Counter-Strike for teams without one', async () => {
+      await flushTeams(TEAMS);
+      const games = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll('igx-card .team-game'))
+        .map(game => game.textContent.trim());
+      expect(games).toEqual(['Counter-Strike', 'Dota 2']);
+    });
+
+    it('should open the new team dialog with the choice of game', async () => {
+      await flushTeams(TEAMS);
+      const newTeam = fixture.debugElement.query(By.directive(TeamNewComponent)).componentInstance as TeamNewComponent;
+      const open = vi.spyOn(newTeam, 'open');
+
+      ((fixture.nativeElement as HTMLElement).querySelector('.submit-button') as HTMLButtonElement).click();
+
+      expect(open).toHaveBeenCalledExactlyOnceWith();
+      httpMock.match(r => r.url.includes('/users/usergroups'));
+      expect(newTeam.gameFixed()).toBe(false);
     });
 
     it('should link each card to the team page', async () => {

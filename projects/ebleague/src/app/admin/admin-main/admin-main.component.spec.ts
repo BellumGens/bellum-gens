@@ -795,6 +795,28 @@ describe('AdminMainComponent', () => {
       expect(cellElement('reg-2', 'game').textContent.trim()).toBe('Counter-Strike');
     });
 
+    it('should name Dota 2 registrations by their game rather than as StarCraft II', async () => {
+      apiService['_allRegistrations'].set([
+        ...registrations(),
+        {
+          id: 'reg-3', game: Game.Dota2, email: 'charlie@example.com', battleNetId: null, country: 'BG', discord: 'charlie',
+          tournamentName: 'Spring League', state: TournamentApplicationState.Pending
+        }
+      ]);
+      await render();
+      grid().toggleAllGroupRows();
+      grid().getColumnByName('game').hidden = false;
+      await render();
+
+      expect(groupLabels()).toEqual([
+        'League: Spring League 3',
+        'Game: Counter-Strike 1',
+        'Game: StarCraft II 1',
+        'Game: Dota 2 1'
+      ]);
+      expect(cellElement('reg-3', 'game').textContent.trim()).toBe('Dota 2');
+    });
+
     it('should confirm a registration when its state cell is edited', async () => {
       grid().toggleAllGroupRows();
       await render();

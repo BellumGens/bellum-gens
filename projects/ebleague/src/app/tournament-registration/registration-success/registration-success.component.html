@@ -1,7 +1,11 @@
 <div class="loading-overview">
   @if (application) {
     <h4 class="color-success" i18n>Your registration has been submitted successfully!</h4>
-    <p i18n>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</p>
+    @if (feeKnown) {
+      <p i18n>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</p>
+    } @else {
+      <p i18n>In order to confirm your registration, you need to pay the registration fee.</p>
+    }
     <p i18n>Your registration will be shown as confirmed within 2 work days of the registration fee transfer.</p>
     <ul>
       <li i18n>Bank name: <span class="highlight">United Bulgarian Bank</span></li>

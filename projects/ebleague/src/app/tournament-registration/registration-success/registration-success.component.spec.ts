@@ -41,6 +41,18 @@ describe('RegistrationSuccessComponent', () => {
     expect((fixture.nativeElement as HTMLElement).querySelector('a[href="/"]')).toBeNull();
   });
 
+  it('should quote the fees of the StarCraft II and Counter-Strike leagues', () => {
+    createComponent({ hash: 'ABC123', game: 0 });
+    expect((fixture.nativeElement as HTMLElement).textContent).toContain('300 BGN for the Counter-Strike league');
+  });
+
+  it('should not quote a fee for a Dota 2 registration', () => {
+    createComponent({ hash: 'ABC123', game: 2 });
+    const text = (fixture.nativeElement as HTMLElement).textContent;
+    expect(text).toContain('you need to pay the registration fee.');
+    expect(text).not.toContain('BGN for');
+  });
+
   it('should not render empty placeholders when opened without registration data', () => {
     createComponent();
     const el = fixture.nativeElement as HTMLElement;

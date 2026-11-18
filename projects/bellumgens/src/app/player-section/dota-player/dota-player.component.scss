@@ -1,0 +1,88 @@
+@use "../../../variables" as *;
+
+:host ::ng-deep {
+  @include app-grid-theme(
+    $header-background: var(--ig-surface-500),
+    $content-background: var(--ig-surface-300)
+  );
+
+  .player-detail__stats {
+    min-height: 335px;
+    height: fit-content;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  .player-detail__stats .igx-card-content {
+    overflow: visible;
+  }
+
+  .stats-progress {
+    --ig-circular-bar-diameter: 200px;
+    --stroke-thickness: 10px;
+    --scale-factor: 4;
+    display: flex;
+    justify-content: center;
+  }
+
+  .dota-summary {
+    margin: 0;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 8px;
+      border-block-end: 1px solid var(--ig-gray-300);
+    }
+
+    dd {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  .hero-avatar {
+    --size: 32px;
+    --border-radius: 4px;
+  }
+
+  .hero-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .recent-matches {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .dota-message {
+      grid-column: 2 / -1;
+    }
+  }
+
+  @media only screen and (min-width: 1281px) {
+    .card-wrapper.profile-view-layout {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .stats-progress {
+      --ig-circular-bar-diameter: clamp(140px, 11vw, 200px);
+    }
+  }
+
+  @media only screen and (max-width: 599px) {
+    .card-wrapper.profile-view-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-container,
+    .player-detail__stats {
+      max-width: none;
+    }
+  }
+}

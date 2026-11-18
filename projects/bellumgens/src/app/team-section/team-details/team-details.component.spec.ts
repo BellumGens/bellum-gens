@@ -9,7 +9,7 @@ import { Observable, config, of, throwError } from 'rxjs';
 import { WritableSignal, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import type { Mock } from 'vitest';
-import { ApplicationUser, Availability, CSGOTeam, DayOfWeek, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { ApplicationUser, Availability, CSGOTeam, DayOfWeek, Game, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
 import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { ConfirmComponent } from 'bellum-gens-common';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -162,7 +162,7 @@ describe('TeamDetailsComponent', () => {
       { day: DayOfWeek.Monday, available: true, from: new Date(2020, 0, 1, 18), to: new Date(2020, 0, 1, 22) }
     ];
 
-    const setup = async (options: { admin?: boolean, teamMembers?: TeamMember [] | null, user?: Partial<ApplicationUser> } = {}) => {
+    const setup = async (options: { admin?: boolean, teamMembers?: TeamMember [] | null, user?: Partial<ApplicationUser>, team?: CSGOTeam } = {}) => {
       apiService = TestBed.inject(BellumgensApiService);
       loginService = TestBed.inject(LoginService);
       members = signal<TeamMember [] | null>(options.teamMembers === undefined ? allMembers : options.teamMembers);
@@ -175,7 +175,7 @@ describe('TeamDetailsComponent', () => {
       removeTeamMember = vi.spyOn(apiService, 'removeTeamMember').mockReturnValue(of({})) as Mock;
       setTeamPractice = vi.spyOn(apiService, 'setTeamPractice').mockReturnValue(of({})) as Mock;
 
-      team.set(TEAM);
+      team.set(options.team ?? TEAM);
       fixture = TestBed.createComponent(TeamDetailsComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
@@ -218,7 +218,7 @@ describe('TeamDetailsComponent', () => {
         await setup();
         const el: HTMLElement = fixture.nativeElement;
         const leaderLink = Array.from(el.querySelectorAll('.member-slot a')).find(a => a.textContent.trim() === 'Leader')!;
-        expect(leaderLink.getAttribute('href')).toBe('/players/leader');
+        expect(leaderLink.getAttribute('href')).toBe('/players/leader/cs');
         expect(text()).toContain('Sniper');
         expect(el.querySelectorAll('.empty-role').length).toBe(3);
         expect(text().match(/\[ empty \]/g)!.length).toBe(3);
@@ -226,7 +226,7 @@ describe('TeamDetailsComponent', () => {
         expect(text()).toContain('user-bench-a');
         expect(text()).toContain('user-inactive-b');
         const benchLink = Array.from(el.querySelectorAll('.active-inactive-users a')).find(a => a.textContent.trim() === 'user-bench-a')!;
-        expect(benchLink.getAttribute('href')).toBe('/players/bench-a');
+        expect(benchLink.getAttribute('href')).toBe('/players/bench-a/cs');
         expect(text()).not.toContain('Bench is currently empty.');
         expect(text()).not.toContain('No inactive members.');
       });
@@ -261,6 +261,75 @@ describe('TeamDetailsComponent', () => {
         expect(apiService.getTeamSchedule).toHaveBeenLastCalledWith('team-2');
         expect(apiService.getTeamMembers).toHaveBeenLastCalledWith('team-2');
         expect(apiService.getTeamMembers).toHaveBeenCalledTimes(2);
+      });
+    });
+
+    describe('Dota 2 team', () => {
+      const DOTA_TEAM: CSGOTeam = { ...TEAM, teamId: 'dota-team', customUrl: 'dota-team', game: Game.Dota2 };
+      const carry = member('carry', { teamId: 'dota-team', role: PlaystyleRole.Carry, username: 'Farmer', customUrl: 'farmer' });
+      const hardSupport = member('hard-support', { teamId: 'dota-team', role: PlaystyleRole.HardSupport, username: 'Warder' });
+      // A role that is not part of a Dota 2 roster puts the member on the bench
+      const csRole = member('cs-role', { teamId: 'dota-team', role: PlaystyleRole.Awper });
+      const bench = member('dota-bench', { teamId: 'dota-team' });
+      const inactive = member('dota-inactive', { teamId: 'dota-team', isActive: false });
+      const dotaMembers = [carry, hardSupport, csRole, bench, inactive];
+
+      it('should have the five Dota 2 positions as role slots', async () => {
+        await setup({ team: DOTA_TEAM, teamMembers: dotaMembers });
+        expect(component.roleSlots().map(s => [s.roleName, s.role])).toEqual([
+          ['Carry', PlaystyleRole.Carry],
+          ['Mid', PlaystyleRole.Mid],
+          ['Offlane', PlaystyleRole.Offlane],
+          ['Soft Support', PlaystyleRole.SoftSupport],
+          ['Hard Support', PlaystyleRole.HardSupport]
+        ]);
+        const labels = Array.from((fixture.nativeElement as HTMLElement).querySelectorAll('.member-slot > span:first-child')).map(s => s.textContent.trim());
+        expect(labels).toEqual(['Carry', 'Mid', 'Offlane', 'Soft Support', 'Hard Support']);
+      });
+
+      it('should put the members with a Dota 2 position in the roster and the others on the bench', async () => {
+        await setup({ team: DOTA_TEAM, teamMembers: dotaMembers });
+        expect(slot(PlaystyleRole.Carry)!.user).toEqual(carry);
+        expect(slot(PlaystyleRole.HardSupport)!.user).toEqual(hardSupport);
+        expect(slot(PlaystyleRole.Mid)!.user).toBeNull();
+        expect(ids(component.activeMembers())).toEqual(['cs-role', 'dota-bench']);
+        expect(ids(component.inactiveMembers())).toEqual(['dota-inactive']);
+      });
+
+      it('should link the members to their Dota 2 player page', async () => {
+        await setup({ team: DOTA_TEAM, teamMembers: dotaMembers });
+        const el: HTMLElement = fixture.nativeElement;
+        const hrefs = Array.from(el.querySelectorAll('.member-slot a, .active-inactive-users a')).map(a => a.getAttribute('href'));
+        expect(hrefs).toEqual([
+          '/players/farmer/dota',
+          '/players/hard-support/dota',
+          '/players/cs-role/dota',
+          '/players/dota-bench/dota',
+          '/players/dota-inactive/dota'
+        ]);
+      });
+
+      it('should assign a Dota 2 position to a dropped member', async () => {
+        await setup({ team: DOTA_TEAM, teamMembers: dotaMembers, admin: true });
+        component.assignToRole(dropArgs(bench), slot(PlaystyleRole.Mid)!);
+
+        expect(slot(PlaystyleRole.Mid)!.user!.userId).toBe('dota-bench');
+        expect(updateTeamMember).toHaveBeenCalledExactlyOnceWith({ ...bench, isActive: true, role: PlaystyleRole.Mid });
+        expect(ids(component.activeMembers())).toEqual(['cs-role']);
+      });
+
+      it('should switch the role slots when moving to a team of another game', async () => {
+        await setup();
+        expect(slot(PlaystyleRole.IGL)!.user).toEqual(igl);
+
+        members.set(dotaMembers);
+        team.set(DOTA_TEAM);
+        await fixture.whenStable();
+
+        expect(component.roleSlots().map(s => s.role)).toEqual([
+          PlaystyleRole.Carry, PlaystyleRole.Mid, PlaystyleRole.Offlane, PlaystyleRole.SoftSupport, PlaystyleRole.HardSupport
+        ]);
+        expect(slot(PlaystyleRole.Carry)!.user).toEqual(carry);
       });
     });
 

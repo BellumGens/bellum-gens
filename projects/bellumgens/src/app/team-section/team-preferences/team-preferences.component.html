@@ -80,7 +80,7 @@
                 </igx-avatar>
               }
               <h2 igxListLineTitle>
-                <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
+                <a [routerLink]="['/players', user.customUrl || user.userId, playerTab()]">{{ user.username }}</a>
               </h2>
               <h4 igxListLineSubTitle>{{ user.realName }}</h4>
               <div igxListAction>
@@ -91,13 +91,16 @@
                     (ngModelChange)="adminStatusUpdated(user)"
                   i18n>Admin</igx-switch>
                 </div>
-                <div class="horizontal-center space-between">
-                  <igx-switch [id]="'editor_switch_' + i"
-                    [disabled]="user.isAdmin || user.userId === authUser()?.id"
-                    [(ngModel)]="user.isEditor"
-                    (ngModelChange)="editorStatusUpdated(user)"
-                  i18n>Strategist</igx-switch>
-                </div>
+                <!-- Strategists edit the team's strategies, which only Counter-Strike teams have -->
+                @if (hasStrategies()) {
+                  <div class="horizontal-center space-between">
+                    <igx-switch [id]="'editor_switch_' + i"
+                      [disabled]="user.isAdmin || user.userId === authUser()?.id"
+                      [(ngModel)]="user.isEditor"
+                      (ngModelChange)="editorStatusUpdated(user)"
+                    i18n>Strategist</igx-switch>
+                  </div>
+                }
               </div>
             </igx-list-item>
           }

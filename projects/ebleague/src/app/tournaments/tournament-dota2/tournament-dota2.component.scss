@@ -1,0 +1,25 @@
+// The grid, toolbar, registration and group styles come from the parent tournament page
+
+.series-score {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.series-games {
+  margin: 0 auto 8px;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 4px 12px;
+    text-align: center;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  tbody tr + tr {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}

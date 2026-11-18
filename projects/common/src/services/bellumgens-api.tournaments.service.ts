@@ -14,7 +14,10 @@ import {
   TournamentCSGOMatch,
   TournamentSC2Match,
   TournamentCSGOMatchMap,
-  TournamentSC2MatchMap
+  TournamentSC2MatchMap,
+  TournamentDota2Group,
+  TournamentDota2Match,
+  TournamentDota2MatchGame
 } from 'bellum-gens-common/models';
 import { map, catchError, finalize, tap } from 'rxjs/operators';
 
@@ -31,6 +34,9 @@ export class ApiTournamentsService {
   private _loadingSC2Matches = signal(false);
   private _loadingCSGOGroups = signal(false);
   private _loadingSC2Groups = signal(false);
+  private _loadingDota2Registrations = signal(false);
+  private _loadingDota2Matches = signal(false);
+  private _loadingDota2Groups = signal(false);
   private _loadingTourRegistrations = signal(false);
   private _loadingTournaments = signal(false);
   private _registrationsCount = signal<RegistrationsCount [] | null>(null);
@@ -41,6 +47,9 @@ export class ApiTournamentsService {
   public readonly loadingSC2Matches = this._loadingSC2Matches.asReadonly();
   public readonly loadingCSGOGroups = this._loadingCSGOGroups.asReadonly();
   public readonly loadingSC2Groups = this._loadingSC2Groups.asReadonly();
+  public readonly loadingDota2Registrations = this._loadingDota2Registrations.asReadonly();
+  public readonly loadingDota2Matches = this._loadingDota2Matches.asReadonly();
+  public readonly loadingDota2Groups = this._loadingDota2Groups.asReadonly();
   public readonly loadingTourRegistrations = this._loadingTourRegistrations.asReadonly();
   public readonly loadingTournaments = this._loadingTournaments.asReadonly();
   public readonly registrationsCount = this._registrationsCount.asReadonly();
@@ -60,6 +69,9 @@ export class ApiTournamentsService {
   private _sc2Matches = new Map<string, WritableSignal<TournamentSC2Match [] | null>>();
   private _csgoGroups = new Map<string, WritableSignal<TournamentCSGOGroup [] | null>>();
   private _sc2Groups = new Map<string, WritableSignal<TournamentSC2Group [] | null>>();
+  private _dota2Registrations = new Map<string, WritableSignal<TournamentParticipant [] | null>>();
+  private _dota2Matches = new Map<string, WritableSignal<TournamentDota2Match [] | null>>();
+  private _dota2Groups = new Map<string, WritableSignal<TournamentDota2Group [] | null>>();
 
   /** Cache signals that currently have a request in flight, so concurrent reads don't duplicate it. */
   private _pending = new WeakSet<WritableSignal<unknown | null>>();
@@ -156,6 +168,30 @@ export class ApiTournamentsService {
 
   public refreshSc2Groups(id: string): Signal<TournamentSC2Group [] | null> {
     return this.refresh(this._sc2Groups, id, i => this.getReversedSC2Groups(i), this._loadingSC2Groups);
+  }
+
+  public getDota2Registrations(id: string): Signal<TournamentParticipant [] | null> {
+    return this.cached(this._dota2Registrations, id, i => this.getDota2RegistrationsFromServer(i), this._loadingDota2Registrations);
+  }
+
+  public refreshDota2Registrations(id: string): Signal<TournamentParticipant [] | null> {
+    return this.refresh(this._dota2Registrations, id, i => this.getDota2RegistrationsFromServer(i), this._loadingDota2Registrations);
+  }
+
+  public getDota2Matches(id: string): Signal<TournamentDota2Match [] | null> {
+    return this.cached(this._dota2Matches, id, i => this.getDota2MatchesFromServer(i), this._loadingDota2Matches);
+  }
+
+  public refreshDota2Matches(id: string): Signal<TournamentDota2Match [] | null> {
+    return this.refresh(this._dota2Matches, id, i => this.getDota2MatchesFromServer(i), this._loadingDota2Matches);
+  }
+
+  public getDota2Groups(id: string): Signal<TournamentDota2Group [] | null> {
+    return this.cached(this._dota2Groups, id, i => this.getDota2GroupsFromServer(i), this._loadingDota2Groups);
+  }
+
+  public refreshDota2Groups(id: string): Signal<TournamentDota2Group [] | null> {
+    return this.refresh(this._dota2Groups, id, i => this.getDota2GroupsFromServer(i), this._loadingDota2Groups);
   }
 
   public leagueRegistration(application: TournamentApplication) {
@@ -273,14 +309,90 @@ export class ApiTournamentsService {
       );
   }
 
-  /** Deletes a group and removes it from every cached Counter-Strike and StarCraft II group list. */
+  /** Deletes a group and removes it from every cached Counter-Strike, StarCraft II and Dota 2 group list. */
   public deleteGroup(id: string) {
     return this.http.delete<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/group?id=${id}`, { withCredentials: true}).pipe(
       tap(() => {
         this.removeGroupFromCache(this._csgoGroups, id);
         this.removeGroupFromCache(this._sc2Groups, id);
+        this.removeGroupFromCache(this._dota2Groups, id);
       })
     );
+  }
+
+  /**
+   * Saves a Dota 2 group and adds a newly created one to the cached groups of its tournament.
+   * `tournamentId` identifies that cache when the group itself doesn't carry one.
+   */
+  public submitDota2Group(group: TournamentDota2Group, tournamentId = group.tournamentId) {
+    return this.http.put<TournamentDota2Group>(`${this._apiEndpoint}/tournament/dota2group${group.id ? '?id=' + group.id : ''}`,
+      group, { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament Dota 2 group updated successfully!');
+          this.addGroupToCache(this._dota2Groups, tournamentId ?? response?.tournamentId, response, 'end');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public submitDota2Match(match: TournamentDota2Match) {
+    return this.http.put<TournamentDota2Match>(`${this._apiEndpoint}/tournament/dota2match${match.id ? '?id=' + match.id : ''}`,
+      match, { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament Dota 2 match updated successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public deleteDota2Match(match: TournamentDota2Match) {
+    return this.http.delete<TournamentDota2Match>(`${this._apiEndpoint}/tournament/dota2match?id=${match.id}`,
+      { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament Dota 2 match deleted successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public submitDota2MatchGame(game: TournamentDota2MatchGame) {
+    return this.http.put<TournamentDota2MatchGame>(`${this._apiEndpoint}/tournament/dota2matchgame${game.id ? '?id=' + game.id : ''}`,
+      game, { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament Dota 2 game updated successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public deleteDota2MatchGame(gameId: string) {
+    return this.http.delete<TournamentDota2MatchGame>(`${this._apiEndpoint}/tournament/dota2matchgame?id=${gameId}`,
+      { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament Dota 2 game deleted successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
   }
 
   public addParticipantToGroup(participant: TournamentParticipant, groupid: string) {
@@ -614,6 +726,18 @@ export class ApiTournamentsService {
 
   private getSC2Groups(id: string) {
     return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`);
+  }
+
+  private getDota2RegistrationsFromServer(id: string) {
+    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/dota2regs${id ? '?tournamentId=' + id : ''}`);
+  }
+
+  private getDota2MatchesFromServer(id: string) {
+    return this.http.get<TournamentDota2Match []>(`${this._apiEndpoint}/tournament/dota2matches${id ? '?tournamentId=' + id : ''}`);
+  }
+
+  private getDota2GroupsFromServer(id: string) {
+    return this.http.get<TournamentDota2Group []>(`${this._apiEndpoint}/tournament/dota2groups${id ? '?tournamentId=' + id : ''}`);
   }
 
   private getReversedSC2Groups(id: string) {
