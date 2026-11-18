@@ -1,6 +1,6 @@
 @if (authUser()) {
   <button class="submit-button" igxButton="contained" igxRipple (click)="createTeam.open()">
-    <igx-icon>add_circle_outline</igx-icon><span i18n>Create New Counter-Strike Team</span>
+    <igx-icon>add_circle_outline</igx-icon><span i18n>Create New Team</span>
   </button>
 }
 
@@ -14,6 +14,7 @@
       <igx-card-header>
         <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle"></igx-avatar>
         <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>
+        <h4 igxCardHeaderSubtitle class="team-game">{{ team | teamGameName }}</h4>
       </igx-card-header>
       <igx-card-content>
         <p>{{ team.description }}</p>

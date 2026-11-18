@@ -1,5 +1,14 @@
 @if (authUser()) {
   <igx-dialog #createTeam [closeOnOutsideSelect]="true">
+    <!-- The game applies to the team created from a Steam group and to the one created with the form -->
+    @if (!gameFixed()) {
+      <span class="highlight" id="newTeamGameLabel" title="The game a new team is created for" i18n-title i18n="The game a new team is created for">Game</span>
+      <igx-radio-group class="team-game-group" role="radiogroup" aria-labelledby="newTeamGameLabel" name="newTeamGame" [(ngModel)]="game">
+        @for (option of teamGames; track option.id) {
+          <igx-radio [value]="option.id">{{ option.name }}</igx-radio>
+        }
+      </igx-radio-group>
+    }
     <span class="highlight" i18n>Import from Steam Group</span>
     <igx-input-group type="search">
       <igx-prefix>
@@ -98,8 +107,13 @@
           <button igxButton
             igxRipple
             [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress()"
-            class="submit-button"
-          i18n>{{ inProgress() ? 'Submitting...' : 'Submit' }}</button>
+            class="submit-button">
+            @if (inProgress()) {
+              <ng-container i18n="The submit button of the new team form while the team is being created">Submitting...</ng-container>
+            } @else {
+              <ng-container i18n="The submit button of the new team form">Submit</ng-container>
+            }
+          </button>
         </form>
       </igx-dialog>
     }

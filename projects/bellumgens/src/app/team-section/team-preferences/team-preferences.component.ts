@@ -1,8 +1,8 @@
-import { Component, Injector, Signal, inject, signal } from '@angular/core';
+import { Component, Injector, Signal, computed, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
-import { CSGOTeam, TeamMember, ApplicationUser } from 'bellum-gens-common/models';
+import { CSGOTeam, TeamMember, ApplicationUser, Game, teamGame } from 'bellum-gens-common/models';
 import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -39,6 +39,10 @@ export class TeamPreferencesComponent {
 
   // Handed down by the parent TeamComponent through the router outlet. The form edits it in place.
   public team = inject(ROUTER_OUTLET_DATA) as Signal<CSGOTeam>;
+  /** Strategies are drawn on Counter-Strike maps, so only Counter-Strike teams have strategists. */
+  public hasStrategies = computed(() => teamGame(this.team()) === Game.CSGO);
+  /** The tab of the player page with the stats of the team's game. */
+  public playerTab = computed(() => teamGame(this.team()) === Game.Dota2 ? 'dota' : 'cs');
   public teammembers = signal<TeamMember [] | null>(null);
 
   public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;

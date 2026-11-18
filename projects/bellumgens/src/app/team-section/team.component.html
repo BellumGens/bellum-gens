@@ -6,6 +6,7 @@
       </igx-avatar>
       <div class="horizontal-info__left">
         <h1 igxCardHeaderTitle>{{ team()?.teamName }}</h1>
+        <p class="team-game">{{ team() | teamGameName }}</p>
         <h3 igxCardHeaderSubtitle>{{ team()?.description }}</h3>
       </div>
       @if (!isMember() && team()?.teamId) {
@@ -39,7 +40,7 @@
         </igx-tab-header>
       </igx-tab-item>
 
-      @if (isMember()) {
+      @if (isMember() && hasStrategies()) {
         <igx-tab-item
           routerLinkActive #rla3="routerLinkActive"
           [selected]="rla3.isActive">

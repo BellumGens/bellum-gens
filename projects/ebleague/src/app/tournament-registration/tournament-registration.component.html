@@ -43,7 +43,7 @@
         <igx-prefix>
           <igx-icon>people</igx-icon>
         </igx-prefix>
-        @for (team of userTeams(); track team.teamId) {
+        @for (team of gameTeams(); track team.teamId) {
           <igx-select-item [value]="team.teamId" [text]="team.teamName">
             <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" shape="circle"></igx-avatar>
             <span class="title margin-left">{{ team.teamName }}</span>
@@ -103,4 +103,4 @@
   </div>
 </form>
 
-<app-team-new #newTeam [authUser]="authUser()"></app-team-new>
+<app-team-new #newTeam [authUser]="authUser()" (created)="teamCreated($event)"></app-team-new>
