@@ -216,6 +216,61 @@ describe('DotaPlayerComponent', () => {
     expect(component.profile()).toEqual(fresh);
   });
 
+  it('loads the stats again when coming back from a player without a Steam account before they arrived', () => {
+    const first = new Subject<Dota2Profile>();
+    const again = new Subject<Dota2Profile>();
+    vi.spyOn(apiService, 'getDota2Profile')
+      .mockReturnValueOnce(first)
+      .mockReturnValueOnce(again);
+
+    player.set(makePlayer());
+    create();
+
+    // another player without a Steam account is shown before the stats arrive
+    player.set(makePlayer({ id: 'player-2', steamUser: undefined, steamUserException: true }));
+    fixture.detectChanges();
+    expect(first.observed).toBe(false);
+    expect(el().querySelector('bg-loading')).toBeNull();
+
+    player.set(makePlayer());
+    fixture.detectChanges();
+    expect(apiService.getDota2Profile).toHaveBeenCalledTimes(2);
+    expect(el().querySelector('bg-loading')).not.toBeNull();
+
+    again.next(makeProfile());
+    fixture.detectChanges();
+    expect(component.profile()).toEqual(makeProfile());
+    expect(el().querySelector('bg-loading')).toBeNull();
+  });
+
+  it('tries again after a failed load when the player is shown again', () => {
+    vi.spyOn(apiService, 'getDota2Profile')
+      .mockReturnValueOnce(throwError(() => new Error('502')))
+      .mockReturnValueOnce(of(makeProfile()));
+    player.set(makePlayer());
+    create();
+    expect(component.profileError()).toBe(true);
+
+    player.set(makePlayer({ username: 'Miracle (updated)' }));
+    fixture.detectChanges();
+
+    expect(apiService.getDota2Profile).toHaveBeenCalledTimes(2);
+    expect(component.profileError()).toBe(false);
+    expect(component.profile()).toEqual(makeProfile());
+  });
+
+  it('cancels a running request when the component is destroyed', () => {
+    const response = new Subject<Dota2Profile>();
+    vi.spyOn(apiService, 'getDota2Profile').mockReturnValue(response);
+    player.set(makePlayer());
+    create();
+    expect(response.observed).toBe(true);
+
+    fixture.destroy();
+
+    expect(response.observed).toBe(false);
+  });
+
   it('shows an error when Steam could not be reached', () => {
     vi.spyOn(apiService, 'getDota2Profile').mockReturnValue(throwError(() => new Error('502')));
     player.set(makePlayer());

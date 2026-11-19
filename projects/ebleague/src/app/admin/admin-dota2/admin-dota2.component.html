@@ -48,7 +48,7 @@
           [initials]="cell.row.data.team1?.teamName"
           shape="circle">
         </igx-avatar>
-        <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1?.customUrl"
+        <a [href]="teamUrl + cell.row.data.team1?.customUrl"
           [class]="cell.row.data.winnerTeamId === cell.row.data.team1Id ? 'highlight grid-team-name' : 'grid-team-name'">
           {{ cell.row.data.team1?.teamName }}
         </a>
@@ -60,7 +60,7 @@
           [initials]="cell.row.data.team2?.teamName"
           shape="circle">
         </igx-avatar>
-        <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2?.customUrl"
+        <a [href]="teamUrl + cell.row.data.team2?.customUrl"
           [class]="cell.row.data.winnerTeamId === cell.row.data.team2Id ? 'highlight grid-team-name' : 'grid-team-name'">
           {{ cell.row.data.team2?.teamName }}
         </a>
@@ -72,7 +72,7 @@
         @if (value) {
           <a [href]="value" target="_blank" class="horizontal-center">
             <igx-icon>link</igx-icon>
-            <span>link</span>
+            <span i18n="link label|Label of a link to the video or replay of a series">link</span>
           </a>
         }
         @else {
@@ -86,7 +86,7 @@
         @if (value) {
           <a [href]="value" target="_blank" class="horizontal-center">
             <igx-icon>link</igx-icon>
-            <span>link</span>
+            <span i18n="link label|Label of a link to the video or replay of a series">link</span>
           </a>
         }
         @else {
@@ -177,7 +177,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/team/' + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
+            <a [href]="teamUrl + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
           </div>
         }
       </div>
@@ -227,7 +227,7 @@
                 @for (participant of group.participants; track participant.id) {
                   <igx-list-item>
                     <igx-avatar igxListThumbnail [src]="participant.team?.teamAvatar ?? ''" [initials]="participant.team?.teamName ?? ''" shape="circle"></igx-avatar>
-                    <a [href]="environment.bellumgens + '/team/' + participant.team?.customUrl"
+                    <a [href]="teamUrl + participant.team?.customUrl"
                       igxListLineTitle
                       target="_blank">
                       {{ participant.team?.teamName }}
@@ -384,14 +384,17 @@
   <div class="horizontal-center">
     <igx-input-group type="border">
       <label igxLabel for="seriesTeam1Points" i18n>Games won {{ matchInEdit.team1?.teamName }}</label>
-      <input type="number" min="0" id="seriesTeam1Points" igxInput [(ngModel)]="matchInEdit.team1Points" />
+      <input type="number" min="0" id="seriesTeam1Points" igxInput [(ngModel)]="matchInEdit.team1Points" [disabled]="!!matchInEdit.games?.length" />
     </igx-input-group>
     <span class="grid-vs-divider">:</span>
     <igx-input-group type="border">
       <label igxLabel for="seriesTeam2Points" i18n>Games won {{ matchInEdit.team2?.teamName }}</label>
-      <input type="number" min="0" id="seriesTeam2Points" igxInput [(ngModel)]="matchInEdit.team2Points" />
+      <input type="number" min="0" id="seriesTeam2Points" igxInput [(ngModel)]="matchInEdit.team2Points" [disabled]="!!matchInEdit.games?.length" />
     </igx-input-group>
   </div>
+  @if (matchInEdit.games?.length) {
+    <p class="series-score-hint" i18n>The score is the number of games each team won.</p>
+  }
 
   @for (game of matchInEdit.games; track game) {
     <fieldset class="series-game">
@@ -412,7 +415,7 @@
           <igx-hint i18n>Dire: {{ teamName(matchInEdit, dire) }}</igx-hint>
         }
       </igx-select>
-      <igx-select type="border" [(ngModel)]="game.winnerTeamId">
+      <igx-select type="border" [ngModel]="game.winnerTeamId" (ngModelChange)="setGameWinner(game, $event)">
         <label igxLabel i18n>Winner</label>
         @if (matchInEdit.team1Id) {
           <igx-select-item [value]="matchInEdit.team1Id">{{ matchInEdit.team1?.teamName }}</igx-select-item>

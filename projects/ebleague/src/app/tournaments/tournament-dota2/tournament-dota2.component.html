@@ -27,7 +27,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/team/' + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
+            <a [href]="teamUrl + registration.team?.customUrl" target="_blank">{{ registration.team?.teamName }}</a>
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }
@@ -61,7 +61,7 @@
               [initials]="cell.row.data.team1?.teamName"
               shape="circle">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1?.customUrl"
+            <a [href]="teamUrl + cell.row.data.team1?.customUrl"
               [class]="cell.row.data.winnerTeamId === cell.row.data.team1Id ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.team1?.teamName }}
             </a>
@@ -77,7 +77,7 @@
               [initials]="cell.row.data.team2?.teamName"
               shape="circle">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2?.customUrl"
+            <a [href]="teamUrl + cell.row.data.team2?.customUrl"
               [class]="cell.row.data.winnerTeamId === cell.row.data.team2Id ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.team2?.teamName }}
             </a>
@@ -90,7 +90,7 @@
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
                 <igx-icon>link</igx-icon>
-                <span>link</span>
+                <span i18n="link label|Label of a link to the video or replay of a series">link</span>
               </a>
             }
           </ng-template>
@@ -101,7 +101,7 @@
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
                 <igx-icon>link</igx-icon>
-                <span>link</span>
+                <span i18n="link label|Label of a link to the video or replay of a series">link</span>
               </a>
             }
           </ng-template>
@@ -180,7 +180,7 @@
                   [initials]="value?.teamName"
                   shape="circle">
                 </igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value?.customUrl" target="_blank">
+                <a igxListLineTitle [href]="teamUrl + value?.customUrl" target="_blank">
                   {{ value?.teamName }}
                 </a>
               </div>

@@ -8,6 +8,7 @@ import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
+import { environment } from 'bellum-gens-common/environments';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import {
   ApplicationUser,
@@ -104,7 +105,8 @@ describe('TournamentDota2Component', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.environment).toBeDefined();
+    // The tests run in the source locale, so the team pages are linked in English
+    expect(component.teamUrl).toBe(`${environment.bellumgens}/en/team/`);
   });
 
   it('loads the active tournament data when the route carries no tournament id', async () => {
@@ -182,7 +184,7 @@ describe('TournamentDota2Component', () => {
 
     const link = slots[0].querySelector<HTMLAnchorElement>('a')!;
     expect(link.textContent.trim()).toBe('Alpha');
-    expect(link.getAttribute('href')).toBe(`${component.environment.bellumgens}/team/team-1-url`);
+    expect(link.getAttribute('href')).toBe(`${environment.bellumgens}/en/team/team-1-url`);
     // The company is only shown for the teams that have one
     expect(slots.map(s => s.querySelector(':scope > span')?.textContent ?? null)).toEqual(['[Alpha Inc.]', '[Bravo Inc.]', null]);
   });
@@ -237,7 +239,7 @@ describe('TournamentDota2Component', () => {
       expect(rows().length).toBe(4);
 
       expect(teamLinks(rows()[0]).map(a => a.textContent.trim())).toEqual(['Alpha', 'Bravo']);
-      expect(teamLinks(rows()[0])[1].getAttribute('href')).toBe(`${component.environment.bellumgens}/team/team-2-url`);
+      expect(teamLinks(rows()[0])[1].getAttribute('href')).toBe(`${environment.bellumgens}/en/team/team-2-url`);
       // A drawn or unplayed series carries the empty GUID as its winner, so neither team is highlighted
       expect(rows().map(row => teamLinks(row).map(a => a.classList.contains('color-success')))).toEqual([
         [true, false],
@@ -339,7 +341,7 @@ describe('TournamentDota2Component', () => {
 
     const teamLinks = Array.from(groupGrids[0].querySelectorAll<HTMLAnchorElement>('a[igxListLineTitle]'));
     expect(teamLinks.map(a => a.textContent.trim())).toEqual(['Alpha', 'Bravo', 'Charlie']);
-    expect(teamLinks[1].getAttribute('href')).toBe(`${component.environment.bellumgens}/team/team-2-url`);
+    expect(teamLinks[1].getAttribute('href')).toBe(`${environment.bellumgens}/en/team/team-2-url`);
 
     const rows = Array.from(groupGrids[0].querySelectorAll('igx-grid-row'));
     const diffClass = (row: Element) => {

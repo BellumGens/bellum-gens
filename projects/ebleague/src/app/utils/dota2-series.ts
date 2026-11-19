@@ -39,3 +39,7 @@ export const dota2SeriesDrawn = (match: TournamentDota2Match): boolean =>
 /** The games of a series in the order they were played. */
 export const dota2SortedGames = (match: TournamentDota2Match): TournamentDota2MatchGame [] =>
   [...(match.games ?? [])].sort((a, b) => a.gameNumber - b.gameNumber);
+
+/** The games of a series a team won. With games on record, this is the team's score in the series. */
+export const dota2GamesWon = (match: TournamentDota2Match, teamId: string | null | undefined): number =>
+  teamId ? (match.games ?? []).filter(game => game.winnerTeamId === teamId).length : 0;

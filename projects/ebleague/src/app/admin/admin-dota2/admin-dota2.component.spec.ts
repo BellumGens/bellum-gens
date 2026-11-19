@@ -14,6 +14,7 @@ import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-pick
 import { config, of, throwError } from 'rxjs';
 
 import { AdminDota2Component } from './admin-dota2.component';
+import { environment } from 'bellum-gens-common/environments';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
 import {
   CSGOTeam,
@@ -377,7 +378,8 @@ describe('AdminDota2Component', () => {
       submitButton!.click();
       fixture.detectChanges();
 
-      expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Group B' }), 't1');
+      // The group goes to the selected tournament, not the active league season
+      expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Group B', tournamentId: 't1' }), 't1');
       expect(component.newGroup.inEdit).toBe(false);
       expect(component.newGroup.name).toBeFalsy();
       expect(groupCards().map(c => c.querySelector('h1')!.textContent.trim())).toEqual(['Group A', 'Group B']);
@@ -445,9 +447,10 @@ describe('AdminDota2Component', () => {
       expect(saved.startTime.toISOString()).toBe('2026-10-01T18:00:00.000Z');
     });
 
-    it('updates the winner and the saved games of an existing series in its row', () => {
+    it('replaces the row of an existing series with the series the server saved', () => {
       const games: TournamentDota2MatchGame [] = [{ id: 'gm1', dota2MatchId: 'm1', gameNumber: 1, winnerTeamId: 'team-p1' }];
-      vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of({ id: 'm1', winnerTeamId: 'team-p1', games }));
+      const saved: TournamentDota2Match = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', team1Points: 1, team2Points: 0, winnerTeamId: 'team-p1', games };
+      vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of(saved));
       const matchGrid = grid();
       component.matchInEdit = {
         id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', team1Points: 1, team2Points: 0,
@@ -458,7 +461,7 @@ describe('AdminDota2Component', () => {
 
       expect(matchGrid.addRow).not.toHaveBeenCalled();
       // The games come back with their ids, so submitting again doesn't add them twice
-      expect(matchGrid.updateRow).toHaveBeenCalledWith({ winnerTeamId: 'team-p1', games }, 'm1');
+      expect(matchGrid.updateRow).toHaveBeenCalledWith(saved, 'm1');
     });
 
     it('does not touch the grid when the server returns nothing', () => {
@@ -481,24 +484,33 @@ describe('AdminDota2Component', () => {
       expect(remove).toHaveBeenCalledWith(match);
     });
 
-    it('starts a fresh series for the new series dialog', () => {
+    it('starts a fresh series of the selected tournament for the new series dialog', () => {
+      selectFirstTournament();
       component.matchInEdit = { id: 'm1', team1Id: 'team-p1' };
 
       component.addNewMatch();
 
       expect(component.matchInEdit.id).toBeUndefined();
       expect(component.matchInEdit.team1Id).toBeUndefined();
+      expect(component.matchInEdit.tournamentId).toBe('t1');
       expect(component.matchInEdit.startTime).toBeInstanceOf(Date);
     });
 
-    it('opens a series for editing with a Date start time', () => {
+    it('opens a copy of a series for editing with a Date start time', () => {
       const dialog = { open: vi.fn() } as unknown as IgxDialogComponent;
-      const match: TournamentDota2Match = { id: 'm1', startTime: '2026-10-01T18:00:00Z' as unknown as Date };
+      const game: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
+      const match: TournamentDota2Match = { id: 'm1', startTime: '2026-10-01T18:00:00Z' as unknown as Date, games: [game] };
 
       component.editMatch(match, dialog);
 
-      expect(component.matchInEdit).toBe(match);
-      expect(match.startTime).toBeInstanceOf(Date);
+      // The row only changes once the server has saved the series
+      expect(component.matchInEdit).not.toBe(match);
+      expect(component.matchInEdit.id).toBe('m1');
+      expect(component.matchInEdit.startTime).toBeInstanceOf(Date);
+      expect(component.matchInEdit.startTime!.toISOString()).toBe('2026-10-01T18:00:00.000Z');
+      expect(component.matchInEdit.games).toEqual([game]);
+      expect(component.matchInEdit.games![0]).not.toBe(game);
+      expect(match.startTime).toBe('2026-10-01T18:00:00Z');
       expect(dialog.open).toHaveBeenCalled();
     });
 
@@ -527,28 +539,66 @@ describe('AdminDota2Component', () => {
       expect(component.matchInEdit.games).toEqual([saved]);
     });
 
-    it('removes a deleted game from the series being edited and marks the view for check', () => {
+    it('deletes a removed saved game only when the series is submitted, before saving the series', () => {
       const saved: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
       const remove = vi.spyOn(apiService, 'deleteDota2MatchGame').mockReturnValue(of(saved));
-      const markForCheck = vi.spyOn(component['cdr'], 'markForCheck');
-      const match: TournamentDota2Match = { id: 'm1', games: [saved] };
-      component.matchInEdit = match;
+      const submit = vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of({ id: 'm1' }));
+      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] };
 
       component.deleteGame(saved);
 
+      expect(component.matchInEdit.games).toEqual([]);
+      expect(remove).not.toHaveBeenCalled();
+
+      component.submitMatch(grid());
+
       expect(remove).toHaveBeenCalledWith('gm1');
-      expect(match.games).toEqual([]);
-      expect(markForCheck).toHaveBeenCalled();
+      expect(submit).toHaveBeenCalled();
+      expect(remove.mock.invocationCallOrder[0]).toBeLessThan(submit.mock.invocationCallOrder[0]);
     });
 
-    it('keeps the game when deleting it fails', async () => {
+    it('forgets the removed games of a series whose dialog was left without submitting', () => {
+      const saved: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
+      const remove = vi.spyOn(apiService, 'deleteDota2MatchGame');
+      vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of({ id: 'm2' }));
+      const dialog = { open: vi.fn() } as unknown as IgxDialogComponent;
+      component.editMatch({ id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] }, dialog);
+      component.deleteGame(component.matchInEdit.games![0]);
+
+      component.editMatch({ id: 'm2', team1Id: 'team-p1', team2Id: 'team-p2' }, dialog);
+      component.submitMatch(grid());
+
+      expect(remove).not.toHaveBeenCalled();
+    });
+
+    it('does not save the series when deleting a removed game fails', async () => {
       const saved: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
       vi.spyOn(apiService, 'deleteDota2MatchGame').mockReturnValue(throwError(() => new Error('nope')));
-      component.matchInEdit = { id: 'm1', games: [saved] };
+      const submit = vi.spyOn(apiService, 'submitDota2Match');
+      const matchGrid = grid();
+      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] };
+      component.deleteGame(saved);
 
-      await expectUnhandledError(() => component.deleteGame(saved));
+      await expectUnhandledError(() => component.submitMatch(matchGrid));
 
-      expect(component.matchInEdit.games).toEqual([saved]);
+      expect(submit).not.toHaveBeenCalled();
+      expect(matchGrid.updateRow).not.toHaveBeenCalled();
+    });
+
+    it('takes the score of a series with games from the game winners', () => {
+      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', team1Points: 2, team2Points: 0 };
+
+      component.addGame();
+      expect([component.matchInEdit.team1Points, component.matchInEdit.team2Points]).toEqual([0, 0]);
+
+      component.addGame();
+      const [game1, game2] = component.matchInEdit.games!;
+      component.setGameWinner(game1, 'team-p2');
+      component.setGameWinner(game2, 'team-p2');
+      expect([component.matchInEdit.team1Points, component.matchInEdit.team2Points]).toEqual([0, 2]);
+
+      component.deleteGame(game1);
+      expect([component.matchInEdit.team1Points, component.matchInEdit.team2Points]).toEqual([0, 1]);
     });
   });
 
@@ -639,7 +689,7 @@ describe('AdminDota2Component', () => {
       expect(teamLinks(rows()[0]).map(a => a.classList.contains('highlight'))).toEqual([true, false]);
       expect(teamLinks(rows()[1]).map(a => a.classList.contains('highlight'))).toEqual([false, true]);
       expect(teamLinks(rows()[2]).map(a => a.classList.contains('highlight'))).toEqual([false, false]);
-      expect(teamLinks(rows()[0])[1].getAttribute('href')).toBe(`${component.environment.bellumgens}/team/team-p2`);
+      expect(teamLinks(rows()[0])[1].getAttribute('href')).toBe(`${environment.bellumgens}/en/team/team-p2`);
       expect(rows().map(row => row.querySelector('.series-score')!.textContent.trim())).toEqual(['2 : 1', '0 : 0', '0 : 0']);
 
       const mediaLinks = (row: Element) => Array.from(row.querySelectorAll<HTMLAnchorElement>('a.horizontal-center'))
@@ -670,14 +720,16 @@ describe('AdminDota2Component', () => {
     });
 
     it('edits the series score and the games of a series in the results dialog', async () => {
-      const submit = vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of(played));
+      // The server saves and returns the submitted series
+      const submit = vi.spyOn(apiService, 'submitDota2Match').mockImplementation(match => of({ ...match }));
       const results = dialog('Results');
 
       rowAction(rows()[0], 'Add results')!.click();
       await render();
 
       expect(results.isOpen).toBe(true);
-      expect(component.matchInEdit).toBe(played);
+      expect(component.matchInEdit).not.toBe(played);
+      expect(component.matchInEdit.id).toBe('m1');
       const content = dialogContent(results);
       const labels = Array.from(content.querySelectorAll('label')).map(l => l.textContent.trim());
       expect(labels).toEqual(expect.arrayContaining(['Games won Alpha', 'Games won Bravo', 'Game number', 'Radiant', 'Winner', 'Steam match ID']));
@@ -691,8 +743,11 @@ describe('AdminDota2Component', () => {
       expect(content.querySelector('igx-hint')!.textContent.trim()).toBe('Dire: Alpha');
 
       const [team1Points, team2Points, game2Number, game2SteamId] = Array.from(content.querySelectorAll<HTMLInputElement>('input[type="number"]'));
-      typeInto(team1Points, '1');
-      typeInto(team2Points, '1');
+      // With games on record, the score is the games each team won
+      expect(team1Points.disabled).toBe(true);
+      expect(team2Points.disabled).toBe(true);
+      expect(content.querySelector('.series-score-hint')!.textContent.trim()).toBe('The score is the number of games each team won.');
+      expect([component.matchInEdit.team1Points, component.matchInEdit.team2Points]).toEqual([2, 1]);
       typeInto(game2Number, '2');
       typeInto(game2SteamId, '7300000002');
       const [game2Radiant, game2Winner] = selectsIn(results);
@@ -702,18 +757,43 @@ describe('AdminDota2Component', () => {
       game2Winner.selectItem(game2Winner.items[0]);
       await render();
 
+      expect([component.matchInEdit.team1Points, component.matchInEdit.team2Points]).toEqual([2, 0]);
+      // Nothing is saved yet, so the row still shows the series as it was
+      expect(played.games![0].winnerTeamId).toBe('team-p2');
+
       dialogButton(results, 'Submit')!.click();
       await render();
 
-      expect(submit).toHaveBeenCalledWith(played);
-      expect(results.isOpen).toBe(false);
-      expect(played.team1Points).toBe(1);
-      expect(played.team2Points).toBe(1);
-      expect(played.games![0]).toEqual(expect.objectContaining({
+      expect(submit).toHaveBeenCalledWith(expect.objectContaining({ id: 'm1', team1Points: 2, team2Points: 0 }));
+      expect(submit.mock.calls[0][0].games![0]).toEqual(expect.objectContaining({
         id: 'gm2', gameNumber: 2, radiantTeamId: 'team-p1', winnerTeamId: 'team-p1', steamMatchId: 7300000002
       }));
+      expect(results.isOpen).toBe(false);
       // an existing series is updated in place rather than added again
       expect(rows().length).toBe(3);
+      expect(rows()[0].textContent).toContain('2 : 0');
+    });
+
+    it('leaves the row and its saved games as they were when the results dialog is cancelled', async () => {
+      const remove = vi.spyOn(apiService, 'deleteDota2MatchGame');
+      const submit = vi.spyOn(apiService, 'submitDota2Match');
+      const results = dialog('Results');
+      rowAction(rows()[0], 'Add results')!.click();
+      await render();
+
+      contentButton(results, 'Add a game')[0].click();
+      await render();
+      contentButton(results, 'Delete game 1')[0].click();
+      await render();
+      dialogButton(results, 'Cancel')!.click();
+      await render();
+
+      expect(results.isOpen).toBe(false);
+      expect(remove).not.toHaveBeenCalled();
+      expect(submit).not.toHaveBeenCalled();
+      expect(played.games!.map(g => g.id)).toEqual(['gm2', 'gm1']);
+      expect([played.team1Points, played.team2Points]).toEqual([2, 1]);
+      expect(rows()[0].textContent).toContain('2 : 1');
     });
 
     it('adds games to a series that has none and deletes them again', async () => {
@@ -729,7 +809,7 @@ describe('AdminDota2Component', () => {
       contentButton(results, 'Add a game')[0].click();
       await render();
 
-      expect(upcoming.games!.map(g => g.gameNumber)).toEqual([1, 2]);
+      expect(component.matchInEdit.games!.map(g => g.gameNumber)).toEqual([1, 2]);
       expect(Array.from(dialogContent(results).querySelectorAll('legend')).map(l => l.textContent.trim())).toEqual(['Game 1', 'Game 2']);
       expect(dialogContent(results).querySelector('igx-checkbox')).toBeNull();
 
@@ -737,7 +817,8 @@ describe('AdminDota2Component', () => {
       await render();
 
       expect(remove).not.toHaveBeenCalled();
-      expect(upcoming.games!.map(g => g.gameNumber)).toEqual([2]);
+      expect(component.matchInEdit.games!.map(g => g.gameNumber)).toEqual([2]);
+      expect(upcoming.games).toBeUndefined();
     });
 
     it('marks a series without games as a walkover', async () => {
@@ -748,7 +829,8 @@ describe('AdminDota2Component', () => {
       dialogContent(results).querySelector<HTMLInputElement>('igx-checkbox input')!.click();
       fixture.detectChanges();
 
-      expect(upcoming.noShow).toBe(true);
+      expect(component.matchInEdit.noShow).toBe(true);
+      expect(upcoming.noShow).toBeUndefined();
     });
 
     it('closes the results dialog on cancel without submitting', async () => {
@@ -772,7 +854,8 @@ describe('AdminDota2Component', () => {
       await render();
 
       expect(seriesDialog.isOpen).toBe(true);
-      expect(component.matchInEdit).toBe(walkover);
+      expect(component.matchInEdit).toEqual(walkover);
+      expect(component.matchInEdit).not.toBe(walkover);
 
       dialogButton(seriesDialog, 'Cancel')!.click();
       await render();
@@ -837,6 +920,7 @@ describe('AdminDota2Component', () => {
       await render();
 
       expect(submit).toHaveBeenCalledWith(expect.objectContaining({
+        tournamentId: 't1',
         groupId: 'g1',
         team1Id: 'team-p2',
         team2Id: 'team-p1',
@@ -879,13 +963,15 @@ describe('AdminDota2Component', () => {
 
       suffixes()[0].click();
       await render();
-      expect(played.videoLink).toBeNull();
-      expect(played.demoLink).toBe('https://demo/1');
+      expect(component.matchInEdit.videoLink).toBeNull();
+      expect(component.matchInEdit.demoLink).toBe('https://demo/1');
 
       suffixes()[0].click();
       await render();
-      expect(played.demoLink).toBeNull();
+      expect(component.matchInEdit.demoLink).toBeNull();
       expect(suffixes().length).toBe(0);
+      // The row keeps its links until the series is submitted
+      expect(played.videoLink).toBe('https://video/1');
     });
   });
 });

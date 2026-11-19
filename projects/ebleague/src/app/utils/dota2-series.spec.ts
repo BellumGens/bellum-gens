@@ -1,5 +1,5 @@
 import { CSGOTeam, TournamentDota2Match } from 'bellum-gens-common/models';
-import { dota2DireTeamId, dota2SeriesDrawn, dota2SeriesPlayed, dota2SortedGames, dota2TeamName } from './dota2-series';
+import { dota2DireTeamId, dota2GamesWon, dota2SeriesDrawn, dota2SeriesPlayed, dota2SortedGames, dota2TeamName } from './dota2-series';
 
 const team = (teamId: string, teamName: string): CSGOTeam => ({ teamId, teamName, teamAvatar: '', visible: true });
 
@@ -52,5 +52,28 @@ describe('dota2 series helpers', () => {
     expect(dota2SortedGames(match).map(g => g.id)).toEqual(['g1', 'g2', 'g3']);
     expect(match.games!.map(g => g.id)).toEqual(['g2', 'g3', 'g1']);
     expect(dota2SortedGames(series())).toEqual([]);
+  });
+});
+
+describe('dota2GamesWon', () => {
+  const match: TournamentDota2Match = {
+    team1Id: 't1',
+    team2Id: 't2',
+    games: [
+      { gameNumber: 1, winnerTeamId: 't1', radiantTeamId: null, steamMatchId: null },
+      { gameNumber: 2, winnerTeamId: 't2', radiantTeamId: null, steamMatchId: null },
+      { gameNumber: 3, winnerTeamId: 't1', radiantTeamId: null, steamMatchId: null },
+      { gameNumber: 4, winnerTeamId: null, radiantTeamId: null, steamMatchId: null }
+    ]
+  };
+
+  it('counts the games each team won', () => {
+    expect(dota2GamesWon(match, 't1')).toBe(2);
+    expect(dota2GamesWon(match, 't2')).toBe(1);
+  });
+
+  it('is 0 without a team or without games', () => {
+    expect(dota2GamesWon(match, null)).toBe(0);
+    expect(dota2GamesWon({ team1Id: 't1' }, 't1')).toBe(0);
   });
 });

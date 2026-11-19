@@ -1,4 +1,5 @@
-import { Component, computed, effect, inject, signal, Signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal, Signal } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DatePipe, DecimalPipe, PercentPipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
@@ -45,13 +46,22 @@ export class DotaPlayerComponent {
   private loadingProfile = signal(false);
   public loading = computed(() => this.apiService.loadingPlayer() || this.loadingProfile());
 
+  /** The Steam account the shown (or loading) stats belong to. */
   private profileLoadedFor?: string;
+  private profileRequest?: Subscription;
 
   constructor() {
+    inject(DestroyRef).onDestroy(() => this.profileRequest?.unsubscribe());
     effect(() => {
       const player = this.player();
-      const steamUser = player?.steamUser;
+      if (!player) {
+        // The parent is loading the next player
+        return;
+      }
+      const steamUser = player.steamUser;
       if (!steamUser?.steamID64) {
+        // A player without a Steam account has no stats; drop those of the previous player, loaded or not
+        this.resetProfile();
         return;
       }
       this.titleService.setTitle($localize`:@@dota2PlayerTitle:Dota 2 Player: ${steamUser.steamID}:name:`);
@@ -62,27 +72,31 @@ export class DotaPlayerComponent {
       if (this.profileLoadedFor === steamId) {
         return;
       }
+      // A request still running for the previous player is cancelled, so it can't overwrite these stats
+      this.resetProfile();
       this.profileLoadedFor = steamId;
-      this.profile.set(null);
-      this.profileError.set(false);
       this.loadingProfile.set(true);
-
-      // A response that arrives after the parent switched to another player is dropped.
-      const isCurrent = () => this.player()?.steamUser?.steamID64 === steamId;
-      this.apiService.getDota2Profile(steamId).subscribe({
+      this.profileRequest = this.apiService.getDota2Profile(steamId).subscribe({
         next: profile => {
-          if (isCurrent()) {
-            this.profile.set(profile);
-            this.loadingProfile.set(false);
-          }
+          this.profile.set(profile);
+          this.loadingProfile.set(false);
         },
         error: () => {
-          if (isCurrent()) {
-            this.profileError.set(true);
-            this.loadingProfile.set(false);
-          }
+          this.profileError.set(true);
+          this.loadingProfile.set(false);
+          // Coming back to the player tries again
+          this.profileLoadedFor = undefined;
         }
       });
     });
+  }
+
+  private resetProfile() {
+    this.profileRequest?.unsubscribe();
+    this.profileRequest = undefined;
+    this.profileLoadedFor = undefined;
+    this.profile.set(null);
+    this.profileError.set(false);
+    this.loadingProfile.set(false);
   }
 }

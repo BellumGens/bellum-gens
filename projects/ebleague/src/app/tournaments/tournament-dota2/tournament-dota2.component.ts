@@ -1,10 +1,10 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, LOCALE_ID } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
-import { environment } from 'bellum-gens-common/environments';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
+import { bellumgensUrl } from '../../utils/bellumgens-url';
 import { dota2DireTeamId, dota2SeriesDrawn, dota2SeriesPlayed, dota2SortedGames, dota2TeamName } from '../../utils/dota2-series';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -34,7 +34,8 @@ export class TournamentDota2Component extends BaseDirective {
   private apiService = inject(ApiTournamentsService);
   private loginService = inject(LoginService);
 
-  public environment = environment;
+  /** The team pages are on bellumgens.com, in the language the visitor is browsing in. */
+  public teamUrl = bellumgensUrl('/team/', inject(LOCALE_ID));
   public authUser = this.loginService.applicationUser;
   // An empty tournament id loads the active tournament's data
   public tournamentId = toSignal(

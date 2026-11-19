@@ -5,7 +5,7 @@
       <p class="header-subtitle" i18n>Create, join, and compete in esports tournaments</p>
     </div>
     <div class="header-actions">
-      <button igxButton="outlined" igxRipple (click)="inviteDialog.open()" i18n>
+      <button igxButton="outlined" igxRipple (click)="openInviteDialog(inviteDialog)" i18n>
         <igx-icon>vpn_key</igx-icon>
         Join by Code
       </button>
@@ -129,6 +129,15 @@
     <igx-prefix><igx-icon>vpn_key</igx-icon></igx-prefix>
     <igx-hint i18n>Enter the invite code shared by the tournament organizer</igx-hint>
   </igx-input-group>
+  @if (dota2Teams().length) {
+    <igx-select type="border" class="invite-team" name="inviteTeam" [(ngModel)]="inviteTeamId">
+      <label igxLabel i18n>Dota 2 team</label>
+      @for (team of dota2Teams(); track team.teamId) {
+        <igx-select-item [value]="team.teamId">{{ team.teamName }}</igx-select-item>
+      }
+      <igx-hint i18n>A Dota 2 tournament is joined by a team you manage</igx-hint>
+    </igx-select>
+  }
   <div igxDialogActions>
     <button igxButton="flat" (click)="inviteDialog.close()" i18n>Cancel</button>
     <button igxButton="contained" (click)="joinByInvite(inviteDialog)" [disabled]="!inviteCode?.trim()" i18n>Join</button>

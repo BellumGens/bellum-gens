@@ -3490,7 +3490,7 @@
         <target>Dota 2 играч: <x id="name" equiv-text="steamUser.steamID"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.ts</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5052150728790721416" datatype="html">
@@ -4230,7 +4230,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
-          <context context-type="linenumber">133,134</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6682458176650622869" datatype="html">
@@ -6571,12 +6571,28 @@
           <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1752228062142158193" datatype="html">
+        <source>Dota 2 team</source>
+        <target>Dota 2 отбор</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4677536029199786946" datatype="html">
+        <source>A Dota 2 tournament is joined by a team you manage</source>
+        <target>В турнир по Dota 2 се влиза с отбор, който управляваш</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8307140841776883735" datatype="html">
         <source>Join</source>
         <target>Присъединяване</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
-          <context context-type="linenumber">134,135</context>
+          <context context-type="linenumber">143,144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7355648723531214824" datatype="html">
@@ -6817,6 +6833,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
           <context context-type="linenumber">231</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2GroupSaved" datatype="html">
+        <source>Tournament Dota 2 group updated successfully!</source>
+        <target>Групата за Dota 2 е обновена успешно!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">331</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2SeriesSaved" datatype="html">
+        <source>Tournament Dota 2 series updated successfully!</source>
+        <target>Серията за Dota 2 е обновена успешно!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">346</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2SeriesDeleted" datatype="html">
+        <source>Tournament Dota 2 series deleted successfully!</source>
+        <target>Серията за Dota 2 е изтрита успешно!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">360</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">

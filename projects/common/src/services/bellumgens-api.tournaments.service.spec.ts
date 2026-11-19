@@ -954,6 +954,14 @@ describe('ApiTournamentsService', () => {
         success: 'Tournament StarCraft II match map deleted successfully!' },
       { name: 'joinByInviteCode', call: s => s.joinByInviteCode('CODE'), method: 'POST', path: '/tournament/join',
         body: { inviteCode: 'CODE' }, response: { id: 't1' }, success: 'Successfully joined tournament!' },
+      { name: 'joinByInviteCode with a team', call: s => s.joinByInviteCode('CODE', 'team1'), method: 'POST', path: '/tournament/join',
+        body: { inviteCode: 'CODE', teamId: 'team1' }, response: { id: 't1' }, success: 'Successfully joined tournament!' },
+      { name: 'submitDota2Match', call: s => s.submitDota2Match({ id: 'm1' }), method: 'PUT', path: '/tournament/dota2match?id=m1',
+        body: { id: 'm1' }, success: 'Tournament Dota 2 series updated successfully!' },
+      { name: 'deleteDota2Match', call: s => s.deleteDota2Match({ id: 'm1' }), method: 'DELETE', path: '/tournament/dota2match?id=m1',
+        success: 'Tournament Dota 2 series deleted successfully!' },
+      // Saving the series reports the success of the games deleted with it
+      { name: 'deleteDota2MatchGame', call: s => s.deleteDota2MatchGame('gm1'), method: 'DELETE', path: '/tournament/dota2matchgame?id=gm1' },
       { name: 'deleteTournament', call: s => s.deleteTournament('t1'), method: 'DELETE', path: '/tournament/delete-tournament?id=t1',
         success: 'Tournament deleted successfully!' }
     ];

@@ -328,7 +328,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentDota2Group>(`${this._apiEndpoint}/tournament/dota2group${group.id ? '?id=' + group.id : ''}`,
       group, { withCredentials: true}).pipe(
         map(response => {
-          this.commService.emitSuccess('Tournament Dota 2 group updated successfully!');
+          this.commService.emitSuccess($localize`:@@dota2GroupSaved:Tournament Dota 2 group updated successfully!`);
           this.addGroupToCache(this._dota2Groups, tournamentId ?? response?.tournamentId, response, 'end');
           return response;
         }),
@@ -343,7 +343,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentDota2Match>(`${this._apiEndpoint}/tournament/dota2match${match.id ? '?id=' + match.id : ''}`,
       match, { withCredentials: true}).pipe(
         map(response => {
-          this.commService.emitSuccess('Tournament Dota 2 match updated successfully!');
+          this.commService.emitSuccess($localize`:@@dota2SeriesSaved:Tournament Dota 2 series updated successfully!`);
           return response;
         }),
         catchError(error => {
@@ -357,7 +357,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentDota2Match>(`${this._apiEndpoint}/tournament/dota2match?id=${match.id}`,
       { withCredentials: true}).pipe(
         map(response => {
-          this.commService.emitSuccess('Tournament Dota 2 match deleted successfully!');
+          this.commService.emitSuccess($localize`:@@dota2SeriesDeleted:Tournament Dota 2 series deleted successfully!`);
           return response;
         }),
         catchError(error => {
@@ -367,27 +367,10 @@ export class ApiTournamentsService {
       );
   }
 
-  public submitDota2MatchGame(game: TournamentDota2MatchGame) {
-    return this.http.put<TournamentDota2MatchGame>(`${this._apiEndpoint}/tournament/dota2matchgame${game.id ? '?id=' + game.id : ''}`,
-      game, { withCredentials: true}).pipe(
-        map(response => {
-          this.commService.emitSuccess('Tournament Dota 2 game updated successfully!');
-          return response;
-        }),
-        catchError(error => {
-          this.commService.emitError(error.message);
-          return throwError(() => error);
-        })
-      );
-  }
-
+  /** Deletes a game of a series. It runs as part of saving the series, which reports the success. */
   public deleteDota2MatchGame(gameId: string) {
     return this.http.delete<TournamentDota2MatchGame>(`${this._apiEndpoint}/tournament/dota2matchgame?id=${gameId}`,
       { withCredentials: true}).pipe(
-        map(response => {
-          this.commService.emitSuccess('Tournament Dota 2 game deleted successfully!');
-          return response;
-        }),
         catchError(error => {
           this.commService.emitError(error.message);
           return throwError(() => error);
@@ -583,8 +566,10 @@ export class ApiTournamentsService {
     return this.tournaments;
   }
 
-  public joinByInviteCode(inviteCode: string) {
-    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/join`, { inviteCode }, { withCredentials: true }).pipe(
+  /** Joins the tournament of an invite code. A Dota 2 tournament is joined by a team the user manages. */
+  public joinByInviteCode(inviteCode: string, teamId?: string | null) {
+    const body = teamId ? { inviteCode, teamId } : { inviteCode };
+    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/join`, body, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Successfully joined tournament!');
         return response;
