@@ -303,7 +303,12 @@ describe('UserPreferencesComponent', () => {
       admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
       expect(location.href).toBe(`${environment.ebleague}/admin/sc2`);
-      expect(buttons().some(b => b.textContent.includes('Dota 2 Tournament Admin'))).toBe(true);
+
+      const dota2Admin = buttons().find(b => b.textContent.includes('Dota 2 Tournament Admin'));
+      expect(dota2Admin).toBeTruthy();
+      // Now on the league site, the Dota 2 admin is routed to within the app
+      dota2Admin!.click();
+      expect(router.navigate).toHaveBeenCalledWith(['/admin/dota2']);
     });
 
     it('should offer the app administration to app admins only', () => {

@@ -3,7 +3,7 @@
     <!-- The game applies to the team created from a Steam group and to the one created with the form -->
     @if (!gameFixed()) {
       <span class="highlight" id="newTeamGameLabel" title="The game a new team is created for" i18n-title i18n="The game a new team is created for">Game</span>
-      <igx-radio-group class="team-game-group" role="radiogroup" aria-labelledby="newTeamGameLabel" name="newTeamGame" [(ngModel)]="game">
+      <igx-radio-group class="team-game-group" role="radiogroup" aria-labelledby="newTeamGameLabel" name="newTeamGame" [ngModel]="game()" (ngModelChange)="game.set($event)">
         @for (option of teamGames; track option.id) {
           <igx-radio [value]="option.id">{{ option.name }}</igx-radio>
         }
