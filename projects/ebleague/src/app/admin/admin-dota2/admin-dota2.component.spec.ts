@@ -141,6 +141,17 @@ describe('AdminDota2Component', () => {
     });
   });
 
+  describe('before the tournaments load', () => {
+    beforeEach(() => apiService['_tournaments'].set(null));
+
+    it('lists no tournaments', () => {
+      create();
+
+      expect(component.tournaments()).toEqual([]);
+      expect(component.selectedTournament()).toBeNull();
+    });
+  });
+
   describe('selecting a tournament', () => {
     it('lists only the Dota 2 tournaments', () => {
       create();
@@ -259,6 +270,23 @@ describe('AdminDota2Component', () => {
       expect(unassigned()).toEqual(['Alpha', 'Charlie']);
     });
 
+    it('lists every registered team while the groups are still loading', () => {
+      registrations.set([participant('p1', 'Alpha'), participant('p2', 'Bravo')]);
+      create();
+      selectFirstTournament();
+
+      expect(unassigned()).toEqual(['Alpha', 'Bravo']);
+    });
+
+    it('treats a group without a participant list as empty', () => {
+      registrations.set([participant('p1', 'Alpha')]);
+      groups.set([{ id: 'g1', name: 'Group A' }]);
+      create();
+      selectFirstTournament();
+
+      expect(unassigned()).toEqual(['Alpha']);
+    });
+
     it('flags registrations that are pending check-in', () => {
       registrations.set([
         participant('p1', 'Alpha', { state: TournamentApplicationState.Pending }),
@@ -336,6 +364,17 @@ describe('AdminDota2Component', () => {
       component.addToGroup({ dragData: alpha } as IDropDroppedEventArgs, { name: 'Unsaved' });
 
       expect(apiService.addParticipantToGroup).not.toHaveBeenCalled();
+    });
+
+    it('ignores removing a team from a group that has not been saved yet', () => {
+      const unsaved: TournamentDota2Group = { name: 'Unsaved', participants: [alpha] };
+      const trigger = component.groupsTrigger();
+
+      component.removeFromGroup(alpha, unsaved);
+
+      expect(apiService.removeParticipantFromGroup).not.toHaveBeenCalled();
+      expect(unsaved.participants).toEqual([alpha]);
+      expect(component.groupsTrigger()).toBe(trigger);
     });
 
     it('returns a removed team to the unassigned list once the server confirms', () => {

@@ -463,5 +463,12 @@ describe('TournamentListComponent', () => {
       // With two teams to choose from, none is picked for the user
       expect(component.inviteTeamId()).toBeNull();
     });
+
+    it('should preselect no team when the only Dota 2 team has no id yet', () => {
+      loginService['_teamsAdmin'].set([{ teamName: 'Unsaved Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 }]);
+
+      expect(component.dota2Teams().length).toBe(1);
+      expect(component.inviteTeamId()).toBeNull();
+    });
   });
 });

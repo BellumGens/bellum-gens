@@ -19,6 +19,7 @@ describe('dota2 series helpers', () => {
     expect(dota2TeamName(series(), 'team-3')).toBe('');
     expect(dota2TeamName(series(), null)).toBe('');
     expect(dota2TeamName(series({ team1: undefined }), 'team-1')).toBe('');
+    expect(dota2TeamName(series({ team2: undefined }), 'team-2')).toBe('');
   });
 
   it('puts the other team of the series on the Dire side', () => {
@@ -27,6 +28,11 @@ describe('dota2 series helpers', () => {
     expect(dota2DireTeamId(series(), 'team-3')).toBeNull();
     expect(dota2DireTeamId(series(), null)).toBeNull();
     expect(dota2DireTeamId(series(), undefined)).toBeNull();
+  });
+
+  it('leaves the Dire side empty when the other team of the series is not set', () => {
+    expect(dota2DireTeamId(series({ team2Id: undefined }), 'team-1')).toBeNull();
+    expect(dota2DireTeamId(series({ team1Id: undefined }), 'team-2')).toBeNull();
   });
 
   it('treats a series with games won or a walkover as played', () => {

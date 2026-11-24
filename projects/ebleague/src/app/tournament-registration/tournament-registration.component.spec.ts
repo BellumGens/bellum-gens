@@ -6,7 +6,7 @@ import { provideRouter, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
-import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
+import { IgxDropDownComponent, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -456,6 +456,34 @@ describe('TournamentRegistrationComponent', () => {
 
       expect(openNewTeam).not.toHaveBeenCalled();
       expect(select.value).toBe('team-1');
+    });
+  });
+
+  describe('before the teams of the user load', () => {
+    beforeEach(() => create());
+
+    it('has no teams to offer', () => {
+      component.selectGame(Game.Dota2);
+
+      expect(component.gameTeams()).toBeNull();
+    });
+
+    it('opens the new team dialog without a game when no league is chosen', () => {
+      const select = { collapsed: false, close: vi.fn() } as unknown as IgxSelectComponent;
+      const newTeam = { open: vi.fn() } as unknown as TeamNewComponent;
+      const event = { newSelection: { value: component.newTeamOption }, cancel: false } as unknown as ISelectionEventArgs;
+
+      component.teamSelectionChanging(event, select, newTeam);
+
+      expect(event.cancel).toBe(true);
+      expect(newTeam.open).toHaveBeenCalledWith(false, undefined);
+    });
+
+    it('offers and selects a team created before the teams loaded', () => {
+      component.teamCreated(team('team-new', 'Fresh Team', Game.Dota2));
+
+      expect(component.userTeams()!.map(t => t.teamId)).toEqual(['team-new']);
+      expect(component.application().teamId).toBe('team-new');
     });
   });
 
