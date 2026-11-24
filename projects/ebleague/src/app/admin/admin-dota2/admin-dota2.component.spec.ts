@@ -23,7 +23,7 @@ import {
   TournamentApplicationState,
   TournamentDota2Match,
   TournamentDota2MatchGame,
-  TournamentGroup,
+  TournamentDota2Group,
   TournamentParticipant
 } from 'bellum-gens-common/models';
 import { ConfirmComponent } from 'bellum-gens-common';
@@ -57,7 +57,7 @@ describe('AdminDota2Component', () => {
   let fixture: ComponentFixture<AdminDota2Component>;
   let apiService: ApiTournamentsService;
   let registrations: WritableSignal<TournamentParticipant [] | null>;
-  let groups: WritableSignal<TournamentGroup [] | null>;
+  let groups: WritableSignal<TournamentDota2Group [] | null>;
   let matches: WritableSignal<TournamentDota2Match [] | null>;
 
   beforeEach(async () => {
@@ -71,7 +71,7 @@ describe('AdminDota2Component', () => {
     apiService['_tournaments'].set([CS_TOURNAMENT, ...TOURNAMENTS]);
 
     registrations = signal<TournamentParticipant [] | null>(null);
-    groups = signal<TournamentGroup [] | null>(null);
+    groups = signal<TournamentDota2Group [] | null>(null);
     matches = signal<TournamentDota2Match [] | null>(null);
     vi.spyOn(apiService, 'getDota2Registrations').mockReturnValue(registrations);
     vi.spyOn(apiService, 'getDota2Groups').mockReturnValue(groups);
@@ -276,7 +276,7 @@ describe('AdminDota2Component', () => {
   describe('groups', () => {
     let alpha: TournamentParticipant;
     let bravo: TournamentParticipant;
-    let groupA: TournamentGroup;
+    let groupA: TournamentDota2Group;
 
     beforeEach(() => {
       alpha = participant('p1', 'Alpha');
@@ -325,7 +325,7 @@ describe('AdminDota2Component', () => {
     });
 
     it('starts the participant list of a group that had none', () => {
-      const empty: TournamentGroup = { id: 'g2', name: 'Group B' };
+      const empty: TournamentDota2Group = { id: 'g2', name: 'Group B' };
 
       component.addToGroup({ dragData: alpha } as IDropDroppedEventArgs, empty);
 
@@ -398,7 +398,7 @@ describe('AdminDota2Component', () => {
     });
 
     it('creates a new group for the selected tournament and relies on the service cache to show it', () => {
-      const created: TournamentGroup = { id: 'g2', name: 'Group B', participants: [] };
+      const created: TournamentDota2Group = { id: 'g2', name: 'Group B', participants: [] };
       const submit = vi.spyOn(apiService, 'submitDota2Group').mockImplementation(() => {
         groups.update(list => [...list!, created]);
         return of(created);
