@@ -1,6 +1,6 @@
 # Bellum Gens
 
-> Bellum Gens is a gaming and esports event organizer and consultant from Bulgaria, focused on developing and popularizing esports in Bulgaria and the Balkans. It runs the Bellum Gens Elite StarCraft II events in Stara Zagora, the Esports Business League for companies, an official merchandise shop, and a free Counter-Strike team management and strategy platform.
+> Bellum Gens is a gaming and esports event organizer and consultant from Bulgaria, focused on developing and popularizing esports in Bulgaria and the Balkans. It runs the Bellum Gens Elite StarCraft II events in Stara Zagora, the Esports Business League for companies, an official merchandise shop, and a free Counter-Strike 2 and Dota 2 team management platform with a Counter-Strike 2 strategy editor.
 
 - The site is available in English at https://bellumgens.com and in Bulgarian under https://bellumgens.com/bg.
 - Bellum Gens helps brands reach gaming audiences through tournaments, streams and digital channels. Business enquiries: info@bellumgens.com.
@@ -18,10 +18,10 @@
 - [Official merchandise](https://bellumgens.com/shop): Bellum Gens, Esports Business League and BGE Stara Zagora merchandise such as jerseys, umbrellas and pens. Prices are in EUR, payment is handled by Revolut, and orders are delivered across Bulgaria or handed over at an event.
 - [Cart](https://bellumgens.com/shop/cart): The visitor's cart, with delivery options and promo codes.
 
-## Counter-Strike teams and strategies
+## Counter-Strike 2 and Dota 2 teams
 
 - [Counter-Strike strategies](https://bellumgens.com/strategies): Browse public Counter-Strike strategies or create your own with the free online strategy editor.
-- [Team section](https://bellumgens.com/team): Find a team that matches your skill and manage rosters, roles, strategies and practice schedules. Requires signing in.
+- [Team section](https://bellumgens.com/team): Find a Counter-Strike 2 or Dota 2 team that matches your skill and manage rosters, roles and practice schedules (and strategies, for Counter-Strike 2 teams). Requires signing in.
 
 ## Partners
 

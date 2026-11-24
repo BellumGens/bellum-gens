@@ -181,12 +181,6 @@ export const EMPTY_NEW_TOURNAMENT: Tournament = {
 
 export const EMPTY_NEW_GROUP: TournamentGroup = { id: '', name: '', inEdit: false };
 
-export const GAMES = [
-  { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
-  { name: 'StarCraft II', id: Game.StarCraft2 },
-  { name: 'Dota 2', id: Game.Dota2 }
-];
-
 /** The display name of a game. Game names are proper names, so they are not translated. */
 export const gameName = (game: Game | null | undefined): string => {
   switch (game) {
@@ -196,3 +190,5 @@ export const gameName = (game: Game | null | undefined): string => {
     default: return '';
   }
 };
+
+export const GAMES = [Game.CSGO, Game.StarCraft2, Game.Dota2].map(id => ({ id, name: gameName(id) }));

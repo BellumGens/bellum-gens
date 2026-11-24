@@ -2630,17 +2630,17 @@
           <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="174105668315595106" datatype="html">
-        <source>Manage your Counter-Strike Team</source>
-        <target>Administrer Counter-Strike-laget ditt</target>
+      <trans-unit id="5642505016678378432" datatype="html">
+        <source>Manage your Counter-Strike 2 or Dota 2 Team</source>
+        <target>Administrer Counter-Strike 2- eller Dota 2-laget ditt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3853349505898786088" datatype="html">
-        <source>Recruit your team, manage roles, strategies, practice times and more. The only free online Counter-Strike strategy editor available to everyone!</source>
-        <target>Rekrutter laget ditt, administrer roller, strategier, treningstider og mye mer. Den eneste gratis nettbaserte strategieditoren for Counter-Strike som er tilgjengelig for alle!</target>
+      <trans-unit id="7929584588592300451" datatype="html">
+        <source>Recruit your team, manage roles, practice times and more. Counter-Strike 2 teams also get the only free online strategy editor available to everyone!</source>
+        <target>Rekrutter laget ditt, administrer roller, treningstider og mye mer. Counter-Strike 2-lag får i tillegg den eneste gratis nettbaserte strategieditoren som er tilgjengelig for alle!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">26,27</context>
@@ -2675,7 +2675,7 @@
         <target>Bellum Gens er en arrangør av og rådgiver for gaming- og e-sportarrangementer med fokus på utvikling og popularisering av e-sport i Bulgaria. Vi hjelper merkevarer med å nå gamingpublikum gjennom turneringer, strømmer og digitale kanaler. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Kontakt oss<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for å høre om tilgjengelige muligheter.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">42,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4944888585886254793" datatype="html">
@@ -2718,6 +2718,14 @@
           <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8915821002925044296" datatype="html">
+        <source>Team Overview</source>
+        <target>Lagoversikt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2987755426152633283" datatype="html">
         <source>Team Management</source>
         <target>Lagadministrasjon</target>
@@ -2726,9 +2734,9 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8993625035612590666" datatype="html">
-        <source>A Counter-Strike team finder and management platform — find teams matching your skill, manage rosters, strategies, and schedules. Because Counter-Strike is a team game!</source>
-        <target>En plattform for å finne og administrere Counter-Strike-lag – finn lag som matcher ferdighetsnivået ditt, og administrer laguttak, strategier og timeplaner. For Counter-Strike er et lagspill!</target>
+      <trans-unit id="4200185138825478646" datatype="html">
+        <source>A Counter-Strike 2 and Dota 2 team finder and management platform — find teams matching your skill, manage rosters, schedules and Counter-Strike 2 strategies. Because esports are team games!</source>
+        <target>En plattform for å finne og administrere Counter-Strike 2- og Dota 2-lag – finn lag som matcher ferdighetsnivået ditt, og administrer laguttak, timeplaner og Counter-Strike 2-strategier. For e-sport er lagspill!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">70,71</context>
