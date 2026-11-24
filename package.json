@@ -68,8 +68,8 @@
     "@cypress/schematic": "^6.0.0",
     "@types/compression": "^1.8.1",
     "@types/node": "^24.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.33.1",
-    "@typescript-eslint/parser": "^8.33.1",
+    "@typescript-eslint/eslint-plugin": "^8.73.0",
+    "@typescript-eslint/parser": "^8.73.0",
     "@vitest/coverage-v8": "^5.1.0",
     "angular-eslint": "^22.6.0",
     "browser-sync": "^3.0.4",
@@ -86,7 +86,7 @@
     "jsdom": "^29.1.1",
     "ng-packagr": "^22.2.5",
     "typescript": "6.0.3",
-    "typescript-eslint": "^8.66.0",
+    "typescript-eslint": "^8.73.0",
     "vitest": "^5.1.0"
   }
 }
