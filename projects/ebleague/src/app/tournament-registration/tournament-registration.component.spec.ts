@@ -191,6 +191,21 @@ describe('TournamentRegistrationComponent', () => {
       expect(el().querySelector('#battletag')).toBeNull();
     });
 
+    it('drops a team of another game when the league changes', () => {
+      vi.mocked(userService.getUserTeams).mockReturnValue(of([team('team-1', 'Alpha'), team('team-3', 'Dota Squad', Game.Dota2)]));
+      authUser.set(makeUser());
+      create();
+
+      component.selectGame(Game.CSGO);
+      component.application.update(application => ({ ...application, teamId: 'team-1' }));
+      component.selectGame(Game.Dota2);
+      expect(component.application().teamId).toBeUndefined();
+
+      component.application.update(application => ({ ...application, teamId: 'team-3' }));
+      component.selectGame(Game.Dota2);
+      expect(component.application().teamId).toBe('team-3');
+    });
+
     it('warns a Dota 2 applicant without a Steam account', () => {
       authUser.set(makeUser({ steamId: undefined }));
       create();

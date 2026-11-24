@@ -434,16 +434,34 @@ describe('TournamentListComponent', () => {
       expect(document.querySelector('igx-select.invite-team label')!.textContent.trim()).toBe('Dota 2 team');
     });
 
-    it('should join with the picked team and reset it afterwards', () => {
+    it('should preselect the only Dota 2 team and join with it', () => {
+      expect(component.inviteTeamId()).toBe('dota');
       component.inviteCode = 'DOTA2345';
-      component.inviteTeamId = 'dota';
 
       component.joinByInvite(inviteDialog());
 
       const req = httpMock.expectOne(joinUrl());
       expect(req.request.body).toEqual({ inviteCode: 'DOTA2345', teamId: 'dota' });
       req.flush({ id: 't9', name: 'Joined' });
-      expect(component.inviteTeamId).toBeNull();
+    });
+
+    it('should not carry a team choice over to the next time the dialog opens', async () => {
+      component.inviteTeamId.set(null);
+      dialogButton('Cancel').click();
+      await vi.waitFor(() => expect(inviteDialog().isOpen).toBe(false));
+
+      headerButton('Join by Code').click();
+      fixture.detectChanges();
+
+      expect(component.inviteTeamId()).toBe('dota');
+    });
+
+    it('should offer a team the user creates later in the session', () => {
+      loginService.addTeamAdmin({ teamId: 'dota2', teamName: 'New Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 });
+
+      expect(component.dota2Teams().map(t => t.teamId)).toEqual(['dota', 'dota2']);
+      // With two teams to choose from, none is picked for the user
+      expect(component.inviteTeamId()).toBeNull();
     });
   });
 });

@@ -160,6 +160,23 @@ describe('LoginService', () => {
     expect(result()).toEqual(teamsAdmin);
   });
 
+  it('should add a created team to the loaded teams admin only once', () => {
+    const existing: CSGOTeam = { teamId: '1', teamName: 'Team 1', teamAvatar: '', visible: true };
+    const created: CSGOTeam = { teamId: '2', teamName: 'Team 2', teamAvatar: '', visible: true };
+    service['_teamsAdmin'].set([existing]);
+
+    service.addTeamAdmin(created);
+    service.addTeamAdmin(created);
+
+    expect(service['_teamsAdmin']()).toEqual([existing, created]);
+  });
+
+  it('should leave teams admin that are not loaded yet to the first load', () => {
+    service.addTeamAdmin({ teamId: '2', teamName: 'Team 2', teamAvatar: '', visible: true });
+
+    expect(service['_teamsAdmin']()).toBeNull();
+  });
+
   it('should get application user', () => {
     const applicationUser: ApplicationUser = {
       id: '1',

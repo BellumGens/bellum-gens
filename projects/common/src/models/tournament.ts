@@ -97,20 +97,20 @@ export interface TournamentGroup {
   name: string;
   tournamentId?: string;
   participants?: TournamentParticipant [];
-  matches?: any [];
+  matches?: TournamentCSGOMatch [] | TournamentSC2Match [] | TournamentDota2Match [];
   inEdit?: boolean;
 }
 
 export interface TournamentCSGOGroup extends TournamentGroup {
-  matches?: any [];
+  matches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentSC2Group extends TournamentGroup {
-  matches?: any [];
+  matches?: TournamentSC2Match [];
 }
 
 export interface TournamentDota2Group extends TournamentGroup {
-  matches?: any [];
+  matches?: TournamentDota2Match [];
 }
 
 export interface Company {

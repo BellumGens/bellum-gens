@@ -11,13 +11,14 @@ import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-picker';
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
-import { config, of, throwError } from 'rxjs';
+import { config, of, Subject, throwError } from 'rxjs';
 
 import { AdminDota2Component } from './admin-dota2.component';
 import { environment } from 'bellum-gens-common/environments';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
 import {
   CSGOTeam,
+  Game,
   Tournament,
   TournamentApplicationState,
   TournamentDota2Match,
@@ -46,9 +47,10 @@ const participant = (id: string, teamName: string, overrides: Partial<Tournament
 });
 
 const TOURNAMENTS: Tournament [] = [
-  { id: 't1', name: 'Spring Cup' },
-  { id: 't2', name: 'Autumn Cup' }
+  { id: 't1', name: 'Spring Cup', game: Game.Dota2 },
+  { id: 't2', name: 'Autumn Cup', game: Game.Dota2 }
 ];
+const CS_TOURNAMENT: Tournament = { id: 'cs1', name: 'CS League', game: Game.CSGO };
 
 describe('AdminDota2Component', () => {
   let component: AdminDota2Component;
@@ -66,7 +68,7 @@ describe('AdminDota2Component', () => {
 
     apiService = TestBed.inject(ApiTournamentsService);
     // the service's own state; its lazy getter hands it out read-only without fetching
-    apiService['_tournaments'].set(TOURNAMENTS);
+    apiService['_tournaments'].set([CS_TOURNAMENT, ...TOURNAMENTS]);
 
     registrations = signal<TournamentParticipant [] | null>(null);
     groups = signal<TournamentGroup [] | null>(null);
@@ -108,11 +110,14 @@ describe('AdminDota2Component', () => {
     fixture.detectChanges();
   };
 
-  describe('without a selected tournament', () => {
-    it('lists the tournaments and loads nothing tournament specific', () => {
+  describe('without a Dota 2 tournament', () => {
+    beforeEach(() => apiService['_tournaments'].set([CS_TOURNAMENT]));
+
+    it('lists no tournaments and loads nothing tournament specific', () => {
       create();
 
-      expect(component.tournaments()).toEqual(TOURNAMENTS);
+      expect(component.tournaments()).toEqual([]);
+      expect(component.selectedTournament()).toBeNull();
       expect(component.registrations()).toBeNull();
       expect(component.unassigned()).toBeNull();
       expect(component.groups()).toBeNull();
@@ -137,6 +142,37 @@ describe('AdminDota2Component', () => {
   });
 
   describe('selecting a tournament', () => {
+    it('lists only the Dota 2 tournaments', () => {
+      create();
+
+      expect(component.tournaments()).toEqual(TOURNAMENTS);
+    });
+
+    it('opens the first Dota 2 tournament when none is active', () => {
+      create();
+
+      expect(component.selectedTournament()).toBe(TOURNAMENTS[0]);
+      expect(apiService.getDota2Matches).toHaveBeenCalledWith('t1');
+    });
+
+    it('opens the active Dota 2 tournament', () => {
+      const active = { ...TOURNAMENTS[1], active: true };
+      apiService['_tournaments'].set([CS_TOURNAMENT, TOURNAMENTS[0], active]);
+      create();
+
+      expect(component.selectedTournament()).toBe(active);
+    });
+
+    it('keeps the tournament the admin picked when the tournaments reload', () => {
+      create();
+      component.selectTournament(TOURNAMENTS[1]);
+
+      apiService['_tournaments'].set([...TOURNAMENTS]);
+      fixture.detectChanges();
+
+      expect(component.selectedTournament()).toBe(TOURNAMENTS[1]);
+    });
+
     it('reads the registrations, groups and series of the selected tournament', () => {
       create();
       registrations.set([participant('p1', 'Alpha')]);
@@ -416,20 +452,25 @@ describe('AdminDota2Component', () => {
       addRow: ReturnType<typeof vi.fn>;
       updateRow: ReturnType<typeof vi.fn>;
     };
+    let dialog: IgxDialogComponent & { close: ReturnType<typeof vi.fn> };
 
-    beforeEach(() => create());
+    beforeEach(() => {
+      dialog = { close: vi.fn() } as unknown as typeof dialog;
+      create();
+    });
 
-    it('does not submit a series without both teams', () => {
+    it('does not submit a series without both teams, and keeps its dialog open', () => {
       const submit = vi.spyOn(apiService, 'submitDota2Match');
       const matchGrid = grid();
 
       component.matchInEdit = { team1Id: 'team-p1' };
-      component.submitMatch(matchGrid);
+      component.submitMatch(matchGrid, dialog);
       component.matchInEdit = { team2Id: 'team-p2' };
-      component.submitMatch(matchGrid);
+      component.submitMatch(matchGrid, dialog);
 
       expect(submit).not.toHaveBeenCalled();
       expect(matchGrid.addRow).not.toHaveBeenCalled();
+      expect(dialog.close).not.toHaveBeenCalled();
     });
 
     it('adds a newly created series to the grid with a Date start time', () => {
@@ -438,11 +479,12 @@ describe('AdminDota2Component', () => {
       const matchGrid = grid();
       component.matchInEdit = { team1Id: 'team-p1', team2Id: 'team-p2' };
 
-      component.submitMatch(matchGrid);
+      component.submitMatch(matchGrid, dialog);
 
       expect(submit).toHaveBeenCalledWith({ team1Id: 'team-p1', team2Id: 'team-p2' });
       expect(matchGrid.addRow).toHaveBeenCalledWith(saved);
       expect(matchGrid.updateRow).not.toHaveBeenCalled();
+      expect(dialog.close).toHaveBeenCalled();
       expect(saved.startTime).toBeInstanceOf(Date);
       expect(saved.startTime.toISOString()).toBe('2026-10-01T18:00:00.000Z');
     });
@@ -457,7 +499,7 @@ describe('AdminDota2Component', () => {
         games: [{ dota2MatchId: 'm1', gameNumber: 1, winnerTeamId: 'team-p1' }]
       };
 
-      component.submitMatch(matchGrid);
+      component.submitMatch(matchGrid, dialog);
 
       expect(matchGrid.addRow).not.toHaveBeenCalled();
       // The games come back with their ids, so submitting again doesn't add them twice
@@ -469,7 +511,7 @@ describe('AdminDota2Component', () => {
       const matchGrid = grid();
       component.matchInEdit = { team1Id: 'team-p1', team2Id: 'team-p2' };
 
-      component.submitMatch(matchGrid);
+      component.submitMatch(matchGrid, dialog);
 
       expect(matchGrid.addRow).not.toHaveBeenCalled();
       expect(matchGrid.updateRow).not.toHaveBeenCalled();
@@ -497,11 +539,11 @@ describe('AdminDota2Component', () => {
     });
 
     it('opens a copy of a series for editing with a Date start time', () => {
-      const dialog = { open: vi.fn() } as unknown as IgxDialogComponent;
+      const editDialog = { open: vi.fn() } as unknown as IgxDialogComponent;
       const game: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
       const match: TournamentDota2Match = { id: 'm1', startTime: '2026-10-01T18:00:00Z' as unknown as Date, games: [game] };
 
-      component.editMatch(match, dialog);
+      component.editMatch(match, editDialog);
 
       // The row only changes once the server has saved the series
       expect(component.matchInEdit).not.toBe(match);
@@ -511,7 +553,7 @@ describe('AdminDota2Component', () => {
       expect(component.matchInEdit.games).toEqual([game]);
       expect(component.matchInEdit.games![0]).not.toBe(game);
       expect(match.startTime).toBe('2026-10-01T18:00:00Z');
-      expect(dialog.open).toHaveBeenCalled();
+      expect(editDialog.open).toHaveBeenCalled();
     });
 
     it('numbers each added game after the last game of the series', () => {
@@ -550,7 +592,7 @@ describe('AdminDota2Component', () => {
       expect(component.matchInEdit.games).toEqual([]);
       expect(remove).not.toHaveBeenCalled();
 
-      component.submitMatch(grid());
+      component.submitMatch(grid(), dialog);
 
       expect(remove).toHaveBeenCalledWith('gm1');
       expect(submit).toHaveBeenCalled();
@@ -561,28 +603,71 @@ describe('AdminDota2Component', () => {
       const saved: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
       const remove = vi.spyOn(apiService, 'deleteDota2MatchGame');
       vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(of({ id: 'm2' }));
-      const dialog = { open: vi.fn() } as unknown as IgxDialogComponent;
-      component.editMatch({ id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] }, dialog);
+      const editDialog = { open: vi.fn() } as unknown as IgxDialogComponent;
+      component.editMatch({ id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] }, editDialog);
       component.deleteGame(component.matchInEdit.games![0]);
 
-      component.editMatch({ id: 'm2', team1Id: 'team-p1', team2Id: 'team-p2' }, dialog);
-      component.submitMatch(grid());
+      component.editMatch({ id: 'm2', team1Id: 'team-p1', team2Id: 'team-p2' }, editDialog);
+      component.submitMatch(grid(), dialog);
 
       expect(remove).not.toHaveBeenCalled();
     });
 
-    it('does not save the series when deleting a removed game fails', async () => {
-      const saved: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
-      vi.spyOn(apiService, 'deleteDota2MatchGame').mockReturnValue(throwError(() => new Error('nope')));
+    it('keeps the dialog open and refreshes the series when deleting a removed game fails', () => {
+      const game1: TournamentDota2MatchGame = { id: 'gm1', dota2MatchId: 'm1', gameNumber: 1 };
+      const game2: TournamentDota2MatchGame = { id: 'gm2', dota2MatchId: 'm1', gameNumber: 2 };
+      const remove = vi.spyOn(apiService, 'deleteDota2MatchGame')
+        .mockReturnValueOnce(of(game1))
+        .mockReturnValueOnce(throwError(() => new Error('nope')));
       const submit = vi.spyOn(apiService, 'submitDota2Match');
+      const refresh = vi.spyOn(apiService, 'refreshDota2Matches').mockReturnValue(matches);
       const matchGrid = grid();
-      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [saved] };
-      component.deleteGame(saved);
+      selectFirstTournament();
+      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2', games: [game1, game2] };
+      component.deleteGame(game1);
+      component.deleteGame(game2);
 
-      await expectUnhandledError(() => component.submitMatch(matchGrid));
+      component.submitMatch(matchGrid, dialog);
 
       expect(submit).not.toHaveBeenCalled();
       expect(matchGrid.updateRow).not.toHaveBeenCalled();
+      expect(dialog.close).not.toHaveBeenCalled();
+      // Game 1 is gone on the server, so the grid is reloaded from there
+      expect(refresh).toHaveBeenCalledWith('t1');
+
+      // Submitting again deletes only the game still on the server, then saves the series
+      remove.mockReturnValueOnce(of(game2));
+      submit.mockReturnValue(of({ id: 'm1' }));
+      component.submitMatch(matchGrid, dialog);
+
+      expect(remove.mock.calls.map(([id]) => id)).toEqual(['gm1', 'gm2', 'gm2']);
+      expect(submit).toHaveBeenCalledTimes(1);
+      expect(dialog.close).toHaveBeenCalled();
+    });
+
+    it('keeps the dialog open without reloading the series when saving it fails', () => {
+      vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(throwError(() => new Error('nope')));
+      const refresh = vi.spyOn(apiService, 'refreshDota2Matches');
+      component.matchInEdit = { id: 'm1', team1Id: 'team-p1', team2Id: 'team-p2' };
+
+      component.submitMatch(grid(), dialog);
+
+      expect(dialog.close).not.toHaveBeenCalled();
+      expect(refresh).not.toHaveBeenCalled();
+    });
+
+    it('ignores Submit while the series is being saved', () => {
+      const response = new Subject<TournamentDota2Match>();
+      const submit = vi.spyOn(apiService, 'submitDota2Match').mockReturnValue(response);
+      component.matchInEdit = { team1Id: 'team-p1', team2Id: 'team-p2' };
+
+      component.submitMatch(grid(), dialog);
+      component.submitMatch(grid(), dialog);
+      expect(submit).toHaveBeenCalledTimes(1);
+
+      response.next({ id: 'm1' });
+      component.submitMatch(grid(), dialog);
+      expect(submit).toHaveBeenCalledTimes(2);
     });
 
     it('takes the score of a series with games from the game winners', () => {
@@ -933,7 +1018,7 @@ describe('AdminDota2Component', () => {
       expect(rows()[3].textContent).toContain('Oct 4, 2026, 6:30 PM');
     });
 
-    it('closes the series dialog without submitting a series missing a team', async () => {
+    it('keeps the series dialog open without submitting a series missing a team', async () => {
       const submit = vi.spyOn(apiService, 'submitDota2Match');
       const seriesDialog = dialog('Series');
       newSeriesButton().click();
@@ -943,7 +1028,7 @@ describe('AdminDota2Component', () => {
       await render();
 
       expect(submit).not.toHaveBeenCalled();
-      expect(seriesDialog.isOpen).toBe(false);
+      expect(seriesDialog.isOpen).toBe(true);
       expect(rows().length).toBe(3);
     });
 

@@ -1,13 +1,14 @@
-import { Component, computed, inject, LOCALE_ID, signal } from '@angular/core';
-import { forkJoin, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Component, computed, effect, inject, LOCALE_ID, signal, untracked } from '@angular/core';
+import { concat } from 'rxjs';
+import { switchMap, tap, toArray } from 'rxjs/operators';
 import {
   EMPTY_NEW_GROUP,
+  Game,
   Tournament,
-  TournamentGroup,
   TournamentParticipant,
   TournamentDota2Match,
-  TournamentDota2MatchGame
+  TournamentDota2MatchGame,
+  TournamentDota2Group
 } from 'bellum-gens-common/models';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { ConfirmComponent } from 'bellum-gens-common';
@@ -60,14 +61,16 @@ import { FormsModule } from '@angular/forms';
 export class AdminDota2Component {
   private apiService = inject(ApiTournamentsService);
 
-  public tournaments = this.apiService.tournaments;
+  private allTournaments = this.apiService.tournaments;
+  /** Only Dota 2 tournaments have Dota 2 groups and series to manage. */
+  public tournaments = computed(() => (this.allTournaments() ?? []).filter(tournament => tournament.game === Game.Dota2));
   public selectedTournament = signal<Tournament | null>(null);
   private tournamentId = computed(() => this.selectedTournament()?.id);
   public registrations = computed<TournamentParticipant [] | null>(() => {
     const id = this.tournamentId();
     return id ? this.apiService.getDota2Registrations(id)() : null;
   });
-  public groups = computed<TournamentGroup [] | null>(() => {
+  public groups = computed<TournamentDota2Group [] | null>(() => {
     const id = this.tournamentId();
     return id ? this.apiService.getDota2Groups(id)() : null;
   });
@@ -90,22 +93,37 @@ export class AdminDota2Component {
   public loadingMatches = this.apiService.loadingDota2Matches;
   /** The team pages are on bellumgens.com, in the language the admin is browsing in. */
   public teamUrl = bellumgensUrl('/team/', inject(LOCALE_ID));
-  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP) as TournamentDota2Group;
   /** A copy of the series in the open dialog, so Cancel leaves the grid row as it was. */
   public matchInEdit: TournamentDota2Match = { startTime: new Date() };
   /** Saved games removed in the Results dialog. They're deleted when the series is submitted, not before. */
   private removedGameIds: string [] = [];
+  /** A series is being saved; Submit does nothing until it's done. */
+  private savingMatch = signal(false);
 
   public teamName = dota2TeamName;
   public direTeamId = dota2DireTeamId;
   public sortedGames = dota2SortedGames;
+
+  constructor() {
+    // Open the active Dota 2 tournament (or the first one) once the tournaments are loaded
+    effect(() => {
+      const tournaments = this.tournaments();
+      if (!untracked(this.selectedTournament)) {
+        const tournament = tournaments.find(t => t.active) ?? tournaments[0];
+        if (tournament) {
+          untracked(() => this.selectTournament(tournament));
+        }
+      }
+    });
+  }
 
   public selectTournament(tournament: Tournament) {
     this.selectedTournament.set(tournament);
   }
 
   // The service adds new groups to (and removes deleted ones from) its per-tournament cache
-  public submitGroup(group: TournamentGroup) {
+  public submitGroup(group: TournamentDota2Group) {
     group.inEdit = false;
     const tournamentId = this.tournamentId();
     if (!group.id) {
@@ -125,7 +143,7 @@ export class AdminDota2Component {
     this.apiService.deleteGroup(id).subscribe();
   }
 
-  public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
+  public addToGroup(event: IDropDroppedEventArgs, group: TournamentDota2Group) {
     const groupId = group.id;
     if (!groupId) {
       return;
@@ -135,7 +153,7 @@ export class AdminDota2Component {
     this.groupsTrigger.update(trigger => trigger + 1);
   }
 
-  public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+  public removeFromGroup(participant: TournamentParticipant, group: TournamentDota2Group) {
     if (!group.id) {
       return;
     }
@@ -147,28 +165,53 @@ export class AdminDota2Component {
     });
   }
 
-  public submitMatch(grid: IgxGridComponent) {
+  /**
+   * Deletes the games removed from the series, then saves it. The dialog closes only once the series is saved,
+   * so nothing the admin entered is lost when a request fails; Submit then retries what is left to do.
+   */
+  public submitMatch(grid: IgxGridComponent, dialog: IgxDialogComponent) {
     const match = this.matchInEdit;
-    if (!match.team1Id || !match.team2Id) {
+    if (!match.team1Id || !match.team2Id || this.savingMatch()) {
+      // The required team selects show what is missing
       return;
     }
-    const removed = this.removedGameIds;
-    this.removedGameIds = [];
-    const deletes = removed.map(id => this.apiService.deleteDota2MatchGame(id));
-    (deletes.length ? forkJoin(deletes) : of([])).pipe(
+    this.savingMatch.set(true);
+    let gameDeleted = false;
+    // One at a time, each forgotten once it's deleted, so a retry deletes only the games still on the server
+    const deletes = this.removedGameIds.map(id => this.apiService.deleteDota2MatchGame(id).pipe(
+      tap(() => {
+        gameDeleted = true;
+        this.removedGameIds = this.removedGameIds.filter(removed => removed !== id);
+      })
+    ));
+    concat(...deletes).pipe(
+      toArray(),
       switchMap(() => this.apiService.submitDota2Match(match))
-    ).subscribe(data => {
-      if (!data) {
-        return;
-      }
-      if (data.startTime) {
-        data.startTime = new Date(data.startTime);
-      }
-      if (!match.id) {
-        grid.addRow(data);
-      } else {
-        // The server's copy carries the score and winner it worked out, and the ids of the new games
-        grid.updateRow(data, match.id);
+    ).subscribe({
+      next: data => {
+        this.savingMatch.set(false);
+        dialog.close();
+        if (!data) {
+          return;
+        }
+        if (data.startTime) {
+          data.startTime = new Date(data.startTime);
+        }
+        if (!match.id) {
+          grid.addRow(data);
+        } else {
+          // The server's copy carries the score and winner it worked out, and the ids of the new games
+          grid.updateRow(data, match.id);
+        }
+      },
+      // The service reports the error
+      error: () => {
+        this.savingMatch.set(false);
+        const tournamentId = this.tournamentId();
+        if (gameDeleted && tournamentId) {
+          // The games deleted before the failure are gone on the server, so the grid shows the series as saved there
+          this.apiService.refreshDota2Matches(tournamentId);
+        }
       }
     });
   }

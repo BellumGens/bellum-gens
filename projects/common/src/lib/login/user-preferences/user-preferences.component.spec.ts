@@ -303,6 +303,7 @@ describe('UserPreferencesComponent', () => {
       admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
       expect(location.href).toBe(`${environment.ebleague}/admin/sc2`);
+      expect(buttons().some(b => b.textContent.includes('Dota 2 Tournament Admin'))).toBe(true);
     });
 
     it('should offer the app administration to app admins only', () => {
@@ -330,6 +331,9 @@ describe('UserPreferencesComponent', () => {
 
       component.navigateToEventAdmin();
       expect(navigate).toHaveBeenLastCalledWith(['/admin/sc2']);
+
+      component.navigateToDota2Admin();
+      expect(navigate).toHaveBeenLastCalledWith(['/admin/dota2']);
       expect(location.href).toBe(`${environment.ebleague}/tournaments`);
     });
 

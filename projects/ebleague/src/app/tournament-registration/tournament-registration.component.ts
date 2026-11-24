@@ -90,7 +90,12 @@ export class TournamentRegistrationComponent {
   }
 
   public selectGame(game: Game) {
-    this.application.update(application => ({ ...application, game }));
+    this.application.update(application => {
+      // A team picked for another league can't register for this one
+      const team = this.userTeams()?.find(t => t.teamId === application.teamId);
+      const teamId = team && teamGame(team) === game ? application.teamId : undefined;
+      return { ...application, game, teamId };
+    });
     const element = document.getElementById('registration');
     element?.scrollIntoView({ behavior: 'smooth' });
     this.showDetails();

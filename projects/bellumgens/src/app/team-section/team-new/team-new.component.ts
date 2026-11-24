@@ -1,6 +1,6 @@
 import { Component, inject, input, output, signal, viewChild } from '@angular/core';
 import { ApplicationUser, CSGOTeam, SteamGroup, EMPTY_NEW_TEAM, Game, TEAM_GAMES, gameName } from 'bellum-gens-common/models';
-import { BellumgensApiService } from 'bellum-gens-common/services';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -33,6 +33,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TeamNewComponent {
   private apiService = inject(BellumgensApiService);
+  private loginService = inject(LoginService);
   private router = inject(Router);
 
   public authUser = input<ApplicationUser | null>();
@@ -89,6 +90,8 @@ export class TeamNewComponent {
   private teamCreated(team: CSGOTeam) {
     this.inProgress.set(false);
     this.createTeam()?.close();
+    // The user manages the new team, so it's offered wherever their teams are (e.g. joining a tournament)
+    this.loginService.addTeamAdmin(team);
     this.created.emit(team);
     if (this.navigateOnCreate) {
       this.router.navigate(['/team', team.customUrl]);

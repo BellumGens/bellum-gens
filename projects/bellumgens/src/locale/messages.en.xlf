@@ -2937,7 +2937,7 @@
         <source>KDA</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">60,62</context>
         </context-group>
         <note priority="1" from="description">Kills plus assists per death</note>
         <note priority="1" from="meaning">Dota 2 stat</note>
@@ -3078,7 +3078,7 @@
         <source>Last hits</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
-          <context context-type="linenumber">180,182</context>
+          <context context-type="linenumber">180,181</context>
         </context-group>
         <note priority="1" from="description">Last hits on creeps</note>
         <note priority="1" from="meaning">Dota 2 column header</note>
@@ -3107,10 +3107,10 @@
         </context-group>
       </trans-unit>
       <trans-unit id="dota2PlayerTitle" datatype="html">
-        <source>Dota 2 Player: <x id="name" equiv-text="steamUser.steamID"/></source>
+        <source>Dota 2 Player: <x id="name" equiv-text="steamUser?.steamID ?? player.username"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.ts</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5052150728790721416" datatype="html">
@@ -3526,11 +3526,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2469997684135721882" datatype="html">
@@ -4355,7 +4355,7 @@
         <source>Create username and password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4477372597867894980" datatype="html">
@@ -4426,25 +4426,32 @@
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="190452334756158553" datatype="html">
+        <source>Dota 2 Tournament Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1829407837180331792" datatype="html">
         <source>Pressing OK will delete your user account permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">86,87</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
         <source>Pressing OK will delete your tournament registration permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4416413576346763682" datatype="html">

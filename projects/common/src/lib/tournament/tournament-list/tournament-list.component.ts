@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Game, Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament, teamGame } from 'bellum-gens-common/models';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
@@ -43,8 +43,6 @@ export class TournamentListComponent {
   public loading = this.apiService.loadingTournaments;
   public activeTab = signal(0);
   public inviteCode = '';
-  /** The team joining when the invite code is for a Dota 2 tournament. */
-  public inviteTeamId: string | null = null;
 
   private authUser = this.loginService.applicationUser;
   public isLoggedIn = computed(() => !!this.authUser());
@@ -56,6 +54,13 @@ export class TournamentListComponent {
       (this.loginService.teamsAdmin() ?? []).filter(team => teamGame(team) === Game.Dota2) :
       []
   );
+  /** A user who manages a single Dota 2 team joins with it unless they pick none. */
+  private defaultInviteTeamId = computed(() => {
+    const teams = this.dota2Teams();
+    return teams.length === 1 ? teams[0].teamId ?? null : null;
+  });
+  /** The team joining when the invite code is for a Dota 2 tournament. */
+  public inviteTeamId = linkedSignal(() => this.defaultInviteTeamId());
 
   // The API sends no status, so it is derived from the active flag and the dates when missing
   public activeTournaments = computed(() =>
@@ -91,17 +96,18 @@ export class TournamentListComponent {
 
   public openInviteDialog(dialog: IgxDialogComponent) {
     this.inviteDialogOpened.set(true);
+    // A team picked for an earlier code isn't carried over
+    this.inviteTeamId.set(this.defaultInviteTeamId());
     dialog.open();
   }
 
   public joinByInvite(dialog: IgxDialogComponent) {
     if (this.inviteCode?.trim()) {
       // The API ignores the team for tournaments that aren't Dota 2 tournaments
-      this.apiService.joinByInviteCode(this.inviteCode.trim(), this.inviteTeamId).subscribe({
+      this.apiService.joinByInviteCode(this.inviteCode.trim(), this.inviteTeamId()).subscribe({
         next: () => {
           dialog.close();
           this.inviteCode = '';
-          this.inviteTeamId = null;
         },
         // The service reports the failure to the user; the dialog stays open so the code can be corrected
         error: () => undefined

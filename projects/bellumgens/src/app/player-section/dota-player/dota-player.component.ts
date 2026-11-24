@@ -59,12 +59,13 @@ export class DotaPlayerComponent {
         return;
       }
       const steamUser = player.steamUser;
+      // A player without a Steam account is named by their username, so the title never keeps the previous player
+      this.titleService.setTitle($localize`:@@dota2PlayerTitle:Dota 2 Player: ${steamUser?.steamID ?? player.username}:name:`);
       if (!steamUser?.steamID64) {
         // A player without a Steam account has no stats; drop those of the previous player, loaded or not
         this.resetProfile();
         return;
       }
-      this.titleService.setTitle($localize`:@@dota2PlayerTitle:Dota 2 Player: ${steamUser.steamID}:name:`);
 
       // The parent hands down a new object for the same player on every refresh,
       // so only pull the stats once per Steam account.
@@ -84,8 +85,6 @@ export class DotaPlayerComponent {
         error: () => {
           this.profileError.set(true);
           this.loadingProfile.set(false);
-          // Coming back to the player tries again
-          this.profileLoadedFor = undefined;
         }
       });
     });

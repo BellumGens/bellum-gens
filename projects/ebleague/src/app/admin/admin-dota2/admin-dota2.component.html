@@ -288,7 +288,7 @@
   (leftButtonSelect)="newMatchDialog.close()"
   i18n-rightButtonLabel
   rightButtonLabel="Submit"
-  (rightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
+  (rightButtonSelect)="submitMatch(matchGrid, newMatchDialog)">
   <igx-date-picker type="border" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start date</label>
   </igx-date-picker>
@@ -380,7 +380,7 @@
   (leftButtonSelect)="resultsDialog.close()"
   i18n-rightButtonLabel
   rightButtonLabel="Submit"
-  (rightButtonSelect)="submitMatch(matchGrid); resultsDialog.close()">
+  (rightButtonSelect)="submitMatch(matchGrid, resultsDialog)">
   <div class="horizontal-center">
     <igx-input-group type="border">
       <label igxLabel for="seriesTeam1Points" i18n>Games won {{ matchInEdit.team1?.teamName }}</label>

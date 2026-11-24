@@ -138,6 +138,10 @@ export class UserPreferencesComponent {
     this.navigateToLeague('/admin/sc2');
   }
 
+  public navigateToDota2Admin() {
+    this.navigateToLeague('/admin/dota2');
+  }
+
   public navigateToAppAdmin() {
     this.navigateToLeague('/admin');
   }

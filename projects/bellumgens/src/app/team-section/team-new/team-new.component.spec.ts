@@ -9,6 +9,7 @@ import { BellumgensApiService, CommunicationService } from 'bellum-gens-common/s
 import { Router } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamNewComponent', () => {
   let component: TeamNewComponent;
@@ -85,7 +86,7 @@ describe('TeamNewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         FormsModule,
-
+        ServiceWorkerModule.register('', { enabled: false }),
         NoopAnimationsModule,
         TeamNewComponent
       ],

@@ -243,10 +243,8 @@ describe('DotaPlayerComponent', () => {
     expect(el().querySelector('bg-loading')).toBeNull();
   });
 
-  it('tries again after a failed load when the player is shown again', () => {
-    vi.spyOn(apiService, 'getDota2Profile')
-      .mockReturnValueOnce(throwError(() => new Error('502')))
-      .mockReturnValueOnce(of(makeProfile()));
+  it('does not try again after a failed load when the parent refreshes the same player', () => {
+    vi.spyOn(apiService, 'getDota2Profile').mockReturnValue(throwError(() => new Error('502')));
     player.set(makePlayer());
     create();
     expect(component.profileError()).toBe(true);
@@ -254,9 +252,38 @@ describe('DotaPlayerComponent', () => {
     player.set(makePlayer({ username: 'Miracle (updated)' }));
     fixture.detectChanges();
 
+    expect(apiService.getDota2Profile).toHaveBeenCalledTimes(1);
+    expect(component.profileError()).toBe(true);
+  });
+
+  it('tries again after a failed load when the player is opened again', () => {
+    vi.spyOn(apiService, 'getDota2Profile')
+      .mockReturnValueOnce(throwError(() => new Error('502')))
+      .mockReturnValueOnce(of(makeProfile()));
+    player.set(makePlayer());
+    create();
+    expect(component.profileError()).toBe(true);
+
+    player.set(makePlayer({ id: 'player-2', steamUser: undefined, steamUserException: true }));
+    fixture.detectChanges();
+    player.set(makePlayer());
+    fixture.detectChanges();
+
     expect(apiService.getDota2Profile).toHaveBeenCalledTimes(2);
     expect(component.profileError()).toBe(false);
     expect(component.profile()).toEqual(makeProfile());
+  });
+
+  it('names the shown player in the title when they have no Steam account', () => {
+    vi.spyOn(apiService, 'getDota2Profile').mockReturnValue(of(makeProfile()));
+    player.set(makePlayer());
+    create();
+    expect(title.getTitle()).toBe('Dota 2 Player: Miracle-');
+
+    player.set(makePlayer({ id: 'player-2', username: 'NoSteam', steamUser: undefined, steamUserException: true }));
+    fixture.detectChanges();
+
+    expect(title.getTitle()).toBe('Dota 2 Player: NoSteam');
   });
 
   it('cancels a running request when the component is destroyed', () => {

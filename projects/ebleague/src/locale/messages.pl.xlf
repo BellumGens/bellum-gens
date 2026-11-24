@@ -159,7 +159,7 @@
         <target>Utwórz nazwę użytkownika i hasło</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4477372597867894980" datatype="html">
@@ -254,12 +254,20 @@
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="190452334756158553" datatype="html">
+        <source>Dota 2 Tournament Admin</source>
+        <target>Admin turniejów Dota 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <target>Usuń konto na zawsze</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
@@ -267,11 +275,11 @@
         <target>Na pewno?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">94</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
@@ -311,7 +319,7 @@
         <target>Naciśnięcie OK trwale usunie twoje konto użytkownika...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">86,87</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
@@ -319,7 +327,7 @@
         <target>Naciśnięcie OK trwale usunie twoją rejestrację na turniej...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4416413576346763682" datatype="html">
@@ -1263,7 +1271,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-dota2/admin-dota2.component.html</context>
-          <context context-type="linenumber">216,217</context>
+          <context context-type="linenumber">217</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-dota2/admin-dota2.component.html</context>
@@ -2615,7 +2623,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-dota2/admin-dota2.component.html</context>
-          <context context-type="linenumber">377,378</context>
+          <context context-type="linenumber">378</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -2969,7 +2977,7 @@
         <target>Wynik to liczba gier wygranych przez każdą drużynę.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-dota2/admin-dota2.component.html</context>
-          <context context-type="linenumber">396,398</context>
+          <context context-type="linenumber">396,399</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6383989497461220972" datatype="html">

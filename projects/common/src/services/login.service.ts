@@ -86,6 +86,11 @@ export class LoginService {
     return this._teamsAdminReadonly;
   }
 
+  /** Adds a team the user just created to the cached teams they administer (when those are loaded already). */
+  public addTeamAdmin(team: CSGOTeam) {
+    this._teamsAdmin.update(teams => teams && !teams.some(t => t.teamId === team.teamId) ? [...teams, team] : teams);
+  }
+
   public getRegistration(tournamentId: string) {
     return this.http.get<TournamentApplication>(`${this._apiBase}/tournament/userregistration?tournamentId=${tournamentId}`, { withCredentials: true});
   }

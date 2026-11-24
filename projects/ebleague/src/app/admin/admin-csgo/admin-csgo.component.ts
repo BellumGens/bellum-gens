@@ -2,12 +2,12 @@ import { ChangeDetectorRef, Component, computed, inject, signal } from '@angular
 import {
   EMPTY_NEW_GROUP,
   Tournament,
-  TournamentGroup,
   TournamentParticipant,
   TournamentCSGOMatch,
   TournamentMatchMap,
   CSGOActiveDutyMap,
-  ACTIVE_DUTY
+  ACTIVE_DUTY,
+  TournamentCSGOGroup
 } from 'bellum-gens-common/models';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { environment } from 'bellum-gens-common/environments';
@@ -72,7 +72,7 @@ export class AdminCsgoComponent {
     const id = this.tournamentId();
     return id ? this.apiService.getCsgoRegistrations(id)() : null;
   });
-  public groups = computed<TournamentGroup [] | null>(() => {
+  public groups = computed<TournamentCSGOGroup [] | null>(() => {
     const id = this.tournamentId();
     return id ? this.apiService.getCsgoGroups(id)() : null;
   });
@@ -83,7 +83,7 @@ export class AdminCsgoComponent {
   public loading = this.apiService.loadingCSGORegistrations;
   public loadingMatches = this.apiService.loadingCSGOMatches;
   public environment = environment;
-  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP) as TournamentCSGOGroup;
   public pipeTrigger = signal(0);
   public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
@@ -93,12 +93,12 @@ export class AdminCsgoComponent {
   }
 
   // The service adds new groups to (and removes deleted ones from) its per-tournament cache
-  public submitGroup(group: TournamentGroup) {
+  public submitGroup(group: TournamentCSGOGroup) {
     group.inEdit = false;
     this.apiService.submitCSGOGroup(group, this.tournamentId()).subscribe(() => {
       if (group === this.newGroup) {
         // The New group card starts over once its group is created
-        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP) as TournamentCSGOGroup;
       }
     });
   }
@@ -111,7 +111,7 @@ export class AdminCsgoComponent {
     });
   }
 
-  public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
+  public addToGroup(event: IDropDroppedEventArgs, group: TournamentCSGOGroup) {
     const groupId = group.id;
     if (!groupId) {
       return;
@@ -122,7 +122,7 @@ export class AdminCsgoComponent {
     this.pipeTrigger.update(trigger => trigger + 1);
   }
 
-  public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+  public removeFromGroup(participant: TournamentParticipant, group: TournamentCSGOGroup) {
     if (!group.id) {
       return;
     }
