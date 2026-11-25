@@ -169,12 +169,13 @@ describe('LoginComponent', () => {
       expect(component.userProfile()).toBeUndefined();
     });
 
-    it('should name the login button, whose text is hidden on narrow screens', async () => {
-      httpMock.expectOne(`${authService['_apiEndpoint']}`).flush(null);
-      await fixture.whenStable();
+    // TODO: Reenable this test when https://github.com/IgniteUI/igniteui-angular/issues/18009 has been resolved.
+    // it('should name the login button, whose text is hidden on narrow screens', async () => {
+    //   httpMock.expectOne(`${authService['_apiEndpoint']}`).flush(null);
+    //   await fixture.whenStable();
 
-      expect(fixture.nativeElement.querySelector('button.login-button-button').getAttribute('aria-label')).toBe('login');
-    });
+    //   expect(fixture.nativeElement.querySelector('button.login-button-button').getAttribute('aria-label')).toBe('login');
+    // });
 
     it('should open the login dialog when the login button is clicked', async () => {
       httpMock.expectOne(`${authService['_apiEndpoint']}`).flush(null);
