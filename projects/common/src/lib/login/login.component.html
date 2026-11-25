@@ -2,7 +2,7 @@
 
 @if (!authUser() && !userCheck()) {
   <!-- The text is hidden on narrow screens, so the button keeps its name through the label -->
-  <button igxButton="contained" class="login-button-button" igxRipple (click)="loginDialog.openLogin()" i18n-igxLabel igxLabel="login">
+  <button igxButton="contained" class="login-button-button" igxRipple (click)="loginDialog.openLogin()" i18n-aria-label aria-label="login">
     <igx-icon>login</igx-icon>
     <span i18n class="login-button-text">login</span>
   </button>
