@@ -23,6 +23,7 @@ export const routes: Routes = [
   { path: 'format', redirectTo: '/tournaments/format', pathMatch: 'full' },
   { path: 'csgo', redirectTo: '/tournaments/csgo/', pathMatch: 'full' },
   { path: 'sc2', redirectTo: '/tournaments/sc2/', pathMatch: 'full' },
+  { path: 'dota2', redirectTo: '/tournaments/dota2/', pathMatch: 'full' },
   { path: 'admin', loadChildren: () => import('./admin/admin.routes').then(m => m.routes) },
   { path: 'tournaments', loadChildren: () => import('./tournaments/tournament.routes').then(m => m.routes) },
   { path: 'tournament', redirectTo: 'tournaments', pathMatch: 'prefix' },

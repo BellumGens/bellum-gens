@@ -7,10 +7,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { config } from 'rxjs';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 
 import { TournamentListComponent } from './tournament-list.component';
 import { ApiTournamentsService, LoginService, CommunicationService } from 'bellum-gens-common/services';
-import { Tournament, TournamentStatus, ApplicationUser } from 'bellum-gens-common/models';
+import { Game, Tournament, TournamentStatus, ApplicationUser } from 'bellum-gens-common/models';
 
 describe('TournamentListComponent', () => {
   let component: TournamentListComponent;
@@ -401,6 +402,95 @@ describe('TournamentListComponent', () => {
       dialogButton('Cancel').click();
 
       await vi.waitFor(() => expect(inviteDialog().isOpen).toBe(false));
+    });
+
+    it('should not offer a team or fetch teams for a visitor who is not logged in', () => {
+      expect(component.dota2Teams()).toEqual([]);
+      expect(document.querySelector('igx-select.invite-team')).toBeNull();
+    });
+  });
+
+  describe('join by invite code with a Dota 2 team', () => {
+    const joinUrl = () => `${apiService['_apiEndpoint']}/tournament/join`;
+    const teamsAdminUrl = () => `${loginService['_apiEndpoint']}/userteamsadmin`;
+
+    beforeEach(async () => {
+      flushInitial([], [], { id: 'u1' } as ApplicationUser);
+      // The teams are only fetched once the dialog is opened
+      httpMock.expectNone(teamsAdminUrl());
+      headerButton('Join by Code').click();
+      fixture.detectChanges();
+      httpMock.expectOne(teamsAdminUrl()).flush([
+        { teamId: 'cs', teamName: 'CS Team', teamAvatar: '', visible: true },
+        { teamId: 'dota', teamName: 'Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 }
+      ]);
+      fixture.detectChanges();
+      await fixture.whenStable();
+    });
+
+    afterEach(() => inviteDialog().close());
+
+    it('should offer only the Dota 2 teams the user manages', () => {
+      expect(component.dota2Teams().map(t => t.teamId)).toEqual(['dota']);
+      expect(document.querySelector('igx-select.invite-team label')!.textContent.trim()).toBe('Dota 2 team');
+    });
+
+    it('should preselect the only Dota 2 team and join with it', () => {
+      expect(component.inviteTeamId()).toBe('dota');
+      component.inviteCode = 'DOTA2345';
+
+      component.joinByInvite(inviteDialog());
+
+      const req = httpMock.expectOne(joinUrl());
+      expect(req.request.body).toEqual({ inviteCode: 'DOTA2345', teamId: 'dota' });
+      req.flush({ id: 't9', name: 'Joined' });
+    });
+
+    it('should not carry a team choice over to the next time the dialog opens', async () => {
+      component.inviteTeamId.set(null);
+      dialogButton('Cancel').click();
+      await vi.waitFor(() => expect(inviteDialog().isOpen).toBe(false));
+
+      headerButton('Join by Code').click();
+      fixture.detectChanges();
+
+      expect(component.inviteTeamId()).toBe('dota');
+    });
+
+    it('should offer a team the user creates later in the session', () => {
+      loginService.addTeamAdmin({ teamId: 'dota2', teamName: 'New Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 });
+
+      expect(component.dota2Teams().map(t => t.teamId)).toEqual(['dota', 'dota2']);
+      // With two teams to choose from, none is picked for the user
+      expect(component.inviteTeamId()).toBeNull();
+    });
+
+    it('should join with the Dota 2 team the user picks', async () => {
+      loginService.addTeamAdmin({ teamId: 'dota2', teamName: 'New Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 });
+      fixture.detectChanges();
+      const select = fixture.debugElement.query(By.directive(IgxSelectComponent)).componentInstance as IgxSelectComponent;
+      expect(select.items.map(i => i.value)).toEqual(['dota', 'dota2']);
+
+      select.open();
+      fixture.detectChanges();
+      select.items.find(i => i.value === 'dota2')!.element.nativeElement.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.inviteTeamId()).toBe('dota2');
+      component.inviteCode = 'DOTA2345';
+      component.joinByInvite(inviteDialog());
+
+      const req = httpMock.expectOne(joinUrl());
+      expect(req.request.body).toEqual({ inviteCode: 'DOTA2345', teamId: 'dota2' });
+      req.flush({ id: 't9', name: 'Joined' });
+    });
+
+    it('should preselect no team when the only Dota 2 team has no id yet', () => {
+      loginService['_teamsAdmin'].set([{ teamName: 'Unsaved Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 }]);
+
+      expect(component.dota2Teams().length).toBe(1);
+      expect(component.inviteTeamId()).toBeNull();
     });
   });
 });

@@ -1,5 +1,5 @@
-import { Component, Signal, effect, inject, input, signal, untracked } from '@angular/core';
-import { EMPTY_NEW_APPLICATION, Game, GAMES, ApplicationUser, CSGOTeam, BATTLE_TAG_REGEX } from 'bellum-gens-common/models';
+import { Component, Signal, computed, effect, inject, input, signal, untracked } from '@angular/core';
+import { EMPTY_NEW_APPLICATION, Game, GAMES, ApplicationUser, CSGOTeam, BATTLE_TAG_REGEX, teamGame } from 'bellum-gens-common/models';
 import { LoginService, ApiTournamentsService, BellumgensApiService } from 'bellum-gens-common/services';
 import { StartsWithPipe } from 'bellum-gens-common/pipes';
 import { Router } from '@angular/router';
@@ -48,6 +48,16 @@ export class TournamentRegistrationComponent {
   public inProgress = signal(false);
   public detailsVisible = signal(false);
   public userTeams = signal<CSGOTeam [] | null>(null);
+  /** Only a team of the league's game can register for it. */
+  public gameTeams = computed(() => {
+    const game = this.application().game;
+    return this.userTeams()?.filter(team => teamGame(team) === game) ?? null;
+  });
+  /** Counter-Strike and Dota 2 are played by teams of Steam players; StarCraft II by single Battle.net players. */
+  public teamGame = computed(() => {
+    const game = this.application().game;
+    return game === Game.CSGO || game === Game.Dota2;
+  });
 
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
@@ -80,7 +90,12 @@ export class TournamentRegistrationComponent {
   }
 
   public selectGame(game: Game) {
-    this.application.update(application => ({ ...application, game }));
+    this.application.update(application => {
+      // A team picked for another league can't register for this one
+      const team = this.userTeams()?.find(t => t.teamId === application.teamId);
+      const teamId = team && teamGame(team) === game ? application.teamId : undefined;
+      return { ...application, game, teamId };
+    });
     const element = document.getElementById('registration');
     element?.scrollIntoView({ behavior: 'smooth' });
     this.showDetails();
@@ -94,7 +109,7 @@ export class TournamentRegistrationComponent {
       if (!user) {
         return;
       }
-      if (game === Game.CSGO) {
+      if (this.teamGame()) {
         this.userService.getUserTeams(user.id).subscribe(teams => this.userTeams.set(teams));
       } else if (game === Game.StarCraft2) {
         this.application.update(application => ({ ...application, battleNetId: user.battleNetId }));
@@ -114,8 +129,14 @@ export class TournamentRegistrationComponent {
     // Arrowing through a closed select should not pop up the dialog
     if (!select.collapsed) {
       select.close();
-      newTeam.open(false);
+      newTeam.open(false, this.application().game ?? undefined);
     }
+  }
+
+  /** Registers the team that was just created for the league. */
+  public teamCreated(team: CSGOTeam) {
+    this.userTeams.update(teams => [...(teams ?? []), team]);
+    this.application.update(application => ({ ...application, teamId: team.teamId }));
   }
 
   public scrollToTerms(event: Event) {

@@ -719,7 +719,10 @@ describe('ApiTournamentsService', () => {
       ['getCsgoMatches', 'loadingCSGOMatches', '/tournament/csgomatches?tournamentId=1'],
       ['getSc2Matches', 'loadingSC2Matches', '/tournament/sc2matches?tournamentId=1'],
       ['getCsgoGroups', 'loadingCSGOGroups', '/tournament/csgogroups?tournamentId=1'],
-      ['getSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1']
+      ['getSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1'],
+      ['getDota2Registrations', 'loadingDota2Registrations', '/tournament/dota2regs?tournamentId=1'],
+      ['getDota2Matches', 'loadingDota2Matches', '/tournament/dota2matches?tournamentId=1'],
+      ['getDota2Groups', 'loadingDota2Groups', '/tournament/dota2groups?tournamentId=1']
     ] as const)('%s should set %s while the request is in flight', (method, flag, path) => {
       service[method]('1');
       expect(service[flag]()).toBe(true);
@@ -762,6 +765,9 @@ describe('ApiTournamentsService', () => {
       ['refreshSc2Registrations', 'getSc2Registrations', '/tournament/sc2regs?tournamentId=1'],
       ['refreshSc2Matches', 'getSc2Matches', '/tournament/sc2matches?tournamentId=1'],
       ['refreshSc2Groups', 'getSc2Groups', '/tournament/sc2groups?tournamentId=1'],
+      ['refreshDota2Registrations', 'getDota2Registrations', '/tournament/dota2regs?tournamentId=1'],
+      ['refreshDota2Matches', 'getDota2Matches', '/tournament/dota2matches?tournamentId=1'],
+      ['refreshDota2Groups', 'getDota2Groups', '/tournament/dota2groups?tournamentId=1'],
       ['refreshTournamentRegistrations', 'tournamentRegistrations', '/tournament/tournamentregistrations?tournamentId=1']
     ] as const)('%s should be skipped while the initial %s request is in flight', (refresh, get, path) => {
       const cached = service[get]('1');
@@ -785,7 +791,10 @@ describe('ApiTournamentsService', () => {
       ['getCsgoMatches', '/tournament/csgomatches'],
       ['getSc2Matches', '/tournament/sc2matches'],
       ['getCsgoGroups', '/tournament/csgogroups'],
-      ['getSc2Groups', '/tournament/sc2groups']
+      ['getSc2Groups', '/tournament/sc2groups'],
+      ['getDota2Registrations', '/tournament/dota2regs'],
+      ['getDota2Matches', '/tournament/dota2matches'],
+      ['getDota2Groups', '/tournament/dota2groups']
     ] as const)('%s should omit the tournament filter for an empty id', (method, path) => {
       service[method]('');
       httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([]);
@@ -836,6 +845,9 @@ describe('ApiTournamentsService', () => {
       ['getSc2Registrations', 'refreshSc2Registrations', 'loadingSC2Registrations', '/tournament/sc2regs?tournamentId=1'],
       ['getSc2Matches', 'refreshSc2Matches', 'loadingSC2Matches', '/tournament/sc2matches?tournamentId=1'],
       ['getSc2Groups', 'refreshSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1'],
+      ['getDota2Registrations', 'refreshDota2Registrations', 'loadingDota2Registrations', '/tournament/dota2regs?tournamentId=1'],
+      ['getDota2Matches', 'refreshDota2Matches', 'loadingDota2Matches', '/tournament/dota2matches?tournamentId=1'],
+      ['getDota2Groups', 'refreshDota2Groups', 'loadingDota2Groups', '/tournament/dota2groups?tournamentId=1'],
       ['tournamentRegistrations', 'refreshTournamentRegistrations', 'loadingTourRegistrations',
         '/tournament/tournamentregistrations?tournamentId=1']
     ] as const)('%s should clear %s and allow a refresh after an error', (get, refresh, flag, path) => {
@@ -954,6 +966,16 @@ describe('ApiTournamentsService', () => {
         success: 'Tournament StarCraft II match map deleted successfully!' },
       { name: 'joinByInviteCode', call: s => s.joinByInviteCode('CODE'), method: 'POST', path: '/tournament/join',
         body: { inviteCode: 'CODE' }, response: { id: 't1' }, success: 'Successfully joined tournament!' },
+      { name: 'joinByInviteCode with a team', call: s => s.joinByInviteCode('CODE', 'team1'), method: 'POST', path: '/tournament/join',
+        body: { inviteCode: 'CODE', teamId: 'team1' }, response: { id: 't1' }, success: 'Successfully joined tournament!' },
+      { name: 'submitDota2Group', call: s => s.submitDota2Group({ id: 'd1', name: 'A' }), method: 'PUT', path: '/tournament/dota2group?id=d1',
+        body: { id: 'd1', name: 'A' }, success: 'Tournament Dota 2 group updated successfully!' },
+      { name: 'submitDota2Match', call: s => s.submitDota2Match({ id: 'm1' }), method: 'PUT', path: '/tournament/dota2match?id=m1',
+        body: { id: 'm1' }, success: 'Tournament Dota 2 series updated successfully!' },
+      { name: 'deleteDota2Match', call: s => s.deleteDota2Match({ id: 'm1' }), method: 'DELETE', path: '/tournament/dota2match?id=m1',
+        success: 'Tournament Dota 2 series deleted successfully!' },
+      // Saving the series reports the success of the games deleted with it
+      { name: 'deleteDota2MatchGame', call: s => s.deleteDota2MatchGame('gm1'), method: 'DELETE', path: '/tournament/dota2matchgame?id=gm1' },
       { name: 'deleteTournament', call: s => s.deleteTournament('t1'), method: 'DELETE', path: '/tournament/delete-tournament?id=t1',
         success: 'Tournament deleted successfully!' }
     ];
@@ -996,6 +1018,14 @@ describe('ApiTournamentsService', () => {
     it('should submit new matches without an id in the url', () => {
       service.submitSC2Match({ player1Id: 'a' }).subscribe();
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2match`);
+      expect(req.request.withCredentials).toBe(true);
+      req.flush({ id: 'm1' });
+    });
+
+    it('should submit a new Dota 2 series without an id in the url', () => {
+      service.submitDota2Match({ team1Id: 'a' }).subscribe();
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2match`);
+      expect(req.request.method).toBe('PUT');
       expect(req.request.withCredentials).toBe(true);
       req.flush({ id: 'm1' });
     });
@@ -1101,6 +1131,64 @@ describe('ApiTournamentsService', () => {
         .error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
 
       expect(csgoGroups()).toEqual([{ id: 'g1', name: 'A' }]);
+    });
+
+    it('should add a new Dota 2 group to the end of the cached groups of its tournament', () => {
+      const dota2Groups = service.getDota2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2groups?tournamentId=1`).flush([{ id: 'd1', name: 'A' }]);
+
+      service.submitDota2Group({ name: 'B' }).subscribe();
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group`);
+      expect(req.request.method).toBe('PUT');
+      req.flush({ id: 'd2', name: 'B', tournamentId: '1' });
+
+      expect(dota2Groups()?.map(g => g.id)).toEqual(['d1', 'd2']);
+    });
+
+    it('should file a new Dota 2 group under the tournament passed in when the group carries none', () => {
+      const dota2Groups = service.getDota2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2groups?tournamentId=1`).flush([]);
+
+      service.submitDota2Group({ name: 'B' }, '1').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group`).flush({ id: 'd2', name: 'B' });
+
+      expect(dota2Groups()).toEqual([{ id: 'd2', name: 'B' }]);
+    });
+
+    it('should not add a saved Dota 2 group to the cache twice', () => {
+      const dota2Groups = service.getDota2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2groups?tournamentId=1`).flush([{ id: 'd1', name: 'A' }]);
+
+      service.submitDota2Group({ id: 'd1', name: 'A2', tournamentId: '1' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group?id=d1`).flush({ id: 'd1', name: 'A2', tournamentId: '1' });
+
+      expect(dota2Groups()).toEqual([{ id: 'd1', name: 'A' }]);
+    });
+
+    it('should not touch the Dota 2 group caches when the tournament is unknown or not loaded', () => {
+      const dota2Groups = service.getDota2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2groups?tournamentId=1`).flush([{ id: 'd1', name: 'A' }]);
+
+      service.submitDota2Group({ name: 'B' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group`).flush({ id: 'd2', name: 'B' });
+      service.submitDota2Group({ name: 'C', tournamentId: '2' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group`).flush({ id: 'd3', name: 'C', tournamentId: '2' });
+      service.submitDota2Group({ name: 'D' }, '1').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2group`).flush(null);
+
+      expect(dota2Groups()).toEqual([{ id: 'd1', name: 'A' }]);
+      expect(service['_dota2Groups'].has('2')).toBe(false);
+    });
+
+    it('should remove a deleted group from the Dota 2 group caches', () => {
+      const dota2Groups = service.getDota2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/dota2groups?tournamentId=1`)
+        .flush([{ id: 'd1', name: 'A' }, { id: 'd2', name: 'B' }]);
+
+      service.deleteGroup('d1').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=d1`).flush({});
+
+      expect(dota2Groups()).toEqual([{ id: 'd2', name: 'B' }]);
     });
   });
 });

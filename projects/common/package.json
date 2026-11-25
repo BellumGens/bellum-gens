@@ -1,4 +1,12 @@
 {
+  "exports": {
+    ".": "./src/public_api.ts",
+    "./environments": "./src/environments/index.ts",
+    "./guards": "./src/guards/index.ts",
+    "./models": "./src/models/index.ts",
+    "./pipes": "./src/pipes/index.ts",
+    "./services": "./src/services/index.ts"
+  },
   "name": "bellum-gens-common",
   "version": "0.0.0",
   "license": "MIT",

@@ -22,7 +22,7 @@ import {
   TournamentApplicationState,
   TournamentCSGOMatch,
   TournamentCSGOMatchMap,
-  TournamentGroup,
+  TournamentCSGOGroup,
   TournamentParticipant
 } from 'bellum-gens-common/models';
 import { ConfirmComponent } from 'bellum-gens-common';
@@ -55,7 +55,7 @@ describe('AdminCsgoComponent', () => {
   let fixture: ComponentFixture<AdminCsgoComponent>;
   let apiService: ApiTournamentsService;
   let registrations: WritableSignal<TournamentParticipant [] | null>;
-  let groups: WritableSignal<TournamentGroup [] | null>;
+  let groups: WritableSignal<TournamentCSGOGroup [] | null>;
   let matches: WritableSignal<TournamentCSGOMatch [] | null>;
 
   beforeEach(async () => {
@@ -69,7 +69,7 @@ describe('AdminCsgoComponent', () => {
     apiService['_tournaments'].set(TOURNAMENTS);
 
     registrations = signal<TournamentParticipant [] | null>(null);
-    groups = signal<TournamentGroup [] | null>(null);
+    groups = signal<TournamentCSGOGroup [] | null>(null);
     matches = signal<TournamentCSGOMatch [] | null>(null);
     vi.spyOn(apiService, 'getCsgoRegistrations').mockReturnValue(registrations);
     vi.spyOn(apiService, 'getCsgoGroups').mockReturnValue(groups);
@@ -251,7 +251,7 @@ describe('AdminCsgoComponent', () => {
   describe('groups', () => {
     let alpha: TournamentParticipant;
     let bravo: TournamentParticipant;
-    let groupA: TournamentGroup;
+    let groupA: TournamentCSGOGroup;
 
     beforeEach(() => {
       alpha = participant('p1', 'Alpha');
@@ -304,7 +304,7 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('starts the participant list of a group that had none', () => {
-      const empty: TournamentGroup = { id: 'g2', name: 'Group B' };
+      const empty: TournamentCSGOGroup = { id: 'g2', name: 'Group B' };
 
       component.addToGroup({ dragData: alpha } as IDropDroppedEventArgs, empty);
 
@@ -443,7 +443,7 @@ describe('AdminCsgoComponent', () => {
     });
 
     it('creates a new group for the selected tournament and relies on the service cache to show it', () => {
-      const created: TournamentGroup = { id: 'g2', name: 'Group B', participants: [] };
+      const created: TournamentCSGOGroup = { id: 'g2', name: 'Group B', participants: [] };
       const submit = vi.spyOn(apiService, 'submitCSGOGroup').mockImplementation(() => {
         groups.update(list => [...list!, created]);
         return of(created);

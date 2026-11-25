@@ -1,0 +1,204 @@
+@if (loading()) {
+  <bg-loading>
+  </bg-loading>
+}
+
+@let steamUser = player()?.steamUser;
+@if (!steamUser) {
+  <div class="loading-overview">
+    <h4 class="highlight" i18n>Steam Dota 2 player profile not found...</h4>
+  </div>
+}
+@else {
+  <div class="card-wrapper profile-view-layout">
+    <div class="profile-container">
+      <div>
+        <igx-avatar [src]="steamUser.avatarFull || ''" [initials]="steamUser.steamID || ''" class="player-avatar">
+        </igx-avatar>
+      </div>
+      <h1 igxCardHeaderTitle><a [href]="steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ steamUser.steamID }}</a></h1>
+      <h4 igxCardHeaderSubtitle>{{ steamUser.realname }}</h4>
+    </div>
+
+    @if (profileError()) {
+      <div class="dota-message">
+        <h4 i18n>Dota 2 stats could not be loaded from Steam.</h4>
+        <p i18n>Steam did not respond. Try again later.</p>
+      </div>
+    }
+    @else if (profile(); as stats) {
+      @if (stats.matchHistoryPrivate) {
+        <div class="dota-message">
+          <h4 i18n>Dota 2 match data is private.</h4>
+          <p i18n>If this is your account, you need to expose your match data in Dota 2, so we can access your game stats.</p>
+          <p i18n>To do this go to <span class="highlight">Dota 2 --> Settings --> Options --> Social --> Set: 'Expose Public Match Data'</span></p>
+        </div>
+      }
+      @else if (!stats.matches) {
+        <div class="dota-message">
+          <h4 i18n>No recent Dota 2 matches found.</h4>
+          <p i18n>Matches show up here once they have been played with public match data.</p>
+        </div>
+      }
+      @else {
+        <igx-card class="player-detail__stats">
+          <igx-card-header>
+            <h4 igxCardHeaderTitle i18n>Win rate</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <igx-circular-bar class="stats-progress"
+              [value]="stats.winRate"
+              [max]="100"
+              [animate]="true"
+              [text]="(stats.winRate / 100 | percent:'1.0-1') ?? ''">
+            </igx-circular-bar>
+          </igx-card-content>
+        </igx-card>
+
+        <igx-card class="player-detail__stats">
+          <igx-card-header>
+            <h4 igxCardHeaderTitle i18n="Dota 2 stat|Kills plus assists per death">KDA</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <igx-circular-bar class="stats-progress"
+              [value]="stats.kda"
+              [max]="5"
+              [animate]="true"
+              [text]="(stats.kda | number:'1.0-2') ?? ''">
+            </igx-circular-bar>
+          </igx-card-content>
+        </igx-card>
+
+        <igx-card class="player-detail__stats">
+          <igx-card-header>
+            <h4 igxCardHeaderTitle i18n>{stats.matches, plural, =1 {Last match} other {Last {{ stats.matches }} matches}}</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <dl class="dota-summary">
+              <div>
+                <dt i18n>Wins</dt>
+                <dd class="color-success">{{ stats.wins }}</dd>
+              </div>
+              <div>
+                <dt i18n>Losses</dt>
+                <dd class="color-error">{{ stats.losses }}</dd>
+              </div>
+              <div>
+                <dt i18n="Dota 2 stat|Average kills, deaths and assists per match">Average K / D / A</dt>
+                <dd>{{ stats.averageKills | number:'1.0-1' }} / {{ stats.averageDeaths | number:'1.0-1' }} / {{ stats.averageAssists | number:'1.0-1' }}</dd>
+              </div>
+              <div>
+                <dt i18n="Dota 2 stat|Average number of last hits on creeps per match">Last hits</dt>
+                <dd>{{ stats.averageLastHits | number:'1.0-0' }}</dd>
+              </div>
+              <div>
+                <dt i18n="Dota 2 stat|Average gold earned per minute">Gold per minute</dt>
+                <dd>{{ stats.averageGoldPerMinute | number:'1.0-0' }}</dd>
+              </div>
+              <div>
+                <dt i18n="Dota 2 stat|Average experience earned per minute">Experience per minute</dt>
+                <dd>{{ stats.averageExperiencePerMinute | number:'1.0-0' }}</dd>
+              </div>
+              @if (stats.abandons) {
+                <div>
+                  <dt i18n="Dota 2 stat|Number of matches the player left early">Abandoned</dt>
+                  <dd class="color-warn">{{ stats.abandons }}</dd>
+                </div>
+              }
+            </dl>
+          </igx-card-content>
+        </igx-card>
+
+        <igx-card class="player-detail__stats top-heroes">
+          <igx-card-header>
+            <h4 igxCardHeaderTitle i18n>Most played heroes</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <igx-list [style.--ig-size]="'var(--ig-size-small)'">
+              @for (hero of stats.heroes; track hero.heroId) {
+                <igx-list-item>
+                  <igx-avatar igxListThumbnail
+                    aria-hidden="true"
+                    class="hero-avatar"
+                    [src]="hero.heroImageUrl || ''"
+                    [initials]="hero | dota2HeroName">
+                  </igx-avatar>
+                  <span igxListLineTitle>{{ hero | dota2HeroName }}</span>
+                  <span igxListLineSubTitle i18n>{hero.matches, plural, =1 {1 match} other {{{ hero.matches }} matches}}</span>
+                  <span igxListAction i18n>{{ hero.winRate / 100 | percent:'1.0-0' }} won</span>
+                </igx-list-item>
+              }
+            </igx-list>
+          </igx-card-content>
+        </igx-card>
+
+        <div class="recent-matches">
+          <igx-grid
+            primaryKey="matchId"
+            cellSelection="none"
+            [height]="stats.recentMatches.length > 12 ? '650px' : null"
+            [data]="stats.recentMatches">
+
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title i18n>Recent matches</igx-grid-toolbar-title>
+            </igx-grid-toolbar>
+
+            <igx-column field="heroName" i18n-header header="Hero" width="22%" [sortable]="true">
+              <ng-template igxCell let-cell="cell">
+                <span class="hero-cell">
+                  <igx-avatar
+                    aria-hidden="true"
+                    class="hero-avatar"
+                    [src]="cell.row.data.heroImageUrl || ''"
+                    [initials]="cell.row.data | dota2HeroName">
+                  </igx-avatar>
+                  {{ cell.row.data | dota2HeroName }}
+                </span>
+              </ng-template>
+            </igx-column>
+
+            <igx-column field="won" i18n-header header="Result" dataType="boolean" [sortable]="true">
+              <ng-template igxCell let-cell="cell">
+                @if (cell.row.data.won) {
+                  <span class="color-success" i18n="Dota 2 match result">Win</span>
+                }
+                @else {
+                  <span class="color-error" i18n="Dota 2 match result">Loss</span>
+                }
+                @if (cell.row.data.abandoned) {
+                  &ngsp;<span class="color-warn" i18n="Dota 2 match result|The player left the match early">(abandoned)</span>
+                }
+              </ng-template>
+            </igx-column>
+
+            <igx-column field="kills" i18n-header="Dota 2 column header|Kills, deaths and assists" header="K / D / A" [sortable]="false">
+              <ng-template igxCell let-cell="cell">
+                {{ cell.row.data.kills }} / {{ cell.row.data.deaths }} / {{ cell.row.data.assists }}
+              </ng-template>
+            </igx-column>
+
+            <igx-column field="lastHits" i18n-header="Dota 2 column header|Last hits on creeps" header="Last hits" dataType="number" [sortable]="true"></igx-column>
+
+            <igx-column field="goldPerMinute" i18n-header="Dota 2 column header|Gold and experience per minute" header="GPM / XPM" [sortable]="true">
+              <ng-template igxCell let-cell="cell">
+                {{ cell.row.data.goldPerMinute }} / {{ cell.row.data.experiencePerMinute }}
+              </ng-template>
+            </igx-column>
+
+            <igx-column field="duration" i18n-header header="Duration" dataType="number" [sortable]="true">
+              <ng-template igxCell let-value>
+                {{ value | matchDuration }}
+              </ng-template>
+            </igx-column>
+
+            <igx-column field="startTime" i18n-header header="Played" dataType="date" width="170px" [sortable]="true">
+              <ng-template igxCell let-value>
+                {{ value | date:'MMM d, y, h:mm a' }}
+              </ng-template>
+            </igx-column>
+          </igx-grid>
+        </div>
+      }
+    }
+  </div>
+}

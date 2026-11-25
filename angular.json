@@ -527,7 +527,7 @@
     },
     "bellum-gens-common": {
       "root": "projects/common",
-      "sourceRoot": "projects/common/src",
+      "sourceRoot": "projects/common",
       "projectType": "library",
       "prefix": "bg",
       "schematics": {
@@ -537,15 +537,18 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular/build:library",
           "options": {
             "tsConfig": "projects/common/tsconfig.lib.json",
-            "project": "projects/common/ng-package.json"
+            "outputPath": "dist/common",
+            "deleteOutputPath": false
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/common/tsconfig.lib.prod.json",
-              "project": "projects/common/ng-package.prod.json"
+              "tsConfig": "projects/common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "compilationMode": "full"
             }
           }
         },

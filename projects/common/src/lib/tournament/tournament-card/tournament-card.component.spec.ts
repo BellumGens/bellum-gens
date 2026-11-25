@@ -72,6 +72,12 @@ describe('TournamentCardComponent', () => {
     expect(component.gameLabel).toBe('StarCraft II');
   });
 
+  it('should return correct game label for Dota 2', () => {
+    fixture.componentRef.setInput('tournament', { ...mockTournament, game: Game.Dota2 });
+    fixture.detectChanges();
+    expect(component.gameLabel).toBe('Dota 2');
+  });
+
   it('should return correct status badge type for each status', () => {
     expect(component.statusBadgeType).toBe('success');
 

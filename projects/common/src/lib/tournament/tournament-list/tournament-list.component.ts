@@ -1,6 +1,6 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, linkedSignal, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament } from 'bellum-gens-common/models';
+import { Game, Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament, teamGame } from 'bellum-gens-common/models';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import { TournamentCardComponent } from '../tournament-card/tournament-card.component';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
@@ -9,6 +9,7 @@ import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-a
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxDialogComponent, IgxDialogActionsDirective } from '@infragistics/igniteui-angular/dialog';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     IgxCircularProgressBarComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxDialogComponent,
-    IgxDialogActionsDirective
+    IgxDialogActionsDirective,
+    IGX_SELECT_DIRECTIVES
   ]
 })
 export class TournamentListComponent {
@@ -44,6 +46,21 @@ export class TournamentListComponent {
 
   private authUser = this.loginService.applicationUser;
   public isLoggedIn = computed(() => !!this.authUser());
+  // The user's teams are only fetched once they open the invite dialog
+  private inviteDialogOpened = signal(false);
+  /** The Dota 2 teams the user manages; a Dota 2 tournament is joined by one of them. */
+  public dota2Teams = computed(() =>
+    this.inviteDialogOpened() && this.authUser() ?
+      (this.loginService.teamsAdmin() ?? []).filter(team => teamGame(team) === Game.Dota2) :
+      []
+  );
+  /** A user who manages a single Dota 2 team joins with it unless they pick none. */
+  private defaultInviteTeamId = computed(() => {
+    const teams = this.dota2Teams();
+    return teams.length === 1 ? teams[0].teamId ?? null : null;
+  });
+  /** The team joining when the invite code is for a Dota 2 tournament. */
+  public inviteTeamId = linkedSignal(() => this.defaultInviteTeamId());
 
   // The API sends no status, so it is derived from the active flag and the dates when missing
   public activeTournaments = computed(() =>
@@ -77,9 +94,17 @@ export class TournamentListComponent {
     this.apiService.deleteTournament(tournament.id).subscribe({ error: () => undefined });
   }
 
+  public openInviteDialog(dialog: IgxDialogComponent) {
+    this.inviteDialogOpened.set(true);
+    // A team picked for an earlier code isn't carried over
+    this.inviteTeamId.set(this.defaultInviteTeamId());
+    dialog.open();
+  }
+
   public joinByInvite(dialog: IgxDialogComponent) {
     if (this.inviteCode?.trim()) {
-      this.apiService.joinByInviteCode(this.inviteCode.trim()).subscribe({
+      // The API ignores the team for tournaments that aren't Dota 2 tournaments
+      this.apiService.joinByInviteCode(this.inviteCode.trim(), this.inviteTeamId()).subscribe({
         next: () => {
           dialog.close();
           this.inviteCode = '';

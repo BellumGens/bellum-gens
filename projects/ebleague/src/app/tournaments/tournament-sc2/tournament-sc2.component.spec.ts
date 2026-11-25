@@ -202,6 +202,18 @@ describe('TournamentSc2Component', () => {
     expect(avatars[2]!.textContent.trim()).toBe('Ma');
   });
 
+  it('renders an empty standings grid for a group the API sends without participants', async () => {
+    flushUser(null);
+    flushTournament(null);
+    flushPage('', { groups: [{ id: 'g1', name: 'Group A' }] });
+    await render();
+
+    const groupGrids = Array.from(el().querySelectorAll<HTMLElement>('.group-columns igx-grid'));
+    expect(groupGrids.length).toBe(1);
+    expect(groupGrids[0].querySelector('igx-grid-toolbar-title')!.textContent.trim()).toBe('Group A');
+    expect(groupGrids[0].querySelectorAll('igx-grid-row').length).toBe(0);
+  });
+
   it('renders a standings grid per group with links to every player', async () => {
     const participant = (id: string, user: ApplicationUser): TournamentParticipant => ({
       ...makeRegistration(id, user.id, TournamentApplicationState.Confirmed, user, `${user.username}#1`),

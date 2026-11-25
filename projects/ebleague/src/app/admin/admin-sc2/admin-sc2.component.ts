@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, computed, effect, inject, linkedSignal, signal, untracked, viewChild } from '@angular/core';
 import {
-  TournamentGroup,
   TournamentParticipant,
   EMPTY_NEW_GROUP,
   Tournament,
@@ -9,7 +8,8 @@ import {
   SC2_MAPS,
   SC2LadderMap,
   TournamentApplication,
-  TournamentApplicationState
+  TournamentApplicationState,
+  TournamentSC2Group
 } from 'bellum-gens-common/models';
 import { ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
 import { environment } from 'bellum-gens-common/environments';
@@ -90,7 +90,7 @@ export class AdminSc2Component {
     return id ? this.apiService.getSc2Registrations(id)() : null;
   });
   // The service caches the groups in reverse server order; the admin view lists them in server order
-  public groups = linkedSignal<TournamentGroup [] | null>(() => {
+  public groups = linkedSignal<TournamentSC2Group [] | null>(() => {
     const id = this.tournamentId();
     const groups = id ? this.apiService.getSc2Groups(id)() : null;
     return groups ? [...groups].reverse() : groups;
@@ -104,7 +104,7 @@ export class AdminSc2Component {
   public loadingMatches = this.apiService.loadingSC2Matches;
   public loadingGroups = this.apiService.loadingSC2Groups;
   public environment = environment;
-  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP) as TournamentSC2Group;
   public pipeTrigger = signal(0);
   public mapList: SC2LadderMap [] = SC2_MAPS;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
@@ -162,7 +162,7 @@ export class AdminSc2Component {
     }
   }
 
-  public submitGroup(group: TournamentGroup) {
+  public submitGroup(group: TournamentSC2Group) {
     group.inEdit = false;
     group.tournamentId = this.tournamentId();
     this.apiService.submitSC2Group(group).subscribe(data => {
@@ -171,7 +171,7 @@ export class AdminSc2Component {
       }
       if (group === this.newGroup) {
         // The New group card starts over once its group is created
-        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP) as TournamentSC2Group;
       }
     });
   }
@@ -185,7 +185,7 @@ export class AdminSc2Component {
     });
   }
 
-  public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
+  public addToGroup(event: IDropDroppedEventArgs, group: TournamentSC2Group) {
     const groupId = group.id;
     if (!groupId) {
       return;
@@ -199,7 +199,7 @@ export class AdminSc2Component {
     });
   }
 
-  public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+  public removeFromGroup(participant: TournamentParticipant, group: TournamentSC2Group) {
     if (!group.id) {
       return;
     }

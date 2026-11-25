@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { Game } from 'bellum-gens-common/models';
 import { RouterLink } from '@angular/router';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxDividerComponent, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
@@ -25,6 +26,8 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
 })
 export class TournamentsMainComponent {
   private apiService = inject(ApiTournamentsService);
+
+  public Game = Game;
 
   private allTournaments = this.apiService.tournaments;
 

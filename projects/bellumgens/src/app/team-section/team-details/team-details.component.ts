@@ -1,17 +1,37 @@
-import { Component, ElementRef, Injector, Signal, inject, signal, viewChildren } from '@angular/core';
+import { Component, ElementRef, Injector, Signal, computed, inject, linkedSignal, signal, viewChildren } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import { IDragStartEventArgs, IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import { PlaystyleRole, RoleSlot, TeamMember, CSGOTeam, Availability, ApplicationUser } from 'bellum-gens-common/models';
+import { PlaystyleRole, RoleSlot, TeamMember, CSGOTeam, Availability, ApplicationUser, Game, teamGame } from 'bellum-gens-common/models';
 import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { AvailabilityComponent, ConfirmComponent } from 'bellum-gens-common';
 import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
 
-/** A role of the active roster, which stays empty until a member is assigned to it. */
+/** The empty roles of the active roster of a team playing the game. */
+export const emptyRoleSlots = (game: Game): RoleSlot [] => {
+  const slot = (roleName: string, role: PlaystyleRole): RoleSlot => ({ roleName, role, user: null });
+  if (game === Game.Dota2) {
+    return [
+      slot($localize`:Dota 2 roster position 1|The hero that farms to win the late game@@dota2RoleCarry:Carry`, PlaystyleRole.Carry),
+      slot($localize`:Dota 2 roster position 2|The player in the middle lane@@dota2RoleMid:Mid`, PlaystyleRole.Mid),
+      slot($localize`:Dota 2 roster position 3|The player in the off lane@@dota2RoleOfflane:Offlane`, PlaystyleRole.Offlane),
+      slot($localize`:Dota 2 roster position 4@@dota2RoleSoftSupport:Soft Support`, PlaystyleRole.SoftSupport),
+      slot($localize`:Dota 2 roster position 5@@dota2RoleHardSupport:Hard Support`, PlaystyleRole.HardSupport)
+    ];
+  }
+  return [
+    slot($localize`:Counter-Strike roster role|The in-game leader@@csRoleIgl:IGL`, PlaystyleRole.IGL),
+    slot($localize`:Counter-Strike roster role|The sniper@@csRoleAwper:Awper`, PlaystyleRole.Awper),
+    slot($localize`:Counter-Strike roster role|The player first into a bombsite@@csRoleEntryFragger:Entry Fragger`, PlaystyleRole.EntryFragger),
+    slot($localize`:Counter-Strike roster role@@csRoleSupport:Support`, PlaystyleRole.Support),
+    slot($localize`:Counter-Strike roster role@@csRoleLurker:Lurker`, PlaystyleRole.Lurker)
+  ];
+};
+
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
@@ -42,13 +62,11 @@ export class TeamDetailsComponent extends BaseDirective {
   public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;
   public teamPractice = signal<Availability [] | null>(null);
 
-  public roleSlots = signal<RoleSlot []>([
-    { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
-    { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },
-    { roleName: 'Entry Fragger', role: PlaystyleRole.EntryFragger, user: null },
-    { roleName: 'Support', role: PlaystyleRole.Support, user: null },
-    { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
-  ]);
+  public game = computed(() => teamGame(this.team()));
+  /** The tab of the player page with the stats of the team's game. */
+  public playerTab = computed(() => this.game() === Game.Dota2 ? 'dota' : 'cs');
+  /** A role of the active roster stays empty until a member is assigned to it. */
+  public roleSlots = linkedSignal({ source: this.game, computation: game => emptyRoleSlots(game) });
 
   constructor() {
     super();
@@ -71,8 +89,10 @@ export class TeamDetailsComponent extends BaseDirective {
       filter((members): members is TeamMember [] => !!members),
       takeUntilDestroyed()
     ).subscribe(members => {
-      this.roleSlots.update(slots => slots.map(slot => ({ ...slot, user: members.find(m => m.role === slot.role) || null })));
-      this.activeMembers.set(members.filter(m => m.isActive && m.role === PlaystyleRole.NotSet));
+      const slots = emptyRoleSlots(this.game());
+      this.roleSlots.set(slots.map(slot => ({ ...slot, user: members.find(m => m.role === slot.role) || null })));
+      // Active members without a role of this roster sit on the bench
+      this.activeMembers.set(members.filter(m => m.isActive && !slots.some(slot => slot.role === m.role)));
       this.inactiveMembers.set(members.filter(m => !m.isActive));
     });
   }

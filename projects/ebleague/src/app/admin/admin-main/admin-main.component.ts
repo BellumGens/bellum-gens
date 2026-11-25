@@ -11,7 +11,8 @@ import {
   DELIVERY_METHOD_NAMES,
   DeliveryMethod,
   PAYMENT_METHOD_NAMES,
-  PaymentMethod
+  PaymentMethod,
+  gameName
 } from 'bellum-gens-common/models';
 import { ProductEditorComponent, PromoEditorComponent, ShopSettingsEditorComponent, ConfirmComponent } from 'bellum-gens-common';
 import { IGridEditEventArgs, IgxExporterEvent, RowType } from '@infragistics/igniteui-angular/grids/core';
@@ -82,6 +83,7 @@ export class AdminMainComponent {
   ];
 
   public OrderStatus = OrderStatus;
+  public gameName = gameName;
   public PaymentMethod = PaymentMethod;
   public statusNames = ORDER_STATUS_NAMES;
   public deliveryNames = DELIVERY_METHOD_NAMES;

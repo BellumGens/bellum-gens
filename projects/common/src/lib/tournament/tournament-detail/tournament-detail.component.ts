@@ -10,7 +10,8 @@ import {
   Game,
   getTournamentStatus,
   TournamentSC2Match,
-  TournamentCSGOMatch
+  TournamentCSGOMatch,
+  TournamentDota2Match
 } from 'bellum-gens-common/models';
 import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import { CountrySVGPipe, RaceIconPipe, ParticipantTeamPipe } from 'bellum-gens-common/pipes';
@@ -77,6 +78,23 @@ export class TournamentDetailComponent {
     return id ? this.apiService.getCsgoMatches(id)() : null;
   });
   public loadingRegistrations = this.apiService.loadingSC2Registrations;
+
+  /** Dota 2 is played by teams, so a Dota 2 tournament lists teams and series instead of players and matches. */
+  public isDota2 = computed(() => this.tournament()?.game === Game.Dota2);
+  // Only loaded for Dota 2 tournaments; tournaments without a game predate Dota 2 support
+  private dota2DataId = computed(() => {
+    const t = this.tournament();
+    return t?.id && t.game === Game.Dota2 ? t.id : null;
+  });
+  public dota2Registrations = computed<TournamentParticipant[]>(() => {
+    const id = this.dota2DataId();
+    return id ? this.apiService.getDota2Registrations(id)() ?? [] : [];
+  });
+  public dota2Matches = computed<TournamentDota2Match[] | null>(() => {
+    const id = this.dota2DataId();
+    return id ? this.apiService.getDota2Matches(id)() : null;
+  });
+  public loadingDota2Registrations = this.apiService.loadingDota2Registrations;
 
   private authUser = this.loginService.applicationUser;
 

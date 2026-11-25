@@ -1,10 +1,11 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
-import { TournamentCSGOMatch, TournamentSC2Match } from './tournament-schedule';
+import { TournamentCSGOMatch, TournamentDota2Match, TournamentSC2Match } from './tournament-schedule';
 
 export enum Game {
   CSGO,
-  StarCraft2
+  StarCraft2,
+  Dota2
 }
 
 export const enum TournamentApplicationState {
@@ -44,6 +45,7 @@ export interface Tournament {
   prizePool?: string;
   csgoMatches?: TournamentCSGOMatch [];
   sc2Matches?: TournamentSC2Match [];
+  dota2Matches?: TournamentDota2Match [];
 }
 
 export interface TournamentApplication {
@@ -83,6 +85,10 @@ export interface TournamentParticipant {
   oTWins?: number;
   oTLosses?: number;
   roundDifference?: number;
+  /** Dota 2: games won minus games lost across the team's series. */
+  gameDifference?: number;
+  /** Dota 2: series that ended level (possible in a best of two). */
+  draws?: number;
   battleTag?: string;
 }
 
@@ -91,16 +97,20 @@ export interface TournamentGroup {
   name: string;
   tournamentId?: string;
   participants?: TournamentParticipant [];
-  matches?: any [];
+  matches?: TournamentCSGOMatch [] | TournamentSC2Match [] | TournamentDota2Match [];
   inEdit?: boolean;
 }
 
 export interface TournamentCSGOGroup extends TournamentGroup {
-  matches?: any [];
+  matches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentSC2Group extends TournamentGroup {
-  matches?: any [];
+  matches?: TournamentSC2Match [];
+}
+
+export interface TournamentDota2Group extends TournamentGroup {
+  matches?: TournamentDota2Match [];
 }
 
 export interface Company {
@@ -171,7 +181,14 @@ export const EMPTY_NEW_TOURNAMENT: Tournament = {
 
 export const EMPTY_NEW_GROUP: TournamentGroup = { id: '', name: '', inEdit: false };
 
-export const GAMES = [
-  { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
-  { name: 'StarCraft II', id: Game.StarCraft2 }
-];
+/** The display name of a game. Game names are proper names, so they are not translated. */
+export const gameName = (game: Game | null | undefined): string => {
+  switch (game) {
+    case Game.CSGO: return 'Counter-Strike';
+    case Game.StarCraft2: return 'StarCraft II';
+    case Game.Dota2: return 'Dota 2';
+    default: return '';
+  }
+};
+
+export const GAMES = [Game.CSGO, Game.StarCraft2, Game.Dota2].map(id => ({ id, name: gameName(id) }));

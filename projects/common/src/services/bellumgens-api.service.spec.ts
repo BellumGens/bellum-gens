@@ -16,7 +16,8 @@ import {
   CSGOMapPool,
   NotificationState,
   UserNotification,
-  ApplicationUser
+  ApplicationUser,
+  Game
 } from 'bellum-gens-common/models';
 import { CommunicationService } from './communication.service';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
@@ -238,22 +239,30 @@ describe('BellumgensApiService', () => {
     };
     commsService.success.subscribe(success => expect(success).toBe(`${group.groupName} registered successfully!`));
     service.registerSteamGroup(group).subscribe();
-    const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams/team`);
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams/team?game=${Game.CSGO}`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(group);
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
 
-    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/teams/team: 500 Steam Group already registered!`;
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/teams/team?game=${Game.CSGO}: 500 Steam Group already registered!`;
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
     service.registerSteamGroup(group).subscribe({
       error: err => expect(err.message).toBe(errorMessage)
     });
-    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/teams/team`);
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/teams/team?game=${Game.CSGO}`);
     expect(req2.request.method).toBe('POST');
     expect(req2.request.body).toEqual(group);
     expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Steam Group already registered!' });
+  });
+
+  it('registerSteamGroup should create the team for the given game', () => {
+    const group = { groupID64: '679', groupName: 'Dota Group' } as SteamGroup;
+    service.registerSteamGroup(group, Game.Dota2).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams/team?game=${Game.Dota2}`);
+    expect(req.request.body).toEqual(group);
+    req.flush({});
   });
 
   it('registerTeam should send a POST request to the correct URL', () => {
@@ -864,6 +873,14 @@ describe('BellumgensApiService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/tournaments?userid=123`);
     expect(req.request.method).toBe('GET');
     req.flush([]);
+  });
+
+  it('getDota2Profile should send a GET request with the steam id', () => {
+    service.getDota2Profile('76561198012345678').subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/dota2?steamid=76561198012345678`);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.withCredentials).toBe(false);
+    req.flush({});
   });
 
   it('getSignupCount should read the early bird count', () => {

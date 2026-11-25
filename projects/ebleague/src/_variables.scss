@@ -14,5 +14,6 @@ $app-palette: igx.palette(
   $primary: $primary,
   $secondary: $secondary,
   $surface: $background,
-  $gray: $gray
+  $gray: $gray,
+  $generator: 'legacy'
 );

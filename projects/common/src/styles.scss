@@ -176,7 +176,7 @@ textarea {
 /* Loading */
 .loading-overview {
   display: flex;
-  min-height: calc(100% - 45px);
+  min-height: calc(100% - 40px);
   justify-content: center;
   align-items: center;
   width: 60%;
@@ -191,7 +191,7 @@ textarea {
   margin: auto;
   padding-top: 24px;
   color: white;
-  min-height: calc(100% - 45px);
+  min-height: calc(100% - 40px);
 }
 
 .card-wrapper {
@@ -200,7 +200,7 @@ textarea {
   grid-gap: 16px;
   grid-auto-rows: max-content;
   margin: 24px;
-  min-height: calc(100% - 45px);
+  min-height: calc(100% - 88px);
 }
 
   .overview-container-card .card-wrapper {

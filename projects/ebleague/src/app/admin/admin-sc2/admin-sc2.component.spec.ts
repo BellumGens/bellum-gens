@@ -9,7 +9,7 @@ import {
   ApplicationUser,
   SC2_MAPS,
   Tournament,
-  TournamentGroup,
+  TournamentSC2Group,
   TournamentSC2Match,
   TournamentParticipant,
   TournamentApplication,
@@ -109,7 +109,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should submit a new group and add it to the groups array', () => {
-      const newGroup: TournamentGroup = {
+      const newGroup: TournamentSC2Group = {
         id: undefined,
         name: 'Group A',
         tournamentId: undefined,
@@ -117,7 +117,7 @@ describe('AdminSc2Component', () => {
         participants: []
       };
 
-      const returnedGroup: TournamentGroup = {
+      const returnedGroup: TournamentSC2Group = {
         id: 'group-123',
         name: 'Group A',
         tournamentId: 'tournament-123',
@@ -138,7 +138,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should submit an existing group and not duplicate it in the array', () => {
-      const existingGroup: TournamentGroup = {
+      const existingGroup: TournamentSC2Group = {
         id: 'group-123',
         name: 'Group A',
         tournamentId: 'tournament-123',
@@ -158,7 +158,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should set tournamentId and inEdit flag correctly', () => {
-      const newGroup: TournamentGroup = {
+      const newGroup: TournamentSC2Group = {
         id: undefined,
         name: 'Group B',
         tournamentId: undefined,
@@ -178,8 +178,8 @@ describe('AdminSc2Component', () => {
 
   describe('deleteGroup', () => {
     it('should delete a group and remove it from the groups array', () => {
-      const group1: TournamentGroup = { id: 'group-1', name: 'Group 1', participants: [] };
-      const group2: TournamentGroup = { id: 'group-2', name: 'Group 2', participants: [] };
+      const group1: TournamentSC2Group = { id: 'group-1', name: 'Group 1', participants: [] };
+      const group2: TournamentSC2Group = { id: 'group-2', name: 'Group 2', participants: [] };
       component.groups.set([group1, group2]);
       component.pipeTrigger.set(0);
 
@@ -195,7 +195,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should increment pipeTrigger after deletion', () => {
-      const group: TournamentGroup = { id: 'group-1', name: 'Group 1', participants: [] };
+      const group: TournamentSC2Group = { id: 'group-1', name: 'Group 1', participants: [] };
       component.groups.set([group]);
       component.pipeTrigger.set(5);
 
@@ -322,8 +322,8 @@ describe('AdminSc2Component', () => {
 
     it('should initialize a new match with tournament details', () => {
       component.groups.set([
-        { id: 'group-1', name: 'Group A' } as TournamentGroup,
-        { id: 'group-2', name: 'Group B' } as TournamentGroup
+        { id: 'group-1', name: 'Group A' } as TournamentSC2Group,
+        { id: 'group-2', name: 'Group B' } as TournamentSC2Group
       ]);
 
       component.addNewMatch();
@@ -344,9 +344,9 @@ describe('AdminSc2Component', () => {
 
     it('should set groupId to the last group in the array', () => {
       component.groups.set([
-        { id: 'group-1', name: 'Group A' } as TournamentGroup,
-        { id: 'group-2', name: 'Group B' } as TournamentGroup,
-        { id: 'group-3', name: 'Group C' } as TournamentGroup
+        { id: 'group-1', name: 'Group A' } as TournamentSC2Group,
+        { id: 'group-2', name: 'Group B' } as TournamentSC2Group,
+        { id: 'group-3', name: 'Group C' } as TournamentSC2Group
       ]);
 
       component.addNewMatch();
@@ -450,7 +450,7 @@ describe('AdminSc2Component', () => {
         companyId: 'company-1'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: undefined
@@ -489,7 +489,7 @@ describe('AdminSc2Component', () => {
         companyId: 'company-2'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: [existingParticipant]
@@ -533,7 +533,7 @@ describe('AdminSc2Component', () => {
         tournamentSC2GroupId: 'group-1'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: [participant1, participant2]
@@ -638,7 +638,7 @@ describe('AdminSc2Component', () => {
 
     beforeEach(() => {
       component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
-      component.groups.set([{ id: 'group-1', name: 'Group A' } as TournamentGroup]);
+      component.groups.set([{ id: 'group-1', name: 'Group A' } as TournamentSC2Group]);
       mockGrid = createSpyObj('IgxGridComponent', ['addRow']);
       mockDialog = createSpyObj('IgxDialogComponent', ['open', 'close']);
     });
@@ -756,7 +756,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should create a new group with full UI flow', () => {
-      const newGroup: TournamentGroup = {
+      const newGroup: TournamentSC2Group = {
         name: 'Group A',
         participants: [],
         inEdit: true
@@ -768,7 +768,7 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('PUT');
       expect(req.request.body.tournamentId).toBe('tournament-123');
 
-      const returnedGroup: TournamentGroup = {
+      const returnedGroup: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         tournamentId: 'tournament-123',
@@ -782,7 +782,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should edit an existing group', () => {
-      const existingGroup: TournamentGroup = {
+      const existingGroup: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         inEdit: true,
@@ -805,8 +805,8 @@ describe('AdminSc2Component', () => {
     });
 
     it('should delete a group with full UI flow', () => {
-      const group1: TournamentGroup = { id: 'group-1', name: 'Group A', participants: [] };
-      const group2: TournamentGroup = { id: 'group-2', name: 'Group B', participants: [] };
+      const group1: TournamentSC2Group = { id: 'group-1', name: 'Group A', participants: [] };
+      const group2: TournamentSC2Group = { id: 'group-2', name: 'Group B', participants: [] };
       component.groups.set([group1, group2]);
       component.pipeTrigger.set(0);
 
@@ -854,7 +854,7 @@ describe('AdminSc2Component', () => {
         companyId: 'company-1'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: undefined
@@ -891,7 +891,7 @@ describe('AdminSc2Component', () => {
         companyId: 'company-2'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: [player1]
@@ -924,7 +924,7 @@ describe('AdminSc2Component', () => {
         companyId: 'company-2'
       } as TournamentParticipant;
 
-      const group: TournamentGroup = {
+      const group: TournamentSC2Group = {
         id: 'group-1',
         name: 'Group A',
         participants: [player1, player2]
@@ -989,7 +989,7 @@ describe('AdminSc2Component', () => {
 
     let participants: TournamentParticipant [];
     let registrations: TournamentApplication [];
-    let serverGroups: TournamentGroup [];
+    let serverGroups: TournamentSC2Group [];
     let matches: TournamentSC2Match [];
 
     const api = () => apiService['_apiEndpoint'];

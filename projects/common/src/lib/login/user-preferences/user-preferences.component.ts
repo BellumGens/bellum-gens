@@ -5,7 +5,8 @@ import {
   LoginProvider,
   LOGIN_ASSETS,
   TournamentApplication,
-  TournamentApplicationState
+  TournamentApplicationState,
+  gameName
 } from 'bellum-gens-common/models';
 import { LoginService, ApiTournamentsService, PAGE_LOCATION } from 'bellum-gens-common/services';
 import { environment } from 'bellum-gens-common/environments';
@@ -58,6 +59,7 @@ export class UserPreferencesComponent {
   );
   public isTournamentAdmin = signal(false);
   public isAdmin = signal(false);
+  public gameName = gameName;
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   public userDeleted = output<void>();
@@ -134,6 +136,10 @@ export class UserPreferencesComponent {
 
   public navigateToEventAdmin() {
     this.navigateToLeague('/admin/sc2');
+  }
+
+  public navigateToDota2Admin() {
+    this.navigateToLeague('/admin/dota2');
   }
 
   public navigateToAppAdmin() {

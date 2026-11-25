@@ -22,8 +22,8 @@
   <igx-slide>
     <div class="slide slide2">
       <div class="slide-info">
-        <h1 i18n>Manage your Counter-Strike Team</h1>
-        <p i18n>Recruit your team, manage roles, strategies, practice times and more. The only free online Counter-Strike strategy editor available to everyone!</p>
+        <h1 i18n>Manage your Counter-Strike 2 or Dota 2 Team</h1>
+        <p i18n>Recruit your team, manage roles, practice times and more. Counter-Strike 2 teams also get the only free online strategy editor available to everyone!</p>
         @if (!authUser()) {
           <button igxButton="contained" (click)="openLogin()" i18n>Sign-up Now</button>
         } @else {
@@ -64,10 +64,10 @@
       </div>
 
       <div class="feature-card">
-        <img ngSrc="/assets/wallpapers/team-page.webp" width="600" height="314" class="feature-image" alt="Counter-Strike Team Overview" />
+        <img ngSrc="/assets/wallpapers/team-page.webp" width="600" height="314" class="feature-image" i18n-alt alt="Team Overview" />
         <div class="feature-card-body">
           <h3 i18n>Team Management</h3>
-          <p i18n>A Counter-Strike team finder and management platform — find teams matching your skill, manage rosters, strategies, and schedules. Because Counter-Strike is a team game!</p>
+          <p i18n>A Counter-Strike 2 and Dota 2 team finder and management platform — find teams matching your skill, manage rosters, schedules and Counter-Strike 2 strategies. Because esports are team games!</p>
           <button igxButton="outlined" routerLink="/team/myteams" class="feature-btn" i18n>Register your Team</button>
         </div>
       </div>

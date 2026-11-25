@@ -93,7 +93,35 @@
           <span igxTabHeaderLabel i18n>Participants</span>
         </igx-tab-header>
         <igx-tab-content>
-          @if (loadingRegistrations()) {
+          @if (isDota2()) {
+            @if (loadingDota2Registrations()) {
+              <div class="loading-container">
+                <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+              </div>
+            } @else {
+              <div class="participants-grid">
+                @for (reg of dota2Registrations(); track reg.id) {
+                  <div class="participant-card">
+                    <igx-avatar
+                      [src]="reg.team?.teamAvatar || ''"
+                      [initials]="reg.team?.teamName || ''"
+                      size="large"
+                      shape="circle">
+                    </igx-avatar>
+                    <span class="participant-name">{{ reg.team?.teamName }}</span>
+                    @if (reg.companyId | participantTeam; as company) {
+                      <span class="participant-org">[{{ company }}]</span>
+                    }
+                  </div>
+                } @empty {
+                  <div class="empty-state">
+                    <igx-icon>group_add</igx-icon>
+                    <p i18n>No teams registered yet</p>
+                  </div>
+                }
+              </div>
+            }
+          } @else if (loadingRegistrations()) {
             <div class="loading-container">
               <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
             </div>
@@ -133,6 +161,41 @@
         </igx-tab-header>
         <igx-tab-content>
           <div class="matches-section">
+            @if (dota2Matches(); as matches) {
+              @for (match of matches; track match.id) {
+                <div class="match-row">
+                  <div class="match-time">{{ match.startTime | date:'MMM d, h:mm a' }}</div>
+                  <div class="match-players">
+                    <div class="player" [class.winner]="(match.team1Points || 0) > (match.team2Points || 0)">
+                      <igx-avatar [src]="match.team1?.teamAvatar || ''" [initials]="match.team1?.teamName || ''" size="small" shape="circle"></igx-avatar>
+                      <span>{{ match.team1?.teamName }}</span>
+                    </div>
+                    <div class="match-score">
+                      <span [class.winner]="(match.team1Points || 0) > (match.team2Points || 0)">{{ match.team1Points }}</span>
+                      <span class="vs">:</span>
+                      <span [class.winner]="(match.team2Points || 0) > (match.team1Points || 0)">{{ match.team2Points }}</span>
+                    </div>
+                    <div class="player" [class.winner]="(match.team2Points || 0) > (match.team1Points || 0)">
+                      <igx-avatar [src]="match.team2?.teamAvatar || ''" [initials]="match.team2?.teamName || ''" size="small" shape="circle"></igx-avatar>
+                      <span>{{ match.team2?.teamName }}</span>
+                    </div>
+                  </div>
+                  <div class="match-actions">
+                    @if (match.videoLink) {
+                      <a [href]="match.videoLink" target="_blank" rel="noopener" igxButton="flat" igxRipple
+                        i18n-aria-label aria-label="Watch the series">
+                        <igx-icon>play_circle</igx-icon>
+                      </a>
+                    }
+                  </div>
+                </div>
+              } @empty {
+                <div class="empty-state">
+                  <igx-icon>sports_esports</igx-icon>
+                  <p i18n>No matches scheduled yet</p>
+                </div>
+              }
+            }
             @if (sc2Matches(); as matches) {
               @for (match of matches; track match.id) {
                 <div class="match-row">

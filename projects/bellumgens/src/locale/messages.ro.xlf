@@ -175,7 +175,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2653600116263338591" datatype="html">
@@ -454,6 +454,10 @@
           <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
+          <context context-type="linenumber">114,116</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/availability/availability.component.html</context>
           <context context-type="linenumber">22</context>
         </context-group>
@@ -723,7 +727,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
-          <context context-type="linenumber">132,133</context>
+          <context context-type="linenumber">160,161</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3763543734947983947" datatype="html">
@@ -733,6 +737,10 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">197</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">79,80</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="5788544696260335750" datatype="html">
         <source>Losses</source>
@@ -740,6 +748,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">199</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5254622645701859101" datatype="html">
@@ -1376,10 +1388,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">144,145</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">102,103</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
@@ -2622,17 +2630,17 @@
           <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="174105668315595106" datatype="html">
-        <source>Manage your Counter-Strike Team</source>
-        <target>Administrează-ți echipa de Counter-Strike</target>
+      <trans-unit id="5642505016678378432" datatype="html">
+        <source>Manage your Counter-Strike 2 or Dota 2 Team</source>
+        <target>Administrează-ți echipa de Counter-Strike 2 sau Dota 2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3853349505898786088" datatype="html">
-        <source>Recruit your team, manage roles, strategies, practice times and more. The only free online Counter-Strike strategy editor available to everyone!</source>
-        <target>Recrutează-ți echipa, gestionează rolurile, strategiile, programul de antrenament și multe altele. Singurul editor online gratuit de strategii pentru Counter-Strike, disponibil pentru toată lumea!</target>
+      <trans-unit id="7929584588592300451" datatype="html">
+        <source>Recruit your team, manage roles, practice times and more. Counter-Strike 2 teams also get the only free online strategy editor available to everyone!</source>
+        <target>Recrutează-ți echipa, gestionează rolurile, programul de antrenament și multe altele. Echipele de Counter-Strike 2 primesc în plus singurul editor online gratuit de strategii, disponibil pentru toată lumea!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">26,27</context>
@@ -2667,7 +2675,7 @@
         <target>Bellum Gens este un organizator și consultant de evenimente de gaming și esports, axat pe dezvoltarea și popularizarea esportului în Bulgaria. Ajutăm brandurile să se conecteze cu publicul gamer prin turnee, streamuri și canale digitale. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contactează-ne<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> pentru a afla despre oportunitățile disponibile.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">42,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4944888585886254793" datatype="html">
@@ -2710,6 +2718,14 @@
           <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8915821002925044296" datatype="html">
+        <source>Team Overview</source>
+        <target>Prezentarea echipei</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2987755426152633283" datatype="html">
         <source>Team Management</source>
         <target>Managementul echipei</target>
@@ -2718,9 +2734,9 @@
           <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8993625035612590666" datatype="html">
-        <source>A Counter-Strike team finder and management platform — find teams matching your skill, manage rosters, strategies, and schedules. Because Counter-Strike is a team game!</source>
-        <target>O platformă pentru găsirea și administrarea echipelor de Counter-Strike — găsește echipe pe măsura nivelului tău, gestionează lotul, strategiile și programul. Pentru că Counter-Strike este un joc de echipă!</target>
+      <trans-unit id="4200185138825478646" datatype="html">
+        <source>A Counter-Strike 2 and Dota 2 team finder and management platform — find teams matching your skill, manage rosters, schedules and Counter-Strike 2 strategies. Because esports are team games!</source>
+        <target>O platformă pentru găsirea și administrarea echipelor de Counter-Strike 2 și Dota 2 — găsește echipe pe măsura nivelului tău, gestionează lotul, programul și strategiile de Counter-Strike 2. Pentru că esportul este un joc de echipă!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">70,71</context>
@@ -3062,6 +3078,15 @@
           <context context-type="linenumber">274</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="dota2UnknownHero" datatype="html">
+        <source>Hero #<x id="heroId" equiv-text="hero.heroId"/></source>
+        <target>Erou #<x id="heroId" equiv-text="hero.heroId"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/pipes/dota2-hero-name.pipe.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">Dota 2 hero placeholder, shown when the hero name is unknown</note>
+      </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
         <source>Steam Counter-Strike player profile not found...</source>
         <target>Profilul de jucător Counter-Strike de pe Steam nu a fost găsit...</target>
@@ -3202,12 +3227,278 @@
           <context context-type="linenumber">181,182</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3681833346245163444" datatype="html">
+        <source>Steam Dota 2 player profile not found...</source>
+        <target>Profilul de jucător Dota 2 de pe Steam nu a fost găsit...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7715521720203601963" datatype="html">
+        <source>Dota 2 stats could not be loaded from Steam.</source>
+        <target>Statisticile Dota 2 nu au putut fi încărcate de pe Steam.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3562889067089149797" datatype="html">
+        <source>Steam did not respond. Try again later.</source>
+        <target>Steam nu a răspuns. Încearcă din nou mai târziu.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2488226818174372659" datatype="html">
+        <source>Dota 2 match data is private.</source>
+        <target>Datele meciurilor Dota 2 sunt private.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1903799313583291110" datatype="html">
+        <source>If this is your account, you need to expose your match data in Dota 2, so we can access your game stats.</source>
+        <target>Dacă acesta este contul tău, trebuie să faci publice datele meciurilor în Dota 2, ca să putem accesa statisticile tale de joc.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1968469774854448280" datatype="html">
+        <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Dota 2 --&gt; Settings --&gt; Options --&gt; Social --&gt; Set: &apos;Expose Public Match Data&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Pentru asta, mergi la <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Dota 2 --&gt; Setări --&gt; Opțiuni --&gt; Social --&gt; Activează: „Expose Public Match Data”<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8706073252986364560" datatype="html">
+        <source>No recent Dota 2 matches found.</source>
+        <target>Nu am găsit meciuri Dota 2 recente.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5632848103017772120" datatype="html">
+        <source>Matches show up here once they have been played with public match data.</source>
+        <target>Meciurile apar aici după ce sunt jucate cu datele meciurilor publice.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="442944137853192572" datatype="html">
+        <source>Win rate</source>
+        <target>Rată de victorii</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5894185069876125023" datatype="html">
+        <source>KDA</source>
+        <target>KDA</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">60,62</context>
+        </context-group>
+        <note priority="1" from="description">Kills plus assists per death</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="7614187318736304886" datatype="html">
+        <source>{VAR_PLURAL, plural, =1 {Last match} other {Last <x id="INTERPOLATION"/> matches}}</source>
+        <target>{VAR_PLURAL, plural, =1 {Ultimul meci} other {Ultimele meciuri: <x id="INTERPOLATION"/>}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="694560402561380793" datatype="html">
+        <source>Average K / D / A</source>
+        <target>K / D / A mediu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+        <note priority="1" from="description">Average kills, deaths and assists per match</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="7449059206300450000" datatype="html">
+        <source>Last hits</source>
+        <target>Last hits</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">91,92</context>
+        </context-group>
+        <note priority="1" from="description">Average number of last hits on creeps per match</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="4381031141553498026" datatype="html">
+        <source>Gold per minute</source>
+        <target>Aur pe minut</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+        <note priority="1" from="description">Average gold earned per minute</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="566900065183411387" datatype="html">
+        <source>Experience per minute</source>
+        <target>Experiență pe minut</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+        <note priority="1" from="description">Average experience earned per minute</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="8235202154666311736" datatype="html">
+        <source>Abandoned</source>
+        <target>Abandonate</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+        <note priority="1" from="description">Number of matches the player left early</note>
+        <note priority="1" from="meaning">Dota 2 stat</note>
+      </trans-unit>
+      <trans-unit id="1763022945178612514" datatype="html">
+        <source>Most played heroes</source>
+        <target>Cei mai jucați eroi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5896141256791003634" datatype="html">
+        <source>{VAR_PLURAL, plural, =1 {1 match} other {<x id="INTERPOLATION"/> matches}}</source>
+        <target>{VAR_PLURAL, plural, =1 {1 meci} other {Meciuri: <x id="INTERPOLATION"/>}}</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8739046962840362623" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ hero.winRate / 100 | percent:&apos;1.0-0&apos; }}"/> won</source>
+        <target>Victorii: <x id="INTERPOLATION" equiv-text="{{ hero.winRate / 100 | percent:&apos;1.0-0&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">128,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8719375641318134581" datatype="html">
+        <source>Recent matches</source>
+        <target>Meciuri recente</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7653178475449069959" datatype="html">
+        <source>Hero</source>
+        <target>Erou</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">146</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2525230676386818985" datatype="html">
         <source>Result</source>
         <target>Rezultat</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/sc-player/sc-player.component.html</context>
           <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2599830105144924227" datatype="html">
+        <source>Win</source>
+        <target>Victorie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">163,165</context>
+        </context-group>
+        <note priority="1" from="description">Dota 2 match result</note>
+      </trans-unit>
+      <trans-unit id="7078271376845640958" datatype="html">
+        <source>Loss</source>
+        <target>Înfrângere</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">166,168</context>
+        </context-group>
+        <note priority="1" from="description">Dota 2 match result</note>
+      </trans-unit>
+      <trans-unit id="5643127561960819841" datatype="html">
+        <source>(abandoned)</source>
+        <target>(abandonat)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">169,172</context>
+        </context-group>
+        <note priority="1" from="description">The player left the match early</note>
+        <note priority="1" from="meaning">Dota 2 match result</note>
+      </trans-unit>
+      <trans-unit id="5974452517651781247" datatype="html">
+        <source>K / D / A</source>
+        <target>K / D / A</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">174,175</context>
+        </context-group>
+        <note priority="1" from="description">Kills, deaths and assists</note>
+        <note priority="1" from="meaning">Dota 2 column header</note>
+      </trans-unit>
+      <trans-unit id="1471918475050995046" datatype="html">
+        <source>Last hits</source>
+        <target>Last hits</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">180,181</context>
+        </context-group>
+        <note priority="1" from="description">Last hits on creeps</note>
+        <note priority="1" from="meaning">Dota 2 column header</note>
+      </trans-unit>
+      <trans-unit id="2318528112943945825" datatype="html">
+        <source>GPM / XPM</source>
+        <target>GPM / XPM</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">182,183</context>
+        </context-group>
+        <note priority="1" from="description">Gold and experience per minute</note>
+        <note priority="1" from="meaning">Dota 2 column header</note>
+      </trans-unit>
+      <trans-unit id="7410432243549869948" datatype="html">
+        <source>Duration</source>
+        <target>Durată</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7754730602038897709" datatype="html">
+        <source>Played</source>
+        <target>Jucat</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.html</context>
+          <context context-type="linenumber">194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2PlayerTitle" datatype="html">
+        <source>Dota 2 Player: <x id="name" equiv-text="steamUser?.steamID ?? player.username"/></source>
+        <target>Jucător Dota 2: <x id="name" equiv-text="steamUser?.steamID ?? player.username"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/player-section/dota-player/dota-player.component.ts</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5052150728790721416" datatype="html">
@@ -3355,7 +3646,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">48,49</context>
+          <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5605609484271967363" datatype="html">
@@ -3667,15 +3958,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2469997684135721882" datatype="html">
@@ -3947,7 +4238,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
-          <context context-type="linenumber">133,134</context>
+          <context context-type="linenumber">142,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6682458176650622869" datatype="html">
@@ -4046,12 +4337,108 @@
           <context context-type="linenumber">147,148</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="dota2RoleCarry" datatype="html">
+        <source>Carry</source>
+        <target>Carry</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <note priority="1" from="description">The hero that farms to win the late game</note>
+        <note priority="1" from="meaning">Dota 2 roster position 1</note>
+      </trans-unit>
+      <trans-unit id="dota2RoleMid" datatype="html">
+        <source>Mid</source>
+        <target>Mid</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <note priority="1" from="description">The player in the middle lane</note>
+        <note priority="1" from="meaning">Dota 2 roster position 2</note>
+      </trans-unit>
+      <trans-unit id="dota2RoleOfflane" datatype="html">
+        <source>Offlane</source>
+        <target>Offlane</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <note priority="1" from="description">The player in the off lane</note>
+        <note priority="1" from="meaning">Dota 2 roster position 3</note>
+      </trans-unit>
+      <trans-unit id="dota2RoleSoftSupport" datatype="html">
+        <source>Soft Support</source>
+        <target>Soft Support</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <note priority="1" from="description">Dota 2 roster position 4</note>
+      </trans-unit>
+      <trans-unit id="dota2RoleHardSupport" datatype="html">
+        <source>Hard Support</source>
+        <target>Hard Support</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">Dota 2 roster position 5</note>
+      </trans-unit>
+      <trans-unit id="csRoleIgl" datatype="html">
+        <source>IGL</source>
+        <target>IGL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <note priority="1" from="description">The in-game leader</note>
+        <note priority="1" from="meaning">Counter-Strike roster role</note>
+      </trans-unit>
+      <trans-unit id="csRoleAwper" datatype="html">
+        <source>Awper</source>
+        <target>Awper</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <note priority="1" from="description">The sniper</note>
+        <note priority="1" from="meaning">Counter-Strike roster role</note>
+      </trans-unit>
+      <trans-unit id="csRoleEntryFragger" datatype="html">
+        <source>Entry Fragger</source>
+        <target>Entry Fragger</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <note priority="1" from="description">The player first into a bombsite</note>
+        <note priority="1" from="meaning">Counter-Strike roster role</note>
+      </trans-unit>
+      <trans-unit id="csRoleSupport" datatype="html">
+        <source>Support</source>
+        <target>Support</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+        <note priority="1" from="description">Counter-Strike roster role</note>
+      </trans-unit>
+      <trans-unit id="csRoleLurker" datatype="html">
+        <source>Lurker</source>
+        <target>Lurker</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <note priority="1" from="description">Counter-Strike roster role</note>
+      </trans-unit>
       <trans-unit id="7800738675096880095" datatype="html">
         <source>Remove <x id="username" equiv-text="member.username"/> from role</source>
         <target>Elimină-l pe <x id="username" equiv-text="member.username"/> din rol</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9182905864150468739" datatype="html">
@@ -4059,7 +4446,7 @@
         <target>Mută-l pe <x id="username" equiv-text="member.username"/> la inactivi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5488466320845465302" datatype="html">
@@ -4067,12 +4454,12 @@
         <target>Elimină-l pe <x id="username" equiv-text="member.username"/> din echipă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6169559049543839177" datatype="html">
-        <source>Create New Counter-Strike Team</source>
-        <target>Creează o echipă nouă de Counter-Strike</target>
+      <trans-unit id="3163755051636979710" datatype="html">
+        <source>Create New Team</source>
+        <target>Creează o echipă nouă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">3,4</context>
@@ -4091,7 +4478,7 @@
         <target>Vezi echipa</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3548321119891624524" datatype="html">
@@ -4099,7 +4486,7 @@
         <target>Părăsește</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">28,29</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8271025541466234627" datatype="html">
@@ -4107,15 +4494,36 @@
         <target>Vei părăsi definitiv această echipă. Dacă ești proprietarul echipei și singurul ei membru, echipa va fi și ea ștearsă...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">38,39</context>
+          <context context-type="linenumber">39,40</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="46652879430820185" datatype="html">
+        <source>The game a new team is created for</source>
+        <target>Jocul pentru care se creează echipa nouă</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4643591148728960560" datatype="html">
+        <source>Game</source>
+        <target>Joc</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+        <note priority="1" from="description">The game a new team is created for</note>
       </trans-unit>
       <trans-unit id="6634018439611394310" datatype="html">
         <source>Import from Steam Group</source>
         <target>Importă dintr-un grup Steam</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">3,4</context>
+          <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1025499628828428883" datatype="html">
@@ -4123,7 +4531,7 @@
         <target>Caută grupuri</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="944776409514058300" datatype="html">
@@ -4131,7 +4539,7 @@
         <target>Nu s-au găsit grupuri Steam...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">20,21</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2894955854294136007" datatype="html">
@@ -4139,7 +4547,7 @@
         <target>Sau creeaz-o folosind formularul</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="550195626538405809" datatype="html">
@@ -4147,7 +4555,7 @@
         <target>Numele echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">34,35</context>
+          <context context-type="linenumber">43,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5613992837503682068" datatype="html">
@@ -4155,7 +4563,7 @@
         <target>Șterge numele echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">53,54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-preferences/team-preferences.component.html</context>
@@ -4167,7 +4575,7 @@
         <target>Motto-ul echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8972415480841314475" datatype="html">
@@ -4175,7 +4583,7 @@
         <target>Șterge motto-ul echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">65,66</context>
+          <context context-type="linenumber">74,75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7681453845879212786" datatype="html">
@@ -4183,7 +4591,7 @@
         <target>URL-ul avatarului echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">89,90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2450097354054432711" datatype="html">
@@ -4191,7 +4599,7 @@
         <target>Șterge URL-ul avatarului echipei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">98,99</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-preferences/team-preferences.component.html</context>
@@ -4203,12 +4611,21 @@
         <target>Trebuie să furnizezi URL-ul unei imagini</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">33</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="3493126540529865490" datatype="html">
+        <source>Submitting...</source>
+        <target>Se trimite...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
+          <context context-type="linenumber">112,114</context>
+        </context-group>
+        <note priority="1" from="description">The submit button of the new team form while the team is being created</note>
       </trans-unit>
       <trans-unit id="722162043599991050" datatype="html">
         <source>Team Info</source>
@@ -4279,7 +4696,7 @@
         <target>Strateg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-preferences/team-preferences.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1226880952436547854" datatype="html">
@@ -4295,7 +4712,7 @@
         <target>Detalii</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="791841315539176359" datatype="html">
@@ -4303,7 +4720,7 @@
         <target>Competiții</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">38,39</context>
+          <context context-type="linenumber">39,40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
@@ -4311,7 +4728,7 @@
         <target>Setări</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">59,60</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login.component.html</context>
@@ -4320,6 +4737,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
           <context context-type="linenumber">57,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2TeamTitle" datatype="html">
+        <source>Dota 2 Team: <x id="name" equiv-text="team.teamName"/></source>
+        <target>Echipă Dota 2: <x id="name" equiv-text="team.teamName"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="csTeamTitle" datatype="html">
+        <source>Counter-Strike Team: <x id="name" equiv-text="team.teamName"/></source>
+        <target>Echipă Counter-Strike: <x id="name" equiv-text="team.teamName"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.ts</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3337938341383763597" datatype="html">
@@ -4463,7 +4896,7 @@
         <target>Creează un nume de utilizator și o parolă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4477372597867894980" datatype="html">
@@ -4542,12 +4975,20 @@
           <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="190452334756158553" datatype="html">
+        <source>Dota 2 Tournament Admin</source>
+        <target>Admin turnee Dota 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <target>Șterge contul definitiv</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">80,81</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1829407837180331792" datatype="html">
@@ -4555,7 +4996,7 @@
         <target>Dacă apeși OK, contul tău de utilizator va fi șters definitiv...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">86,87</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
@@ -4563,7 +5004,7 @@
         <target>Dacă apeși OK, înscrierea ta la turneu va fi ștearsă definitiv...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">95,96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4416413576346763682" datatype="html">
@@ -4571,7 +5012,7 @@
         <target>În așteptare</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
@@ -4579,7 +5020,7 @@
         <target>Confirmată</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2999492056553212422" datatype="html">
@@ -4587,7 +5028,7 @@
         <target>Exclusă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1405463563837173046" datatype="html">
@@ -5878,14 +6319,6 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4643591148728960560" datatype="html">
-        <source>Game</source>
-        <target>Joc</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
-          <context context-type="linenumber">35,36</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5433782699501161466" datatype="html">
         <source>Schedule</source>
         <target>Program</target>
@@ -5978,12 +6411,28 @@
           <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3284507413197231858" datatype="html">
+        <source>No teams registered yet</source>
+        <target>Nicio echipă înscrisă încă</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6547339363660356423" datatype="html">
         <source>No participants registered yet</source>
         <target>Niciun participant înscris încă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
-          <context context-type="linenumber">121,122</context>
+          <context context-type="linenumber">149,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7253812938173290896" datatype="html">
+        <source>Watch the series</source>
+        <target>Urmărește seria</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">186,187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8373156083061523092" datatype="html">
@@ -5991,7 +6440,11 @@
         <target>Niciun meci programat încă</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
-          <context context-type="linenumber">172,173</context>
+          <context context-type="linenumber">195,196</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">235,236</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9209195486314385244" datatype="html">
@@ -6134,12 +6587,28 @@
           <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1752228062142158193" datatype="html">
+        <source>Dota 2 team</source>
+        <target>Echipă Dota 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4677536029199786946" datatype="html">
+        <source>A Dota 2 tournament is joined by a team you manage</source>
+        <target>Te alături unui turneu Dota 2 cu o echipă pe care o administrezi</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8307140841776883735" datatype="html">
         <source>Join</source>
         <target>Intră</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
-          <context context-type="linenumber">134,135</context>
+          <context context-type="linenumber">143,144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7355648723531214824" datatype="html">
@@ -6380,6 +6849,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
           <context context-type="linenumber">231</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2GroupSaved" datatype="html">
+        <source>Tournament Dota 2 group updated successfully!</source>
+        <target>Grupa Dota 2 a fost actualizată cu succes!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">331</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2SeriesSaved" datatype="html">
+        <source>Tournament Dota 2 series updated successfully!</source>
+        <target>Seria Dota 2 a fost actualizată cu succes!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">346</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dota2SeriesDeleted" datatype="html">
+        <source>Tournament Dota 2 series deleted successfully!</source>
+        <target>Seria Dota 2 a fost ștearsă cu succes!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.tournaments.service.ts</context>
+          <context context-type="linenumber">360</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">

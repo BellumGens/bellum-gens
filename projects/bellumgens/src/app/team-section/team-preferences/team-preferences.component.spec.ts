@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, ROUTER_OUTLET_DATA, provideRouter } from '@angular/router';
 import { WritableSignal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApplicationUser, CSGOTeam, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { ApplicationUser, CSGOTeam, Game, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
 import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -309,8 +309,17 @@ describe('TeamPreferencesComponent', () => {
         expect(items.length).toBe(3);
         expect(items[0].textContent).toContain('Me');
         const links = items.map(i => i.querySelector('a')!.getAttribute('href'));
-        expect(links).toEqual(['/players/me', '/players/the-player', '/players/editor']);
+        expect(links).toEqual(['/players/me/cs', '/players/the-player/cs', '/players/editor/cs']);
         expect(items[1].textContent).toContain('Real Player');
+      });
+
+      it('should link the members of a Dota 2 team to their Dota 2 player page and have no strategists', async () => {
+        await setup({ team: { ...TEAM, game: Game.Dota2 } });
+        const items = listItems();
+        expect(items.map(i => i.querySelector('a')!.getAttribute('href'))).toEqual(['/players/me/dota', '/players/the-player/dota', '/players/editor/dota']);
+        expect(el().querySelectorAll('[id^="admin_switch_"]').length).toBe(3);
+        expect(el().querySelectorAll('[id^="editor_switch_"]').length).toBe(0);
+        expect(el().textContent).not.toContain('Strategist');
       });
 
       it('should show a country badge only for members with a country', async () => {
