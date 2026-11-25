@@ -620,6 +620,20 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(text()).not.toContain('No matches scheduled yet');
     });
 
+    it('renders a scheduled SC2 match whose players are not set yet without names, a score or a winner', async () => {
+      entry(sc2Matches, 't1').set([{ id: 'm1' }]);
+      await create(baseTournament());
+      await openTab('Matches');
+
+      const row = q('.matches-section .match-row')!;
+      const players = Array.from(row.querySelectorAll('.match-players > .player'));
+      expect(players.length).toBe(2);
+      expect(players.map(p => p.textContent.trim())).toEqual(['', '']);
+      expect(players.some(p => p.classList.contains('winner'))).toBe(false);
+      expect(row.querySelectorAll('.race-icon').length).toBe(0);
+      expect(row.querySelector('.match-score')!.textContent.replace(/\s+/g, '')).toBe(':');
+    });
+
     it('shows the empty state for an SC2 tournament without matches', async () => {
       entry(sc2Matches, 't1').set([]);
       await create(baseTournament());
@@ -715,6 +729,44 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(won.querySelector('.match-actions a')!.getAttribute('href')).toBe('https://twitch.tv/vod/2');
       expect(teams(drawn).some(t => t.classList.contains('winner'))).toBe(false);
       expect(drawn.querySelector('.match-actions a')).toBeNull();
+    });
+
+    it('lists a registration whose team details are not loaded without a name or avatar', async () => {
+      entry(dota2Registrations, 't1').set([participant('r1')]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Participants');
+
+      const cards = qa('.participant-card');
+      expect(cards.length).toBe(1);
+      expect(cards[0].querySelector('.participant-name')!.textContent.trim()).toBe('');
+      expect(cards[0].querySelector('igx-avatar img')).toBeNull();
+    });
+
+    it('renders a scheduled series without a score, a winner or team details', async () => {
+      entry(dota2Matches, 't1').set([{ id: 'd1' }]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Matches');
+
+      const row = q('.matches-section .match-row')!;
+      const teams = Array.from(row.querySelectorAll('.match-players > .player'));
+      expect(teams.length).toBe(2);
+      expect(teams.some(t => t.classList.contains('winner'))).toBe(false);
+      expect(teams.map(t => t.textContent.trim())).toEqual(['', '']);
+      expect(row.querySelectorAll('.match-score .winner').length).toBe(0);
+      expect(row.querySelector('.match-score')!.textContent.replace(/\s+/g, '')).toBe(':');
+      expect(row.querySelector('.match-actions a')).toBeNull();
+    });
+
+    it('marks the second team as the winner of a series it won', async () => {
+      entry(dota2Matches, 't1').set([
+        { id: 'd1', team1: team('a', 'Team Alpha'), team2: team('b', 'Team Beta'), team1Points: 0, team2Points: 2 }
+      ]);
+      await create(baseTournament({ game: Game.Dota2 }));
+      await openTab('Matches');
+
+      const teams = qa('.matches-section .match-row .match-players > .player');
+      expect(teams[0].classList).not.toContain('winner');
+      expect(teams[1].classList).toContain('winner');
     });
 
     it('shows the empty state for a Dota 2 tournament without series', async () => {

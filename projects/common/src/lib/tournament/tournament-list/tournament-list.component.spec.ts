@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { config } from 'rxjs';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 
 import { TournamentListComponent } from './tournament-list.component';
 import { ApiTournamentsService, LoginService, CommunicationService } from 'bellum-gens-common/services';
@@ -462,6 +463,27 @@ describe('TournamentListComponent', () => {
       expect(component.dota2Teams().map(t => t.teamId)).toEqual(['dota', 'dota2']);
       // With two teams to choose from, none is picked for the user
       expect(component.inviteTeamId()).toBeNull();
+    });
+
+    it('should join with the Dota 2 team the user picks', async () => {
+      loginService.addTeamAdmin({ teamId: 'dota2', teamName: 'New Dota Team', teamAvatar: '', visible: true, game: Game.Dota2 });
+      fixture.detectChanges();
+      const select = fixture.debugElement.query(By.directive(IgxSelectComponent)).componentInstance as IgxSelectComponent;
+      expect(select.items.map(i => i.value)).toEqual(['dota', 'dota2']);
+
+      select.open();
+      fixture.detectChanges();
+      select.items.find(i => i.value === 'dota2')!.element.nativeElement.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.inviteTeamId()).toBe('dota2');
+      component.inviteCode = 'DOTA2345';
+      component.joinByInvite(inviteDialog());
+
+      const req = httpMock.expectOne(joinUrl());
+      expect(req.request.body).toEqual({ inviteCode: 'DOTA2345', teamId: 'dota2' });
+      req.flush({ id: 't9', name: 'Joined' });
     });
 
     it('should preselect no team when the only Dota 2 team has no id yet', () => {

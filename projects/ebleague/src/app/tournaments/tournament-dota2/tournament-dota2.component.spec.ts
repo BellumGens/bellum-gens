@@ -189,6 +189,18 @@ describe('TournamentDota2Component', () => {
     expect(slots.map(s => s.querySelector(':scope > span')?.textContent ?? null)).toEqual(['[Alpha Inc.]', '[Bravo Inc.]', null]);
   });
 
+  it('shows the initials of a registered team that has no avatar', async () => {
+    flushUser(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
+    const noAvatar = { ...team('team-1', 'Alpha'), teamAvatar: null } as unknown as CSGOTeam;
+    flushPage('', { registrations: [makeRegistration('r1', 'other', TournamentApplicationState.Confirmed, noAvatar)] });
+    await render();
+
+    const avatar = el().querySelector('.registration-slot igx-avatar')!;
+    expect(avatar.querySelector('img')).toBeNull();
+    expect(avatar.textContent.trim()).toBe('Al');
+  });
+
   describe('schedule', () => {
     const alpha = team('team-1', 'Alpha');
     const bravo = team('team-2', 'Bravo');
@@ -298,6 +310,18 @@ describe('TournamentDota2Component', () => {
       expect(text[3]).toContain('The match has not been played yet');
       expect(text.filter(t => t.includes('The match has not been played yet')).length).toBe(1);
     });
+  });
+
+  it('renders an empty standings grid for a group the API sends without participants', async () => {
+    flushUser(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
+    flushPage('', { groups: [{ id: 'g1', name: 'Group A' }] });
+    await render();
+
+    const groupGrids = Array.from(el().querySelectorAll<HTMLElement>('.group-columns igx-grid'));
+    expect(groupGrids.length).toBe(1);
+    expect(groupGrids[0].querySelector('igx-grid-toolbar-title')!.textContent.trim()).toBe('Group A');
+    expect(groupGrids[0].querySelectorAll('igx-grid-row').length).toBe(0);
   });
 
   it('renders a standings grid per group with the Dota 2 columns and a colour-coded game difference', async () => {
@@ -418,6 +442,38 @@ describe('TournamentDota2Component', () => {
         ['https://video/1', 'Video'],
         ['https://demo/1', 'Replay']
       ]);
+    });
+
+    it('shows only the media links a series has in its details, and no winner for an undecided game', async () => {
+      const series = (id: string, overrides: Partial<TournamentDota2Match>): TournamentDota2Match => ({
+        id, team1: team('team-1', 'Alpha'), team2: team('team-2', 'Bravo'), team1Id: 'team-1', team2Id: 'team-2',
+        startTime: new Date(2024, 0, 15, 18, 30), games: [], ...overrides
+      });
+      const matches = [
+        series('m1', {
+          videoLink: 'https://video/1',
+          games: [{ id: 'g1', dota2MatchId: 'm1', gameNumber: 1, radiantTeamId: 'team-1', winnerTeamId: null, steamMatchId: null }]
+        }),
+        series('m2', { demoLink: 'https://demo/2' }),
+        series('m3', {})
+      ];
+      httpMock.match(req => req.url.includes('dota2matches')).forEach(req => req.flush(matches));
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      await render();
+
+      scheduleGrid().expandAll();
+      await render();
+      const details = Array.from(grids()[0].querySelectorAll('.igx-grid__tr-container'));
+      const links = (detail: Element) => Array.from(detail.querySelectorAll<HTMLAnchorElement>('.match-links a'))
+        .map(a => [a.getAttribute('href'), a.querySelector('span')!.textContent.trim()]);
+      expect(details.length).toBe(3);
+      expect(links(details[0])).toEqual([['https://video/1', 'Video']]);
+      expect(links(details[1])).toEqual([['https://demo/2', 'Replay']]);
+      expect(details[2].querySelector('.match-links')).toBeNull();
+
+      const winner = details[0].querySelector('table.series-games tbody td:nth-child(4)')!;
+      expect(winner.textContent.trim()).toBe('');
+      expect(winner.classList).not.toContain('color-success');
     });
   });
 });

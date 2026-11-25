@@ -22,17 +22,15 @@
   (leftButtonSelect)="availabilityCancel()"
   (rightButtonSelect)="availabilityChange()">
   @let selected = selectedDay();
-  <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selected ? (selected.day | weekday) : ''}}</span></h5>
+  <h3 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selected ? (selected.day | weekday) : ''}}</span></h3>
   @if (selectedDay(); as day) {
-    <div>
-      <div class="horizontal-center">
-        <igx-time-picker type="border" #from class="time-picker" [value]="day.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
-          <label igxLabel i18n>From</label>
-        </igx-time-picker>
-        <igx-time-picker type="border" #to class="time-picker" [value]="day.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
-          <label igxLabel i18n>To</label>
-        </igx-time-picker>
-      </div>
+    <div class="horizontal-center">
+      <igx-time-picker type="border" #from class="time-picker" [value]="day.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <label igxLabel i18n>From</label>
+      </igx-time-picker>
+      <igx-time-picker type="border" #to class="time-picker" [value]="day.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <label igxLabel i18n>To</label>
+      </igx-time-picker>
     </div>
   }
 </igx-dialog>

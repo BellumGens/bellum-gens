@@ -130,7 +130,7 @@
     <igx-hint i18n>Enter the invite code shared by the tournament organizer</igx-hint>
   </igx-input-group>
   @if (dota2Teams().length) {
-    <igx-select type="border" class="invite-team" name="inviteTeam" [(ngModel)]="inviteTeamId">
+    <igx-select type="border" class="invite-team" name="inviteTeam" [ngModel]="inviteTeamId()" (ngModelChange)="inviteTeamId.set($event)">
       <label igxLabel i18n>Dota 2 team</label>
       @for (team of dota2Teams(); track team.teamId) {
         <igx-select-item [value]="team.teamId">{{ team.teamName }}</igx-select-item>
